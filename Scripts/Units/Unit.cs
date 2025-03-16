@@ -8,8 +8,11 @@ public partial class Unit : Node
 	private Vector2 _targetDirection;
 	
 	private const float MaxDirectionLengthSquared = 1.01f;
+	private const float DirectionDeadZoneSquared = 0.01f;
+	
 	[Export] private float _maxWalkSpeed;
-	[Export] private float _walkAcceleration;
+	[Export] private float _maxWalkAcceleration;
+	[Export] private float _maxBrakeAcceleration;
 
 	[Export] private CharacterBody2D _characterBody;
 	
@@ -18,28 +21,28 @@ public partial class Unit : Node
 		get => _characterBody.Velocity;
 		set => _characterBody.Velocity = value;
 	}
+
+	private float MaxAcceleration
+		=> _targetDirection.LengthSquared() < DirectionDeadZoneSquared ? _maxBrakeAcceleration : _maxWalkAcceleration;
 	
-	private float WalkAccelerationSquared 
-		=> _walkAcceleration * _walkAcceleration;
+	private float MaxAccelerationSquared 
+		=> MaxAcceleration * MaxAcceleration;
 	
 	public override void _PhysicsProcess(double delta)
 	{
 		_characterBody.MoveAndSlide();
 		UpdateWalkingVelocity((float)delta);
-
-		GD.Print("Velocity = " + Velocity);
-		GD.Print("Speed = " + Velocity.Length());
 	}
 
 	private void UpdateWalkingVelocity(float deltaSeconds)
 	{
-		Vector2 targetVelocity = _targetDirection * _maxWalkSpeed;
+		Vector2 targetVelocity = _targetDirection * MaxAcceleration;
 		Vector2 targetDelta = targetVelocity - Velocity;
 		
 		Vector2 deltaVelocity = targetDelta;
 		
-		if (targetDelta.LengthSquared() > WalkAccelerationSquared * deltaSeconds)
-			deltaVelocity = deltaVelocity.Normalized() * _walkAcceleration * deltaSeconds;
+		if (targetDelta.LengthSquared() > MaxAccelerationSquared * deltaSeconds)
+			deltaVelocity = deltaVelocity.Normalized() * MaxAcceleration * deltaSeconds;
 		
 		Velocity += deltaVelocity;
 	}

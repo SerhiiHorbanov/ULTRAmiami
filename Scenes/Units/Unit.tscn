@@ -9,9 +9,10 @@ radius = 65.0
 
 [node name="Unit" type="Node" node_paths=PackedStringArray("_characterBody")]
 script = ExtResource("1_bxx5k")
-_characterBody = NodePath("CharacterBody2D")
 _maxWalkSpeed = 5.0
-_walkAcceleration = 5.0
+_maxWalkAcceleration = 15.0
+_maxBrakeAcceleration = 30.0
+_characterBody = NodePath("CharacterBody2D")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
