@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3db8pnbw5ffi"]
+
+[ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
+[ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
+
+[node name="Player" type="Node"]
+
+[node name="Unit" parent="." instance=ExtResource("1_33iby")]
+
+[node name="PlayerUnitController" type="Node" parent="." node_paths=PackedStringArray("Unit")]
+script = ExtResource("2_xf41u")
+Unit = NodePath("../Unit")
+
+[editable path="Unit"]
