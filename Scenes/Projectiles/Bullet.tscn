@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcvmo08805r11"]
+
+[ext_resource type="Script" uid="uid://cr1d25j7i54xh" path="res://Scripts/Weapons/Projectiles/Bullet.cs" id="1_yvbqg"]
+[ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="2_rjcpp"]
+[ext_resource type="Script" uid="uid://dp1dx0d55m7ou" path="res://Scripts/PositionSync2DTo3D.cs" id="3_2cv5c"]
+
+[node name="Bullet" type="Node2D" node_paths=PackedStringArray("_rayCast")]
+script = ExtResource("1_yvbqg")
+_speed = 50.0
+_rayCast = NodePath("RayCast2D")
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("_syncFrom", "_syncTo")]
+script = ExtResource("3_2cv5c")
+_syncFrom = NodePath("..")
+_syncTo = NodePath("Sprite3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="Node3D"]
+texture = ExtResource("2_rjcpp")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
