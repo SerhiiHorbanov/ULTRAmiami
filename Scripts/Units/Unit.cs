@@ -7,6 +7,8 @@ public partial class Unit : Node
 {
 	private Vector2 _targetDirection;
 	
+	[Export] private Weapon _weapon;
+	
 	private const float MaxDirectionLengthSquared = 1.01f;
 	private const float DirectionDeadZoneSquared = 0.01f;
 	
@@ -22,16 +24,38 @@ public partial class Unit : Node
 		set => _characterBody.Velocity = value;
 	}
 
+	public Weapon Weapon
+		=> _weapon;
+
+	public Vector2 Position
+		=> _characterBody.Position;
+	
 	private float MaxAcceleration
 		=> _targetDirection.LengthSquared() < DirectionDeadZoneSquared ? _maxBrakeAcceleration : _maxWalkAcceleration;
 	
 	private float MaxAccelerationSquared 
 		=> MaxAcceleration * MaxAcceleration;
 	
+	public override void _Ready()
+	{
+		CheckForWeaponInChildrenAndAttach();
+	}
+
+	private void CheckForWeaponInChildrenAndAttach()
+	{
+		Weapon weapon = this.GetChild<Weapon>();
+		
+		if (weapon is null)
+			return;
+		
+		AttachWeapon(weapon);
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		_characterBody.MoveAndSlide();
 		UpdateWalkingVelocity((float)delta);
+		
 	}
 
 	private void UpdateWalkingVelocity(float deltaSeconds)
@@ -57,6 +81,20 @@ public partial class Unit : Node
 		_targetDirection = targetDirection;
 	}
 
+	public void SetPoitingAt(Vector2 pointingAt)
+	{
+		_weapon.PointingAt = pointingAt;
+	}
+
+	public void AttachWeapon(Weapon weapon)
+	{
+		_weapon = weapon;
+		weapon.Reparent(this);
+		weapon.Unit = this;
+	}
+
 	public void Die()
-	{ }
+	{
+		QueueFree();
+	}
 }
