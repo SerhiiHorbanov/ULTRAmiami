@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=4 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
+[ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_giihn"]
 
 [node name="Player" type="Node"]
 
@@ -13,5 +14,7 @@ _maxBrakeAcceleration = 120.0
 [node name="PlayerUnitController" type="Node" parent="." node_paths=PackedStringArray("Unit")]
 script = ExtResource("2_xf41u")
 Unit = NodePath("../Unit")
+
+[node name="Pistol" parent="." instance=ExtResource("3_giihn")]
 
 [editable path="Unit"]
