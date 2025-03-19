@@ -10,8 +10,15 @@ public partial class PlayerUnitController : UnitController
 		
 		if (Input.IsActionJustPressed("shoot"))
 		{
+			UpdatePointingAt();
 			Unit.Weapon?.Shoot();
 		}
+	}
+
+	private void UpdatePointingAt()
+	{
+		Vector2 pointingAt = GetLocalMousePosition();
+		Unit.Weapon.PointingAt = pointingAt;
 	}
 	
 	protected override Vector2 GetTargetDirection()
