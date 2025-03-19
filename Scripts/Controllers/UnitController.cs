@@ -3,7 +3,7 @@ using ULTRAmiami.Units;
 
 namespace ULTRAmiami.Controllers;
 
-public abstract partial class UnitController : Node
+public abstract partial class UnitController : Node2D
 {
 	[Export] protected Unit Unit;
 	
