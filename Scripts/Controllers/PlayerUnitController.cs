@@ -1,24 +1,29 @@
 using Godot;
+using ULTRAmiami.Weapons;
 
 namespace ULTRAmiami.Controllers;
 
 public partial class PlayerUnitController : UnitController
 {
+	private Weapon Weapon
+		=> Unit.Weapon;
+	
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
 		
+		UpdatePointingAt();
+		
 		if (Input.IsActionJustPressed("shoot"))
-		{
-			UpdatePointingAt();
-			Unit.Weapon?.Shoot();
-		}
+			Weapon?.TryStartShooting();
+		else if (Input.IsActionPressed("shoot"))
+			Weapon?.TryAutomaticShooting();
 	}
 
 	private void UpdatePointingAt()
 	{
 		Vector2 pointingAt = GetLocalMousePosition();
-		Unit.Weapon.PointingAt = pointingAt;
+		Weapon.PointingAt = pointingAt;
 	}
 	
 	protected override Vector2 GetTargetDirection()

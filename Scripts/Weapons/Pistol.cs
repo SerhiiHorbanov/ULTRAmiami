@@ -7,7 +7,7 @@ public partial class Pistol : Weapon
 {
     [Export] private PackedScene _projectile;
     
-    public override void Shoot()
+    protected override void Shoot()
     {
         Bullet projectile = _projectile.Instantiate<Bullet>();
         AddChild(projectile);
