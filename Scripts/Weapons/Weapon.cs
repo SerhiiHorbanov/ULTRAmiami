@@ -11,8 +11,14 @@ public abstract partial class Weapon : Node
 
 	private ulong _lastShotMicroSeconds;
 
+	[Export] private int _ammo;
+	[Export] private int _maxAmmo;
+	
 	private ulong MicroSecondsBetweenShots
 		=> (ulong)(1 / _fireRate * 1_000_000);
+	
+	private ulong MicroSecondsSinceShot
+		=> Time.GetTicksUsec() - _lastShotMicroSeconds;
 	
 	public Unit Unit { private get; set; }
 
@@ -29,27 +35,26 @@ public abstract partial class Weapon : Node
 
 	public void TryStartShooting()
 	{
-		if (IsReloaded())
-			ShootAndUpdateLastShot();
+		if (ReadyToShoot())
+			ShootAndDoRelatedProcesses();
 	}
 	
 	public void TryAutomaticShooting()
 	{
-		if (_isAutomatic && IsReloaded())
-			ShootAndUpdateLastShot();
+		if (_isAutomatic && ReadyToShoot())
+			ShootAndDoRelatedProcesses();
 	}
 
-	private void ShootAndUpdateLastShot()
+	private void ShootAndDoRelatedProcesses()
 	{
 		_lastShotMicroSeconds = Time.GetTicksUsec();
 		Shoot();
+		_ammo--;
 	}
 
-	private bool IsReloaded()
+	private bool ReadyToShoot()
 	{
-		ulong now = Time.GetTicksUsec();
-		ulong microSecondsSinceShot = now - _lastShotMicroSeconds; 
-		return microSecondsSinceShot >= MicroSecondsBetweenShots;
+		return MicroSecondsSinceShot >= MicroSecondsBetweenShots && _ammo != 0;
 	}
 
 	protected abstract void Shoot();

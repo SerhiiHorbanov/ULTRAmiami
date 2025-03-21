@@ -6,4 +6,6 @@
 [node name="Pistol" type="Node"]
 script = ExtResource("1_t511x")
 _projectile = ExtResource("2_t511x")
-_fireRate = 8.0
+_fireRate = 4.0
+_ammo = 12
+_maxAmmo = 12
