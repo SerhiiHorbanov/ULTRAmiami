@@ -10,21 +10,23 @@ public partial class Unit : CharacterBody2D
 	
 	[Export] private Weapon _weapon;
 	
-	private const float MaxDirectionLengthSquared = 1.01f;
-	private const float DirectionDeadZoneSquared = 0.01f;
-	
 	[Export] private float _maxWalkSpeed;
 	[Export] private float _maxWalkAcceleration;
 	[Export] private float _maxBrakeAcceleration;
 
 	public event Action<Weapon> OnWeaponChanged;
 
+	private const float DirectionDeadZoneSquared = 0.01f;
+	
 	public Weapon Weapon
 		=> _weapon;
 	
 	private float MaxAcceleration
-		=> _targetDirection.LengthSquared() < DirectionDeadZoneSquared ? _maxBrakeAcceleration : _maxWalkAcceleration;
-	
+		=> IsBraking ? _maxBrakeAcceleration : _maxWalkAcceleration;
+
+	private bool IsBraking 
+		=> _targetDirection.LengthSquared() < DirectionDeadZoneSquared;
+
 	private float MaxAccelerationSquared 
 		=> MaxAcceleration * MaxAcceleration;
 	
@@ -42,12 +44,12 @@ public partial class Unit : CharacterBody2D
 
 	private void UpdateWalkingVelocity(float deltaSeconds)
 	{
-		Vector2 targetVelocity = _targetDirection * MaxAcceleration;
+		Vector2 targetVelocity = _targetDirection * _maxWalkSpeed;
 		Vector2 targetDelta = targetVelocity - Velocity;
 		
 		Vector2 deltaVelocity = targetDelta;
 		
-		if (targetDelta.LengthSquared() > MaxAccelerationSquared * deltaSeconds)
+		if (deltaVelocity.Length() > MaxAcceleration * deltaSeconds)
 			deltaVelocity = deltaVelocity.Normalized() * MaxAcceleration * deltaSeconds;
 		
 		Velocity += deltaVelocity;
@@ -55,9 +57,7 @@ public partial class Unit : CharacterBody2D
 
 	public void SetTargetDirection(Vector2 targetDirection)
 	{
-		float lengthSquared = targetDirection.LengthSquared();
-		
-		if (lengthSquared > MaxDirectionLengthSquared)
+		if (!targetDirection.IsNormalized())
 			targetDirection = targetDirection.Normalized();
 		
 		_targetDirection = targetDirection;

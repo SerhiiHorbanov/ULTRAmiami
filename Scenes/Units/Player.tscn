@@ -8,7 +8,7 @@
 
 [node name="Unit" parent="." node_paths=PackedStringArray("_weapon") instance=ExtResource("1_33iby")]
 _weapon = NodePath("../Pistol")
-_maxWalkSpeed = 150.0
+_maxWalkSpeed = 800.0
 _maxWalkAcceleration = 3600.0
 _maxBrakeAcceleration = 7200.0
 

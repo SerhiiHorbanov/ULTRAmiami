@@ -8,7 +8,7 @@ radius = 24.0832
 
 [node name="Unit" type="CharacterBody2D"]
 script = ExtResource("1_bxx5k")
-_maxWalkSpeed = 50.0
+_maxWalkSpeed = 300.0
 _maxWalkAcceleration = 600.0
 _maxBrakeAcceleration = 1200.0
 
