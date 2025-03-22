@@ -12,4 +12,5 @@ _rayCast = NodePath("RayCast2D")
 target_position = Vector2(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_rjcpp")
