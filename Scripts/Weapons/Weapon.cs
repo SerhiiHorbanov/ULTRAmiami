@@ -14,6 +14,8 @@ public abstract partial class Weapon : Node
 	[Export] private int _ammo;
 	[Export] private int _maxAmmo;
 	
+	public event Action<int> OnAmmoChanged;
+	
 	private ulong MicroSecondsBetweenShots
 		=> (ulong)(1 / _fireRate * 1_000_000);
 	
@@ -45,11 +47,19 @@ public abstract partial class Weapon : Node
 			ShootAndDoRelatedProcesses();
 	}
 
+	public void InstantReload()
+	{
+		_ammo = _maxAmmo;
+		OnAmmoChanged?.Invoke(_ammo);
+	}
+	
 	private void ShootAndDoRelatedProcesses()
 	{
 		_lastShotMicroSeconds = Time.GetTicksUsec();
 		Shoot();
 		_ammo--;
+		
+		OnAmmoChanged?.Invoke(_ammo);
 	}
 
 	private bool ReadyToShoot()

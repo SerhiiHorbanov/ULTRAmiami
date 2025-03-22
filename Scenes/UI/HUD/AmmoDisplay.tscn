@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2hk6a38fe2k1"]
+
+[ext_resource type="Script" uid="uid://ca3uk24c7swvl" path="res://Scripts/UI/AmmoDisplay.cs" id="1_16lg4"]
+
+[node name="AmmoDisplay" type="Control" node_paths=PackedStringArray("_label")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_16lg4")
+_label = NodePath("AmmoAmountText")
+
+[node name="AmmoAmountText" type="Label" parent="."]
+layout_mode = 0
+text = "Default ammo text"

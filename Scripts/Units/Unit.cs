@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using ULTRAmiami.Weapons;
 
@@ -15,6 +16,8 @@ public partial class Unit : CharacterBody2D
 	[Export] private float _maxWalkSpeed;
 	[Export] private float _maxWalkAcceleration;
 	[Export] private float _maxBrakeAcceleration;
+
+	public event Action<Weapon> OnWeaponChanged;
 
 	public Weapon Weapon
 		=> _weapon;
@@ -70,6 +73,9 @@ public partial class Unit : CharacterBody2D
 		_weapon = weapon;
 		weapon.CallDeferred(Node.MethodName.Reparent, this);
 		weapon.Unit = this;
+		
+		OnWeaponChanged?.Invoke(weapon);
+		weapon.InstantReload();
 	}
 
 	public void Die()

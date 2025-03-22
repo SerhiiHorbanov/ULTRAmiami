@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6u4rioaf4ul4"]
+[gd_scene load_steps=3 format=3 uid="uid://b6u4rioaf4ul4"]
 
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="1_iukft"]
+[ext_resource type="PackedScene" uid="uid://sdpp1fwhlvdp" path="res://Scenes/UI/GameplayCanvas.tscn" id="2_gl6un"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Canvas" parent="." instance=ExtResource("2_gl6un")]
+
+[node name="AmmoDisplay" parent="Canvas" index="0" node_paths=PackedStringArray("_unit")]
+_unit = NodePath("../../Player/Unit")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
+
+[editable path="Canvas"]
+[editable path="Player"]
