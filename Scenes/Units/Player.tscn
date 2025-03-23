@@ -16,4 +16,5 @@ _maxBrakeAcceleration = 7200.0
 script = ExtResource("2_xf41u")
 Unit = NodePath("../Unit")
 
-[node name="Pistol" parent="." instance=ExtResource("3_giihn")]
+[node name="Pistol" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("3_giihn")]
+_unit = NodePath("../Unit")

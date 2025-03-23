@@ -22,6 +22,9 @@ public partial class PlayerUnitController : UnitController
 
 	private void UpdatePointingAt()
 	{
+		if (Weapon is null)
+			return;
+		
 		Vector2 pointingAt = GetLocalMousePosition();
 		Weapon.PointingAt = pointingAt;
 	}

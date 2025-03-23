@@ -1,11 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://2frk84kfwokl"]
+[gd_scene load_steps=5 format=3 uid="uid://2frk84kfwokl"]
 
 [ext_resource type="Script" uid="uid://bp7a0niqkxwhc" path="res://Scripts/Weapons/Pistol.cs" id="1_t511x"]
 [ext_resource type="PackedScene" uid="uid://bh4ye65imk1e" path="res://Scenes/Projectiles/Bullet.tscn" id="2_t511x"]
+[ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="3_si21x"]
 
-[node name="Pistol" type="Node"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_t511x"]
+
+[node name="Pistol" type="Node" node_paths=PackedStringArray("_dropped")]
 script = ExtResource("1_t511x")
 _projectile = ExtResource("2_t511x")
 _fireRate = 4.0
 _ammo = 12
 _maxAmmo = 12
+_dropped = NodePath("Dropped")
+
+[node name="Dropped" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Dropped"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_si21x")
+
+[node name="Area2D" type="Area2D" parent="Dropped"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dropped/Area2D"]
+shape = SubResource("CircleShape2D_t511x")

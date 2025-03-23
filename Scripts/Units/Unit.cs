@@ -42,19 +42,12 @@ public partial class Unit : CharacterBody2D
 		UpdateWalkingVelocity((float)delta);
 	}
 
-	private void UpdateWalkingVelocity(float deltaSeconds)
+	public void Die()
 	{
-		Vector2 targetVelocity = _targetDirection * _maxWalkSpeed;
-		Vector2 targetDelta = targetVelocity - Velocity;
-		
-		Vector2 deltaVelocity = targetDelta;
-		
-		if (deltaVelocity.Length() > MaxAcceleration * deltaSeconds)
-			deltaVelocity = deltaVelocity.Normalized() * MaxAcceleration * deltaSeconds;
-		
-		Velocity += deltaVelocity;
+		_weapon?.Drop();
+		QueueFree();
 	}
-
+	
 	public void SetTargetDirection(Vector2 targetDirection)
 	{
 		if (!targetDirection.IsNormalized())
@@ -68,18 +61,32 @@ public partial class Unit : CharacterBody2D
 		_weapon.PointingAt = pointingAt;
 	}
 
-	public void AttachWeapon(Weapon weapon)
+	public void DropWeapon()
+		=> AttachWeapon(null);
+	
+	private void UpdateWalkingVelocity(float deltaSeconds)
 	{
-		_weapon = weapon;
-		weapon.CallDeferred(Node.MethodName.Reparent, this);
-		weapon.Unit = this;
+		Vector2 targetVelocity = _targetDirection * _maxWalkSpeed;
+		Vector2 targetDelta = targetVelocity - Velocity;
 		
-		OnWeaponChanged?.Invoke(weapon);
-		weapon.InstantReload();
+		Vector2 deltaVelocity = targetDelta;
+		
+		if (deltaVelocity.Length() > MaxAcceleration * deltaSeconds)
+			deltaVelocity = deltaVelocity.Normalized() * MaxAcceleration * deltaSeconds;
+		
+		Velocity += deltaVelocity;
 	}
 
-	public void Die()
+	private void AttachWeapon(Weapon weapon)
 	{
-		QueueFree();
+		if (ReferenceEquals(_weapon, weapon))
+			return;
+		
+		_weapon?.Drop();
+		
+		_weapon = weapon;
+		weapon?.SetUnit(this);
+		
+		OnWeaponChanged?.Invoke(weapon);
 	}
 }

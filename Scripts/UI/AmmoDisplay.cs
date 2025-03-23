@@ -34,14 +34,21 @@ public partial class AmmoDisplay : Control
 
 	private void StartObservingWeapon(Weapon weapon)
 	{
-		if (_unit.Weapon is not null)
-		{
-			_unit.Weapon.OnAmmoChanged -= UpdateText;
-		}
+		if (ObservedWeapon is not null)
+			StopObservingWeapon();
+		
 		if (weapon is null)
+		{
+			UpdateText(0);
 			return;
+		}
 		
 		weapon.OnAmmoChanged += UpdateText;
+	}
+
+	private void StopObservingWeapon()
+	{
+		_unit.Weapon.OnAmmoChanged -= UpdateText;
 	}
 
 	public override void _ExitTree()
