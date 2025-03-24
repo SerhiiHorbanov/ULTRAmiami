@@ -26,5 +26,10 @@ public static class NodeTreeHelper
 	}
 
 	public static void MakeSiblingOf(this Node node, Node sibling)
-		=> node.Reparent(sibling.GetParent());
+	{
+		if (node.GetParent() != null)
+			node.Reparent(sibling.GetParent());
+		else
+			sibling.GetParent().AddChild(node);
+	}
 }
