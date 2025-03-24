@@ -18,6 +18,11 @@ public partial class PlayerUnitController : UnitController
 			Weapon?.TryStartShooting();
 		else if (Input.IsActionPressed("shoot"))
 			Weapon?.TryAutomaticShooting();
+
+		if (Input.IsActionJustPressed("drop weapon"))
+			Unit.DropWeapon();
+		if (Input.IsActionJustPressed("pick up weapon"))
+		    Unit.PickUpWeapon();
 	}
 
 	private void UpdatePointingAt()

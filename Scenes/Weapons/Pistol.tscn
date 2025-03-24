@@ -5,14 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="3_si21x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t511x"]
+radius = 32.0624
 
-[node name="Pistol" type="Node" node_paths=PackedStringArray("_dropped")]
+[node name="Pistol" type="Node" node_paths=PackedStringArray("_dropped", "_droppedArea")]
 script = ExtResource("1_t511x")
 _projectile = ExtResource("2_t511x")
 _fireRate = 4.0
 _ammo = 12
 _maxAmmo = 12
 _dropped = NodePath("Dropped")
+_droppedArea = NodePath("Dropped/Area2D")
 
 [node name="Dropped" type="Node2D" parent="."]
 
@@ -24,3 +26,5 @@ texture = ExtResource("3_si21x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dropped/Area2D"]
 shape = SubResource("CircleShape2D_t511x")
+
+[connection signal="area_entered" from="Dropped/Area2D" to="." method="OnAreaEntered"]

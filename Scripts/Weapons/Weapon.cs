@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using ULTRAmiami.Units;
 
@@ -15,6 +16,8 @@ public abstract partial class Weapon : Node
 	[Export] private int _maxAmmo;
 
 	[Export] private Node2D _dropped;
+	[Export] private Area2D _droppedArea;
+	private readonly Dictionary<Node2D, Unit> _unitsEnteredPickUpArea = new();
 	
 	public event Action<int> OnAmmoChanged;
 	
@@ -26,8 +29,11 @@ public abstract partial class Weapon : Node
 	private ulong MicroSecondsSinceShot
 		=> Time.GetTicksUsec() - _lastShotMicroSeconds;
 
+	private bool IsDropped
+		=> _unit is null;
+	
 	public Vector2 Position
-		=> _unit.Position;
+		=> IsDropped ? _dropped.Position : _unit.Position;
 	
 	public Vector2 PointingAt { protected get; set; }
 	
@@ -39,34 +45,62 @@ public abstract partial class Weapon : Node
 
 	public override void _Ready()
 	{
-		SetUnit(_unit);
+		SetupPickUpArea(_droppedArea);
 	}
 
-	public void SetUnit(Unit unit)
+	private void SetupPickUpArea(Area2D area)
 	{
-		if (unit is null)
-			Drop();
-		else
-			PickedUp(unit);
+		area.BodyEntered += OnBodyEntered;
+		area.BodyExited += OnBodyExited;
 	}
 	
-	public void PickedUp(Unit unit)
+	private void OnBodyEntered(Node2D body)
 	{
-		CallDeferred(Node.MethodName.Reparent, unit);
-		InstantReload();
+		Unit enteredUnit = body.GetAncestor<Unit>();
+
+		if (enteredUnit == null) 
+			return;
 		
-		RemoveChild(_dropped);
-		
-		_unit = unit;
+		_unitsEnteredPickUpArea.Add(body, enteredUnit);
+		enteredUnit.EnteredDroppedWeapons.Add(this);
 	}
 
-	public void Drop()
+	private void OnBodyExited(Node2D body)
 	{
-		AddChild(_dropped);
+		if (!_unitsEnteredPickUpArea.TryGetValue(body, out Unit value))
+			return;
 		
-		_dropped.Position = _unit.Position;
-		this.MakeSiblingOf(_unit);
-		_unit = null;
+        value.EnteredDroppedWeapons.Remove(this);
+		_unitsEnteredPickUpArea.Remove(body);
+	}
+	
+	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
+	{
+		Unit prevUnit = _unit;
+		_unit = unit;
+
+		if (unit is null)
+		{
+			Drop(isPickUppable, prevUnit.Position);
+			return;
+		}
+		
+		RemoveChild(_dropped);
+		InstantReload();
+	}
+
+	private void Drop(bool isPickUppable, Vector2 position)
+	{
+		_dropped.Position = position;
+		
+		if (isPickUppable)
+		{
+			AddChild(_dropped);
+			return;
+		}
+			
+		_dropped.MakeSiblingOf(this);
+		QueueFree();
 	}
 
 	public void TryStartShooting()

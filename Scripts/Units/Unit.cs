@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using ULTRAmiami.Weapons;
 
@@ -13,6 +14,9 @@ public partial class Unit : CharacterBody2D
 	[Export] private float _maxWalkSpeed;
 	[Export] private float _maxWalkAcceleration;
 	[Export] private float _maxBrakeAcceleration;
+	[Export] private bool _dropsPickUppableWeapon;
+
+	public readonly List<Weapon> EnteredDroppedWeapons = [];
 
 	public event Action<Weapon> OnWeaponChanged;
 
@@ -33,7 +37,11 @@ public partial class Unit : CharacterBody2D
 	public override void _Ready()
 	{
 		if (_weapon is not null)
-			AttachWeapon(_weapon);
+		{
+			Weapon weaponToAttach = _weapon;
+			_weapon = null;
+			TryAttachWeapon(weaponToAttach);
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -44,7 +52,7 @@ public partial class Unit : CharacterBody2D
 
 	public void Die()
 	{
-		_weapon?.Drop();
+		DropWeapon();
 		QueueFree();
 	}
 	
@@ -62,8 +70,36 @@ public partial class Unit : CharacterBody2D
 	}
 
 	public void DropWeapon()
-		=> AttachWeapon(null);
-	
+		=> TryAttachWeapon(null);
+
+	public void PickUpWeapon()
+	{
+		if (EnteredDroppedWeapons.Count == 0)
+			return;
+		
+		Weapon closestWeapon = GetClosestEnteredDroppedWeapon();
+
+		TryAttachWeapon(closestWeapon);
+	}
+
+	private Weapon GetClosestEnteredDroppedWeapon()
+	{
+		Weapon closestWeapon = EnteredDroppedWeapons[0];
+		float closestDistanceSquared = Position.DistanceSquaredTo(EnteredDroppedWeapons[0].Position);
+		
+		foreach (Weapon weapon in EnteredDroppedWeapons)
+		{
+			float distanceSquared = Position.DistanceSquaredTo(weapon.Position);
+			if (distanceSquared < closestDistanceSquared)
+			{
+				closestWeapon = weapon;
+				closestDistanceSquared = distanceSquared;
+			}
+		}
+
+		return closestWeapon;
+	}
+
 	private void UpdateWalkingVelocity(float deltaSeconds)
 	{
 		Vector2 targetVelocity = _targetDirection * _maxWalkSpeed;
@@ -77,16 +113,27 @@ public partial class Unit : CharacterBody2D
 		Velocity += deltaVelocity;
 	}
 
-	private void AttachWeapon(Weapon weapon)
+	private void TryAttachWeapon(Weapon weapon)
 	{
 		if (ReferenceEquals(_weapon, weapon))
 			return;
-		
-		_weapon?.Drop();
-		
+
+		Weapon oldWeapon = _weapon;
 		_weapon = weapon;
-		weapon?.SetUnit(this);
 		
 		OnWeaponChanged?.Invoke(weapon);
+		
+		oldWeapon?.TryAttachUnit(null, _dropsPickUppableWeapon);
+		weapon?.TryAttachUnit(this);
+	}
+	
+	protected override void Dispose(bool disposing)
+	{
+		if (disposing)
+		{
+			_weapon?.TryAttachUnit(null);
+		}
+		
+		base.Dispose(disposing);
 	}
 }
