@@ -19,6 +19,7 @@ public partial class Unit : CharacterBody2D
 	public readonly List<Weapon> EnteredDroppedWeapons = [];
 
 	public event Action<Weapon> OnWeaponChanged;
+	public event Action OnDeath;
 
 	private const float DirectionDeadZoneSquared = 0.01f;
 	
@@ -42,6 +43,8 @@ public partial class Unit : CharacterBody2D
 			_weapon = null;
 			TryAttachWeapon(weaponToAttach);
 		}
+		
+		OnDeath += DropWeapon;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -52,6 +55,7 @@ public partial class Unit : CharacterBody2D
 
 	public void Die()
 	{
+		OnDeath?.Invoke();
 		DropWeapon();
 		QueueFree();
 	}
@@ -125,15 +129,5 @@ public partial class Unit : CharacterBody2D
 		
 		oldWeapon?.TryAttachUnit(null, _dropsPickUppableWeapon);
 		weapon?.TryAttachUnit(this);
-	}
-	
-	protected override void Dispose(bool disposing)
-	{
-		if (disposing)
-		{
-			_weapon?.TryAttachUnit(null);
-		}
-		
-		base.Dispose(disposing);
 	}
 }
