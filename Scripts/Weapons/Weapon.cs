@@ -15,6 +15,9 @@ public abstract partial class Weapon : Node
 	[Export] private int _ammo;
 	[Export] private int _maxAmmo;
 
+	[Export] private float _reloadTimeSeconds;
+	private Timer _reloadTimer; 
+
 	[Export] private Node2D _dropped;
 	[Export] private Area2D _droppedArea;
 	private readonly Dictionary<Node2D, Unit> _unitsEnteredPickUpArea = new();
@@ -42,6 +45,9 @@ public abstract partial class Weapon : Node
 	
 	public Vector2 PointingInDirection
 		=> RelativePointingAt.Normalized();
+
+	public bool IsReloading
+		=> _reloadTimer is not null;
 
 	public override void _Ready()
 	{
@@ -115,10 +121,29 @@ public abstract partial class Weapon : Node
 			ShootAndDoRelatedProcesses();
 	}
 
+	public bool HasAmmo()
+		=> _ammo != 0;
+	
+	public void Reload()
+	{
+		if (IsReloading)
+			return;
+		
+		_reloadTimer = new();
+		
+		AddChild(_reloadTimer);
+		_reloadTimer.Timeout += InstantReload;
+		_reloadTimer.Start(_reloadTimeSeconds);
+		_reloadTimer.OneShot = true;
+	}
+	
 	private void InstantReload()
 	{
 		_ammo = _maxAmmo;
 		OnAmmoChanged?.Invoke(_ammo);
+		
+		_reloadTimer?.QueueFree();
+		_reloadTimer = null;
 	}
 	
 	private void ShootAndDoRelatedProcesses()

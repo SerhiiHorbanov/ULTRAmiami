@@ -24,6 +24,9 @@ public partial class PistolEnemyUnitController : AIUnitController
 		
 		if (TargetUnit is null || Unit is null)
 			return;
+
+		if (!Weapon.HasAmmo() && !Weapon.IsReloading)
+			Weapon.Reload();
 		
 		UpdatePointingAt();
 		Weapon.TryStartShooting();
