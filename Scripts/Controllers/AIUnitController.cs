@@ -15,6 +15,10 @@ public partial class AIUnitController : UnitController
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        if (Unit is null)
+            return;
+        
         if (HasReachedWayPoint((float)delta))
             ResolveCheckPointReached();
     }
@@ -34,5 +38,5 @@ public partial class AIUnitController : UnitController
     }
 
     protected override Vector2 GetTargetDirection()
-        => CurrentWayPoint - Position;
+        => HasUnit ? CurrentWayPoint - Unit.Position : Vector2.Zero;
 }

@@ -5,12 +5,12 @@ namespace ULTRAmiami.Controllers;
 
 public partial class PlayerUnitController : UnitController
 {
-	private Weapon Weapon
-		=> Unit.Weapon;
-	
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
+		
+		if (Unit is null) 
+			return;
 		
 		UpdatePointingAt();
 		
