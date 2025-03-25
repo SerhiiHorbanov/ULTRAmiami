@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5js1ka2nalod"]
+
+[ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_gqri3"]
+[ext_resource type="Script" uid="uid://n6srlh8uouwr" path="res://Scripts/Controllers/PistolEnemyUnitController.cs" id="2_hbmud"]
+[ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_wrv6w"]
+
+[node name="PistolEnemy" type="Node"]
+
+[node name="Unit" parent="." node_paths=PackedStringArray("_weapon") instance=ExtResource("1_gqri3")]
+_weapon = NodePath("../Pistol")
+
+[node name="PistolEnemyUnitController" type="Node2D" parent="." node_paths=PackedStringArray("_unit")]
+script = ExtResource("2_hbmud")
+_unit = NodePath("../Unit")
+
+[node name="Pistol" parent="." instance=ExtResource("3_wrv6w")]
