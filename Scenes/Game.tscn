@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6u4rioaf4ul4"]
+[gd_scene load_steps=5 format=3 uid="uid://b6u4rioaf4ul4"]
 
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://sdpp1fwhlvdp" path="res://Scenes/UI/GameplayCanvas.tscn" id="2_gl6un"]
+[ext_resource type="Script" uid="uid://c8i2xy07hrk8j" path="res://Scripts/TestEnemySpawner.cs" id="3_j5yw3"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="4_kldst"]
 
 [node name="Game" type="Node2D"]
 
@@ -14,5 +16,18 @@ _unit = NodePath("../../Player/Unit")
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
 
+[node name="TestEnemySpawner" type="Node" parent="." node_paths=PackedStringArray("_player", "_timer", "_spawnPosition")]
+script = ExtResource("3_j5yw3")
+_spawnedEnemyPackedScene = ExtResource("4_kldst")
+_player = NodePath("../Player/Unit")
+_timer = NodePath("Timer")
+_spawnPosition = NodePath("Node2D")
+
+[node name="Timer" type="Timer" parent="TestEnemySpawner"]
+wait_time = 5.0
+autostart = true
+
+[node name="Node2D" type="Node2D" parent="TestEnemySpawner"]
+position = Vector2(297, 57)
+
 [editable path="Canvas"]
-[editable path="Player"]
