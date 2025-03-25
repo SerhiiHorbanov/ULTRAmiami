@@ -15,7 +15,8 @@ public partial class PistolEnemyUnitController : AIUnitController
 	{
 		base._Ready();
 		
-		TargetUnit.OnDeath += StopTargetUnit;
+		if (TargetUnit is not null)
+			TargetUnit.OnDeath += StopTargetUnit;
 	}
 
 	public override void _Process(double delta)
