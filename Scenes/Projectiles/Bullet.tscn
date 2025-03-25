@@ -5,7 +5,7 @@
 
 [node name="Bullet" type="Node2D" node_paths=PackedStringArray("_rayCast")]
 script = ExtResource("1_yvbqg")
-_speed = 5000.0
+_speed = 3000.0
 _rayCast = NodePath("RayCast2D")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
