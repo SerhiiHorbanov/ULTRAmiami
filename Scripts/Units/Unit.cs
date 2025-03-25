@@ -14,7 +14,10 @@ public partial class Unit : CharacterBody2D
 	[Export] private float _maxWalkSpeed;
 	[Export] private float _maxWalkAcceleration;
 	[Export] private float _maxBrakeAcceleration;
+	
 	[Export] private bool _dropsPickUppableWeapon;
+	
+	[Export] private bool _godMode;
 
 	public readonly List<Weapon> EnteredDroppedWeapons = [];
 
@@ -55,6 +58,9 @@ public partial class Unit : CharacterBody2D
 
 	public void Die()
 	{
+		if (_godMode)
+			return;
+		
 		OnDeath?.Invoke();
 		DropWeapon();
 		QueueFree();
