@@ -11,6 +11,9 @@ _weapon = NodePath("../Pistol")
 
 [node name="PistolEnemyUnitController" type="Node2D" parent="." node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_hbmud")
+_tooCloseToTargetDistance = 200.0
+_tooFarFromTargetDistance = 400.0
+_wayPointRandomizationRange = Vector2(50, 50)
 _unit = NodePath("../Unit")
 
 [node name="Pistol" parent="." instance=ExtResource("3_wrv6w")]

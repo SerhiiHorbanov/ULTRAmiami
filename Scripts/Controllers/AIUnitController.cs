@@ -37,6 +37,12 @@ public partial class AIUnitController : UnitController
         return speedSquared < distanceToWayPointSquared;
     }
 
+    protected void GoTo(Vector2 newWayPoint)
+    {
+        CurrentWayPoint = newWayPoint;
+        IsGoingToWayPoint = true;
+    }
+    
     protected override Vector2 GetTargetDirection()
         => HasUnit ? CurrentWayPoint - Unit.Position : Vector2.Zero;
 }
