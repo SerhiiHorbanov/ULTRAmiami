@@ -1,6 +1,5 @@
 using Godot;
 using ULTRAmiami.Units;
-using ULTRAmiami.Weapons;
 
 namespace ULTRAmiami.Controllers;
 
@@ -69,7 +68,7 @@ public partial class PistolEnemyUnitController : AIUnitController
 	private void ResolveTargetTooFar()
 	{
 		float tooFar = DistanceToTarget - _tooFarFromTargetDistance;
-		Vector2 notRandomizedWayPoint = DirectionToTarget * tooFar;
+		Vector2 notRandomizedWayPoint = DirectionToTarget * tooFar + Unit.Position;
 			
 		Vector2 newWayPoint = GetRandomizedWayPoint(notRandomizedWayPoint);
 		GoTo(newWayPoint);
@@ -78,7 +77,7 @@ public partial class PistolEnemyUnitController : AIUnitController
 	private void ResolveTargetTooClose()
 	{
 		float tooClose = _tooCloseToTargetDistance - DistanceToTarget;
-		Vector2 notRandomizedWayPoint = DirectionFromTarget * tooClose;
+		Vector2 notRandomizedWayPoint = DirectionFromTarget * tooClose + Unit.Position;
 			
 		Vector2 newWayPoint = GetRandomizedWayPoint(notRandomizedWayPoint);
 		GoTo(newWayPoint);
