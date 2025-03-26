@@ -7,6 +7,8 @@ public partial class Bullet : Node2D
 {
 	[Export] private float _speed;
 	[Export] private RayCast2D _rayCast;
+	[Export] private float _maxLifeSpan;
+	private float _lifeSpan;
 	
 	private Vector2 _velocity;
 	
@@ -20,10 +22,19 @@ public partial class Bullet : Node2D
 	{
 		Position += _velocity * (float)delta;
 		
+		UpdateLifeSpan((float)delta);
 		UpdateRayCast((float)delta);
 		
 		if (_rayCast.IsColliding())
 			OnHit(_rayCast.GetCollider());
+	}
+
+	private void UpdateLifeSpan(float delta)
+	{
+		_lifeSpan += delta;
+		
+		if (_lifeSpan > _maxLifeSpan)
+			QueueFree();
 	}
 
 	private void UpdateRayCast(float delta)
