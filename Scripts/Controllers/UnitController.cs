@@ -9,44 +9,44 @@ public abstract partial class UnitController : Node2D
 	[Export] private Unit _unit;
 
 	protected Unit Unit
-	{
-		get => _unit;
-		set
-		{
-			if (_unit is not null)
-				_unit.OnDeath -= DetachUnit;
-			
-			if (value is not null)
-				value.OnDeath += DetachUnit;
-			
-			_unit = value;
-		}
-	}
-	
+		=> _unit;
+
 	protected Weapon Weapon
 		=> Unit.Weapon;
-
-	protected bool HasUnit 
-		=> Unit is not null;
 	
 	public override void _Ready()
 	{
+		if (Unit is null)
+			return;
+		
 		Unit.OnDeath += DetachUnit;
 	}
 
 	public override void _ExitTree()
 	{
+		if (Unit is null)
+			return;
+		
 		Unit.OnDeath -= DetachUnit;
 	}
 
-	private void DetachUnit()
+	private void SetUnit(Unit newUnit)
 	{
-		Unit = null;
+		if (_unit is not null)
+			_unit.OnDeath -= DetachUnit;
+			
+		if (newUnit is not null)
+			newUnit.OnDeath += DetachUnit;
+			
+		_unit = newUnit;
 	}
+	
+	private void DetachUnit()
+		=> SetUnit(null);
 	
 	public override void _Process(double delta)
 	{
-		if (Unit == null)
+		if (Unit is null)
 			return;
 		
 		UpdateTargetDirection();
