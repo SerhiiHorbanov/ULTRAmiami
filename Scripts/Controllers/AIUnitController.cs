@@ -44,5 +44,5 @@ public partial class AIUnitController : UnitController
     }
     
     protected override Vector2 GetTargetDirection()
-        => HasUnit ? CurrentWayPoint - Unit.Position : Vector2.Zero;
+        => IsGoingToWayPoint ? CurrentWayPoint - Unit.Position : Vector2.Zero;
 }
