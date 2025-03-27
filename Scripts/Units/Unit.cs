@@ -19,7 +19,7 @@ public partial class Unit : CharacterBody2D
 	
 	[Export] private bool _godMode;
 
-	public readonly List<Weapon> EnteredDroppedWeapons = [];
+	public readonly List<DroppedWeapon> EnteredDroppedWeapons = [];
 
 	public event Action<Weapon> OnWeaponChanged;
 	public event Action OnDeath;
@@ -94,20 +94,20 @@ public partial class Unit : CharacterBody2D
 
 	private Weapon GetClosestEnteredDroppedWeapon()
 	{
-		Weapon closestWeapon = EnteredDroppedWeapons[0];
+		DroppedWeapon closestDroppedWeapon = EnteredDroppedWeapons[0];
 		float closestDistanceSquared = Position.DistanceSquaredTo(EnteredDroppedWeapons[0].Position);
 		
-		foreach (Weapon weapon in EnteredDroppedWeapons)
+		foreach (DroppedWeapon weapon in EnteredDroppedWeapons)
 		{
 			float distanceSquared = Position.DistanceSquaredTo(weapon.Position);
 			if (distanceSquared < closestDistanceSquared)
 			{
-				closestWeapon = weapon;
+				closestDroppedWeapon = weapon;
 				closestDistanceSquared = distanceSquared;
 			}
 		}
 
-		return closestWeapon;
+		return closestDroppedWeapon.Weapon;
 	}
 
 	private void UpdateWalkingVelocity(float deltaSeconds)

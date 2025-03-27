@@ -17,11 +17,9 @@ public abstract partial class Weapon : Node
 	[Export] private int _maxAmmo;
 
 	[Export] private float _reloadTimeSeconds;
-	private Timer _reloadTimer; 
+	private Timer _reloadTimer;
 
-	[Export] private Node2D _dropped;
-	[Export] private Area2D _droppedArea;
-	private readonly Dictionary<Node2D, Unit> _unitsEnteredPickUpArea = new();
+	[Export] private DroppedWeapon _dropped;
 	
 	public event Action<int> OnAmmoChanged;
 	
@@ -52,37 +50,6 @@ public abstract partial class Weapon : Node
 	
 	private float HalfSpreadRadians
 		=> float.DegreesToRadians(_spread * 0.5f);
-
-	public override void _Ready()
-	{
-		SetupPickUpArea(_droppedArea);
-	}
-
-	private void SetupPickUpArea(Area2D area)
-	{
-		area.BodyEntered += OnBodyEntered;
-		area.BodyExited += OnBodyExited;
-	}
-	
-	private void OnBodyEntered(Node2D body)
-	{
-		Unit enteredUnit = body.GetAncestor<Unit>();
-
-		if (enteredUnit == null) 
-			return;
-		
-		_unitsEnteredPickUpArea.Add(body, enteredUnit);
-		enteredUnit.EnteredDroppedWeapons.Add(this);
-	}
-
-	private void OnBodyExited(Node2D body)
-	{
-		if (!_unitsEnteredPickUpArea.TryGetValue(body, out Unit value))
-			return;
-		
-        value.EnteredDroppedWeapons.Remove(this);
-		_unitsEnteredPickUpArea.Remove(body);
-	}
 	
 	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
 	{
@@ -110,6 +77,7 @@ public abstract partial class Weapon : Node
 		}
 			
 		_dropped.MakeSiblingOf(this);
+		_dropped.DetachWeapon();
 		QueueFree();
 	}
 
