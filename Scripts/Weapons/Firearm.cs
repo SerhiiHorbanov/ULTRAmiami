@@ -3,13 +3,13 @@ using ULTRAmiami.Weapons.Projectiles;
 
 namespace ULTRAmiami.Weapons;
 
-public partial class Pistol : Weapon
+public partial class Firearm : Weapon
 {
-    [Export] private PackedScene _projectile;
+    [Export] private PackedScene _bullet;
     
     protected override void Shoot(Vector2 shootingAt)
     {
-        Bullet projectile = _projectile.Instantiate<Bullet>();
+        Bullet projectile = _bullet.Instantiate<Bullet>();
         AddChild(projectile);
         
         projectile.Initialize(Position, shootingAt);
