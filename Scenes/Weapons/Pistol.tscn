@@ -11,6 +11,7 @@ radius = 32.0624
 script = ExtResource("1_t511x")
 _projectile = ExtResource("2_t511x")
 _fireRate = 4.0
+_spread = 2.0
 _ammo = 12
 _maxAmmo = 12
 _reloadTimeSeconds = 2.0

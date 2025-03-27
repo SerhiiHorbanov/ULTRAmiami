@@ -12,10 +12,12 @@ public partial class Bullet : Node2D
 	
 	private Vector2 _velocity;
 	
-	public void Initialize(Weapon shotFrom)
+	public void Initialize(Vector2 position, Vector2 shootingAt)
 	{
-		Position = shotFrom.Position;
-		_velocity = shotFrom.PointingInDirection * _speed;
+		Position = position;
+
+		Vector2 shootingDirection = (shootingAt - position).Normalized();
+		_velocity = shootingDirection * _speed;
 	}
 
 	public override void _PhysicsProcess(double delta)

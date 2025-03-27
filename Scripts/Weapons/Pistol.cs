@@ -7,11 +7,11 @@ public partial class Pistol : Weapon
 {
     [Export] private PackedScene _projectile;
     
-    protected override void Shoot()
+    protected override void Shoot(Vector2 shootingAt)
     {
         Bullet projectile = _projectile.Instantiate<Bullet>();
         AddChild(projectile);
         
-        projectile.Initialize(this);
+        projectile.Initialize(Position, shootingAt);
     }
 }
