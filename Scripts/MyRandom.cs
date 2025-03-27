@@ -12,4 +12,11 @@ public static class MyRandom
 
         return new(origin.X + xOffset, origin.Y + yOffset);
     }
+
+    public static float Range(float limit1, float limit2)
+    {
+        if (limit1 > limit2)
+            (limit1, limit2) = (limit2, limit1);
+        return Random.Shared.NextSingle() * (limit2 - limit1) + limit1;
+    }
 }
