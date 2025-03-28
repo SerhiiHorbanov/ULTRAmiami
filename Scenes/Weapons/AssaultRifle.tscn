@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://tc4t7u7hg3qc"]
+[gd_scene load_steps=5 format=3 uid="uid://tc4t7u7hg3qc"]
 
 [ext_resource type="Script" uid="uid://c5slm0blssbxm" path="res://Scripts/Weapons/Firearm.cs" id="1_f1tig"]
 [ext_resource type="PackedScene" uid="uid://bh4ye65imk1e" path="res://Scenes/Projectiles/Bullet.tscn" id="2_8634j"]
-[ext_resource type="Script" uid="uid://i4ggfumiqh6a" path="res://Scripts/Weapons/DroppedWeapon.cs" id="3_5aptd"]
+[ext_resource type="PackedScene" uid="uid://27otj1vhillv" path="res://Scenes/Weapons/Dropped.tscn" id="3_5aptd"]
 [ext_resource type="Texture2D" uid="uid://t5edokn48t6k" path="res://Textures/AssaultRifle.png" id="3_qktma"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8634j"]
-radius = 30.0
 
 [node name="AssaultRifle" type="Node" node_paths=PackedStringArray("_dropped")]
 script = ExtResource("1_f1tig")
@@ -19,16 +16,10 @@ _maxAmmo = 12
 _reloadTimeSeconds = 3.0
 _dropped = NodePath("Dropped")
 
-[node name="Dropped" type="Node2D" parent="." node_paths=PackedStringArray("_weapon", "_droppedArea")]
-script = ExtResource("3_5aptd")
+[node name="Dropped" parent="." node_paths=PackedStringArray("_weapon") instance=ExtResource("3_5aptd")]
 _weapon = NodePath("..")
-_droppedArea = NodePath("Area2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="Dropped"]
-scale = Vector2(0.5, 0.5)
+[node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("3_qktma")
 
-[node name="Area2D" type="Area2D" parent="Dropped"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dropped/Area2D"]
-shape = SubResource("CircleShape2D_8634j")
+[editable path="Dropped"]
