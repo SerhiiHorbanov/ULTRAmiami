@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ustetj26a1sv"]
+
+[ext_resource type="Script" uid="uid://c5slm0blssbxm" path="res://Scripts/Weapons/Firearm.cs" id="1_bic6o"]
+[ext_resource type="PackedScene" uid="uid://bh4ye65imk1e" path="res://Scenes/Projectiles/Bullet.tscn" id="2_lq77y"]
+[ext_resource type="PackedScene" uid="uid://27otj1vhillv" path="res://Scenes/Weapons/Dropped.tscn" id="3_cgrjc"]
+[ext_resource type="Texture2D" uid="uid://hdvxg7sobcl6" path="res://Textures/Shotgun.png" id="4_lq77y"]
+
+[node name="Shotgun" type="Node" node_paths=PackedStringArray("_dropped")]
+script = ExtResource("1_bic6o")
+_bullet = ExtResource("2_lq77y")
+_fireRate = 2.0
+_spread = 15.0
+_shootsPerShot = 4
+_ammo = 3
+_maxAmmo = 3
+_reloadTimeSeconds = 4.0
+_dropped = NodePath("Dropped")
+
+[node name="Dropped" parent="." node_paths=PackedStringArray("_weapon") instance=ExtResource("3_cgrjc")]
+_weapon = NodePath("..")
+
+[node name="Sprite2D" parent="Dropped" index="0"]
+scale = Vector2(1, 1)
+texture = ExtResource("4_lq77y")
+
+[editable path="Dropped"]
