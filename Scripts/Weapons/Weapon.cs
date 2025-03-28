@@ -10,7 +10,8 @@ public abstract partial class Weapon : Node
 	[Export] private bool _isAutomatic;
 	[Export] private float _fireRate;
 	[Export] private float _spread;
-
+	[Export] private uint _shootsPerShot = 1;
+	
 	private ulong _lastShotMicroSeconds;
 
 	[Export] private int _ammo;
@@ -124,7 +125,9 @@ public abstract partial class Weapon : Node
 	private void ShootAndDoRelatedProcesses()
 	{
 		_lastShotMicroSeconds = Time.GetTicksUsec();
-		ShootWithSpread();
+		
+		for (int i = 0 ; i < _shootsPerShot ; i++)
+			ShootWithSpread();
 		_ammo--;
 		
 		OnAmmoChanged?.Invoke(_ammo);
