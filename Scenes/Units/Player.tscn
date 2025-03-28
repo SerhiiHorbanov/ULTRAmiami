@@ -12,10 +12,10 @@ _maxWalkSpeed = 800.0
 _maxWalkAcceleration = 3600.0
 _maxBrakeAcceleration = 7200.0
 _dropsPickUppableWeapon = false
+_godMode = true
 
 [node name="PlayerUnitController" type="Node2D" parent="." node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_xf41u")
 _unit = NodePath("../Unit")
 
-[node name="Pistol" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("3_giihn")]
-_unit = NodePath("../Unit")
+[node name="Pistol" parent="." instance=ExtResource("3_giihn")]

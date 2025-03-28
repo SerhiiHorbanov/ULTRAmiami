@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Godot;
 using ULTRAmiami.Units;
 
@@ -9,12 +8,10 @@ public abstract partial class Weapon : Node
 {
 	[Export] private bool _isAutomatic;
 	[Export] private float _fireRate;
-	[Export] private float _spread;
-	[Export] private uint _shootsPerShot = 1;
 	
 	private ulong _lastShotMicroSeconds;
 
-	[Export] private int _ammo;
+	private int _ammo;
 	[Export] private int _maxAmmo;
 
 	[Export] private float _reloadTimeSeconds;
@@ -22,10 +19,15 @@ public abstract partial class Weapon : Node
 
 	[Export] private DroppedWeapon _dropped;
 	
+	private Unit _unit;
+	
 	public event Action<int> OnAmmoChanged;
-	
-	[Export] private Unit _unit;
-	
+
+	protected Weapon()
+	{
+		_ammo = _maxAmmo;
+	}
+
 	private ulong MicroSecondsBetweenShots
 		=> (ulong)(1 / _fireRate * 1_000_000);
 	
@@ -48,9 +50,6 @@ public abstract partial class Weapon : Node
 
 	public bool IsReloading
 		=> _reloadTimer is not null;
-	
-	private float HalfSpreadRadians
-		=> float.DegreesToRadians(_spread * 0.5f);
 	
 	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
 	{
@@ -126,34 +125,10 @@ public abstract partial class Weapon : Node
 	{
 		_lastShotMicroSeconds = Time.GetTicksUsec();
 		
-		for (int i = 0 ; i < _shootsPerShot ; i++)
-			ShootWithSpread();
+		Shoot(PointingAt);
 		_ammo--;
 		
 		OnAmmoChanged?.Invoke(_ammo);
-	}
-
-	private void ShootWithSpread()
-	{
-		Vector2 shootingAt = AddSpread(PointingAt);
-		Shoot(shootingAt);
-	}
-
-	private Vector2 AddSpread(Vector2 shootingAt)
-		=> AddSpread(shootingAt, HalfSpreadRadians, HalfSpreadRadians);
-	
-	private Vector2 AddSpreadOnlyRight(Vector2 shootingDirection)
-		=> AddSpread(shootingDirection, 0, HalfSpreadRadians);
-	
-	private Vector2 AddSpreadOnlyLeft(Vector2 shootingDirection)
-		=> AddSpread(shootingDirection, HalfSpreadRadians, 0);
-	
-	private Vector2 AddSpread(Vector2 shootingAt, float maxDeviationToLeftRadians, float maxDeviationToRightRadians)
-	{
-		float deviation = MyRandom.Range(-maxDeviationToLeftRadians, maxDeviationToRightRadians);
-		Vector2 relativeShootingAt = shootingAt - Position;
-		
-		return relativeShootingAt.Rotated(deviation) + Position;
 	}
 	
 	private bool ReadyToShoot()
