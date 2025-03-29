@@ -8,8 +8,8 @@
 [node name="Pistol" type="Node" node_paths=PackedStringArray("_dropped")]
 script = ExtResource("1_si21x")
 _bullet = ExtResource("2_t511x")
-_spread = 2.0
 _fireRate = 4.0
+_spread = 2.0
 _maxAmmo = 12
 _reloadTimeSeconds = 1.5
 _dropped = NodePath("Dropped")

@@ -8,9 +8,9 @@
 [node name="AssaultRifle" type="Node" node_paths=PackedStringArray("_dropped")]
 script = ExtResource("1_f1tig")
 _bullet = ExtResource("2_8634j")
-_spread = 8.0
 _isAutomatic = true
 _fireRate = 8.0
+_spread = 8.0
 _maxAmmo = 12
 _reloadTimeSeconds = 3.0
 _dropped = NodePath("Dropped")
