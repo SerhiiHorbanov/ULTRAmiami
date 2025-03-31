@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6u4rioaf4ul4"]
+[gd_scene load_steps=6 format=3 uid="uid://b6u4rioaf4ul4"]
 
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="1_iukft"]
+[ext_resource type="PackedScene" uid="uid://ch33vi8cwppji" path="res://Scenes/GameplayCamera.tscn" id="2_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://sdpp1fwhlvdp" path="res://Scenes/UI/GameplayCanvas.tscn" id="2_gl6un"]
 [ext_resource type="Script" uid="uid://c8i2xy07hrk8j" path="res://Scripts/TestEnemySpawner.cs" id="3_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="4_kldst"]
@@ -12,7 +13,9 @@
 [node name="AmmoDisplay" parent="Canvas" index="0" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player/Unit")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="GameplayCamera" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("2_b2bpf")]
+position = Vector2(297, -154)
+_unit = NodePath("../Player/Unit")
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch33vi8cwppji"]
+
+[ext_resource type="Script" uid="uid://blvt4pfp5d4ka" path="res://Scripts/UnitFollowingCamera.cs" id="1_gbblf"]
+
+[node name="Camera2D" type="Camera2D"]
+script = ExtResource("1_gbblf")
+_maxDistanceFromPlayer = 100.0
+_maxInputDistanceFromUnit = 400.0
+_relativeSpeed = 1000.0
