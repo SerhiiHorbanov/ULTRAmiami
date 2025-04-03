@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bua7isnxgtjr0"]
+
+[ext_resource type="Script" uid="uid://36qpj300ep54" path="res://Scripts/Map/Room.cs" id="1_7jts6"]
+[ext_resource type="PackedScene" uid="uid://cwwuvyi1ph2vw" path="res://Scenes/Map/RoomParts/RoomWalls.tscn" id="2_bhfak"]
+
+[node name="EmptyRoom" type="Node2D" node_paths=PackedStringArray("_walls", "_rightDoorTrigger", "_leftDoorTrigger", "_bottomDoorTrigger", "_topDoorTrigger")]
+script = ExtResource("1_7jts6")
+_walls = [NodePath("RoomWalls/TopWall"), NodePath("RoomWalls/RightWall"), NodePath("RoomWalls/BottomWall"), NodePath("RoomWalls/LeftWall")]
+_rightDoorTrigger = NodePath("RoomWalls/RightWall/Area2D")
+_leftDoorTrigger = NodePath("RoomWalls/LeftWall/Area2D")
+_bottomDoorTrigger = NodePath("RoomWalls/BottomWall/Area2D")
+_topDoorTrigger = NodePath("RoomWalls/TopWall/Area2D")
+
+[node name="RoomWalls" parent="." instance=ExtResource("2_bhfak")]
+
+[editable path="RoomWalls"]

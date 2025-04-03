@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwwuvyi1ph2vw"]
+
+[ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="1_j6n7i"]
+
+[node name="RoomWalls" type="Node2D"]
+
+[node name="TopWall" parent="." instance=ExtResource("1_j6n7i")]
+position = Vector2(0, -413)
+
+[node name="RightWall" parent="." instance=ExtResource("1_j6n7i")]
+position = Vector2(415, -1)
+rotation = 1.5708
+
+[node name="BottomWall" parent="." instance=ExtResource("1_j6n7i")]
+position = Vector2(0, 415)
+rotation = 3.14159
+
+[node name="LeftWall" parent="." instance=ExtResource("1_j6n7i")]
+position = Vector2(-415, 0)
+rotation = -1.5708
