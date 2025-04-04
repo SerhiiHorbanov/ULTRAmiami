@@ -4,16 +4,14 @@
 [ext_resource type="Script" uid="uid://n6srlh8uouwr" path="res://Scripts/Controllers/PistolEnemyUnitController.cs" id="2_hbmud"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_wrv6w"]
 
-[node name="PistolEnemy" type="Node"]
+[node name="Unit" node_paths=PackedStringArray("_weapon") instance=ExtResource("1_gqri3")]
+_weapon = NodePath("Pistol")
 
-[node name="Unit" parent="." node_paths=PackedStringArray("_weapon") instance=ExtResource("1_gqri3")]
-_weapon = NodePath("../Pistol")
-
-[node name="PistolEnemyUnitController" type="Node2D" parent="." node_paths=PackedStringArray("_unit")]
+[node name="PistolEnemyUnitController" type="Node" parent="." index="2" node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_hbmud")
 _tooCloseToTargetDistance = 200.0
 _tooFarFromTargetDistance = 400.0
 _wayPointRandomizationRange = Vector2(50, 50)
-_unit = NodePath("../Unit")
+_unit = NodePath("..")
 
-[node name="Pistol" parent="." instance=ExtResource("3_wrv6w")]
+[node name="Pistol" parent="." index="3" instance=ExtResource("3_wrv6w")]

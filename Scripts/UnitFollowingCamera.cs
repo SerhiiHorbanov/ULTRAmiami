@@ -49,7 +49,8 @@ public partial class UnitFollowingCamera : Camera2D
 
     public override void _ExitTree()
     {
-        Unit.OnDeath -= DetachUnit;
+        if (Unit is not null)
+            Unit.OnDeath -= DetachUnit;
     }
 
     private void UpdateTargetPositionRelativeToUnit()

@@ -4,17 +4,15 @@
 [ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_giihn"]
 
-[node name="Player" type="Node"]
-
-[node name="Unit" parent="." node_paths=PackedStringArray("_weapon") instance=ExtResource("1_33iby")]
-_weapon = NodePath("../Pistol")
+[node name="Unit" node_paths=PackedStringArray("_weapon") instance=ExtResource("1_33iby")]
+_weapon = NodePath("Pistol")
 _maxWalkSpeed = 800.0
 _maxWalkAcceleration = 3600.0
 _maxBrakeAcceleration = 7200.0
 _dropsPickUppableWeapon = false
 
-[node name="PlayerUnitController" type="Node2D" parent="." node_paths=PackedStringArray("_unit")]
+[node name="PlayerUnitController" type="Node" parent="." index="2" node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_xf41u")
-_unit = NodePath("../Unit")
+_unit = NodePath("..")
 
-[node name="Pistol" parent="." instance=ExtResource("3_giihn")]
+[node name="Pistol" parent="." index="3" instance=ExtResource("3_giihn")]

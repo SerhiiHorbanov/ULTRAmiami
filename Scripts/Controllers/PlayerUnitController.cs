@@ -30,7 +30,7 @@ public partial class PlayerUnitController : UnitController
 		if (Weapon is null)
 			return;
 		
-		Vector2 pointingAt = GetLocalMousePosition();
+		Vector2 pointingAt = Unit.GetGlobalMousePosition();
 		Weapon.PointingAt = pointingAt;
 	}
 	

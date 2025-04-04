@@ -19,7 +19,8 @@ public partial class TestEnemySpawner : Node
 
     public override void _ExitTree()
     {
-        _player.OnDeath -= OnPlayerDeath;
+        if (_player is not null)
+            _player.OnDeath -= OnPlayerDeath;
     }
 
     private void OnPlayerDeath()
@@ -34,13 +35,12 @@ public partial class TestEnemySpawner : Node
     
     private void SpawnEnemy()
     {
-        Node instantiatedScene = _spawnedEnemyPackedScene.Instantiate();
-        PistolEnemyUnitController controller = instantiatedScene.GetChild<PistolEnemyUnitController>();
-        Unit unit = instantiatedScene.GetChild<Unit>();
+        Unit unit = _spawnedEnemyPackedScene.Instantiate<Unit>();
+        PistolEnemyUnitController controller = unit.GetChild<PistolEnemyUnitController>();
         
         controller.TargetUnit = _player;
         unit.Position = _spawnPosition.Position;
         
-        GetParent().AddChild(instantiatedScene);
+        GetParent().AddChild(unit);
     }
 }

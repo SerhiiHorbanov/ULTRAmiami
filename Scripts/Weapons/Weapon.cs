@@ -63,7 +63,7 @@ public abstract partial class Weapon : Node
 
 		if (unit is null)
 		{
-			Drop(isPickUppable, prevUnit.Position);
+			Drop(isPickUppable, prevUnit.GlobalPosition);
 			return;
 		}
 		
@@ -71,9 +71,10 @@ public abstract partial class Weapon : Node
 		InstantReload();
 	}
 
-	private void Drop(bool isPickUppable, Vector2 position)
+	private void Drop(bool isPickUppable, Vector2 globalPosition)
 	{
-		_dropped.Position = position;
+		_dropped.GlobalPosition = globalPosition;
+		this.MakeSiblingOf(GetParent());
 		
 		if (isPickUppable)
 		{
