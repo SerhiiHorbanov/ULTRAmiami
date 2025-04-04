@@ -8,10 +8,12 @@ radius = 24.0832
 
 [node name="Unit" type="CharacterBody2D"]
 script = ExtResource("1_bxx5k")
-_maxWalkSpeed = 300.0
+_dropsPickUppableWeapon = true
 _maxWalkAcceleration = 600.0
 _maxBrakeAcceleration = 1200.0
-_dropsPickUppableWeapon = true
+_maxWalkSpeed = 300.0
+_maxRedirectionSpeed = 300.0
+_redirectionAcceleration = 600.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)

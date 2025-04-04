@@ -10,14 +10,20 @@ public partial class Unit : CharacterBody2D
 	private Vector2 _targetDirection;
 	
 	[Export] private Weapon _weapon;
-	
-	[Export] private float _maxWalkSpeed;
-	[Export] private float _maxWalkAcceleration;
-	[Export] private float _maxBrakeAcceleration;
-	
 	[Export] private bool _dropsPickUppableWeapon;
 	
 	[Export] private bool _godMode;
+	
+	[ExportGroup("Movement")]
+	[Export] private float _maxWalkAcceleration;
+	[Export] private float _maxBrakeAcceleration;
+	[Export] private float _maxWalkSpeed;
+
+	[ExportSubgroup("Redirection")]
+	[Export] private float _maxRedirectionSpeed;
+	[Export] private float _redirectionAcceleration;
+	private bool _isRedirectioning;
+	private bool _isRecoveringFromRedirection;
 
 	public readonly List<DroppedWeapon> EnteredDroppedWeapons = [];
 
@@ -28,15 +34,9 @@ public partial class Unit : CharacterBody2D
 	
 	public Weapon Weapon
 		=> _weapon;
-	
-	private float MaxAcceleration
-		=> IsBraking ? _maxBrakeAcceleration : _maxWalkAcceleration;
 
 	private bool IsBraking 
 		=> _targetDirection.LengthSquared() < DirectionDeadZoneSquared;
-
-	private float MaxAccelerationSquared 
-		=> MaxAcceleration * MaxAcceleration;
 	
 	public override void _Ready()
 	{
@@ -112,17 +112,49 @@ public partial class Unit : CharacterBody2D
 
 	private void UpdateWalkingVelocity(float deltaSeconds)
 	{
-		Vector2 targetVelocity = _targetDirection * _maxWalkSpeed;
+		Vector2 targetVelocity = _targetDirection * GetMaxSpeed();
 		Vector2 targetDelta = targetVelocity - Velocity;
 		
-		Vector2 deltaVelocity = targetDelta;
-		
-		if (deltaVelocity.Length() > MaxAcceleration * deltaSeconds)
-			deltaVelocity = deltaVelocity.Normalized() * MaxAcceleration * deltaSeconds;
+		UpdateIsRedirectioning(targetDelta);
+
+		float maxAcceleration = GetMaxAcceleration();
+		Vector2 deltaVelocity = targetDelta.LimitLength(maxAcceleration * deltaSeconds);
 		
 		Velocity += deltaVelocity;
 	}
 
+	private float GetMaxSpeed()
+		=> _isRedirectioning ? _maxRedirectionSpeed : _maxWalkSpeed;
+
+	private void UpdateIsRedirectioning(Vector2 targetDelta)
+	{
+		if (_dropsPickUppableWeapon)
+			return;
+		
+		if (_isRecoveringFromRedirection)
+			_isRecoveringFromRedirection = targetDelta.LengthSquared() > 50f;
+		
+		if (_isRedirectioning && !_isRecoveringFromRedirection)
+		{
+			_isRedirectioning = targetDelta.LengthSquared() > 0.1f;
+			if (!_isRedirectioning)
+				_isRecoveringFromRedirection = true;
+		}
+		else if (!IsBraking && !_isRecoveringFromRedirection)
+		{
+			_isRedirectioning = targetDelta.CosineSimilarity(Velocity) < -0.7f;
+		}
+	}
+	
+	private float GetMaxAcceleration()
+	{
+		if (IsBraking)
+			return _maxBrakeAcceleration;
+		if (_isRedirectioning)
+			return _redirectionAcceleration;
+		return _maxWalkAcceleration;
+	}
+	
 	private void TryAttachWeapon(Weapon weapon)
 	{
 		if (ReferenceEquals(_weapon, weapon))
