@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://btmojelcr4vv4" path="res://Textures/Pistol.png" id="3_si21x"]
 [ext_resource type="PackedScene" uid="uid://27otj1vhillv" path="res://Scenes/Weapons/Dropped.tscn" id="3_yyc0p"]
 
-[node name="Pistol" type="Node" node_paths=PackedStringArray("_dropped")]
+[node name="Pistol" type="Node" node_paths=PackedStringArray("_dropped", "_droppedNotPickuppable")]
 script = ExtResource("1_si21x")
 _bullet = ExtResource("2_t511x")
 _fireRate = 4.0
@@ -13,11 +13,17 @@ _spread = 2.0
 _maxAmmo = 12
 _reloadTimeSeconds = 1.5
 _dropped = NodePath("Dropped")
+_droppedNotPickuppable = NodePath("DroppedNotPickUppable")
 
 [node name="Dropped" parent="." node_paths=PackedStringArray("_weapon") instance=ExtResource("3_yyc0p")]
 _weapon = NodePath("..")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
+texture = ExtResource("3_si21x")
+
+[node name="DroppedNotPickUppable" type="Sprite2D" parent="."]
+modulate = Color(0.25098, 0.25098, 0.25098, 1)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_si21x")
 
 [editable path="Dropped"]

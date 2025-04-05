@@ -20,6 +20,7 @@ public abstract partial class Weapon : Node
 	private Timer _reloadTimer;
 
 	[Export] private DroppedWeapon _dropped;
+	[Export] private Node2D _droppedNotPickuppable;
 	
 	private Unit _unit;
 	
@@ -55,7 +56,12 @@ public abstract partial class Weapon : Node
 	
 	private float HalfSpreadRadians
 		=> float.DegreesToRadians(_spread * 0.5f);
-	
+
+	public override void _Ready()
+	{
+		_droppedNotPickuppable.GetParent().RemoveChild(_droppedNotPickuppable);
+	}
+
 	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
 	{
 		Unit prevUnit = _unit;
@@ -81,8 +87,9 @@ public abstract partial class Weapon : Node
 			AddChild(_dropped);
 			return;
 		}
-			
-		_dropped.MakeSiblingOf(this);
+		
+		_droppedNotPickuppable.MakeSiblingOf(this);
+		_droppedNotPickuppable.Position = Position;
 		_dropped.DetachWeapon();
 		QueueFree();
 	}

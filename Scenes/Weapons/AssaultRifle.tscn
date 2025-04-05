@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://27otj1vhillv" path="res://Scenes/Weapons/Dropped.tscn" id="3_5aptd"]
 [ext_resource type="Texture2D" uid="uid://t5edokn48t6k" path="res://Textures/AssaultRifle.png" id="3_qktma"]
 
-[node name="AssaultRifle" type="Node" node_paths=PackedStringArray("_dropped")]
+[node name="AssaultRifle" type="Node" node_paths=PackedStringArray("_dropped", "_droppedNotPickuppable")]
 script = ExtResource("1_f1tig")
 _bullet = ExtResource("2_8634j")
 _isAutomatic = true
@@ -14,11 +14,17 @@ _spread = 8.0
 _maxAmmo = 12
 _reloadTimeSeconds = 3.0
 _dropped = NodePath("Dropped")
+_droppedNotPickuppable = NodePath("DroppedAssaultRifleNotPickuppable")
 
 [node name="Dropped" parent="." node_paths=PackedStringArray("_weapon") instance=ExtResource("3_5aptd")]
 _weapon = NodePath("..")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
+texture = ExtResource("3_qktma")
+
+[node name="DroppedAssaultRifleNotPickuppable" type="Sprite2D" parent="."]
+modulate = Color(0.25098, 0.25098, 0.25098, 1)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_qktma")
 
 [editable path="Dropped"]
