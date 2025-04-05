@@ -8,39 +8,29 @@ public partial class UnitFollowingCamera : Camera2D
 {
     [Export] private Unit _unit;
 
-    private Unit Unit
-    {
-        get => _unit;
-        set
-        {
-            if (_unit is not null)
-                _unit.OnDeath -= DetachUnit;
-            
-            if (value is not null)
-                value.OnDeath += DetachUnit;
-            
-            _unit = value;
-        }
-    }
-
     [Export] private float _maxDistanceFromPlayer;
     [Export] private float _maxInputDistanceFromUnit;
-    [Export] private float _relativeSpeed;
+    [Export] private float _linearMovementSpeed;
+    [Export] private float _lerpMovementSpeed;
+    [Export] private float _linearMovementThreshold;
     
     private Vector2 _targetPositionRelativeToUnit;
     private Vector2 _positionRelativeToUnit = Vector2.Zero;
+
+    private Vector2 TargetPosition
+        => _unit.Position + _targetPositionRelativeToUnit;
+
+    private float LinearMovementThresholdSquared
+        => _linearMovementThreshold * _linearMovementThreshold;
     
     public override void _Ready()
     {
-        if (Unit is null)
-            return;
-        
-        Unit.OnDeath += DetachUnit;
+        AttachToUnit(_unit);
     }
 
     public override void _Process(double delta)
     {
-        if (Unit is null)
+        if (_unit is null)
             return;
         
         UpdateTargetPositionRelativeToUnit();
@@ -49,14 +39,27 @@ public partial class UnitFollowingCamera : Camera2D
 
     public override void _ExitTree()
     {
-        if (Unit is not null)
-            Unit.OnDeath -= DetachUnit;
+        DetachUnit();
     }
 
+    private void AttachToUnit(Unit unit)
+    {
+        if (_unit is not null)
+            _unit.OnDeath -= DetachUnit;
+            
+        if (unit is not null)
+            unit.OnDeath += DetachUnit;
+            
+        _unit = unit;
+    }
+    
+    private void DetachUnit()
+        => AttachToUnit(null);
+    
     private void UpdateTargetPositionRelativeToUnit()
     {
         Vector2 mousePosition = GetLocalMousePosition();
-
+        
         mousePosition = mousePosition.WithLimitedLength(_maxInputDistanceFromUnit);
         
         _targetPositionRelativeToUnit = mousePosition / _maxInputDistanceFromUnit * _maxDistanceFromPlayer;
@@ -64,16 +67,30 @@ public partial class UnitFollowingCamera : Camera2D
 
     private void DoMovement(float delta)
     {
-        Vector2 velocity = _targetPositionRelativeToUnit - _positionRelativeToUnit;
-
-        velocity = velocity.WithLimitedLength(_relativeSpeed * delta);
-        
-        _positionRelativeToUnit +=  velocity;
-        Position = Unit.Position + _positionRelativeToUnit;
+        if (Position.DistanceSquaredTo(TargetPosition) > LinearMovementThresholdSquared)
+            DoLerpMovement(delta);
+        else
+            DoLinearMovement(delta);
+        UpdatePosition();
     }
 
-    private void DetachUnit()
+    private void DoLerpMovement(float delta)
     {
-        Unit = null;
+        float lerpWeight = float.Min(_lerpMovementSpeed * delta, 1);
+        
+        _positionRelativeToUnit = _positionRelativeToUnit.Lerp(_targetPositionRelativeToUnit, lerpWeight);
+    }
+
+    private void DoLinearMovement(float delta)
+    {
+        Vector2 velocity = _targetPositionRelativeToUnit - _positionRelativeToUnit;
+
+        velocity = velocity.WithLimitedLength(_linearMovementSpeed * delta);
+        _positionRelativeToUnit += velocity;
+    }
+    
+    private void UpdatePosition()
+    {
+        Position = _positionRelativeToUnit + _unit.Position;
     }
 }

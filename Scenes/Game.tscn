@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6u4rioaf4ul4"]
 
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="1_iukft"]
-[ext_resource type="PackedScene" path="res://Scenes/GameplayCamera.tscn" id="2_b2bpf"]
+[ext_resource type="PackedScene" uid="uid://ch33vi8cwppji" path="res://Scenes/GameplayCamera.tscn" id="2_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://sdpp1fwhlvdp" path="res://Scenes/UI/GameplayCanvas.tscn" id="2_gl6un"]
 [ext_resource type="Script" uid="uid://c8i2xy07hrk8j" path="res://Scripts/TestEnemySpawner.cs" id="3_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="4_kldst"]

@@ -6,4 +6,6 @@
 script = ExtResource("1_gbblf")
 _maxDistanceFromPlayer = 100.0
 _maxInputDistanceFromUnit = 400.0
-_relativeSpeed = 1000.0
+_linearMovementSpeed = 300.0
+_lerpMovementSpeed = 10.0
+_linearMovementThreshold = 50.0
