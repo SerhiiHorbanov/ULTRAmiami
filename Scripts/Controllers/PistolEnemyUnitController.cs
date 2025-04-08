@@ -1,5 +1,6 @@
 using Godot;
 using ULTRAmiami.Units;
+using ULTRAmiami.Weapons;
 
 namespace ULTRAmiami.Controllers;
 
@@ -10,23 +11,23 @@ public partial class PistolEnemyUnitController : AIUnitController
 	[Export] private float _tooCloseToTargetDistance;
 	[Export] private float _tooFarFromTargetDistance;
 	[Export] private Vector2 _wayPointRandomizationRange;
+	[Export] private Timer _shootingTimer;
+
+	private Weapon _weaponToUnsubscribeFrom;
 	
 	private float TooCloseToTargetDistanceSquared
 		=> _tooCloseToTargetDistance * _tooCloseToTargetDistance;
 	private float TooFarFromTargetDistanceSquared
 		=> _tooFarFromTargetDistance * _tooFarFromTargetDistance;
-	
-	private Vector2 PositionOfTarget
-		=> TargetUnit.Position;
 
 	private float DistanceSquaredToTarget
-		=> Unit.Position.DistanceSquaredTo(PositionOfTarget);
+		=> Unit.Position.DistanceSquaredTo(TargetUnit.Position);
 	
 	private float DistanceToTarget
-		=> Unit.Position.DistanceTo(PositionOfTarget);
+		=> Unit.Position.DistanceTo(TargetUnit.Position);
 	
 	private Vector2 DirectionToTarget
-		=> (PositionOfTarget - Unit.Position).Normalized();
+		=> (TargetUnit.Position - Unit.Position).Normalized();
 	
 	private Vector2 DirectionFromTarget
 		=> -DirectionToTarget;
@@ -37,8 +38,11 @@ public partial class PistolEnemyUnitController : AIUnitController
 		
 		if (TargetUnit is not null)
 			TargetUnit.OnDeath += StopTargetUnit;
-	}
 
+		_shootingTimer.Timeout += TryShooting;
+		_shootingTimer.Start();
+	}
+	
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
@@ -47,12 +51,35 @@ public partial class PistolEnemyUnitController : AIUnitController
 			return;
 
 		if (ShouldReload())
-			Weapon.Reload();
+			ReloadWeapon();
 
 		SetNewWayPointIfShould();
 		
 		UpdatePointingAt();
-		Weapon.TryStartShooting();
+	}
+
+	private void TryShooting()
+		=> Weapon?.TryStartShooting();
+
+	private void ReloadWeapon()
+	{
+		Weapon.Reload();
+		_weaponToUnsubscribeFrom = Weapon;
+		Weapon.OnReloadFinished += OnReloadFinished;
+		Unit.OnDeath += UnsubscribeFromWeaponReload;
+		_shootingTimer.Stop();
+	}
+
+	private void UnsubscribeFromWeaponReload()
+	{
+		_weaponToUnsubscribeFrom.OnReloadFinished -= OnReloadFinished;
+	}
+	
+	private void OnReloadFinished()
+	{
+		_shootingTimer.Start();
+		Weapon.OnReloadFinished -= OnReloadFinished;
+		Unit.OnDeath -= UnsubscribeFromWeaponReload;
 	}
 
 	private void SetNewWayPointIfShould()
@@ -87,14 +114,18 @@ public partial class PistolEnemyUnitController : AIUnitController
 		=> wayPoint.RandomVectorInRange(_wayPointRandomizationRange);
 	
 	private bool ShouldReload()
-		=> !Weapon.HasAmmo() && !Weapon.IsReloading;
+	{
+		if (Weapon is null)
+			return false; 
+		return !Weapon.HasAmmo() && !Weapon.IsReloading;
+	}
 
 	private void UpdatePointingAt()
 	{
 		if (Weapon is null || TargetUnit is null)
 			return;
 		
-		Weapon.PointingAt = PositionOfTarget;
+		Weapon.PointingAt = TargetUnit.Position;
 	}
 
 	private void StopTargetUnit()

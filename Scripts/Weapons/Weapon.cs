@@ -16,16 +16,20 @@ public abstract partial class Weapon : Node
 	private int _ammo;
 	[Export] private int _maxAmmo;
 
-	[Export] private float _reloadTimeSeconds;
-	private Timer _reloadTimer;
+	[Export] private Timer _reloadTimer;
 
 	[Export] private DroppedWeapon _dropped;
 	[Export] private Node2D _droppedNotPickuppable;
 	
+	[Export] private AudioStreamPlayer _shootingAudio;
+	[Export] private AudioStreamPlayer _failingShotAudio;
+	[Export] private AudioStreamPlayer _reloadingAudio;
+	
 	private Unit _unit;
 	
 	public event Action<int> OnAmmoChanged;
-
+	public event Action OnReloadFinished;
+	
 	protected Weapon()
 	{
 		_ammo = _maxAmmo;
@@ -52,7 +56,7 @@ public abstract partial class Weapon : Node
 		=> RelativePointingAt.Normalized();
 
 	public bool IsReloading
-		=> _reloadTimer is not null;
+		=> !_reloadTimer.IsStopped();
 	
 	private float HalfSpreadRadians
 		=> float.DegreesToRadians(_spread * 0.5f);
@@ -60,6 +64,7 @@ public abstract partial class Weapon : Node
 	public override void _Ready()
 	{
 		_droppedNotPickuppable.GetParent().RemoveChild(_droppedNotPickuppable);
+		_reloadTimer.Timeout += InstantReload;
 	}
 
 	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
@@ -96,14 +101,29 @@ public abstract partial class Weapon : Node
 
 	public void TryStartShooting()
 	{
-		if (ReadyToShoot())
+		if (!EnoughTimeSinceLastShotToShootAgain())
+			return;
+		
+		if (HasAmmo())
 			ShootAndDoRelatedProcesses();
+		else
+			FailShotBecauseNoAmmo();
 	}
-	
+
+	private void FailShotBecauseNoAmmo()
+	{
+		_failingShotAudio?.Play();
+	}
+
 	public void TryAutomaticShooting()
 	{
-		if (_isAutomatic && ReadyToShoot())
+		if (!EnoughTimeSinceLastShotToShootAgain() || !_isAutomatic)
+			return;
+		
+		if (HasAmmo())
 			ShootAndDoRelatedProcesses();
+		else
+			FailShotBecauseNoAmmo();
 	}
 
 	public bool HasAmmo()
@@ -111,27 +131,18 @@ public abstract partial class Weapon : Node
 	
 	public void Reload()
 	{
-		if (!IsReloading)
-			StartReloadTimer();
-	}
-
-	private void StartReloadTimer()
-	{
-		_reloadTimer = new();
+		if (IsReloading)
+			return;
 		
-		AddChild(_reloadTimer);
-		_reloadTimer.Timeout += InstantReload;
-		_reloadTimer.Start(_reloadTimeSeconds);
-		_reloadTimer.OneShot = true;
+		_reloadTimer.Start();
+		_reloadingAudio?.Play();
 	}
 	
 	private void InstantReload()
 	{
 		_ammo = _maxAmmo;
 		OnAmmoChanged?.Invoke(_ammo);
-		
-		_reloadTimer?.QueueFree();
-		_reloadTimer = null;
+		OnReloadFinished?.Invoke();
 	}
 	
 	private void ShootAndDoRelatedProcesses()
@@ -141,7 +152,7 @@ public abstract partial class Weapon : Node
 		for (int i = 0 ; i < _shootsPerShot ; i++)
 			ShootWithSpread();
 		_ammo--;
-		
+		_shootingAudio?.Play();
 		OnAmmoChanged?.Invoke(_ammo);
 	}
 
@@ -167,11 +178,11 @@ public abstract partial class Weapon : Node
 		
 		return relativeShootingAt.Rotated(deviation) + Position;
 	}
-	
-	private bool ReadyToShoot()
-	{
-		return MicroSecondsSinceShot >= MicroSecondsBetweenShots && _ammo != 0;
-	}
 
+	private bool EnoughTimeSinceLastShotToShootAgain()
+	{
+		return MicroSecondsSinceShot >= MicroSecondsBetweenShots;
+	}
+	
 	protected abstract void Shoot(Vector2 shootingAt);
 }
