@@ -13,6 +13,7 @@ public partial class UnitFollowingCamera : Camera2D
     [Export] private float _linearMovementSpeed;
     [Export] private float _lerpMovementSpeed;
     [Export] private float _linearMovementThreshold;
+    [Export] private float _velocityOffsetMultiplier;
     
     private Vector2 _targetPositionRelativeToUnit;
     private Vector2 _positionRelativeToUnit = Vector2.Zero;
@@ -71,6 +72,9 @@ public partial class UnitFollowingCamera : Camera2D
             DoLerpMovement(delta);
         else
             DoLinearMovement(delta);
+        
+        _positionRelativeToUnit += _unit.Velocity * _velocityOffsetMultiplier;
+        
         UpdatePosition();
     }
 
