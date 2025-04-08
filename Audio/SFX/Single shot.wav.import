@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7px3xpvld50q"
+path="res://.godot/imported/Single Shot.wav-ed5382ed5c5fc013bd1e37e474ed2e7c.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Single Shot.wav"
+dest_files=["res://.godot/imported/Single Shot.wav-ed5382ed5c5fc013bd1e37e474ed2e7c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
