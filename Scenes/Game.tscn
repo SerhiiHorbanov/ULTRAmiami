@@ -15,7 +15,6 @@
 _unit = NodePath("../../Player")
 
 [node name="GameplayCamera" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("2_b2bpf")]
-position = Vector2(297, -154)
 _unit = NodePath("../Player")
 
 [node name="TestEnemySpawner" type="Node" parent="." node_paths=PackedStringArray("_player", "_timer", "_spawnPosition")]
