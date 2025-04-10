@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh4ye65imk1e"]
 
 [ext_resource type="Script" uid="uid://cr1d25j7i54xh" path="res://Scripts/Weapons/Projectiles/Bullet.cs" id="1_yvbqg"]
-[ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="2_rjcpp"]
+[ext_resource type="Texture2D" uid="uid://bnn4j87i8iea5" path="res://Textures/Bullet.png" id="2_jnb4d"]
 
 [node name="Bullet" type="Node2D" node_paths=PackedStringArray("_rayCast")]
 script = ExtResource("1_yvbqg")
@@ -13,5 +13,6 @@ _maxLifeSpan = 3.0
 target_position = Vector2(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_rjcpp")
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("2_jnb4d")

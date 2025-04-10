@@ -18,6 +18,7 @@ public partial class Bullet : Node2D
 
 		Vector2 shootingDirection = (shootingAt - position).Normalized();
 		_velocity = shootingDirection * _speed;
+		Rotation = shootingDirection.Angle();
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -41,7 +42,7 @@ public partial class Bullet : Node2D
 
 	private void UpdateRayCast(float delta)
 	{
-		_rayCast.TargetPosition = _velocity * delta;
+		_rayCast.TargetPosition = new(_velocity.Length() * delta, 0);
 	}
 
 	private void OnHit(GodotObject objectHit)
