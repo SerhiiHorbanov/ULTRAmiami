@@ -1,27 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3laytvatekjx"]
+[gd_scene load_steps=2 format=3 uid="uid://d3laytvatekjx"]
 
-[ext_resource type="Script" uid="uid://c5slm0blssbxm" path="res://Scripts/Weapons/Firearm.cs" id="1_4xfno"]
-[ext_resource type="PackedScene" uid="uid://bh4ye65imk1e" path="res://Scenes/Projectiles/Bullet.tscn" id="2_nu12b"]
-[ext_resource type="PackedScene" uid="uid://27otj1vhillv" path="res://Scenes/Weapons/Dropped.tscn" id="3_do8hl"]
-[ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="4_nu12b"]
+[ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearm.tscn" id="1_cu785"]
 
-[node name="Submachinegun" type="Node" node_paths=PackedStringArray("_dropped", "_droppedNotPickuppable")]
-script = ExtResource("1_4xfno")
-_bullet = ExtResource("2_nu12b")
+[node name="Submachinegun" instance=ExtResource("1_cu785")]
 _isAutomatic = true
 _fireRate = 18.0
 _spread = 12.0
 _maxAmmo = 16
-_reloadTimeSeconds = 4.0
-_dropped = NodePath("Dropped")
-_droppedNotPickuppable = NodePath("Sprite2D")
 
-[node name="Dropped" parent="." node_paths=PackedStringArray("_weapon") instance=ExtResource("3_do8hl")]
-_weapon = NodePath("..")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.25098, 0.25098, 0.25098, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_nu12b")
-
-[editable path="Dropped"]
+[node name="ReloadTimer" parent="." index="2"]
+wait_time = 4.0
