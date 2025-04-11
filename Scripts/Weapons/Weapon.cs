@@ -4,7 +4,7 @@ using ULTRAmiami.Units;
 
 namespace ULTRAmiami.Weapons;
 
-public abstract partial class Weapon : Node
+public abstract partial class Weapon : Node2D
 {
 	[Export] private bool _isAutomatic;
 	[Export] private float _fireRate;
@@ -27,6 +27,7 @@ public abstract partial class Weapon : Node
 	
 	private Unit _unit;
 	
+	public event Action OnShoot;
 	public event Action<int> OnAmmoChanged;
 	public event Action OnReloadFinished;
 	
@@ -44,13 +45,13 @@ public abstract partial class Weapon : Node
 	private bool IsDropped
 		=> _unit is null;
 	
-	public Vector2 Position
+	public Vector2 WeaponPosition
 		=> IsDropped ? _dropped.Position : _unit.Position;
 	
 	public Vector2 PointingAt { protected get; set; }
 	
 	public Vector2 RelativePointingAt
-		=> PointingAt - Position;
+		=> PointingAt - WeaponPosition;
 	
 	public Vector2 PointingInDirection
 		=> RelativePointingAt.Normalized();
@@ -74,27 +75,29 @@ public abstract partial class Weapon : Node
 
 		if (unit is null)
 		{
-			Drop(isPickUppable, prevUnit.GlobalPosition);
+			Drop(isPickUppable);
 			return;
 		}
-		
+
+		Reparent(unit);
+		Position = Vector2.Zero;
 		RemoveChild(_dropped);
 		InstantReload();
 	}
 
-	private void Drop(bool isPickUppable, Vector2 globalPosition)
+	private void Drop(bool isPickUppable)
 	{
-		_dropped.GlobalPosition = globalPosition;
 		this.MakeSiblingOf(GetParent());
 		
 		if (isPickUppable)
 		{
 			AddChild(_dropped);
+			_dropped.GlobalPosition = GlobalPosition;
 			return;
 		}
 		
 		_droppedNotPickuppable.MakeSiblingOf(this);
-		_droppedNotPickuppable.Position = Position;
+		_droppedNotPickuppable.GlobalPosition = GlobalPosition;
 		_dropped.DetachWeapon();
 		QueueFree();
 	}
@@ -151,6 +154,8 @@ public abstract partial class Weapon : Node
 		
 		for (int i = 0 ; i < _shootsPerShot ; i++)
 			ShootWithSpread();
+
+		OnShoot?.Invoke();
 		_ammo--;
 		_shootingAudio?.Play();
 		OnAmmoChanged?.Invoke(_ammo);
@@ -174,9 +179,9 @@ public abstract partial class Weapon : Node
 	private Vector2 AddSpread(Vector2 shootingAt, float maxDeviationToLeftRadians, float maxDeviationToRightRadians)
 	{
 		float deviation = MyRandom.Range(-maxDeviationToLeftRadians, maxDeviationToRightRadians);
-		Vector2 relativeShootingAt = shootingAt - Position;
+		Vector2 relativeShootingAt = shootingAt - WeaponPosition;
 		
-		return relativeShootingAt.Rotated(deviation) + Position;
+		return relativeShootingAt.Rotated(deviation) + WeaponPosition;
 	}
 
 	private bool EnoughTimeSinceLastShotToShootAgain()

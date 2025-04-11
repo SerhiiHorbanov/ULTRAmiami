@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_t511x"]
 radius = 30.0
 
-[node name="Weapon" type="Node"]
+[node name="Weapon" type="Node2D"]
 
 [node name="Dropped" type="Node2D" parent="." node_paths=PackedStringArray("_droppedArea")]
 script = ExtResource("1_27vj6")

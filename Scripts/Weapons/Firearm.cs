@@ -10,8 +10,7 @@ public partial class Firearm : Weapon
     protected override void Shoot(Vector2 shootingAt)
     {
         Bullet projectile = _bullet.Instantiate<Bullet>();
-        AddChild(projectile);
-        
-        projectile.Initialize(Position, shootingAt);
+        projectile.MakeSiblingOf(GetParent());
+        projectile.Initialize(GlobalPosition, shootingAt);
     }
 }

@@ -12,11 +12,11 @@ public partial class Bullet : Node2D
 	
 	private Vector2 _velocity;
 	
-	public void Initialize(Vector2 position, Vector2 shootingAt)
+	public void Initialize(Vector2 globalPosition, Vector2 shootingAt)
 	{
-		Position = position;
+		GlobalPosition = globalPosition;
 
-		Vector2 shootingDirection = (shootingAt - position).Normalized();
+		Vector2 shootingDirection = (shootingAt - globalPosition).Normalized();
 		_velocity = shootingDirection * _speed;
 		Rotation = shootingDirection.Angle();
 	}
