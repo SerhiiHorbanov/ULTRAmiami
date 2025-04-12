@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://inxhvy46fkay"]
+[gd_scene load_steps=5 format=3 uid="uid://inxhvy46fkay"]
 
 [ext_resource type="PackedScene" uid="uid://ctepmc8qidog4" path="res://Scenes/Weapons/Weapon.tscn" id="1_pwqol"]
 [ext_resource type="Script" uid="uid://c5slm0blssbxm" path="res://Scripts/Weapons/Firearm.cs" id="2_dlim3"]
 [ext_resource type="PackedScene" uid="uid://bh4ye65imk1e" path="res://Scenes/Projectiles/Bullet.tscn" id="3_dlim3"]
+[ext_resource type="AudioStream" uid="uid://gd5kll0qtrur" path="res://Audio/Sound Randomizers/Failing Shot Sound Randomizer.tres" id="4_fmjnk"]
 
 [node name="Firearm" node_paths=PackedStringArray("_reloadTimer", "_dropped", "_droppedNotPickuppable", "_shootingAudio", "_failingShotAudio", "_reloadingAudio") instance=ExtResource("1_pwqol")]
 script = ExtResource("2_dlim3")
@@ -16,3 +17,6 @@ _reloadingAudio = NodePath("Reload")
 
 [node name="Dropped" parent="." index="0" node_paths=PackedStringArray("_weapon")]
 _weapon = NodePath("..")
+
+[node name="FailingShot" parent="." index="4"]
+stream = ExtResource("4_fmjnk")

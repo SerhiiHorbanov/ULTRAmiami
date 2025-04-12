@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://2frk84kfwokl"]
+[gd_scene load_steps=5 format=3 uid="uid://2frk84kfwokl"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearm.tscn" id="1_hhr6j"]
 [ext_resource type="Texture2D" uid="uid://mrl7e5d6s4je" path="res://Textures/Weapons/Pistol.png" id="2_jic2m"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_jic2m"]
-[ext_resource type="AudioStream" uid="uid://gd5kll0qtrur" path="res://Audio/Sound Randomizers/Failing Shot Sound Randomizer.tres" id="6_jnn5b"]
 [ext_resource type="AudioStream" uid="uid://c0tqt8n52rbip" path="res://Audio/SFX/Pistol Reload.wav" id="7_jtjwi"]
 
 [node name="Pistol" instance=ExtResource("1_hhr6j")]
@@ -22,9 +21,6 @@ texture = ExtResource("2_jic2m")
 
 [node name="Shot" parent="." index="3"]
 stream = ExtResource("5_jic2m")
-
-[node name="FailingShot" parent="." index="4"]
-stream = ExtResource("6_jnn5b")
 
 [node name="Reload" parent="." index="5"]
 stream = ExtResource("7_jtjwi")
