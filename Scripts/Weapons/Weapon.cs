@@ -124,8 +124,6 @@ public abstract partial class Weapon : Node2D
 		
 		if (HasAmmo())
 			ShootAndDoRelatedProcesses();
-		else
-			FailShotBecauseNoAmmo();
 	}
 
 	public bool HasAmmo()
