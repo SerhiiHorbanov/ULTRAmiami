@@ -27,7 +27,6 @@ public abstract partial class Weapon : Node2D
 	
 	private Unit _unit;
 	
-	public event Action OnShoot;
 	public event Action<int> OnAmmoChanged;
 	public event Action OnReloadFinished;
 	
@@ -155,7 +154,6 @@ public abstract partial class Weapon : Node2D
 		for (int i = 0 ; i < _shootsPerShot ; i++)
 			ShootWithSpread();
 
-		OnShoot?.Invoke();
 		_ammo--;
 		_shootingAudio?.Play();
 		OnAmmoChanged?.Invoke(_ammo);
