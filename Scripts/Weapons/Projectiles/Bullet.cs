@@ -5,6 +5,8 @@ namespace ULTRAmiami.Weapons.Projectiles;
 
 public partial class Bullet : Node2D
 {
+	[Export] private PackedScene _hitParticle;
+	
 	[Export] private float _speed;
 	[Export] private RayCast2D _rayCast;
 	[Export] private float _maxLifeSpan;
@@ -53,7 +55,23 @@ public partial class Bullet : Node2D
 			return;
 		
 		Unit hitUnit = hitNode.GetAncestor<Unit>();
+
+		if (hitUnit is null)
+		{
+			CreateHitParticles();
+			return;
+		}
 		
-		hitUnit?.Die();
+		hitUnit.Die();
+	}
+	
+	private void CreateHitParticles()
+	{
+		CpuParticles2D particles = _hitParticle.Instantiate<CpuParticles2D>();
+		
+		particles.Rotation = Rotation;
+		particles.MakeSiblingOf(this);
+		particles.GlobalPosition = GlobalPosition;
+		particles.Restart();
 	}
 }
