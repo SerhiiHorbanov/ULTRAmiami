@@ -21,6 +21,8 @@ public partial class Bullet : Node2D
 		Vector2 shootingDirection = (shootingAt - globalPosition).Normalized();
 		_velocity = shootingDirection * _speed;
 		Rotation = shootingDirection.Angle();
+		UpdateRayCast((float)GetPhysicsProcessDeltaTime());
+		_rayCast.ForceRaycastUpdate();
 	}
 
 	public override void _PhysicsProcess(double delta)
