@@ -38,6 +38,9 @@ public partial class Unit : CharacterBody2D
 	private bool IsBraking 
 		=> _targetDirection.LengthSquared() < DirectionDeadZoneSquared;
 	
+	public bool IsPlayer
+		=> IsInGroup("Player");
+	
 	public override void _Ready()
 	{
 		if (_weapon is not null)
