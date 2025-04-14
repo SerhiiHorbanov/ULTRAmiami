@@ -36,9 +36,6 @@ public partial class TestEnemySpawner : Node
     private void SpawnEnemy()
     {
         Unit unit = _spawnedEnemyPackedScene.Instantiate<Unit>();
-        PistolEnemyUnitController controller = unit.GetChild<PistolEnemyUnitController>();
-        
-        controller.TargetUnit = _player;
         unit.Position = _spawnPosition.Position;
         
         GetParent().AddChild(unit);

@@ -39,8 +39,10 @@ public partial class PistolEnemyUnitController : AIUnitController
 		if (TargetUnit is not null)
 			TargetUnit.OnDeath += StopTargetUnit;
 
+		PlayerNoticed += SetTargetUnit;
+		PlayerNoticed += _ => _shootingTimer.Start();
+		
 		_shootingTimer.Timeout += TryShooting;
-		_shootingTimer.Start();
 	}
 	
 	public override void _Process(double delta)
@@ -132,4 +134,7 @@ public partial class PistolEnemyUnitController : AIUnitController
 	{
 		TargetUnit = null;
 	}
+	
+	private void SetTargetUnit(Unit targetUnit)
+		=> TargetUnit = targetUnit;
 }

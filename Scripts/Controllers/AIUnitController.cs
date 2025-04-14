@@ -10,8 +10,28 @@ public partial class AIUnitController : UnitController
     public bool IsGoingToWayPoint = true;
     public Vector2 CurrentWayPoint;
 
+    [Export] private Area2D _playerNoticingArea;
+    protected event Action<Unit> PlayerNoticed;
     public event Action OnWayPointReached;
     
+    public override void _Ready()
+    {
+        base._Ready();
+        _playerNoticingArea.BodyEntered += TryNoticePlayer;
+    }
+
+    private void TryNoticePlayer(Node2D body)
+    {
+        Unit unit = body.GetAncestor<Unit>();
+        
+        if (unit is null) 
+            return;
+        if (!unit.IsPlayer)
+            return;
+        GD.Print("Player Noticed");
+        PlayerNoticed?.Invoke(unit);
+    }
+
     public override void _Process(double delta)
     {
         base._Process(delta);
@@ -32,7 +52,7 @@ public partial class AIUnitController : UnitController
     private bool HasReachedWayPoint(float deltaTime)
     {
         float speedSquared = Unit.Velocity.LengthSquared();
-        float distanceToWayPointSquared = Unit.Position.DistanceTo(CurrentWayPoint);
+        float distanceToWayPointSquared = Unit.GlobalPosition.DistanceTo(CurrentWayPoint);
         
         return speedSquared < distanceToWayPointSquared;
     }
@@ -44,5 +64,5 @@ public partial class AIUnitController : UnitController
     }
     
     protected override Vector2 GetTargetDirection()
-        => IsGoingToWayPoint ? CurrentWayPoint - Unit.Position : Vector2.Zero;
+        => IsGoingToWayPoint ? CurrentWayPoint - Unit.GlobalPosition : Vector2.Zero;
 }
