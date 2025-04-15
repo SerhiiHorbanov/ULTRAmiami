@@ -8,12 +8,18 @@ public partial class Bullet : Node2D
 	[Export] private PackedScene _hitParticle;
 	
 	[Export] private float _speed;
+	[Export] private float _speedRandomness;
 	[Export] private RayCast2D _rayCast;
 	[Export] private float _maxLifeSpan;
 	private float _lifeSpan;
 	
 	private Vector2 _velocity;
-	
+
+	public override void _Ready()
+	{
+		_speed *= MyRandom.Range(1 - _speedRandomness, 1 + _speedRandomness);
+	}
+
 	public void Initialize(Vector2 globalPosition, Vector2 shootingAt)
 	{
 		GlobalPosition = globalPosition;
@@ -23,6 +29,7 @@ public partial class Bullet : Node2D
 		Rotation = shootingDirection.Angle();
 		UpdateRayCast((float)GetPhysicsProcessDeltaTime());
 		_rayCast.ForceRaycastUpdate();
+		
 	}
 
 	public override void _PhysicsProcess(double delta)

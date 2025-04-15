@@ -8,6 +8,7 @@
 script = ExtResource("1_yvbqg")
 _hitParticle = ExtResource("2_rjcpp")
 _speed = 3000.0
+_speedRandomness = 0.1
 _rayCast = NodePath("RayCast2D")
 _maxLifeSpan = 3.0
 
