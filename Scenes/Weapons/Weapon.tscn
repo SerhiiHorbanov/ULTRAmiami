@@ -26,8 +26,11 @@ shape = SubResource("CircleShape2D_t511x")
 wait_time = 2.0
 one_shot = true
 
-[node name="Shot" type="AudioStreamPlayer" parent="."]
+[node name="Shot" type="AudioStreamPlayer2D" parent="."]
 
-[node name="FailingShot" type="AudioStreamPlayer" parent="."]
+[node name="FailingShot" type="AudioStreamPlayer2D" parent="."]
+max_distance = 500.0
+attenuation = 4.0
 
-[node name="Reload" type="AudioStreamPlayer" parent="."]
+[node name="Reload" type="AudioStreamPlayer2D" parent="."]
+attenuation = 0.1

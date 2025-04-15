@@ -21,9 +21,9 @@ public abstract partial class Weapon : Node2D
 	[Export] private DroppedWeapon _dropped;
 	[Export] private Node2D _droppedNotPickuppable;
 	
-	[Export] private AudioStreamPlayer _shootingAudio;
-	[Export] private AudioStreamPlayer _failingShotAudio;
-	[Export] private AudioStreamPlayer _reloadingAudio;
+	[Export] private AudioStreamPlayer2D _shootingAudio;
+	[Export] private AudioStreamPlayer2D _failingShotAudio;
+	[Export] private AudioStreamPlayer2D _reloadingAudio;
 	
 	private Unit _unit;
 	
