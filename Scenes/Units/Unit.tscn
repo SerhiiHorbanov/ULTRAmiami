@@ -7,6 +7,8 @@
 radius = 24.0832
 
 [node name="Unit" type="CharacterBody2D"]
+floor_stop_on_slope = false
+floor_block_on_wall = false
 script = ExtResource("1_bxx5k")
 _dropsPickUppableWeapon = true
 _maxWalkAcceleration = 600.0
