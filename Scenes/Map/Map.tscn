@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxb34giu5ayyx"]
+[gd_scene load_steps=5 format=3 uid="uid://bxb34giu5ayyx"]
 
 [ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_iio4a"]
 [ext_resource type="Script" uid="uid://bhpu0is0y6qkb" path="res://Scripts/Map/MapGenerator.cs" id="1_lcs11"]
 [ext_resource type="PackedScene" uid="uid://cmye1b7ah4eek" path="res://Scenes/Map/Rooms/Room1.tscn" id="3_11lgl"]
+[ext_resource type="PackedScene" uid="uid://dbgna6p0yjufx" path="res://Scenes/Weapons/Room2.tscn" id="4_yju8x"]
 
 [node name="Map" type="Node2D" node_paths=PackedStringArray("_rooms", "_initialRoom")]
 script = ExtResource("1_lcs11")
@@ -11,6 +12,6 @@ _roomsTargetAmount = 10
 _allowedDistanceToDeletingRoom = 2000.0
 _roomSize = Vector2(830, 830)
 _initialRoom = NodePath("EmptyRoom")
-_packedRooms = Array[PackedScene]([ExtResource("1_iio4a"), ExtResource("3_11lgl")])
+_packedRooms = Array[PackedScene]([ExtResource("1_iio4a"), ExtResource("3_11lgl"), ExtResource("4_yju8x")])
 
 [node name="EmptyRoom" parent="." instance=ExtResource("1_iio4a")]
