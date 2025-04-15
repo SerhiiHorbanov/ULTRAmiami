@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://g3u8nsf1g5sb"]
+
+[ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_yl58w"]
+[ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="2_7vl4o"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="3_ejmxe"]
+[ext_resource type="PackedScene" uid="uid://ustetj26a1sv" path="res://Scenes/Weapons/Shotgun.tscn" id="4_or4bg"]
+[ext_resource type="PackedScene" uid="uid://tc4t7u7hg3qc" path="res://Scenes/Weapons/AssaultRifle.tscn" id="5_kxhq1"]
+
+[node name="EmptyRoom" instance=ExtResource("1_yl58w")]
+
+[node name="WallWithDoor" parent="." index="1" instance=ExtResource("2_7vl4o")]
+position = Vector2(0, -95)
+
+[node name="WallWithDoor2" parent="." index="2" instance=ExtResource("2_7vl4o")]
+position = Vector2(0, 95)
+rotation = -3.14159
+
+[node name="WallWithDoor3" parent="." index="3" instance=ExtResource("2_7vl4o")]
+position = Vector2(95, 0)
+rotation = 1.5708
+
+[node name="Unit" parent="." index="4" instance=ExtResource("3_ejmxe")]
+position = Vector2(-243, -256)
+
+[node name="Unit2" parent="." index="5" instance=ExtResource("3_ejmxe")]
+position = Vector2(-240, 289)
+
+[node name="Shotgun" parent="." index="6" instance=ExtResource("4_or4bg")]
+position = Vector2(-329, -257)
+
+[node name="AssaultRifle" parent="." index="7" instance=ExtResource("5_kxhq1")]
+position = Vector2(-331, 269)
+
+[editable path="RoomWalls"]
+[editable path="Unit"]
+[editable path="Unit2"]
