@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://tc4t7u7hg3qc"]
+[gd_scene load_steps=3 format=3 uid="uid://tc4t7u7hg3qc"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearm.tscn" id="1_f1tig"]
+[ext_resource type="AudioStream" uid="uid://3qbex1n00tw5" path="res://Audio/Sound Randomizers/Assault Rifle Shot Randomizer.tres" id="2_8634j"]
 
 [node name="AssaultRifle" instance=ExtResource("1_f1tig")]
 _isAutomatic = true
@@ -10,3 +11,8 @@ _maxAmmo = 12
 
 [node name="ReloadTimer" parent="." index="2"]
 wait_time = 4.0
+
+[node name="Shot" parent="." index="3"]
+stream = ExtResource("2_8634j")
+volume_db = -3.0
+max_polyphony = 2
