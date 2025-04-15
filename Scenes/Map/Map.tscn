@@ -8,8 +8,8 @@
 [node name="Map" type="Node2D" node_paths=PackedStringArray("_rooms", "_initialRoom")]
 script = ExtResource("1_lcs11")
 _rooms = [NodePath("EmptyRoom")]
-_roomsTargetAmount = 10
-_allowedDistanceToDeletingRoom = 2000.0
+_roomsTargetAmount = 20
+_allowedDistanceToDeletingRoom = 4000.0
 _roomSize = Vector2(830, 830)
 _initialRoom = NodePath("EmptyRoom")
 _packedRooms = Array[PackedScene]([ExtResource("1_iio4a"), ExtResource("3_11lgl"), ExtResource("4_yju8x")])
