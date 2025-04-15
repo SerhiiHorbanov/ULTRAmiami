@@ -60,6 +60,11 @@ public partial class PistolEnemyUnitController : AIUnitController
 		UpdatePointingAt();
 	}
 
+	public override void _ExitTree()
+	{
+		SetTargetUnitToNull();
+	}
+
 	private void TryShooting()
 		=> Weapon?.TryStartShooting();
 
@@ -79,7 +84,8 @@ public partial class PistolEnemyUnitController : AIUnitController
 	
 	private void OnReloadFinished()
 	{
-		_shootingTimer.Start();
+		if (TargetUnit is not null)
+			_shootingTimer.Start();
 		Weapon.OnReloadFinished -= OnReloadFinished;
 		Unit.OnDeath -= UnsubscribeFromWeaponReload;
 	}
@@ -141,6 +147,9 @@ public partial class PistolEnemyUnitController : AIUnitController
 			TargetUnit.OnDeath -= SetTargetUnitToNull;
 		if (targetUnit is not null)
 			targetUnit.OnDeath += SetTargetUnitToNull;
+		else
+			_shootingTimer.Stop();
+		
 		TargetUnit = targetUnit;
 	}
 
