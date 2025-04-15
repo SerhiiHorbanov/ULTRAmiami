@@ -136,5 +136,14 @@ public partial class PistolEnemyUnitController : AIUnitController
 	}
 	
 	private void SetTargetUnit(Unit targetUnit)
-		=> TargetUnit = targetUnit;
+	{
+		if (TargetUnit is not null)
+			TargetUnit.OnDeath -= SetTargetUnitToNull;
+		if (targetUnit is not null)
+			targetUnit.OnDeath += SetTargetUnitToNull;
+		TargetUnit = targetUnit;
+	}
+
+	private void SetTargetUnitToNull()
+		=> SetTargetUnit(null);
 }
