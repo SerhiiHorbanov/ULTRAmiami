@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_giihn"]
 
-[node name="Unit" node_paths=PackedStringArray("_weapon") groups=["Player"] instance=ExtResource("1_33iby")]
+[node name="Player" node_paths=PackedStringArray("_weapon") groups=["Player"] instance=ExtResource("1_33iby")]
 _weapon = NodePath("Pistol")
 _dropsPickUppableWeapon = false
 _maxWalkAcceleration = 5000.0

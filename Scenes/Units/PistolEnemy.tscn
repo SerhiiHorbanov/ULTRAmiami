@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqri3"]
 radius = 400.0
 
-[node name="Unit" node_paths=PackedStringArray("_weapon") instance=ExtResource("1_gqri3")]
+[node name="PistolEnemy" node_paths=PackedStringArray("_weapon") instance=ExtResource("1_gqri3")]
 _weapon = NodePath("Pistol")
 
 [node name="PistolEnemyUnitController" type="Node" parent="." index="2" node_paths=PackedStringArray("_shootingTimer", "_playerNoticingArea", "_unit")]
