@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace ULTRAmiami;
+namespace ULTRAmiami.Utils;
 
 public static class MyRandom
 {

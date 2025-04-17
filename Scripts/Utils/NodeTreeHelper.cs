@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ULTRAmiami;
+namespace ULTRAmiami.Utils;
 
 public static class NodeTreeHelper
 {
