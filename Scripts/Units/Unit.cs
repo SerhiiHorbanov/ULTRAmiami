@@ -28,7 +28,9 @@ public partial class Unit : CharacterBody2D
 	public readonly List<DroppedWeapon> EnteredDroppedWeapons = [];
 
 	public event Action<Weapon> OnWeaponChanged;
-	public event Action OnDeath;
+	
+	[Signal]
+	public delegate void OnDeathEventHandler();
 
 	private const float DirectionDeadZoneSquared = 0.01f;
 	
@@ -64,7 +66,7 @@ public partial class Unit : CharacterBody2D
 		if (_godMode)
 			return;
 		
-		OnDeath?.Invoke();
+		EmitSignalOnDeath();
 		DropWeapon();
 		QueueFree();
 	}
