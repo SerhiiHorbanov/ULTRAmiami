@@ -27,6 +27,7 @@ public abstract partial class Weapon : Node2D
 	[Export] private AudioStreamPlayer2D _reloadingAudio;
 	
 	private Unit _unit;
+	public Vector2 PointingAt;
 	
 	public event Action<int> OnAmmoChanged;
 	public event Action OnReloadFinished;
@@ -47,8 +48,6 @@ public abstract partial class Weapon : Node2D
 	
 	public Vector2 WeaponPosition
 		=> IsDropped ? _dropped.Position : _unit.Position;
-	
-	public Vector2 PointingAt { protected get; set; }
 	
 	public Vector2 RelativePointingAt
 		=> PointingAt - WeaponPosition;
