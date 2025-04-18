@@ -27,6 +27,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Shot" type="AudioStreamPlayer2D" parent="."]
+attenuation = 5.0
 
 [node name="FailingShot" type="AudioStreamPlayer2D" parent="."]
 max_distance = 500.0
