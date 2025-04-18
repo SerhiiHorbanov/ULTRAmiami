@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://sdpp1fwhlvdp"]
+[gd_scene load_steps=3 format=3 uid="uid://sdpp1fwhlvdp"]
 
 [ext_resource type="PackedScene" uid="uid://d2hk6a38fe2k1" path="res://Scenes/UI/HUD/AmmoDisplay.tscn" id="1_of5y6"]
+[ext_resource type="PackedScene" uid="uid://borpe0wg55dui" path="res://Scenes/UI/GameplayRestartConsole.tscn" id="2_1n21u"]
 
 [node name="Canvas" type="CanvasLayer"]
 
-[node name="AmmoDisplay" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("1_of5y6")]
-_unit = NodePath("")
+[node name="AmmoDisplay" parent="." instance=ExtResource("1_of5y6")]
+
+[node name="GameplayRestartConsole" parent="." instance=ExtResource("2_1n21u")]

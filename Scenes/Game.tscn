@@ -20,4 +20,6 @@ _unit = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
 
+[connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
+
 [editable path="Canvas"]
