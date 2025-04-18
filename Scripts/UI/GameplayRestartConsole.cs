@@ -9,9 +9,14 @@ public enum RestartReason
 	Restart,
 }
 
-public partial class GameplayRestartConsole : RichTextLabel
+public partial class GameplayRestartConsole : ColorRect
 {
+	[Export] private RichTextLabel _consoleText;
 	[Export] private float _charactersPerSecond;
+	
+	[Export] private Gradient _gradient;
+	[Export] private float _timeForGradient;
+	
 	[Export(PropertyHint.File, "*.txt,")] private StringName _playerDeathRestartTextPath;
 	private static string _playerDeathRestartText;
 
@@ -35,6 +40,8 @@ public partial class GameplayRestartConsole : RichTextLabel
 	{
 		if (!_isRunning)
 			return;
+		
+		UpdateGradient();
 
 		int targetCharacterIndex = GetTargetCharacterIndex();
 		while (_currentCharIndex < targetCharacterIndex)
@@ -42,13 +49,18 @@ public partial class GameplayRestartConsole : RichTextLabel
 			AdvanceText();
 		}
 	}
+	private void UpdateGradient()
+	{
+		float t = (Time.GetTicksMsec() - _animationBeginning) * 0.001f / _timeForGradient;
+		Color = _gradient.Sample(t);
+	}
 
 	private int GetTargetCharacterIndex()
 		=> int.Min((int)((Time.GetTicksMsec() - _animationBeginning) * 0.001 *  _charactersPerSecond), _currentRestartText.Length - 1);
 
 	private void AdvanceText()
 	{
-		Text += _playerDeathRestartText[_currentCharIndex];
+		_consoleText.Text += _playerDeathRestartText[_currentCharIndex];
 		_currentCharIndex++;
 	}
 
