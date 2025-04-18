@@ -29,7 +29,6 @@ public partial class AIUnitController : UnitController
             return;
         if (!unit.IsPlayer)
             return;
-        GD.Print("Player Noticed");
         PlayerNoticed?.Invoke(unit);
     }
 
