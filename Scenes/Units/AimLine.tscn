@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch5wvmkytoo1o"]
+
+[ext_resource type="Script" uid="uid://b5ygy766eqmnf" path="res://Scripts/AimLine.cs" id="1_gltjf"]
+
+[node name="AimLine" type="Line2D" node_paths=PackedStringArray("_rayCast")]
+process_priority = -10
+points = PackedVector2Array(0, 0, 0, 0)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+script = ExtResource("1_gltjf")
+_rayCast = NodePath("RayCast2D")
+_maxLength = 10000.0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
