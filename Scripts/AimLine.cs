@@ -17,7 +17,10 @@ public partial class AimLine : Line2D
 	public override void _Process(double delta)
 	{
 		if (!ShouldBeShown())
+		{
+			RemovePoint(1);	
 			return;
+		}
 
 		UpdateLine();
 	}
