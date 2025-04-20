@@ -49,8 +49,11 @@ public abstract partial class Weapon : Node2D
 	public Vector2 WeaponPosition
 		=> IsDropped ? _dropped.Position : _unit.Position;
 	
+	public Vector2 GlobalWeaponPosition
+		=> IsDropped ? _dropped.GlobalPosition : _unit.GlobalPosition;
+	
 	public Vector2 RelativePointingAt
-		=> PointingAt - WeaponPosition;
+		=> PointingAt - GlobalWeaponPosition;
 	
 	public Vector2 PointingInDirection
 		=> RelativePointingAt.Normalized();
@@ -69,7 +72,6 @@ public abstract partial class Weapon : Node2D
 
 	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
 	{
-		Unit prevUnit = _unit;
 		_unit = unit;
 
 		if (unit is null)
