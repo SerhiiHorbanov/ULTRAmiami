@@ -22,8 +22,12 @@ public partial class MapGenerator : Node
     private float AllowedDistanceSquaredToDeletingRoom
         => _allowedDistanceToDeletingRoom * _allowedDistanceToDeletingRoom;
 
+    private Vector2 KeptRoomsPosition
+        => _unit?.Position ?? Vector2.Zero;
+
     public override void _Ready()
     {
+        _unit.OnDeath += () => _unit = null; 
         _initialRoom.MapGenerator = this;
         _rooms.Add(_initialRoom);
         _initialRoom = null;
@@ -77,7 +81,7 @@ public partial class MapGenerator : Node
         {
             Vector2 roomGlobalPosition = _rooms[i].RoomPosition * _roomSize;
             
-            if (roomGlobalPosition.DistanceSquaredTo(_unit.Position) > AllowedDistanceSquaredToDeletingRoom)
+            if (roomGlobalPosition.DistanceSquaredTo(KeptRoomsPosition) > AllowedDistanceSquaredToDeletingRoom)
             {
                 _rooms[i].QueueFree();
                 _rooms.RemoveAt(i);
