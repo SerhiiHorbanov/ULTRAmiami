@@ -35,6 +35,9 @@ public partial class Unit : CharacterBody2D
 
 	private const float DirectionDeadZoneSquared = 0.01f;
 	
+	public Vector2 TargetDirection
+		=> _targetDirection;
+	
 	public Weapon Weapon
 		=> _weapon;
 
