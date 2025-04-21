@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=10 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ch5wvmkytoo1o" path="res://Scenes/Units/AimLine.tscn" id="4_v5kf0"]
 [ext_resource type="AudioStream" uid="uid://dr8j3gjenfena" path="res://Audio/SFX/V0DeathScream.wav" id="7_g6b54"]
 [ext_resource type="Script" uid="uid://dhi603ffh8sbh" path="res://Scripts/Units/PlayerDeathSound.cs" id="8_jokor"]
+[ext_resource type="Script" uid="uid://70y5w1gml3pe" path="res://Scripts/Units/BloodFuel.cs" id="9_jokor"]
 
 [node name="Player" node_paths=PackedStringArray("_weapon") groups=["Player"] instance=ExtResource("1_33iby")]
 _weapon = NodePath("Pistol")
@@ -39,5 +40,13 @@ stream = ExtResource("7_g6b54")
 volume_db = -6.0
 script = ExtResource("8_jokor")
 
+[node name="BloodFuel" type="Node" parent="." index="6"]
+script = ExtResource("9_jokor")
+_blood = 5.0
+_max = 10.0
+_bloodWall = 3.0
+_bloodUsageForMaintenance = 1.0
+
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
-[connection signal="OnHit" from="." to="." method="Die"]
+[connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
+[connection signal="RunOutOfBlood" from="BloodFuel" to="." method="Die"]

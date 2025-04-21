@@ -4,7 +4,7 @@ using ULTRAmiami.Utils;
 
 namespace ULTRAmiami.Units;
 
-public partial class BloodFountain : Node
+public partial class BloodFountain : Node2D
 {
 	[Export] private float _bloodAmount;
 	[Export] private Timer _timer;
