@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=7 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
+[ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
 [ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
+[ext_resource type="SpriteFrames" uid="uid://b4qb8g6j2lptg" path="res://Animations/Units/V0LegsAnimation.tres" id="3_cj8nc"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_giihn"]
 [ext_resource type="PackedScene" uid="uid://ch5wvmkytoo1o" path="res://Scenes/Units/AimLine.tscn" id="4_v5kf0"]
 
@@ -13,6 +15,13 @@ _maxBrakeAcceleration = 8000.0
 _maxWalkSpeed = 800.0
 _maxRedirectionSpeed = 1200.0
 _redirectionAcceleration = 10000.0
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+texture = ExtResource("2_cj8nc")
+
+[node name="AnimatedSprite2D" parent="Graphics" index="1"]
+sprite_frames = ExtResource("3_cj8nc")
+frame_progress = 0.0334588
 
 [node name="PlayerUnitController" type="Node" parent="." index="2" node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_xf41u")
