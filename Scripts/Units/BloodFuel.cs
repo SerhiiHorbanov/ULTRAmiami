@@ -17,17 +17,17 @@ public partial class BloodFuel : Node
 
 	[Signal]
 	public delegate void RunOutOfBloodEventHandler(Vector2 lastHit);
+
+	[Signal]
+	public delegate void OnBloodChangedEventHandler(float newBlood);
 	
 	public override void _Process(double delta)
 	{
 		_blood -= (float)delta * _bloodUsageForMaintenance;
+		EmitSignalOnBloodChanged(_blood);
+		
 		if (_blood < 0)
-		{
 			EmitSignalRunOutOfBlood(_lastHit);
-			GD.Print("RunOutOfBlood");
-		}
-		if (GetTree().GetFrame() % 10 == 0)
-		GD.Print("Blood: " + _blood);
 	}
 
 	public void AddBlood(float blood)
