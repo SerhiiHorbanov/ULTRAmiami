@@ -16,6 +16,7 @@ public partial class BloodBar : Control
 	private void SetBlood(float blood)
 	{
 		float height = _maxHeight * blood / _max;
+		height = float.Clamp(height, 0, _maxHeight);
 		_fill.Size = new(_fill.Size.X, height);
 	}
 }
