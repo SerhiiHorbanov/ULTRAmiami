@@ -25,5 +25,7 @@ _unit = NodePath("../Player")
 
 [connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
 [connection signal="OnDeath" from="Player" to="GameplayRestartTimer" method="StartTimer"]
+[connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
 
 [editable path="Canvas"]
+[editable path="Player"]
