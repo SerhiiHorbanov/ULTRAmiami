@@ -9,6 +9,7 @@ namespace ULTRAmiami.Units;
 public partial class Unit : CharacterBody2D
 {
 	private Vector2 _targetDirection;
+	private bool _isDead;
 	
 	[Export] private Weapon _weapon;
 	[Export] private bool _dropsPickUppableWeapon;
@@ -75,9 +76,10 @@ public partial class Unit : CharacterBody2D
 	
 	public void Die(Vector2 hit)
 	{
-		if (_godMode)
+		if (_godMode || _isDead)
 			return;
 		
+		_isDead = true;
 		EmitSignalOnDeath();
 		DropWeapon(); 
 		MakeDeadVersion();
