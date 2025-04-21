@@ -33,6 +33,9 @@ public partial class Unit : CharacterBody2D
 	[Signal]
 	public delegate void OnDeathEventHandler();
 
+	[Signal]
+	public delegate void OnHitEventHandler(Vector2 hit);
+	
 	private const float DirectionDeadZoneSquared = 0.01f;
 	
 	public Vector2 TargetDirection
@@ -65,7 +68,10 @@ public partial class Unit : CharacterBody2D
 		UpdateWalkingVelocity((float)delta);
 	}
 
-	public void Die()
+	public void Hit(Vector2 hit)
+		=> EmitSignalOnHit(hit);
+	
+	public void Die(Vector2 hit)
 	{
 		if (_godMode)
 			return;

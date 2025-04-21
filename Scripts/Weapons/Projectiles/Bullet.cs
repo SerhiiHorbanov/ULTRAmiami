@@ -72,9 +72,14 @@ public partial class Bullet : Node2D
 			return;
 		}
 		
-		hitUnit.Die();
+		HitUnit(hitUnit);
 	}
 	
+	private void HitUnit(Unit unit)
+	{
+		unit.Hit(_velocity);
+	}
+
 	private void CreateHitParticles()
 	{
 		CpuParticles2D particles = _hitParticle.Instantiate<CpuParticles2D>();
