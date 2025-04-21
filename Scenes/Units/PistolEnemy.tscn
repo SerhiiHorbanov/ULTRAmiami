@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5js1ka2nalod"]
+[gd_scene load_steps=6 format=3 uid="uid://b5js1ka2nalod"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_gqri3"]
 [ext_resource type="Script" uid="uid://n6srlh8uouwr" path="res://Scripts/Controllers/PistolEnemyUnitController.cs" id="2_hbmud"]
+[ext_resource type="PackedScene" uid="uid://p4t86keainuc" path="res://Scenes/BloodFountain.tscn" id="2_wrv6w"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_wrv6w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqri3"]
@@ -9,6 +10,7 @@ radius = 400.0
 
 [node name="PistolEnemy" node_paths=PackedStringArray("_weapon") instance=ExtResource("1_gqri3")]
 _weapon = NodePath("Pistol")
+_deadVersion = ExtResource("2_wrv6w")
 
 [node name="PistolEnemyUnitController" type="Node" parent="." index="2" node_paths=PackedStringArray("_shootingTimer", "_playerNoticingArea", "_unit")]
 script = ExtResource("2_hbmud")
@@ -29,4 +31,4 @@ wait_time = 0.4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_gqri3")
 
-[connection signal="OnHit" from="." to="." method="Hit"]
+[connection signal="OnHit" from="." to="." method="Die"]

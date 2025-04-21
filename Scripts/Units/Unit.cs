@@ -13,7 +13,9 @@ public partial class Unit : CharacterBody2D
 	[Export] private Weapon _weapon;
 	[Export] private bool _dropsPickUppableWeapon;
 	
+	[ExportGroup("Death")]
 	[Export] private bool _godMode;
+	[Export] private PackedScene _deadVersion;
 	
 	[ExportGroup("Movement")]
 	[Export] private float _maxWalkAcceleration;
@@ -77,10 +79,21 @@ public partial class Unit : CharacterBody2D
 			return;
 		
 		EmitSignalOnDeath();
-		DropWeapon();
+		DropWeapon(); 
+		MakeDeadVersion();
 		QueueFree();
 	}
-	
+	private void MakeDeadVersion()
+	{
+		Node2D deadVersion = _deadVersion?.Instantiate<Node2D>();
+
+		if (deadVersion is null)
+			return;
+		
+		deadVersion.MakeSiblingOf(this);
+		deadVersion.Position = Position;
+	}
+
 	public void SetTargetDirection(Vector2 targetDirection)
 	{
 		if (!targetDirection.IsNormalized())
