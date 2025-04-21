@@ -177,9 +177,9 @@ public abstract partial class Weapon : Node2D
 	private Vector2 AddSpread(Vector2 shootingAt, float maxDeviationToLeftRadians, float maxDeviationToRightRadians)
 	{
 		float deviation = MyRandom.Range(-maxDeviationToLeftRadians, maxDeviationToRightRadians);
-		Vector2 relativeShootingAt = shootingAt - WeaponPosition;
+		Vector2 relativeShootingAt = shootingAt - GlobalWeaponPosition;
 		
-		return relativeShootingAt.Rotated(deviation) + WeaponPosition;
+		return relativeShootingAt.Rotated(deviation) + GlobalWeaponPosition;
 	}
 
 	private bool EnoughTimeSinceLastShotToShootAgain()
