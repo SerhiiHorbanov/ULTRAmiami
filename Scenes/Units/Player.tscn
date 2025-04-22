@@ -42,7 +42,7 @@ script = ExtResource("8_jokor")
 
 [node name="BloodFuel" type="Node" parent="." index="6"]
 script = ExtResource("9_jokor")
-_blood = 5.0
+_blood = 8.0
 _max = 10.0
 _bloodWall = 3.0
 _bloodUsageForMaintenance = 1.0

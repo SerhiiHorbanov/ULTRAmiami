@@ -8,7 +8,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.502694), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a3te7"]
-radius = 200.0
+radius = 300.0
 
 [node name="BloodFountain" type="Node2D" node_paths=PackedStringArray("_timer", "_fountainArea")]
 script = ExtResource("1_i7emm")
