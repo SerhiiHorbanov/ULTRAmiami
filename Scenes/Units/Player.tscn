@@ -44,7 +44,7 @@ script = ExtResource("8_jokor")
 script = ExtResource("9_jokor")
 _blood = 8.0
 _max = 10.0
-_bloodWall = 3.0
+_bloodWall = 1.5
 _bloodUsageForMaintenance = 1.0
 
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
