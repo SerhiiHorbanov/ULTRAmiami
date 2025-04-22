@@ -7,6 +7,8 @@
 [node name="Canvas" type="CanvasLayer"]
 
 [node name="AmmoDisplay" parent="." instance=ExtResource("1_of5y6")]
+offset_left = 100.0
+offset_right = 100.0
 
 [node name="GameplayRestartConsole" parent="." instance=ExtResource("2_1n21u")]
 
