@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6u4rioaf4ul4"]
+[gd_scene load_steps=7 format=3 uid="uid://b6u4rioaf4ul4"]
 
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://ch33vi8cwppji" path="res://Scenes/GameplayCamera.tscn" id="2_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://sdpp1fwhlvdp" path="res://Scenes/UI/GameplayCanvas.tscn" id="2_gl6un"]
+[ext_resource type="PackedScene" uid="uid://bjl70xv1gmndx" path="res://Scenes/MusicManager.tscn" id="6_2irst"]
 [ext_resource type="PackedScene" uid="uid://bxb34giu5ayyx" path="res://Scenes/Map/Map.tscn" id="6_7lihs"]
 [ext_resource type="PackedScene" uid="uid://o86viig4gjbo" path="res://Scenes/GameplayRestarter.tscn" id="6_fgofq"]
 
@@ -23,8 +24,11 @@ _unit = NodePath("../Player")
 
 [node name="GameplayRestartTimer" parent="." instance=ExtResource("6_fgofq")]
 
+[node name="MusicManager" parent="." instance=ExtResource("6_2irst")]
+
 [connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
 [connection signal="OnDeath" from="Player" to="GameplayRestartTimer" method="StartTimer"]
+[connection signal="OnDeath" from="Player" to="MusicManager" method="OnPlayerDeath"]
 [connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
 
 [editable path="Canvas"]
