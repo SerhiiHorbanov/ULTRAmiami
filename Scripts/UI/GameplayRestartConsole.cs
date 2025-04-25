@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using ULTRAmiami.Units;
 
 namespace ULTRAmiami.UI;
 
@@ -56,7 +57,7 @@ public partial class GameplayRestartConsole : ColorRect
 	}
 
 	private int GetTargetCharacterIndex()
-		=> int.Min((int)((Time.GetTicksMsec() - _animationBeginning) * 0.001 *  _charactersPerSecond), _currentRestartText.Length - 1);
+		=> int.Min((int)((Time.GetTicksMsec() - _animationBeginning) * 0.001f *  _charactersPerSecond), _currentRestartText.Length - 1);
 
 	private void AdvanceText()
 	{
@@ -64,6 +65,9 @@ public partial class GameplayRestartConsole : ColorRect
 		_currentCharIndex++;
 	}
 
+	public void BeginDeathAnimation(Hit _)
+		=> BeginDeathAnimation();
+	
 	public void BeginDeathAnimation()
 	{
 		_currentRestartText = _playerDeathRestartText;

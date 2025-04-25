@@ -55,6 +55,8 @@ public partial class UnitFollowingCamera : Camera2D
         _unit = unit;
     }
     
+    private void DetachUnit(Hit _)
+        => DetachUnit();
     private void DetachUnit()
         => AttachToUnit(null);
     

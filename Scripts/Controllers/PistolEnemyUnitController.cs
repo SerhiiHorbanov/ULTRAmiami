@@ -38,7 +38,7 @@ public partial class PistolEnemyUnitController : AIUnitController
 		base._Ready();
 		
 		if (TargetUnit is not null)
-			TargetUnit.OnDeath += StopTargetUnit;
+			TargetUnit.OnDeath += DetachTargetUnit;
 
 		PlayerNoticed += SetTargetUnit;
 		PlayerNoticed += _ => _shootingTimer.Start();
@@ -63,7 +63,7 @@ public partial class PistolEnemyUnitController : AIUnitController
 
 	public override void _ExitTree()
 	{
-		SetTargetUnitToNull();
+		DetachTargetUnit();
 	}
 
 	private void TryShooting()
@@ -78,6 +78,8 @@ public partial class PistolEnemyUnitController : AIUnitController
 		_shootingTimer.Stop();
 	}
 
+	private void UnsubscribeFromWeaponReload(Hit _)
+		=> UnsubscribeFromWeaponReload();
 	private void UnsubscribeFromWeaponReload()
 	{
 		_weaponToUnsubscribeFrom.OnReloadFinished -= OnReloadFinished;
@@ -136,24 +138,21 @@ public partial class PistolEnemyUnitController : AIUnitController
 		
 		Weapon.PointingAt = TargetUnit.Position;
 	}
-
-	private void StopTargetUnit()
-	{
-		TargetUnit = null;
-	}
 	
 	private void SetTargetUnit(Unit targetUnit)
 	{
 		if (TargetUnit is not null)
-			TargetUnit.OnDeath -= SetTargetUnitToNull;
+			TargetUnit.OnDeath -= DetachTargetUnit;
 		if (targetUnit is not null)
-			targetUnit.OnDeath += SetTargetUnitToNull;
+			targetUnit.OnDeath += DetachTargetUnit;
 		else
 			_shootingTimer.Stop();
 		
 		TargetUnit = targetUnit;
 	}
 
-	private void SetTargetUnitToNull()
+	private void DetachTargetUnit()
 		=> SetTargetUnit(null);
+	private void DetachTargetUnit(Hit _)
+		=> DetachTargetUnit();
 }

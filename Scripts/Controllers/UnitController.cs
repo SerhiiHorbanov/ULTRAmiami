@@ -41,7 +41,7 @@ public abstract partial class UnitController : Node
 		_unit = newUnit;
 	}
 	
-	private void DetachUnit()
+	private void DetachUnit(Hit _)
 		=> SetUnit(null);
 	
 	public override void _Process(double delta)

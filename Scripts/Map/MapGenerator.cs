@@ -27,7 +27,7 @@ public partial class MapGenerator : Node
 
     public override void _Ready()
     {
-        _unit.OnDeath += () => _unit = null; 
+        _unit.OnDeath += _ => _unit = null; 
         _initialRoom.MapGenerator = this;
         _rooms.Add(_initialRoom);
         _initialRoom = null;

@@ -77,7 +77,7 @@ public partial class Bullet : Node2D
 	
 	private void HitUnit(Unit unit)
 	{
-		unit.Hit(_velocity);
+		unit.Hit(new(_velocity));
 	}
 
 	private void CreateHitParticles()

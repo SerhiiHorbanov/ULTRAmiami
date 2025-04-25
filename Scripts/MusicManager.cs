@@ -1,4 +1,5 @@
 using Godot;
+using ULTRAmiami.Units;
 
 namespace ULTRAmiami;
 
@@ -16,6 +17,8 @@ public partial class MusicManager : AudioStreamPlayer
 			AudioServer.RemoveBusEffect(BusIdx, 0);
 	}
 
+	private void OnPlayerDeath(Hit _)
+		=> OnPlayerDeath();
 	private void OnPlayerDeath()
 	{
 		AudioServer.AddBusEffect(BusIdx, _onDeathEffect);

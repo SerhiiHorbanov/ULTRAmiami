@@ -34,10 +34,10 @@ public partial class Unit : CharacterBody2D
 	public event Action<Weapon> OnWeaponChanged;
 	
 	[Signal]
-	public delegate void OnDeathEventHandler();
+	public delegate void OnDeathEventHandler(Hit hit);
 
 	[Signal]
-	public delegate void OnHitEventHandler(Vector2 hit);
+	public delegate void OnHitEventHandler(Hit hit);
 	
 	private const float DirectionDeadZoneSquared = 0.01f;
 	
@@ -71,16 +71,16 @@ public partial class Unit : CharacterBody2D
 		UpdateWalkingVelocity((float)delta);
 	}
 
-	public void Hit(Vector2 hit)
+	public void Hit(Hit hit)
 		=> EmitSignalOnHit(hit);
 	
-	public void Die(Vector2 hit)
+	public void Die(Hit hit)
 	{
 		if (_godMode || _isDead)
 			return;
 		
 		_isDead = true;
-		EmitSignalOnDeath();
+		EmitSignalOnDeath(hit);
 		DropWeapon(); 
 		MakeDeadVersion();
 		QueueFree();
@@ -109,6 +109,8 @@ public partial class Unit : CharacterBody2D
 		_weapon.PointingAt = pointingAt;
 	}
 
+	public void DropWeapon(Hit hit)
+		=> DropWeapon();
 	public void DropWeapon()
 		=> TryAttachWeapon(null);
 

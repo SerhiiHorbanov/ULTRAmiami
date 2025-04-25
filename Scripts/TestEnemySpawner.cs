@@ -23,7 +23,7 @@ public partial class TestEnemySpawner : Node
             _player.OnDeath -= OnPlayerDeath;
     }
 
-    private void OnPlayerDeath()
+    private void OnPlayerDeath(Hit hit)
     {
         _player = null;
     }
