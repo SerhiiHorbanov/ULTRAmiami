@@ -51,7 +51,8 @@ public partial class Unit : CharacterBody2D
 		=> _targetDirection.LengthSquared() < DirectionDeadZoneSquared;
 	
 	public bool IsPlayer
-		=> IsInGroup("Player");
+		=> IsInGroup(PlayerGroupName);
+	private readonly static StringName PlayerGroupName = "Player";
 	
 	public override void _Ready()
 	{
