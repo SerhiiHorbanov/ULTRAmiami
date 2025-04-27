@@ -20,36 +20,16 @@ public partial class Room : Node2D
     
     public Vector2I RoomPosition
         => _roomPosition;
-
-    public override void _Ready()
+    
+    public void EnsureAdjacentRooms()
     {
-        _rightDoorTrigger.BodyEntered += EnsureRightRoomAndAdjacent;
-        _leftDoorTrigger.BodyEntered += EnsureLeftRoomAndAdjacent;
-        _bottomDoorTrigger.BodyEntered += EnsureBottomRoomAndAdjacent;
-        _topDoorTrigger.BodyEntered += EnsureTopRoomAndAdjacent;
+        MapGenerator?.EnsureRoomAndAdjacent(_roomPosition);
     }
-
-    private void EnsureRightRoomAndAdjacent(Node2D node)
-        => EnsureRoomAndAdjacentByRelativePositionIfNodeIsUnit(Vector2I.Right, node);
-    private void EnsureLeftRoomAndAdjacent(Node2D node)
-        => EnsureRoomAndAdjacentByRelativePositionIfNodeIsUnit(Vector2I.Left, node);
-    private void EnsureBottomRoomAndAdjacent(Node2D node)
-        => EnsureRoomAndAdjacentByRelativePositionIfNodeIsUnit(Vector2I.Down, node);
-    private void EnsureTopRoomAndAdjacent(Node2D node)
-        => EnsureRoomAndAdjacentByRelativePositionIfNodeIsUnit(Vector2I.Up, node);
-
+    
     public void SetRoomPosition(Vector2I roomPosition, Vector2 roomSize)
     {
         _roomPosition = roomPosition;
         Position = roomPosition * roomSize;
-    }
-    
-    private void EnsureRoomAndAdjacentByRelativePositionIfNodeIsUnit(Vector2I relative, Node2D node)
-    {
-        if (node.GetAncestor<Unit>() is null)
-            return;
-        
-        MapGenerator?.EnsureRoomAndAdjacent(_roomPosition + relative);
     }
 
     public bool HasConflictingWall(Node2D wall, out Node2D conflictingWall)

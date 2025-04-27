@@ -1,12 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b70hbks7qgp1s"]
+[gd_scene load_steps=3 format=3 uid="uid://b70hbks7qgp1s"]
 
 [ext_resource type="Texture2D" uid="uid://q0uqo8lewaxe" path="res://Textures/Level/Wall.png" id="2_j3gto"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2e1li"]
 size = Vector2(350, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkrva"]
-size = Vector2(200, 75)
 
 [node name="WallWithDoor" type="StaticBody2D"]
 
@@ -25,8 +22,3 @@ shape = SubResource("RectangleShape2D_2e1li")
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D2"]
 scale = Vector2(5.45, 0.46)
 texture = ExtResource("2_j3gto")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_jkrva")
