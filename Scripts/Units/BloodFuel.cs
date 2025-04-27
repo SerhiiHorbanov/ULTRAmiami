@@ -20,20 +20,34 @@ public partial class BloodFuel : Node
 
 	[Signal]
 	public delegate void OnBloodChangedEventHandler(float newBlood);
-	
+
+	private float Blood
+	{
+		get => _blood;
+		set
+		{
+			float delta = value - _blood;
+			if (delta < 0)
+				PlayerScore.Current.AddBloodLost(-delta);
+			else
+				PlayerScore.Current.AddBloodConsumed(delta);
+			_blood = value;
+		}
+	}
+
 	public override void _Process(double delta)
 	{
-		_blood -= (float)delta * _bloodUsageForMaintenance;
-		EmitSignalOnBloodChanged(_blood);
+		Blood -= (float)delta * _bloodUsageForMaintenance;
+		EmitSignalOnBloodChanged(Blood);
 		
-		if (_blood < 0)
+		if (Blood < 0)
 			EmitSignalRunOutOfBlood(_lastHit);
 	}
 
 	public void AddBlood(float blood)
 	{
-		_blood += blood;
-		_blood = float.Min(_blood, _max);
+		Blood += blood;
+		Blood = float.Clamp(Blood, 0, _max);
 	}
 
 	public void Hit(Vector2 hit)
@@ -44,10 +58,10 @@ public partial class BloodFuel : Node
 	
 	private void Damage(float damage)
 	{
-		float newBlood = _blood - damage;
+		float newBlood = Blood - damage;
 		
-		if (_blood > _bloodWall)
+		if (Blood > _bloodWall)
 			newBlood = float.Max(newBlood, _bloodWall);
-		_blood = newBlood;
+		Blood = newBlood;
 	}
 }

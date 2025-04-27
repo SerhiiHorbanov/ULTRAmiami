@@ -80,6 +80,8 @@ public partial class Unit : CharacterBody2D
 		if (_godMode || _isDead)
 			return;
 		
+		if (!IsPlayer)
+			PlayerScore.Current.AddKill();
 		_isDead = true;
 		EmitSignalOnDeath(hit);
 		DropWeapon(); 
