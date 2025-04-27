@@ -22,9 +22,7 @@ public partial class Room : Node2D
         => _roomPosition;
     
     public void EnsureAdjacentRooms()
-    {
-        MapGenerator?.EnsureRoomAndAdjacent(_roomPosition);
-    }
+        => MapGenerator?.EnsureAdjacentRooms(_roomPosition);
     
     public void SetRoomPosition(Vector2I roomPosition, Vector2 roomSize)
     {

@@ -38,6 +38,11 @@ public partial class MapGenerator : Node
     public void EnsureRoomAndAdjacent(Vector2I roomPosition)
     {
         EnsureRoomExistsAtPosition(roomPosition);
+        EnsureAdjacentRooms(roomPosition);
+    }
+
+    public void EnsureAdjacentRooms(Vector2I roomPosition)
+    {
         EnsureRoomExistsAtPosition(roomPosition + Vector2I.Right);
         EnsureRoomExistsAtPosition(roomPosition + Vector2I.Left);
         EnsureRoomExistsAtPosition(roomPosition + Vector2I.Down);
