@@ -11,23 +11,13 @@ public partial class Unit : CharacterBody2D
 	private Vector2 _targetDirection;
 	private bool _isDead;
 	
+	[Export] private UnitMovement _unitMovement;
 	[Export] private Weapon _weapon;
 	[Export] private bool _dropsPickUppableWeapon;
 	
 	[ExportGroup("Death")]
 	[Export] private bool _godMode;
 	[Export] private PackedScene _deadVersion;
-	
-	[ExportGroup("Movement")]
-	[Export] private float _maxWalkAcceleration;
-	[Export] private float _maxBrakeAcceleration;
-	[Export] private float _maxWalkSpeed;
-
-	[ExportSubgroup("Redirection")]
-	[Export] private float _maxRedirectionSpeed;
-	[Export] private float _redirectionAcceleration;
-	private bool _isRedirectioning;
-	private bool _isRecoveringFromRedirection;
 
 	public readonly List<DroppedWeapon> EnteredDroppedWeapons = [];
 
@@ -46,9 +36,6 @@ public partial class Unit : CharacterBody2D
 	
 	public Weapon Weapon
 		=> _weapon;
-
-	private bool IsBraking 
-		=> _targetDirection.LengthSquared() < DirectionDeadZoneSquared;
 	
 	public bool IsPlayer
 		=> IsInGroup(PlayerGroupName);
@@ -69,7 +56,6 @@ public partial class Unit : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		MoveAndSlide();
-		UpdateWalkingVelocity((float)delta);
 	}
 
 	public void Hit(Hit hit)
@@ -82,12 +68,14 @@ public partial class Unit : CharacterBody2D
 		
 		if (!IsPlayer)
 			PlayerScore.Current.AddKill();
+		
 		_isDead = true;
 		EmitSignalOnDeath(hit);
 		DropWeapon(); 
 		MakeDeadVersion();
 		QueueFree();
 	}
+	
 	private void MakeDeadVersion()
 	{
 		Node2D deadVersion = _deadVersion?.Instantiate<Node2D>();
@@ -101,7 +89,8 @@ public partial class Unit : CharacterBody2D
 
 	public void SetTargetDirection(Vector2 targetDirection)
 	{
-		if (!targetDirection.IsNormalized())
+		_unitMovement.SetTargetDirection(targetDirection);
+		if (!_targetDirection.IsNormalized())
 			targetDirection = targetDirection.Normalized();
 		
 		_targetDirection = targetDirection;
@@ -143,51 +132,6 @@ public partial class Unit : CharacterBody2D
 		}
 
 		return closestDroppedWeapon.Weapon;
-	}
-
-	private void UpdateWalkingVelocity(float deltaSeconds)
-	{
-		Vector2 targetVelocity = _targetDirection * GetMaxSpeed();
-		Vector2 targetDelta = targetVelocity - Velocity;
-		
-		UpdateIsRedirectioning(targetDelta);
-
-		float maxAcceleration = GetMaxAcceleration();
-		Vector2 deltaVelocity = targetDelta.LimitLength(maxAcceleration * deltaSeconds);
-		
-		Velocity += deltaVelocity;
-	}
-
-	private float GetMaxSpeed()
-		=> _isRedirectioning ? _maxRedirectionSpeed : _maxWalkSpeed;
-
-	private void UpdateIsRedirectioning(Vector2 targetDelta)
-	{
-		if (_dropsPickUppableWeapon)
-			return;
-		
-		if (_isRecoveringFromRedirection)
-			_isRecoveringFromRedirection = targetDelta.LengthSquared() > 50f;
-		
-		if (_isRedirectioning && !_isRecoveringFromRedirection)
-		{
-			_isRedirectioning = targetDelta.LengthSquared() > 0.1f;
-			if (!_isRedirectioning)
-				_isRecoveringFromRedirection = true;
-		}
-		else if (!IsBraking && !_isRecoveringFromRedirection)
-		{
-			_isRedirectioning = targetDelta.CosineSimilarity(Velocity) < -0.7f;
-		}
-	}
-	
-	private float GetMaxAcceleration()
-	{
-		if (IsBraking)
-			return _maxBrakeAcceleration;
-		if (_isRedirectioning)
-			return _redirectionAcceleration;
-		return _maxWalkAcceleration;
 	}
 	
 	private void TryAttachWeapon(Weapon weapon)

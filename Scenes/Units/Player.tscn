@@ -1,17 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=12 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
 [ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
 [ext_resource type="SpriteFrames" uid="uid://b4qb8g6j2lptg" path="res://Animations/Units/V0LegsAnimation.tres" id="3_cj8nc"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_giihn"]
+[ext_resource type="Script" uid="uid://4aswuxpdf70y" path="res://Scripts/Units/UnitMovement.cs" id="4_u2egk"]
 [ext_resource type="PackedScene" uid="uid://ch5wvmkytoo1o" path="res://Scenes/Units/AimLine.tscn" id="4_v5kf0"]
 [ext_resource type="AudioStream" uid="uid://dr8j3gjenfena" path="res://Audio/SFX/V0DeathScream.wav" id="7_g6b54"]
 [ext_resource type="Script" uid="uid://dhi603ffh8sbh" path="res://Scripts/Units/PlayerDeathSound.cs" id="8_jokor"]
 [ext_resource type="Script" uid="uid://70y5w1gml3pe" path="res://Scripts/Units/BloodFuel.cs" id="9_jokor"]
 [ext_resource type="Script" uid="uid://d2ccc8rp3eho5" path="res://Scripts/PlayerScoreInitializer.cs" id="10_nf6c1"]
 
-[node name="Player" node_paths=PackedStringArray("_weapon") groups=["Player"] instance=ExtResource("1_33iby")]
+[node name="Player" node_paths=PackedStringArray("_unitMovement", "_weapon") groups=["Player"] instance=ExtResource("1_33iby")]
+_unitMovement = NodePath("PlayerMovement")
 _weapon = NodePath("Pistol")
 _dropsPickUppableWeapon = false
 _maxWalkAcceleration = 5000.0
@@ -27,28 +29,37 @@ texture = ExtResource("2_cj8nc")
 sprite_frames = ExtResource("3_cj8nc")
 frame_progress = 0.0916329
 
-[node name="PlayerUnitController" type="Node" parent="." index="2" node_paths=PackedStringArray("_unit")]
+[node name="PlayerMovement" type="Node" parent="." index="2" node_paths=PackedStringArray("_unit")]
+script = ExtResource("4_u2egk")
+_unit = NodePath("..")
+_maxWalkAcceleration = 5000.0
+_maxBrakeAcceleration = 8000.0
+_maxWalkSpeed = 800.0
+_maxRedirectionSpeed = 1200.0
+_redirectionAcceleration = 10000.0
+
+[node name="PlayerUnitController" type="Node" parent="." index="3" node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_xf41u")
 _unit = NodePath("..")
 
-[node name="Pistol" parent="." index="3" instance=ExtResource("3_giihn")]
+[node name="Pistol" parent="." index="4" instance=ExtResource("3_giihn")]
 
-[node name="AimLine" parent="." index="4" node_paths=PackedStringArray("_unit") instance=ExtResource("4_v5kf0")]
+[node name="AimLine" parent="." index="5" node_paths=PackedStringArray("_unit") instance=ExtResource("4_v5kf0")]
 _unit = NodePath("..")
 
-[node name="V0DeathScream" type="AudioStreamPlayer" parent="." index="5"]
+[node name="V0DeathScream" type="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource("7_g6b54")
 volume_db = -6.0
 script = ExtResource("8_jokor")
 
-[node name="BloodFuel" type="Node" parent="." index="6"]
+[node name="BloodFuel" type="Node" parent="." index="7"]
 script = ExtResource("9_jokor")
 _blood = 8.0
 _max = 10.0
 _bloodWall = 1.5
 _bloodUsageForMaintenance = 1.0
 
-[node name="PlayerScoreInitializer" type="Node" parent="." index="7"]
+[node name="PlayerScoreInitializer" type="Node" parent="." index="8"]
 script = ExtResource("10_nf6c1")
 
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
