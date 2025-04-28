@@ -1,3 +1,4 @@
+using System.Data.Common;
 using Godot;
 
 namespace ULTRAmiami.Units;
@@ -21,47 +22,40 @@ public partial class BloodFuel : Node
 	[Signal]
 	public delegate void OnBloodChangedEventHandler(float newBlood);
 
-	private float Blood
-	{
-		get => _blood;
-		set
-		{
-			float delta = value - _blood;
-			if (delta < 0)
-				PlayerScore.Current.AddBloodLost(-delta);
-			else
-				PlayerScore.Current.AddBloodConsumed(delta);
-			_blood = value;
-		}
-	}
 
 	public override void _Process(double delta)
 	{
-		Blood -= (float)delta * _bloodUsageForMaintenance;
-		EmitSignalOnBloodChanged(Blood);
+		float bloodForMaintenance = (float)delta * _bloodUsageForMaintenance;
+		_blood -= bloodForMaintenance;
+		PlayerScore.Current.AddBloodLost(bloodForMaintenance);
 		
-		if (Blood < 0)
+		EmitSignalOnBloodChanged(_blood);
+		
+		if (_blood < 0)
 			EmitSignalRunOutOfBlood(_lastHit);
 	}
 
 	public void AddBlood(float blood)
 	{
-		Blood += blood;
-		Blood = float.Clamp(Blood, 0, _max);
+		PlayerScore.Current.AddBloodConsumed(blood);
+		_blood += blood;
+		_blood = float.Clamp(_blood, 0, _max);
 	}
 
 	public void Hit(Hit hit)
 	{
 		_lastHit = hit;
+		_bloodUsageForMaintenance *= 1.1f;
 		Damage(DefaultDamage);
 	}
 	
 	private void Damage(float damage)
 	{
-		float newBlood = Blood - damage;
+		float newBlood = _blood - damage;
+		PlayerScore.Current.AddBloodLost(damage);
 		
-		if (Blood > _bloodWall)
+		if (_blood > _bloodWall)
 			newBlood = float.Max(newBlood, _bloodWall);
-		Blood = newBlood;
+		_blood = newBlood;
 	}
 }
