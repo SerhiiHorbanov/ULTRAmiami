@@ -11,12 +11,12 @@ public partial class BloodFuel : Node
 	
 	[Export] private float _bloodUsageForMaintenance;
 	
-	private Vector2 _lastHit;
+	private Hit _lastHit;
 
 	private const float DefaultDamage = 4;
 
 	[Signal]
-	public delegate void RunOutOfBloodEventHandler(Vector2 lastHit);
+	public delegate void RunOutOfBloodEventHandler(Hit lastHit);
 
 	[Signal]
 	public delegate void OnBloodChangedEventHandler(float newBlood);
@@ -50,7 +50,7 @@ public partial class BloodFuel : Node
 		Blood = float.Clamp(Blood, 0, _max);
 	}
 
-	public void Hit(Vector2 hit)
+	public void Hit(Hit hit)
 	{
 		_lastHit = hit;
 		Damage(DefaultDamage);
