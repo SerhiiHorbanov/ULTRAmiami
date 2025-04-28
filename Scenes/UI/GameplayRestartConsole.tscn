@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://borpe0wg55dui"]
+[gd_scene load_steps=5 format=3 uid="uid://borpe0wg55dui"]
 
 [ext_resource type="Script" uid="uid://deogjc2fdpnuf" path="res://Scripts/UI/GameplayRestartConsole.cs" id="1_r11l3"]
+[ext_resource type="Script" uid="uid://u8sqt54h7k04" path="res://Scripts/UI/TextOverTimePrinter.cs" id="2_osdqr"]
 [ext_resource type="Script" uid="uid://2fxu76gt0wgr" path="res://Scripts/UI/GradientOverTimeApplier.cs" id="2_p72cr"]
 
 [sub_resource type="Gradient" id="Gradient_osdqr"]
@@ -15,7 +16,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 script = ExtResource("1_r11l3")
 _consoleText = NodePath("ConsoleText")
-_charactersPerSecond = 1000.0
 _playerDeathRestartTextPath = &"res://RestartTexts/PlayerDeathText.txt"
 
 [node name="ConsoleText" type="RichTextLabel" parent="."]
@@ -31,6 +31,8 @@ bbcode_enabled = true
 scroll_active = false
 autowrap_mode = 1
 shortcut_keys_enabled = false
+script = ExtResource("2_osdqr")
+_charactersPerSecond = 1000.0
 
 [node name="GradientOverTimeApplier" type="Node" parent="." node_paths=PackedStringArray("_colorRect", "_time")]
 script = ExtResource("2_p72cr")

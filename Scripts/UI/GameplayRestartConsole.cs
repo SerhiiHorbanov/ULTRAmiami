@@ -12,50 +12,17 @@ public enum RestartReason
 
 public partial class GameplayRestartConsole : ColorRect
 {
-	[Export] private RichTextLabel _consoleText;
-	[Export] private float _charactersPerSecond;
-	
+	[Export] private TextOverTimePrinter _consoleText;
+
 	[Export(PropertyHint.File, "*.txt,")] private StringName _playerDeathRestartTextPath;
 	private static string _playerDeathRestartText;
-
-	private ulong _animationBeginning;
-	
-	private string _currentRestartText;
-	
-	private bool _isRunning;
-	private int _currentCharIndex;
-	private string _restartText;
-
-	private string _restartReason;
 	
 	[Signal]
 	public delegate void OnAnimationStartedEventHandler();
 	
 	public override void _Ready()
 	{
-		if (_restartText is null)
-			ReadRestartTexts();
-	}
-
-	public override void _Process(double delta)
-	{
-		if (!_isRunning)
-			return;
-
-		int targetCharacterIndex = GetTargetCharacterIndex();
-		while (_currentCharIndex < targetCharacterIndex)
-		{
-			AdvanceText();
-		}
-	}
-
-	private int GetTargetCharacterIndex()
-		=> int.Min((int)((Time.GetTicksMsec() - _animationBeginning) * 0.001f *  _charactersPerSecond), _currentRestartText.Length - 1);
-
-	private void AdvanceText()
-	{
-		_consoleText.Text += _playerDeathRestartText[_currentCharIndex];
-		_currentCharIndex++;
+		ReadRestartTexts();
 	}
 
 	public void BeginDeathAnimation(Hit _)
@@ -64,11 +31,7 @@ public partial class GameplayRestartConsole : ColorRect
 	public void BeginDeathAnimation()
 	{
 		EmitSignalOnAnimationStarted();
-		
-		_currentRestartText = _playerDeathRestartText;
-		_currentCharIndex = 0;
-		_animationBeginning = Time.GetTicksMsec();
-		_isRunning = true;
+		_consoleText.ClearAndPrint(_playerDeathRestartText);
 	}
 	
 	private void ReadRestartTexts()
