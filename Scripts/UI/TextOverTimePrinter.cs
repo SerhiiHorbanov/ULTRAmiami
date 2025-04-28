@@ -31,6 +31,9 @@ public partial class TextOverTimePrinter : RichTextLabel
 	{
 		_wholeText = string.Empty;
 		Text = string.Empty;
+
+		_currentCharIndex = 0;
+		_lastCharTime = Time.GetTicksUsec();
 	}
 
 	public void ClearAndPrint(string text)
@@ -46,7 +49,7 @@ public partial class TextOverTimePrinter : RichTextLabel
 	
 	private void UpdatePrintingText()
 	{
-		bool isFinished = _currentCharIndex >= _wholeText.Length;
+		bool isFinished = _currentCharIndex >= _wholeText.Length - 1;
 		
 		if (isFinished)
 		{
