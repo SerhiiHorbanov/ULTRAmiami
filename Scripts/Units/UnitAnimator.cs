@@ -31,7 +31,10 @@ public partial class UnitAnimator : Node2D
 
 	private void UpdateRotation()
 	{
-		_bodySprite.Rotation = Weapon.RelativePointingAt.Angle();
+		if (Weapon is null)
+			_bodySprite.Rotation = _legs.Rotation;
+		else
+			_bodySprite.Rotation = Weapon.RelativePointingAt.Angle();
 		
 		if (IsWalking)
 			_legs.Rotation = _unit.TargetDirection.Angle();
