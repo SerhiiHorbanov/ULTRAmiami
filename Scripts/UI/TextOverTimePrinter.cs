@@ -13,10 +13,15 @@ public partial class TextOverTimePrinter : RichTextLabel
 	private ulong _lastCharTime;
 	
 	private string _wholeText = string.Empty;
+
+	private bool _wasFinished = true;
 	
 	private float TimePerCharacter
 		=> 1 / _charactersPerSecond;
 	
+	[Signal]
+	public delegate void OnFinishedEventHandler();
+
 	public void Print(string text)
 	{
 		_wholeText += text;
@@ -41,13 +46,19 @@ public partial class TextOverTimePrinter : RichTextLabel
 	
 	private void UpdatePrintingText()
 	{
-		bool isFinished = _currentCharIndex < _wholeText.Length;
+		bool isFinished = _currentCharIndex >= _wholeText.Length;
 		
-		if (!isFinished)
+		if (isFinished)
 		{
 			_lastCharTime = Time.GetTicksUsec();
+			
+			if (!_wasFinished)
+				EmitSignalOnFinished();
+			_wasFinished = true;
+			
 			return;
 		}
+		_wasFinished = false;
 		
 		UpdateTargetCharIndex();
 		AdvanceText(_targetCharIndex - _currentCharIndex);
