@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" uid="uid://c5h1c6oq73pxe" path="res://Scripts/GameplayRestarter.cs" id="1_y7y48"]
 
-[node name="GameplayRestartTimer" type="Timer"]
-wait_time = 1.6
+[node name="GameplayRestarter" type="Node"]
 script = ExtResource("1_y7y48")

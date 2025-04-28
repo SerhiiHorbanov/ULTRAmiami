@@ -3,18 +3,12 @@ using ULTRAmiami.Units;
 
 namespace ULTRAmiami;
 
-public partial class GameplayRestarter : Timer
+public partial class GameplayRestarter : Node
 {
-	public override void _Ready()
+	public override void _Process(double delta)
 	{
-		Timeout += RestartGameplay;
-	}
-
-	public void StartTimer(Hit _)
-		=> StartTimer();
-	public void StartTimer()
-	{
-		Start();
+		if (Input.IsActionJustPressed("restart"))
+			RestartGameplay();
 	}
 
 	public void RestartGameplay()

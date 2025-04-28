@@ -22,12 +22,11 @@ _unit = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
 
-[node name="GameplayRestartTimer" parent="." instance=ExtResource("6_fgofq")]
+[node name="GameplayRestarter" parent="." instance=ExtResource("6_fgofq")]
 
 [node name="MusicManager" parent="." instance=ExtResource("6_2irst")]
 
 [connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
-[connection signal="OnDeath" from="Player" to="GameplayRestartTimer" method="StartTimer"]
 [connection signal="OnDeath" from="Player" to="MusicManager" method="OnPlayerDeath"]
 [connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
 
