@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckld4b4xs2rjm"]
+
+[ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_tma0q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kc1i"]
+radius = 400.0
+
+[node name="Unit" instance=ExtResource("1_tma0q")]
+
+[node name="PlayerNoticingArea" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNoticingArea" index="0"]
+shape = SubResource("CircleShape2D_4kc1i")
+
+[connection signal="OnHit" from="." to="." method="Die"]
