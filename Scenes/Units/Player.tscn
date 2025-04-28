@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
 [ext_resource type="SpriteFrames" uid="uid://b4qb8g6j2lptg" path="res://Animations/Units/V0LegsAnimation.tres" id="3_cj8nc"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_giihn"]
-[ext_resource type="Script" uid="uid://4aswuxpdf70y" path="res://Scripts/Units/UnitMovement.cs" id="4_u2egk"]
+[ext_resource type="Script" uid="uid://diyjjhrtrk6qf" path="res://Scripts/Units/Movement/PlayerMovement.cs" id="4_u2egk"]
 [ext_resource type="PackedScene" uid="uid://ch5wvmkytoo1o" path="res://Scenes/Units/AimLine.tscn" id="4_v5kf0"]
 [ext_resource type="AudioStream" uid="uid://dr8j3gjenfena" path="res://Audio/SFX/V0DeathScream.wav" id="7_g6b54"]
 [ext_resource type="Script" uid="uid://dhi603ffh8sbh" path="res://Scripts/Units/PlayerDeathSound.cs" id="8_jokor"]
@@ -16,11 +16,6 @@
 _unitMovement = NodePath("PlayerMovement")
 _weapon = NodePath("Pistol")
 _dropsPickUppableWeapon = false
-_maxWalkAcceleration = 5000.0
-_maxBrakeAcceleration = 8000.0
-_maxWalkSpeed = 800.0
-_maxRedirectionSpeed = 1200.0
-_redirectionAcceleration = 10000.0
 
 [node name="Sprite2D" parent="Graphics" index="0"]
 texture = ExtResource("2_cj8nc")
@@ -31,12 +26,12 @@ frame_progress = 0.0916329
 
 [node name="PlayerMovement" type="Node" parent="." index="2" node_paths=PackedStringArray("_unit")]
 script = ExtResource("4_u2egk")
+_maxRedirectionSpeed = 1200.0
+_redirectionAcceleration = 10000.0
 _unit = NodePath("..")
 _maxWalkAcceleration = 5000.0
 _maxBrakeAcceleration = 8000.0
 _maxWalkSpeed = 800.0
-_maxRedirectionSpeed = 1200.0
-_redirectionAcceleration = 10000.0
 
 [node name="PlayerUnitController" type="Node" parent="." index="3" node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_xf41u")

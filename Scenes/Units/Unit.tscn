@@ -14,11 +14,6 @@ floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_bxx5k")
 _dropsPickUppableWeapon = true
-_maxWalkAcceleration = 600.0
-_maxBrakeAcceleration = 1200.0
-_maxWalkSpeed = 300.0
-_maxRedirectionSpeed = 300.0
-_redirectionAcceleration = 600.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bxx5k")

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ckld4b4xs2rjm" path="res://Scenes/Units/Enemy.tscn" id="1_hbmud"]
 [ext_resource type="Script" uid="uid://n6srlh8uouwr" path="res://Scripts/Controllers/PistolEnemyUnitController.cs" id="2_hbmud"]
 [ext_resource type="PackedScene" uid="uid://p4t86keainuc" path="res://Scenes/BloodFountain.tscn" id="2_wrv6w"]
-[ext_resource type="Script" uid="uid://4aswuxpdf70y" path="res://Scripts/Units/UnitMovement.cs" id="3_jalb0"]
+[ext_resource type="Script" uid="uid://cbpeisoqjr1up" path="res://Scripts/Units/Movement/UnitMovement.cs" id="3_jalb0"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_wrv6w"]
 
 [node name="Unit" node_paths=PackedStringArray("_unitMovement", "_weapon") instance=ExtResource("1_hbmud")]
@@ -17,8 +17,6 @@ _unit = NodePath("..")
 _maxWalkAcceleration = 600.0
 _maxBrakeAcceleration = 1200.0
 _maxWalkSpeed = 300.0
-_maxRedirectionSpeed = 300.0
-_redirectionAcceleration = 600.0
 
 [node name="PistolEnemyUnitController" type="Node" parent="." index="3" node_paths=PackedStringArray("_shootingTimer", "_playerNoticingArea", "_unit")]
 script = ExtResource("2_hbmud")
