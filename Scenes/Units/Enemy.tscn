@@ -12,4 +12,6 @@ radius = 400.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNoticingArea" index="0"]
 shape = SubResource("CircleShape2D_4kc1i")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="3"]
+
 [connection signal="OnHit" from="." to="." method="Die"]

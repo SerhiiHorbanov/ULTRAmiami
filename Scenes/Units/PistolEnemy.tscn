@@ -18,13 +18,14 @@ _maxWalkAcceleration = 600.0
 _maxBrakeAcceleration = 1200.0
 _maxWalkSpeed = 300.0
 
-[node name="PistolEnemyUnitController" type="Node" parent="." index="3" node_paths=PackedStringArray("_shootingTimer", "_playerNoticingArea", "_unit")]
+[node name="PistolEnemyUnitController" type="Node2D" parent="." index="3" node_paths=PackedStringArray("_shootingTimer", "_playerNoticingArea", "_navAgent", "_unit")]
 script = ExtResource("2_hbmud")
 _tooCloseToTargetDistance = 200.0
 _tooFarFromTargetDistance = 400.0
 _destinationRandomizationRange = Vector2(50, 50)
 _shootingTimer = NodePath("Timer")
 _playerNoticingArea = NodePath("../PlayerNoticingArea")
+_navAgent = NodePath("../NavigationAgent2D")
 _unit = NodePath("..")
 
 [node name="Timer" type="Timer" parent="PistolEnemyUnitController" index="0"]

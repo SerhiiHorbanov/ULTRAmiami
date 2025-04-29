@@ -7,12 +7,11 @@ namespace ULTRAmiami.Controllers;
 
 public partial class AIUnitController : UnitController
 {
-    /// IsGoing is set to false after reaching destination but before calling OnDestinationReached
-    public bool IsGoing = true;
-    
-    public Vector2 Destination;
+    protected bool IsGoing = true;
 
     [Export] private Area2D _playerNoticingArea;
+    [Export] private NavigationAgent2D _navAgent;
+    
     protected event Action<Unit> PlayerNoticed;
     public event Action OnDestinationReached;
     
@@ -53,17 +52,17 @@ public partial class AIUnitController : UnitController
     private bool HasReachedDestination(float deltaTime)
     {
         float speedSquared = Unit.Velocity.LengthSquared();
-        float distanceToDestinationSquared = Unit.GlobalPosition.DistanceTo(Destination);
+        float distanceToDestinationSquared = Unit.GlobalPosition.DistanceTo(_navAgent.TargetPosition);
         
         return speedSquared < distanceToDestinationSquared;
     }
 
     protected void GoTo(Vector2 newDestination)
     {
-        Destination = newDestination;
+        _navAgent.TargetPosition = newDestination;
         IsGoing = true;
     }
     
     protected override Vector2 GetTargetDirection()
-        => IsGoing ? Destination - Unit.GlobalPosition : Vector2.Zero;
+        => IsGoing ? _navAgent.GetNextPathPosition() - Unit.GlobalPosition : Vector2.Zero;
 }
