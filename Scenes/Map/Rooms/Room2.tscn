@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbgna6p0yjufx"]
+[gd_scene load_steps=6 format=3 uid="uid://dbgna6p0yjufx"]
 
 [ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_l7y6x"]
 [ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="2_m211k"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="3_h4dy0"]
+[ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="4_m211k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_l7y6x"]
 vertices = PackedVector2Array(56, -54.0703, 405.672, -53.0703, 404.313, 53.0703, 51.3906, 54.0781, -373.078, 374.961, -373.906, 136.07, -49.5313, 137.078, 375, 374.031, 375, 136, 56.5078, 136, -54.3906, 51.9297, -50.2422, -55.2188, -373.906, -372, 372.906, -372, 372.078, -136.844, 56, -134.844, -52.75, -138, -405.156, 52.9219, -405.828, -52.2109, -373.094, -138)
@@ -18,16 +19,16 @@ position = Vector2(2, -95)
 [node name="WallWithDoor2" parent="." index="2" instance=ExtResource("2_m211k")]
 position = Vector2(0, 95)
 
-[node name="Unit" parent="." index="3" instance=ExtResource("3_h4dy0")]
-position = Vector2(-317, 254)
-
-[node name="Unit2" parent="." index="4" instance=ExtResource("3_h4dy0")]
+[node name="Unit2" parent="." index="3" instance=ExtResource("3_h4dy0")]
 position = Vector2(366, -150)
 
-[node name="Unit3" parent="." index="5" instance=ExtResource("3_h4dy0")]
+[node name="Unit3" parent="." index="4" instance=ExtResource("3_h4dy0")]
 position = Vector2(-363, -362)
 
-[node name="NavigationRegion2D" parent="." index="7"]
+[node name="NavigationRegion2D" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_l7y6x")
+
+[node name="ShotgunEnemy" parent="." index="7" instance=ExtResource("4_m211k")]
+position = Vector2(-346, 341)
 
 [editable path="RoomWalls"]
