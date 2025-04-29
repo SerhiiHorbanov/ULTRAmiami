@@ -18,7 +18,8 @@ public partial class AimLine : Line2D
 	{
 		if (!ShouldBeShown())
 		{
-			RemovePoint(1);	
+			if (GetPointCount() > 1)
+				RemovePoint(1);	
 			return;
 		}
 
