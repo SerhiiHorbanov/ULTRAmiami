@@ -3,5 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://bh4ye65imk1e" path="res://Scenes/Projectiles/Bullet.tscn" id="1_owbyn"]
 
 [node name="SMGBullet" instance=ExtResource("1_owbyn")]
-_speed = 4000.0
 _speedRandomness = 0.3
+_damage = 0.8

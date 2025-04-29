@@ -6,10 +6,9 @@
 [node name="Submachinegun" instance=ExtResource("1_cu785")]
 _bullet = ExtResource("2_nv5f2")
 _isAutomatic = true
-_fireRate = 24.0
+_fireRate = 48.0
 _spread = 12.0
-_shootsPerShot = 2
-_maxAmmo = 8
+_maxAmmo = 16
 
 [node name="ReloadTimer" parent="." index="2"]
 wait_time = 4.0
