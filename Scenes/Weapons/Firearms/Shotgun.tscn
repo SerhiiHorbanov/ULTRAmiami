@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ustetj26a1sv"]
+[gd_scene load_steps=4 format=3 uid="uid://ustetj26a1sv"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_hp2vk"]
+[ext_resource type="PackedScene" uid="uid://cjmxtn0xwbfp6" path="res://Scenes/Projectiles/ShotgunBullet.tscn" id="2_1jhyr"]
 [ext_resource type="AudioStream" uid="uid://dppjh7fse8l2q" path="res://Audio/Sound Randomizers/Shotgun Shot Randomizer.tres" id="2_4xjk2"]
 
 [node name="Shotgun" instance=ExtResource("1_hp2vk")]
+_bullet = ExtResource("2_1jhyr")
 _fireRate = 2.0
 _spread = 15.0
 _shootsPerShot = 16
