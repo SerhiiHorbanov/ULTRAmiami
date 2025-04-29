@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="2_7vl4o"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="3_ejmxe"]
 [ext_resource type="PackedScene" uid="uid://ustetj26a1sv" path="res://Scenes/Weapons/Shotgun.tscn" id="4_or4bg"]
-[ext_resource type="PackedScene" uid="uid://tc4t7u7hg3qc" path="res://Scenes/Weapons/AssaultRifle.tscn" id="5_kxhq1"]
+[ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="5_yl58w"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yl58w"]
 vertices = PackedVector2Array(55, 55.0703, 55, 405, -55, 405, -55, 375, -375, 375, -375, 136, -55, 136, -55, 55, -405, 55, -405, -55, -55, -55, -55, -135, -375, -135, -375, -373, 55, -373, 55, -56.0703, 405, -55.0703, 405, 54.0703)
@@ -28,18 +28,14 @@ rotation = 1.5708
 [node name="Unit" parent="." index="4" instance=ExtResource("3_ejmxe")]
 position = Vector2(-243, -256)
 
-[node name="Unit2" parent="." index="5" instance=ExtResource("3_ejmxe")]
-position = Vector2(-240, 289)
-
-[node name="Shotgun" parent="." index="6" instance=ExtResource("4_or4bg")]
+[node name="Shotgun" parent="." index="5" instance=ExtResource("4_or4bg")]
 position = Vector2(-329, -257)
 
-[node name="AssaultRifle" parent="." index="7" instance=ExtResource("5_kxhq1")]
-position = Vector2(-331, 269)
-
-[node name="NavigationRegion2D" parent="." index="9"]
+[node name="NavigationRegion2D" parent="." index="7"]
 navigation_polygon = SubResource("NavigationPolygon_yl58w")
+
+[node name="AssaultRifleEnemy" parent="." index="8" instance=ExtResource("5_yl58w")]
+position = Vector2(-232, 255)
 
 [editable path="RoomWalls"]
 [editable path="Unit"]
-[editable path="Unit2"]
