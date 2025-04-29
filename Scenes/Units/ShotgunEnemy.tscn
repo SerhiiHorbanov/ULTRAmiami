@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://rhvw6pqq6roa"]
+
+[ext_resource type="PackedScene" uid="uid://ckld4b4xs2rjm" path="res://Scenes/Units/Enemy.tscn" id="1_u6whi"]
+[ext_resource type="Script" uid="uid://cbpeisoqjr1up" path="res://Scripts/Units/Movement/UnitMovement.cs" id="2_p55w5"]
+[ext_resource type="Script" uid="uid://n6srlh8uouwr" path="res://Scripts/Controllers/PistolEnemyUnitController.cs" id="3_hpbr5"]
+[ext_resource type="PackedScene" uid="uid://ustetj26a1sv" path="res://Scenes/Weapons/Firearms/Shotgun.tscn" id="4_a4bow"]
+
+[node name="ShotgunEnemy" node_paths=PackedStringArray("_unitMovement", "_weapon") instance=ExtResource("1_u6whi")]
+_unitMovement = NodePath("UnitMovement")
+_weapon = NodePath("Shotgun")
+
+[node name="UnitMovement" type="Node" parent="." index="4" node_paths=PackedStringArray("_unit")]
+script = ExtResource("2_p55w5")
+_unit = NodePath("..")
+_maxWalkAcceleration = 900.0
+_maxBrakeAcceleration = 3600.0
+_maxWalkSpeed = 200.0
+
+[node name="PistolEnemyUnitController" type="Node2D" parent="." index="5" node_paths=PackedStringArray("_shootingTimer", "_playerNoticingArea", "_navAgent", "_unit")]
+script = ExtResource("3_hpbr5")
+_tooCloseToTargetDistance = 200.0
+_tooFarFromTargetDistance = 400.0
+_destinationRandomizationRange = Vector2(50, 50)
+_shootingTimer = NodePath("Timer")
+_playerNoticingArea = NodePath("../PlayerNoticingArea")
+_navAgent = NodePath("../NavigationAgent2D")
+_unit = NodePath("..")
+
+[node name="Timer" type="Timer" parent="PistolEnemyUnitController" index="0"]
+wait_time = 0.8
+
+[node name="Shotgun" parent="." index="6" instance=ExtResource("4_a4bow")]
