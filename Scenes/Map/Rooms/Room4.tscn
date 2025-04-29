@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://s1ubvxagdyb5"]
+
+[ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_7rv3d"]
+[ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="2_lej8s"]
+[ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="4_lvcrw"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_g0jav"]
+vertices = PackedVector2Array(374.961, 374.078, 135, 374.906, 135, 55, 374.031, -373, 135, -55, 135, -373, 55, -55, 55.0703, 55, -136, 55, -136, 375, -375, 375, -375, -373, -135, -373, -135, -55, -55.0703, 55, -55.0703, -55, -54.0703, -405, 55, -405, 54.0703, 405, -54.0703, 405)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 3), PackedInt32Array(4, 3, 2), PackedInt32Array(6, 4, 2, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(8, 11, 12, 13), PackedInt32Array(14, 8, 13, 15), PackedInt32Array(15, 16, 17, 6, 14), PackedInt32Array(14, 6, 7, 18, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-400, -398, -110, -398, -110, -80, -80, -80, -79, -430, 80, -430, 80, -80, 110, -80, 110, -398, 399, -398, 400, 399, 110, 400, 110, 80, 80, 80, 79, 430, -79, 430, -80, 80, -111, 80, -111, 400, -400, 400)])
+agent_radius = 25.0
+
+[node name="EmptyRoom" instance=ExtResource("1_7rv3d")]
+
+[node name="NavigationRegion2D" parent="." index="2"]
+navigation_polygon = SubResource("NavigationPolygon_g0jav")
+
+[node name="RightWall" parent="." index="3" instance=ExtResource("2_lej8s")]
+position = Vector2(95, 0)
+rotation = 1.5708
+
+[node name="LeftWall" parent="." index="4" instance=ExtResource("2_lej8s")]
+position = Vector2(-95, 0)
+rotation = -1.5708
+
+[node name="AssaultRifleEnemy" parent="." index="5" instance=ExtResource("4_lvcrw")]
+position = Vector2(-246, 237)
+
+[node name="AssaultRifleEnemy2" parent="." index="6" instance=ExtResource("4_lvcrw")]
+position = Vector2(270, -238)
