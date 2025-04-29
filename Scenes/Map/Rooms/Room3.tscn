@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_yl58w"]
 [ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="2_7vl4o"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="3_ejmxe"]
-[ext_resource type="PackedScene" uid="uid://ustetj26a1sv" path="res://Scenes/Weapons/Shotgun.tscn" id="4_or4bg"]
+[ext_resource type="PackedScene" uid="uid://ustetj26a1sv" path="res://Scenes/Weapons/Firearms/Shotgun.tscn" id="4_or4bg"]
 [ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="5_yl58w"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yl58w"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d3laytvatekjx"]
 
-[ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearm.tscn" id="1_cu785"]
+[ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_cu785"]
 
 [node name="Submachinegun" instance=ExtResource("1_cu785")]
 _isAutomatic = true

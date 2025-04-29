@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2frk84kfwokl"]
 
-[ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearm.tscn" id="1_hhr6j"]
+[ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_hhr6j"]
 [ext_resource type="Texture2D" uid="uid://mrl7e5d6s4je" path="res://Textures/Weapons/Pistol.png" id="2_jic2m"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_jic2m"]
 [ext_resource type="AudioStream" uid="uid://c0tqt8n52rbip" path="res://Audio/SFX/Pistol Reload.wav" id="7_jtjwi"]

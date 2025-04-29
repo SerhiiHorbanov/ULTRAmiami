@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
 [ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
 [ext_resource type="SpriteFrames" uid="uid://b4qb8g6j2lptg" path="res://Animations/Units/V0LegsAnimation.tres" id="3_cj8nc"]
-[ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_giihn"]
+[ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Firearms/Pistol.tscn" id="3_giihn"]
 [ext_resource type="Script" uid="uid://diyjjhrtrk6qf" path="res://Scripts/Units/Movement/PlayerMovement.cs" id="4_u2egk"]
 [ext_resource type="PackedScene" uid="uid://ch5wvmkytoo1o" path="res://Scenes/Units/AimLine.tscn" id="4_v5kf0"]
 [ext_resource type="AudioStream" uid="uid://dr8j3gjenfena" path="res://Audio/SFX/V0DeathScream.wav" id="7_g6b54"]

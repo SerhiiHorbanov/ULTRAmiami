@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://n6srlh8uouwr" path="res://Scripts/Controllers/PistolEnemyUnitController.cs" id="2_hbmud"]
 [ext_resource type="PackedScene" uid="uid://p4t86keainuc" path="res://Scenes/BloodFountain.tscn" id="2_wrv6w"]
 [ext_resource type="Script" uid="uid://cbpeisoqjr1up" path="res://Scripts/Units/Movement/UnitMovement.cs" id="3_jalb0"]
-[ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Pistol.tscn" id="3_wrv6w"]
+[ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Firearms/Pistol.tscn" id="3_wrv6w"]
 
 [node name="Unit" node_paths=PackedStringArray("_unitMovement", "_weapon") instance=ExtResource("1_hbmud")]
 _unitMovement = NodePath("UnitMovement")
