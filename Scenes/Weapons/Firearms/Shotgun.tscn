@@ -6,10 +6,10 @@
 
 [node name="Shotgun" instance=ExtResource("1_hp2vk")]
 _bullet = ExtResource("2_1jhyr")
-_fireRate = 2.0
-_spread = 15.0
+_fireRate = 3.0
+_spread = 20.0
 _shootsPerShot = 16
-_maxAmmo = 4
+_maxAmmo = 3
 
 [node name="ReloadTimer" parent="." index="2"]
 wait_time = 4.0
