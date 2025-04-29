@@ -15,6 +15,7 @@ public partial class Bullet : Node2D
 	private float _lifeSpan;
 	
 	private Vector2 _velocity;
+	[Export] private float _damage;
 
 	public override void _Ready()
 	{
@@ -77,7 +78,7 @@ public partial class Bullet : Node2D
 	
 	private void HitUnit(Unit unit)
 	{
-		unit.Hit(new(_velocity));
+		unit.Hit(new(_velocity, _damage));
 	}
 
 	private void CreateHitParticles()

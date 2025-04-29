@@ -46,7 +46,7 @@ public partial class BloodFuel : Node
 	{
 		_lastHit = hit;
 		_bloodUsageForMaintenance *= 1.1f;
-		Damage(DefaultDamage);
+		Damage(hit.Damage);
 	}
 	
 	private void Damage(float damage)

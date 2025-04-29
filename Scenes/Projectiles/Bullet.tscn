@@ -11,6 +11,7 @@ _speed = 3000.0
 _speedRandomness = 0.1
 _rayCast = NodePath("RayCast2D")
 _maxLifeSpan = 3.0
+_damage = 4.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)
