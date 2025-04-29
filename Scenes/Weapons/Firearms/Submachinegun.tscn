@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3laytvatekjx"]
+[gd_scene load_steps=3 format=3 uid="uid://d3laytvatekjx"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_cu785"]
+[ext_resource type="PackedScene" uid="uid://ckrt3udf0e7bu" path="res://Scenes/Projectiles/SMGBullet.tscn" id="2_nv5f2"]
 
 [node name="Submachinegun" instance=ExtResource("1_cu785")]
+_bullet = ExtResource("2_nv5f2")
 _isAutomatic = true
-_fireRate = 18.0
+_fireRate = 24.0
 _spread = 12.0
-_maxAmmo = 16
+_shootsPerShot = 2
+_maxAmmo = 8
 
 [node name="ReloadTimer" parent="." index="2"]
 wait_time = 4.0
