@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbgna6p0yjufx"]
+[gd_scene load_steps=5 format=3 uid="uid://dbgna6p0yjufx"]
 
 [ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_l7y6x"]
 [ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="2_m211k"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="3_h4dy0"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_l7y6x"]
+vertices = PackedVector2Array(56, -54.0703, 405.672, -53.0703, 404.313, 53.0703, 51.3906, 54.0781, -373.078, 374.961, -373.906, 136.07, -49.5313, 137.078, 375, 374.031, 375, 136, 56.5078, 136, -54.3906, 51.9297, -50.2422, -55.2188, -373.906, -372, 372.906, -372, 372.078, -136.844, 56, -134.844, -52.75, -138, -405.156, 52.9219, -405.828, -52.2109, -373.094, -138)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 7, 6, 9), PackedInt32Array(3, 9, 6, 10, 11), PackedInt32Array(12, 13, 14, 15, 16), PackedInt32Array(17, 18, 11, 10), PackedInt32Array(15, 0, 3, 11, 16), PackedInt32Array(12, 16, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-399, -397, 398, -397, 397, -112, 81, -110, 81, -79, 431, -78, 429, 78, 78, 79, 80, 111, 400, 111, 400, 399, -398, 400, -399, 111, -76, 112, -78, 77, -430, 78, -431, -77, -76, -80, -77, -113, -398, -113)])
+agent_radius = 25.0
 
 [node name="EmptyRoom" instance=ExtResource("1_l7y6x")]
 
@@ -20,5 +26,8 @@ position = Vector2(366, -150)
 
 [node name="Unit3" parent="." index="5" instance=ExtResource("3_h4dy0")]
 position = Vector2(-363, -362)
+
+[node name="NavigationRegion2D" parent="." index="7"]
+navigation_polygon = SubResource("NavigationPolygon_l7y6x")
 
 [editable path="RoomWalls"]

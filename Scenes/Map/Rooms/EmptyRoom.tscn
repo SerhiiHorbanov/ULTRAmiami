@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bua7isnxgtjr0"]
+[gd_scene load_steps=4 format=3 uid="uid://bua7isnxgtjr0"]
 
 [ext_resource type="Script" uid="uid://36qpj300ep54" path="res://Scripts/Map/Room.cs" id="1_7jts6"]
 [ext_resource type="PackedScene" uid="uid://cwwuvyi1ph2vw" path="res://Scenes/Map/RoomParts/RoomWalls.tscn" id="2_bhfak"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7jts6"]
+vertices = PackedVector2Array(375.031, -372.031, 375.961, 372.031, -373.031, 372.961, -373.961, -372.961)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-399, -398, 400, -397, 401, 397, -398, 398)])
+agent_radius = 25.0
 
 [node name="EmptyRoom" type="Node2D" node_paths=PackedStringArray("_walls")]
 script = ExtResource("1_7jts6")
@@ -11,5 +17,8 @@ _walls = [NodePath("RoomWalls/TopWall"), NodePath("RoomWalls/RightWall"), NodePa
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-430, -430, 860, 860)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_7jts6")
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="EnsureAdjacentRooms"]

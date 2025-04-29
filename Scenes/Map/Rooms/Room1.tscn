@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmye1b7ah4eek"]
+[gd_scene load_steps=5 format=3 uid="uid://cmye1b7ah4eek"]
 
 [ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_okti7"]
 [ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="3_okti7"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="4_ti6qv"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_okti7"]
+vertices = PackedVector2Array(55, 54.0703, 55, 404.844, -55, 404.148, -55, 55, -404.156, 55, -404.844, -55, -55, -55, 54, -55.0703, 405.148, -54.0703, 405.844, 53.0703, -55, -404, 54, -404)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6, 0), PackedInt32Array(7, 8, 9, 0, 6), PackedInt32Array(7, 6, 10, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-80, -429, 79, -429, 79, -80, 430, -79, 431, 78, 80, 79, 80, 430, -80, 429, -80, 80, -429, 80, -430, -80, -80, -80)])
+agent_radius = 25.0
+
 [node name="EmptyRoom" instance=ExtResource("1_okti7")]
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="1"]
+position = Vector2(1, 23)
 
 [node name="TopWall" parent="." index="2" instance=ExtResource("3_okti7")]
 position = Vector2(0, -95)
@@ -22,5 +31,8 @@ position = Vector2(-95, 0)
 rotation = -1.5708
 
 [node name="PistolEnemy" parent="." index="6" instance=ExtResource("4_ti6qv")]
+
+[node name="NavigationRegion2D" parent="." index="7"]
+navigation_polygon = SubResource("NavigationPolygon_okti7")
 
 [editable path="RoomWalls"]
