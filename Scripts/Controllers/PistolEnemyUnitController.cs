@@ -11,7 +11,7 @@ public partial class PistolEnemyUnitController : AIUnitController
 
 	[Export] private float _tooCloseToTargetDistance;
 	[Export] private float _tooFarFromTargetDistance;
-	[Export] private Vector2 _wayPointRandomizationRange;
+	[Export] private Vector2 _destinationRandomizationRange;
 	[Export] private Timer _shootingTimer;
 
 	private Weapon _weaponToUnsubscribeFrom;
@@ -56,7 +56,7 @@ public partial class PistolEnemyUnitController : AIUnitController
 		if (ShouldReload())
 			ReloadWeapon();
 
-		SetNewWayPointIfShould();
+		SetNewDestinationIfShould();
 		
 		UpdatePointingAt();
 	}
@@ -93,9 +93,9 @@ public partial class PistolEnemyUnitController : AIUnitController
 		Unit.OnDeath -= UnsubscribeFromWeaponReload;
 	}
 
-	private void SetNewWayPointIfShould()
+	private void SetNewDestinationIfShould()
 	{
-		if (IsGoingToWayPoint)
+		if (IsGoing)
 			return;
 		if (DistanceSquaredToTarget < TooCloseToTargetDistanceSquared)
 			ResolveTargetTooClose();
@@ -106,23 +106,23 @@ public partial class PistolEnemyUnitController : AIUnitController
 	private void ResolveTargetTooFar()
 	{
 		float tooFar = DistanceToTarget - _tooFarFromTargetDistance;
-		Vector2 notRandomizedWayPoint = DirectionToTarget * tooFar + Unit.Position;
+		Vector2 notRandomizedDestination = DirectionToTarget * tooFar + Unit.Position;
 			
-		Vector2 newWayPoint = GetRandomizedWayPoint(notRandomizedWayPoint);
-		GoTo(newWayPoint);
+		Vector2 newDestination = GetRandomizedDestination(notRandomizedDestination);
+		GoTo(newDestination);
 	}
 
 	private void ResolveTargetTooClose()
 	{
 		float tooClose = _tooCloseToTargetDistance - DistanceToTarget;
-		Vector2 notRandomizedWayPoint = DirectionFromTarget * tooClose + Unit.Position;
+		Vector2 notRandomizedDestination = DirectionFromTarget * tooClose + Unit.Position;
 			
-		Vector2 newWayPoint = GetRandomizedWayPoint(notRandomizedWayPoint);
-		GoTo(newWayPoint);
+		Vector2 newDestination = GetRandomizedDestination(notRandomizedDestination);
+		GoTo(newDestination);
 	}
 
-	private Vector2 GetRandomizedWayPoint(Vector2 wayPoint)
-		=> wayPoint.RandomVectorInRange(_wayPointRandomizationRange);
+	private Vector2 GetRandomizedDestination(Vector2 destination)
+		=> destination.RandomVectorInRange(_destinationRandomizationRange);
 	
 	private bool ShouldReload()
 	{

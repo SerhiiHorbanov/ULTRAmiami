@@ -7,13 +7,14 @@ namespace ULTRAmiami.Controllers;
 
 public partial class AIUnitController : UnitController
 {
-    /// IsGoingToWayPoint is set to false after reaching way point but before calling OnWayPointReached
-    public bool IsGoingToWayPoint = true;
-    public Vector2 CurrentWayPoint;
+    /// IsGoing is set to false after reaching destination but before calling OnDestinationReached
+    public bool IsGoing = true;
+    
+    public Vector2 Destination;
 
     [Export] private Area2D _playerNoticingArea;
     protected event Action<Unit> PlayerNoticed;
-    public event Action OnWayPointReached;
+    public event Action OnDestinationReached;
     
     public override void _Ready()
     {
@@ -39,30 +40,30 @@ public partial class AIUnitController : UnitController
         if (Unit is null)
             return;
         
-        if (HasReachedWayPoint((float)delta))
-            ResolveCheckPointReached();
+        if (HasReachedDestination((float)delta))
+            ResolveDestinationReached();
     }
 
-    private void ResolveCheckPointReached()
+    private void ResolveDestinationReached()
     {
-        IsGoingToWayPoint = false;
-        OnWayPointReached?.Invoke();
+        IsGoing = false;
+        OnDestinationReached?.Invoke();
     }
 
-    private bool HasReachedWayPoint(float deltaTime)
+    private bool HasReachedDestination(float deltaTime)
     {
         float speedSquared = Unit.Velocity.LengthSquared();
-        float distanceToWayPointSquared = Unit.GlobalPosition.DistanceTo(CurrentWayPoint);
+        float distanceToDestinationSquared = Unit.GlobalPosition.DistanceTo(Destination);
         
-        return speedSquared < distanceToWayPointSquared;
+        return speedSquared < distanceToDestinationSquared;
     }
 
-    protected void GoTo(Vector2 newWayPoint)
+    protected void GoTo(Vector2 newDestination)
     {
-        CurrentWayPoint = newWayPoint;
-        IsGoingToWayPoint = true;
+        Destination = newDestination;
+        IsGoing = true;
     }
     
     protected override Vector2 GetTargetDirection()
-        => IsGoingToWayPoint ? CurrentWayPoint - Unit.GlobalPosition : Vector2.Zero;
+        => IsGoing ? Destination - Unit.GlobalPosition : Vector2.Zero;
 }
