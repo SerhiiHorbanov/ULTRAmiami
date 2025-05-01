@@ -1,17 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckld4b4xs2rjm"]
+[gd_scene load_steps=4 format=3 uid="uid://ckld4b4xs2rjm"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_tma0q"]
+[ext_resource type="Script" uid="uid://n6srlh8uouwr" path="res://Scripts/Controllers/PistolEnemyUnitController.cs" id="2_4kc1i"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4kc1i"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_f44r0"]
 radius = 400.0
 
 [node name="Unit" instance=ExtResource("1_tma0q")]
 
-[node name="PlayerNoticingArea" type="Area2D" parent="." index="2"]
+[node name="EnemyController" type="Node2D" parent="." index="2" node_paths=PackedStringArray("_shootingTimer", "_playerNoticingArea", "_navAgent", "_unit")]
+script = ExtResource("2_4kc1i")
+_tooCloseToTargetDistance = 200.0
+_tooFarFromTargetDistance = 400.0
+_destinationRandomizationRange = Vector2(20, 20)
+_shootingTimer = NodePath("Timer")
+_playerNoticingArea = NodePath("PlayerNoticingArea")
+_navAgent = NodePath("NavigationAgent2D")
+_unit = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNoticingArea" index="0"]
-shape = SubResource("CircleShape2D_4kc1i")
+[node name="Timer" type="Timer" parent="EnemyController" index="0"]
+wait_time = 0.4
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="3"]
+[node name="PlayerNoticingArea" type="Area2D" parent="EnemyController" index="1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyController/PlayerNoticingArea" index="0"]
+shape = SubResource("CircleShape2D_f44r0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyController" index="2"]
 
 [connection signal="OnHit" from="." to="." method="Die"]
