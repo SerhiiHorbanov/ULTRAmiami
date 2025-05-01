@@ -5,7 +5,7 @@ using ULTRAmiami.Weapons;
 
 namespace ULTRAmiami.Controllers;
 
-public partial class PistolEnemyUnitController : AIUnitController
+public partial class EnemyUnitController : AIUnitController
 {
 	[Export] public Unit TargetUnit;
 
