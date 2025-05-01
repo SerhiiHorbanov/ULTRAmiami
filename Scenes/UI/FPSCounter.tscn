@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3kfqqpvf6jxu"]
+
+[ext_resource type="Script" uid="uid://ds5h6lxb8m3i8" path="res://Scripts/UI/FpsCounter.cs" id="1_j7qi8"]
+
+[node name="FpsCounter" type="Control" node_paths=PackedStringArray("_text")]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+script = ExtResource("1_j7qi8")
+_text = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = -23.0
+offset_right = 40.0
+text = "FPS:"
