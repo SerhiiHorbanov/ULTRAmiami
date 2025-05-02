@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ustetj26a1sv"]
+[gd_scene load_steps=5 format=3 uid="uid://ustetj26a1sv"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_hp2vk"]
 [ext_resource type="PackedScene" uid="uid://cjmxtn0xwbfp6" path="res://Scenes/Projectiles/ShotgunBullet.tscn" id="2_1jhyr"]
 [ext_resource type="AudioStream" uid="uid://dppjh7fse8l2q" path="res://Audio/Sound Randomizers/Shotgun Shot Randomizer.tres" id="2_4xjk2"]
+[ext_resource type="Texture2D" uid="uid://hdvxg7sobcl6" path="res://Textures/Shotgun.png" id="3_wngdm"]
 
 [node name="Shotgun" instance=ExtResource("1_hp2vk")]
 _bullet = ExtResource("2_1jhyr")
@@ -10,6 +11,9 @@ _fireRate = 3.0
 _spread = 20.0
 _shootsPerShot = 16
 _maxAmmo = 3
+
+[node name="Sprite2D" parent="Dropped" index="0"]
+texture = ExtResource("3_wngdm")
 
 [node name="ReloadTimer" parent="." index="2"]
 wait_time = 4.0
