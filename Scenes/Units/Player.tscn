@@ -53,6 +53,7 @@ _blood = 8.0
 _max = 10.0
 _bloodWall = 1.5
 _bloodUsageForMaintenance = 1.0
+_damageMultiplier = 1.0
 
 [node name="PlayerScoreInitializer" type="Node" parent="." index="8"]
 script = ExtResource("10_nf6c1")

@@ -11,6 +11,7 @@ public partial class BloodFuel : Node
 	[Export] private float _bloodWall;
 	
 	[Export] private float _bloodUsageForMaintenance;
+	[Export] private float _damageMultiplier;
 	
 	private Hit _lastHit;
 
@@ -50,6 +51,7 @@ public partial class BloodFuel : Node
 	
 	private void Damage(float damage)
 	{
+		damage *= _damageMultiplier;
 		float newBlood = _blood - damage;
 		PlayerScore.Current.AddBloodLost(damage);
 		
