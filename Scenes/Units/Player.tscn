@@ -33,7 +33,7 @@ _maxWalkAcceleration = 5000.0
 _maxBrakeAcceleration = 8000.0
 _maxWalkSpeed = 800.0
 
-[node name="PlayerUnitController" type="Node" parent="." index="3" node_paths=PackedStringArray("_unit")]
+[node name="PlayerUnitController" type="Node2D" parent="." index="3" node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_xf41u")
 _unit = NodePath("..")
 

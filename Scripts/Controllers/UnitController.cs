@@ -4,7 +4,7 @@ using ULTRAmiami.Weapons;
 
 namespace ULTRAmiami.Controllers;
 
-public abstract partial class UnitController : Node
+public abstract partial class UnitController : Node2D
 {
 	[Export] private Unit _unit;
 
