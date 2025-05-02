@@ -21,4 +21,33 @@ rect = Rect2(-430, -430, 860, 860)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_7jts6")
 
+[node name="HorizontalNavLinks" type="Node2D" parent="NavigationRegion2D"]
+position = Vector2(370, 0)
+
+[node name="NavigationLink2D" type="NavigationLink2D" parent="NavigationRegion2D/HorizontalNavLinks"]
+end_position = Vector2(100, 0)
+
+[node name="NavigationLink2D2" type="NavigationLink2D" parent="NavigationRegion2D/HorizontalNavLinks"]
+position = Vector2(0, -50)
+end_position = Vector2(100, 0)
+
+[node name="NavigationLink2D3" type="NavigationLink2D" parent="NavigationRegion2D/HorizontalNavLinks"]
+position = Vector2(0, 50)
+end_position = Vector2(100, 0)
+
+[node name="Vertical" type="Node2D" parent="NavigationRegion2D"]
+position = Vector2(0, 370)
+rotation = 1.5708
+
+[node name="NavigationLink2D" type="NavigationLink2D" parent="NavigationRegion2D/Vertical"]
+end_position = Vector2(100, 0)
+
+[node name="NavigationLink2D2" type="NavigationLink2D" parent="NavigationRegion2D/Vertical"]
+position = Vector2(0, -50)
+end_position = Vector2(100, 0)
+
+[node name="NavigationLink2D3" type="NavigationLink2D" parent="NavigationRegion2D/Vertical"]
+position = Vector2(0, 50)
+end_position = Vector2(100, 0)
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="EnsureAdjacentRooms"]
