@@ -9,7 +9,8 @@ public partial class EnemyLineOfSightToTarget : RayCast2D
 	public Unit TargetUnit;
 
 	public bool IsTargetInView { get; private set; }
-
+	public bool TargetWasInView { get; private set; }
+	
 	public override void _PhysicsProcess(double delta)
 	{
 		if (TargetUnit is null)
@@ -42,6 +43,7 @@ public partial class EnemyLineOfSightToTarget : RayCast2D
 		
 		bool isTarget = unit == TargetUnit;
 		IsTargetInView = isTarget;
+		TargetWasInView |= isTarget;
 		if (isTarget)
 			return;
 		

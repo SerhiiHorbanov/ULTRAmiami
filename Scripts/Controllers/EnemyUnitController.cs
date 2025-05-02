@@ -15,6 +15,7 @@ public partial class EnemyUnitController : AIUnitController
 	[Export] private Timer _shootingTimer;
 	[Export] private EnemyLineOfSightToTarget _lineOfSightToTarget;
 
+	private bool _targetWasInView;
 	private Weapon _weaponToUnsubscribeFrom;
 	
 	private float TooCloseToTargetDistanceSquared
@@ -23,16 +24,16 @@ public partial class EnemyUnitController : AIUnitController
 		=> _tooFarFromTargetDistance * _tooFarFromTargetDistance;
 
 	private float DistanceSquaredToTarget
-		=> Unit.Position.DistanceSquaredTo(_targetUnit.Position);
+		=> Unit.GlobalPosition.DistanceSquaredTo(_targetUnit.GlobalPosition);
 	
 	private float DistanceToTarget
-		=> Unit.Position.DistanceTo(_targetUnit.Position);
+		=> Unit.GlobalPosition.DistanceTo(_targetUnit.GlobalPosition);
 	
-	private Vector2 DirectionToTarget
-		=> (_targetUnit.Position - Unit.Position).Normalized();
+	private Vector2 CurrentDestinationDirection
+		=> (_targetUnit.GlobalPosition - Unit.GlobalPosition).Normalized();
 	
 	private Vector2 DirectionFromTarget
-		=> -DirectionToTarget;
+		=> -CurrentDestinationDirection;
 	
 	public override void _Ready()
 	{
@@ -68,8 +69,11 @@ public partial class EnemyUnitController : AIUnitController
 	}
 
 	private void TryShooting()
-		=> Weapon?.TryStartShooting();
-
+	{
+		if (_lineOfSightToTarget.IsTargetInView)
+			Weapon?.TryStartShooting();
+	}
+	
 	private void ReloadWeapon()
 	{
 		Weapon.Reload();
@@ -96,18 +100,24 @@ public partial class EnemyUnitController : AIUnitController
 
 	private void SetNewDestinationIfShould()
 	{
-		if (IsGoing)
+		if (!_lineOfSightToTarget.TargetWasInView)
 			return;
-		if (DistanceSquaredToTarget < TooCloseToTargetDistanceSquared)
+		else if (!_lineOfSightToTarget.IsTargetInView)
+		{
+			GoTo(_targetUnit.GlobalPosition);
+		}
+		else if (IsGoing)
+			return;
+		else if (DistanceSquaredToTarget < TooCloseToTargetDistanceSquared)
 			ResolveTargetTooClose();
-		if (DistanceSquaredToTarget > TooFarFromTargetDistanceSquared)
+		else if (DistanceSquaredToTarget > TooFarFromTargetDistanceSquared)
 			ResolveTargetTooFar();
 	}
 
 	private void ResolveTargetTooFar()
 	{
 		float tooFar = DistanceToTarget - _tooFarFromTargetDistance;
-		Vector2 notRandomizedDestination = DirectionToTarget * tooFar + Unit.Position;
+		Vector2 notRandomizedDestination = CurrentDestinationDirection * tooFar + Unit.Position;
 			
 		Vector2 newDestination = GetRandomizedDestination(notRandomizedDestination);
 		GoTo(newDestination);
@@ -137,7 +147,12 @@ public partial class EnemyUnitController : AIUnitController
 		if (Weapon is null || _targetUnit is null)
 			return;
 		
-		Weapon.PointingAt = _targetUnit.Position;
+		if (_lineOfSightToTarget.IsTargetInView)
+		{
+			Weapon.PointingAt = _targetUnit.GlobalPosition;
+			return;
+		}
+		Weapon.PointingAt = GlobalPosition + GetTargetDirection() * 100;
 	}
 	
 	private void SetTargetUnit(Unit targetUnit)

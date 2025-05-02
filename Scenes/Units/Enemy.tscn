@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://5u38ma371am7" path="res://Scripts/Controllers/EnemyLineOfSightToTarget.cs" id="3_x27d5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f44r0"]
-radius = 4000.0
+radius = 700.0
 
 [node name="Unit" instance=ExtResource("1_tma0q")]
 
