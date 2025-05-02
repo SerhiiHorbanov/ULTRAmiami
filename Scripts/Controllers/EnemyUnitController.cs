@@ -7,12 +7,13 @@ namespace ULTRAmiami.Controllers;
 
 public partial class EnemyUnitController : AIUnitController
 {
-	[Export] public Unit TargetUnit;
+	private Unit _targetUnit;
 
 	[Export] private float _tooCloseToTargetDistance;
 	[Export] private float _tooFarFromTargetDistance;
 	[Export] private Vector2 _destinationRandomizationRange;
 	[Export] private Timer _shootingTimer;
+	[Export] private EnemyLineOfSightToTarget _lineOfSightToTarget;
 
 	private Weapon _weaponToUnsubscribeFrom;
 	
@@ -22,13 +23,13 @@ public partial class EnemyUnitController : AIUnitController
 		=> _tooFarFromTargetDistance * _tooFarFromTargetDistance;
 
 	private float DistanceSquaredToTarget
-		=> Unit.Position.DistanceSquaredTo(TargetUnit.Position);
+		=> Unit.Position.DistanceSquaredTo(_targetUnit.Position);
 	
 	private float DistanceToTarget
-		=> Unit.Position.DistanceTo(TargetUnit.Position);
+		=> Unit.Position.DistanceTo(_targetUnit.Position);
 	
 	private Vector2 DirectionToTarget
-		=> (TargetUnit.Position - Unit.Position).Normalized();
+		=> (_targetUnit.Position - Unit.Position).Normalized();
 	
 	private Vector2 DirectionFromTarget
 		=> -DirectionToTarget;
@@ -37,8 +38,8 @@ public partial class EnemyUnitController : AIUnitController
 	{
 		base._Ready();
 		
-		if (TargetUnit is not null)
-			TargetUnit.OnDeath += DetachTargetUnit;
+		if (_targetUnit is not null)
+			_targetUnit.OnDeath += DetachTargetUnit;
 
 		PlayerNoticed += SetTargetUnit;
 		PlayerNoticed += _ => _shootingTimer.Start();
@@ -50,7 +51,7 @@ public partial class EnemyUnitController : AIUnitController
 	{
 		base._Process(delta);
 		
-		if (TargetUnit is null || Unit is null)
+		if (_targetUnit is null || Unit is null)
 			return;
 
 		if (ShouldReload())
@@ -87,7 +88,7 @@ public partial class EnemyUnitController : AIUnitController
 	
 	private void OnReloadFinished()
 	{
-		if (TargetUnit is not null)
+		if (_targetUnit is not null)
 			_shootingTimer.Start();
 		Weapon.OnReloadFinished -= OnReloadFinished;
 		Unit.OnDeath -= UnsubscribeFromWeaponReload;
@@ -133,22 +134,23 @@ public partial class EnemyUnitController : AIUnitController
 
 	private void UpdatePointingAt()
 	{
-		if (Weapon is null || TargetUnit is null)
+		if (Weapon is null || _targetUnit is null)
 			return;
 		
-		Weapon.PointingAt = TargetUnit.Position;
+		Weapon.PointingAt = _targetUnit.Position;
 	}
 	
 	private void SetTargetUnit(Unit targetUnit)
 	{
-		if (TargetUnit is not null)
-			TargetUnit.OnDeath -= DetachTargetUnit;
+		if (_targetUnit is not null)
+			_targetUnit.OnDeath -= DetachTargetUnit;
 		if (targetUnit is not null)
 			targetUnit.OnDeath += DetachTargetUnit;
 		else
 			_shootingTimer.Stop();
 		
-		TargetUnit = targetUnit;
+		_lineOfSightToTarget.TargetUnit = targetUnit;
+		_targetUnit = targetUnit;
 	}
 
 	private void DetachTargetUnit()
