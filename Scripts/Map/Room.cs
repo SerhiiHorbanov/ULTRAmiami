@@ -11,11 +11,6 @@ public partial class Room : Node2D
     [Export] private Array<Node2D> _walls;
     private Vector2I _roomPosition = Vector2I.Zero;
     
-    [Export] private Area2D _rightDoorTrigger;
-    [Export] private Area2D _leftDoorTrigger;
-    [Export] private Area2D _bottomDoorTrigger;
-    [Export] private Area2D _topDoorTrigger;
-    
     public MapGenerator MapGenerator;
     
     public Vector2I RoomPosition
