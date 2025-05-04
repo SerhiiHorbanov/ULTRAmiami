@@ -11,4 +11,4 @@ _spread = 12.0
 _maxAmmo = 16
 
 [node name="ReloadTimer" parent="." index="2"]
-wait_time = 4.0
+wait_time = 1.5

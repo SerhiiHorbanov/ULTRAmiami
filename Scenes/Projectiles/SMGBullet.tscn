@@ -4,4 +4,4 @@
 
 [node name="SMGBullet" instance=ExtResource("1_owbyn")]
 _speedRandomness = 0.3
-_damage = 0.8
+_damage = 1.0
