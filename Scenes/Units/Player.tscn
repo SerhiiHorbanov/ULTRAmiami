@@ -47,13 +47,15 @@ stream = ExtResource("7_g6b54")
 volume_db = -6.0
 script = ExtResource("8_jokor")
 
-[node name="BloodFuel" type="Node" parent="." index="7"]
+[node name="BloodFuel" type="Node" parent="." index="7" node_paths=PackedStringArray("_movement")]
 script = ExtResource("9_jokor")
-_blood = 8.0
+_blood = 9.5
 _max = 10.0
 _bloodWall = 1.5
-_bloodUsageForMaintenance = 0.4
 _damageMultiplier = 0.3
+_bloodUsageForMaintenance = 0.15
+_bloodUsageForWalking = 0.6
+_movement = NodePath("../PlayerMovement")
 
 [node name="PlayerScoreInitializer" type="Node" parent="." index="8"]
 script = ExtResource("10_nf6c1")

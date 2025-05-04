@@ -1,5 +1,6 @@
 using System.Data.Common;
 using Godot;
+using ULTRAmiami.Units.Movement;
 
 namespace ULTRAmiami.Units;
 
@@ -7,26 +8,27 @@ public partial class BloodFuel : Node
 {
 	[Export] private float _blood;
 	[Export] private float _max;
-
 	[Export] private float _bloodWall;
 	
-	[Export] private float _bloodUsageForMaintenance;
 	[Export] private float _damageMultiplier;
 	
+	[Export] private float _bloodUsageForMaintenance;
+	
+	[Export] private float _bloodUsageForWalking;
+	[Export] private UnitMovement _movement;
+	
 	private Hit _lastHit;
-
-	private const float DefaultDamage = 4;
 
 	[Signal]
 	public delegate void RunOutOfBloodEventHandler(Hit lastHit);
 
 	[Signal]
 	public delegate void OnBloodChangedEventHandler(float newBlood);
-
-
+	
 	public override void _Process(double delta)
 	{
-		float bloodForMaintenance = (float)delta * _bloodUsageForMaintenance;
+		float bloodForMaintenance = (float)delta * GetBloodUsagePerSecond();
+		
 		_blood -= bloodForMaintenance;
 		PlayerScore.Current.AddBloodLost(bloodForMaintenance);
 		
@@ -58,5 +60,11 @@ public partial class BloodFuel : Node
 		if (_blood > _bloodWall)
 			newBlood = float.Max(newBlood, _bloodWall);
 		_blood = newBlood;
+	}
+
+	private float GetBloodUsagePerSecond()
+	{
+		float currentWalkingBloodUsage = _movement.GetSpeedRelativeToWalkingSpeed() * _bloodUsageForWalking;
+		return _bloodUsageForMaintenance + currentWalkingBloodUsage;
 	}
 }

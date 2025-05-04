@@ -10,8 +10,8 @@ offset_bottom = 1080.0
 script = ExtResource("1_r7doy")
 _fill = NodePath("RightBar/Fill")
 _fill2 = NodePath("LeftBar/Fill")
-_min = 1.0
-_max = 8.0
+_min = 0.5
+_max = 9.5
 
 [node name="RightBar" type="ColorRect" parent="."]
 layout_mode = 1

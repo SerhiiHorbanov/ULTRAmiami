@@ -50,6 +50,9 @@ public partial class UnitMovement : Node
 		
 		Velocity += deltaVelocity;
 	}
+
+	public float GetSpeedRelativeToWalkingSpeed()
+		=> Velocity.Length() / _maxWalkSpeed;
 	
 	protected virtual float GetMaxSpeed()
 		=> _maxWalkSpeed;
