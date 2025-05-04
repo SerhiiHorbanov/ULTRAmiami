@@ -86,14 +86,14 @@ public partial class MapGenerator : Node
         {
             Vector2 roomGlobalPosition = _rooms[i].RoomPosition * _roomSize;
             
-            if (roomGlobalPosition.DistanceSquaredTo(KeptRoomsPosition) > AllowedDistanceSquaredToDeletingRoom)
-            {
-                _rooms[i].QueueFree();
-                _rooms.RemoveAt(i);
-                
-                if (_rooms.Count <= _roomsTargetAmount)
-                    return;
-            }
+            if (!(roomGlobalPosition.DistanceSquaredTo(KeptRoomsPosition) > AllowedDistanceSquaredToDeletingRoom))
+                continue;
+            
+            _rooms[i].QueueFree();
+            _rooms.RemoveAt(i);
+            
+            if (_rooms.Count <= _roomsTargetAmount)
+                return;
         }
     }
 }
