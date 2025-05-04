@@ -16,10 +16,8 @@ wait_time = 0.15
 [node name="UnitMovement" type="Node" parent="." index="3" node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_x408u")
 _unit = NodePath("..")
-_maxWalkAcceleration = 900.0
+_maxWalkAcceleration = 2000.0
 _maxBrakeAcceleration = 3600.0
-_maxWalkSpeed = 200.0
+_maxWalkSpeed = 300.0
 
 [node name="AssaultRifle" parent="." index="4" instance=ExtResource("4_3d1a6")]
-
-[editable path="EnemyController"]

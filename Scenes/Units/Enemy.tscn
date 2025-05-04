@@ -9,15 +9,16 @@ radius = 700.0
 
 [node name="Unit" instance=ExtResource("1_tma0q")]
 
-[node name="EnemyController" type="Node2D" parent="." index="2" node_paths=PackedStringArray("_shootingTimer", "_lineOfSightToTarget", "_playerNoticingArea", "_navAgent", "_unit")]
+[node name="EnemyController" type="Node2D" parent="." index="2" node_paths=PackedStringArray("_shootingTimer", "_lineOfSightToTarget", "_playerNoticingArea", "_unit")]
 script = ExtResource("2_4kc1i")
 _tooCloseToTargetDistance = 200.0
-_tooFarFromTargetDistance = 400.0
+_targetDistance = 300.0
+_tooFarFromTargetDistance = 500.0
 _destinationRandomizationRange = Vector2(20, 20)
 _shootingTimer = NodePath("Timer")
 _lineOfSightToTarget = NodePath("LineOfSightToTarget")
+_targetMoveThresholdForPathRebuilding = 10.0
 _playerNoticingArea = NodePath("PlayerNoticingArea")
-_navAgent = NodePath("NavigationAgent2D")
 _unit = NodePath("..")
 
 [node name="Timer" type="Timer" parent="EnemyController" index="0"]

@@ -26,11 +26,11 @@ frame_progress = 0.0916329
 
 [node name="PlayerMovement" type="Node" parent="." index="2" node_paths=PackedStringArray("_unit")]
 script = ExtResource("4_u2egk")
-_maxRedirectionSpeed = 1200.0
-_redirectionAcceleration = 10000.0
+_maxRedirectionSpeed = 900.0
+_redirectionAcceleration = 20000.0
 _unit = NodePath("..")
-_maxWalkAcceleration = 5000.0
-_maxBrakeAcceleration = 8000.0
+_maxWalkAcceleration = 10000.0
+_maxBrakeAcceleration = 15000.0
 _maxWalkSpeed = 800.0
 
 [node name="PlayerUnitController" type="Node2D" parent="." index="3" node_paths=PackedStringArray("_unit")]
@@ -52,8 +52,8 @@ script = ExtResource("9_jokor")
 _blood = 8.0
 _max = 10.0
 _bloodWall = 1.5
-_bloodUsageForMaintenance = 1.0
-_damageMultiplier = 1.0
+_bloodUsageForMaintenance = 0.4
+_damageMultiplier = 0.3
 
 [node name="PlayerScoreInitializer" type="Node" parent="." index="8"]
 script = ExtResource("10_nf6c1")

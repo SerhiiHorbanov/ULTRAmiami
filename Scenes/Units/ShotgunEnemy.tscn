@@ -10,16 +10,20 @@ _unitMovement = NodePath("UnitMovement")
 _weapon = NodePath("Shotgun")
 _deadVersion = ExtResource("2_hpbr5")
 
+[node name="EnemyController" parent="." index="2"]
+_tooCloseToTargetDistance = 100.0
+_targetDistance = 150.0
+_tooFarFromTargetDistance = 300.0
+_destinationRandomizationRange = Vector2(10, 10)
+
 [node name="Timer" parent="EnemyController" index="0"]
 wait_time = 0.6
 
 [node name="UnitMovement" type="Node" parent="." index="3" node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_p55w5")
 _unit = NodePath("..")
-_maxWalkAcceleration = 900.0
-_maxBrakeAcceleration = 3600.0
+_maxWalkAcceleration = 4000.0
+_maxBrakeAcceleration = 10000.0
 _maxWalkSpeed = 200.0
 
 [node name="Shotgun" parent="." index="4" instance=ExtResource("4_a4bow")]
-
-[editable path="EnemyController"]

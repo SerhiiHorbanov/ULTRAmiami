@@ -16,10 +16,8 @@ wait_time = 0.05
 [node name="UnitMovement" type="Node" parent="." index="3" node_paths=PackedStringArray("_unit")]
 script = ExtResource("2_56h82")
 _unit = NodePath("..")
-_maxWalkAcceleration = 900.0
-_maxBrakeAcceleration = 3600.0
+_maxWalkAcceleration = 2000.0
+_maxBrakeAcceleration = 10000.0
 _maxWalkSpeed = 500.0
 
 [node name="Submachinegun" parent="." index="4" instance=ExtResource("5_emoad")]
-
-[editable path="EnemyController"]

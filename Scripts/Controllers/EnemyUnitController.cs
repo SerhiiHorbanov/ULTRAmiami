@@ -10,11 +10,14 @@ public partial class EnemyUnitController : AIUnitController
 	private Unit _targetUnit;
 
 	[Export] private float _tooCloseToTargetDistance;
+	[Export] private float _targetDistance;
 	[Export] private float _tooFarFromTargetDistance;
 	[Export] private Vector2 _destinationRandomizationRange;
 	[Export] private Timer _shootingTimer;
 	[Export] private EnemyLineOfSightToTarget _lineOfSightToTarget;
 
+	[Export] private float _targetMoveThresholdForPathRebuilding;
+	
 	private bool _targetWasInView;
 	private Weapon _weaponToUnsubscribeFrom;
 	
@@ -23,6 +26,9 @@ public partial class EnemyUnitController : AIUnitController
 	private float TooFarFromTargetDistanceSquared
 		=> _tooFarFromTargetDistance * _tooFarFromTargetDistance;
 
+	private float TargetMoveThresholdForPathRebuildingSquared
+		=> _targetMoveThresholdForPathRebuilding * _targetMoveThresholdForPathRebuilding;
+	
 	private float DistanceSquaredToTarget
 		=> Unit.GlobalPosition.DistanceSquaredTo(_targetUnit.GlobalPosition);
 	
@@ -102,31 +108,21 @@ public partial class EnemyUnitController : AIUnitController
 	{
 		if (!_lineOfSightToTarget.TargetWasInView)
 			return;
-		else if (!_lineOfSightToTarget.IsTargetInView)
-		{
+		
+		if (!_lineOfSightToTarget.IsTargetInView)
+			GoToTargetUnit();
+		else if (DistanceSquaredToTarget < TooCloseToTargetDistanceSquared || DistanceSquaredToTarget > TooFarFromTargetDistanceSquared)
+			GoToDistanceFromTarget(_targetDistance);
+	}
+	private void GoToTargetUnit()
+	{
+		if (Destination.DistanceSquaredTo(_targetUnit.GlobalPosition) > TargetMoveThresholdForPathRebuildingSquared)
 			GoTo(_targetUnit.GlobalPosition);
-		}
-		else if (IsGoing)
-			return;
-		else if (DistanceSquaredToTarget < TooCloseToTargetDistanceSquared)
-			ResolveTargetTooClose();
-		else if (DistanceSquaredToTarget > TooFarFromTargetDistanceSquared)
-			ResolveTargetTooFar();
 	}
 
-	private void ResolveTargetTooFar()
+	private void GoToDistanceFromTarget(float distance)
 	{
-		float tooFar = DistanceToTarget - _tooFarFromTargetDistance;
-		Vector2 notRandomizedDestination = CurrentDestinationDirection * tooFar + Unit.Position;
-			
-		Vector2 newDestination = GetRandomizedDestination(notRandomizedDestination);
-		GoTo(newDestination);
-	}
-
-	private void ResolveTargetTooClose()
-	{
-		float tooClose = _tooCloseToTargetDistance - DistanceToTarget;
-		Vector2 notRandomizedDestination = DirectionFromTarget * tooClose + Unit.Position;
+		Vector2 notRandomizedDestination = _targetUnit.GlobalPosition + DirectionFromTarget * distance;
 			
 		Vector2 newDestination = GetRandomizedDestination(notRandomizedDestination);
 		GoTo(newDestination);
