@@ -15,7 +15,6 @@ public partial class MapGenerator : Node
 
     [Export] private Vector2 _roomSize;
 
-    [Export] private Room _initialRoom;
     [Export] private Array<PackedScene> _packedRooms;
     [Export] private Unit _unit;
     
@@ -27,10 +26,12 @@ public partial class MapGenerator : Node
 
     public override void _Ready()
     {
-        _unit.OnDeath += _ => _unit = null; 
-        _initialRoom.MapGenerator = this;
-        _rooms.Add(_initialRoom);
-        _initialRoom = null;
+        _unit.OnDeath += _ => _unit = null;
+        foreach (Room room in _rooms)
+        {
+            room.MapGenerator = this;
+            room.SetRoomPosition(room.RoomPosition, _roomSize);
+        }
         
         EnsureRoomAndAdjacent(Vector2I.Zero);
     }

@@ -9,7 +9,7 @@ namespace ULTRAmiami.Map;
 public partial class Room : Node2D
 {
     [Export] private Array<Node2D> _walls;
-    private Vector2I _roomPosition = Vector2I.Zero;
+    [Export] private Vector2I _roomPosition;
     
     public MapGenerator MapGenerator;
     
