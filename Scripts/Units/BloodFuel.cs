@@ -60,6 +60,7 @@ public partial class BloodFuel : Node
 		if (_blood > _bloodWall)
 			newBlood = float.Max(newBlood, _bloodWall);
 		_blood = newBlood;
+		EmitSignalOnBloodChanged(newBlood);
 	}
 
 	private float GetBloodUsagePerSecond()

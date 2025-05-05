@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bh4ye65imk1e"]
+[gd_scene load_steps=5 format=3 uid="uid://bh4ye65imk1e"]
 
 [ext_resource type="Script" uid="uid://cr1d25j7i54xh" path="res://Scripts/Weapons/Projectiles/Bullet.cs" id="1_yvbqg"]
 [ext_resource type="Texture2D" uid="uid://bnn4j87i8iea5" path="res://Textures/Weapons/Bullet.png" id="2_jnb4d"]
 [ext_resource type="PackedScene" uid="uid://7lvjncparfhn" path="res://Scenes/Effects/BulletWallHitParticles.tscn" id="2_rjcpp"]
+[ext_resource type="PackedScene" uid="uid://cohtgch7dg8in" path="res://Scenes/Effects/BloodSplatterParticles.tscn" id="3_2cv5c"]
 
 [node name="Bullet" type="Node2D" node_paths=PackedStringArray("_rayCast")]
 script = ExtResource("1_yvbqg")
-_hitParticle = ExtResource("2_rjcpp")
+_hitParticles = ExtResource("2_rjcpp")
+_bloodSplatterParticles = ExtResource("3_2cv5c")
 _speed = 3000.0
 _rayCast = NodePath("RayCast2D")
 _maxLifeSpan = 3.0

@@ -1,10 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://cohtgch7dg8in"]
 
-[ext_resource type="Script" uid="uid://daqf3fuk0ilok" path="res://Scripts/Effects/ParticleRestarter.cs" id="1_qfkrn"]
+[ext_resource type="Script" uid="uid://b6wvp84brnr64" path="res://Scripts/Effects/MyParticles.cs" id="1_qfkrn"]
 
-[node name="BloodSplatter" type="Node2D" node_paths=PackedStringArray("_particles")]
+[node name="BloodSplatter" type="Node2D" node_paths=PackedStringArray("_particlesToStartEmitting", "_particlesToWaitFor")]
 script = ExtResource("1_qfkrn")
-_particles = [NodePath("BigBloodSplatterParticles"), NodePath("SmallBloodSplatter")]
+_particlesToStartEmitting = [NodePath("BigBloodSplatterParticles"), NodePath("SmallBloodSplatter")]
+_particlesToWaitFor = [NodePath("BigBloodSplatterParticles"), NodePath("SmallBloodSplatter")]
 
 [node name="BigBloodSplatterParticles" type="CPUParticles2D" parent="."]
 emitting = false

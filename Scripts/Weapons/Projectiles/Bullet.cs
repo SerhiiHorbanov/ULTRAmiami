@@ -1,4 +1,5 @@
 using Godot;
+using ULTRAmiami.Effects;
 using ULTRAmiami.Units;
 using ULTRAmiami.Utils;
 
@@ -6,7 +7,8 @@ namespace ULTRAmiami.Weapons.Projectiles;
 
 public partial class Bullet : Node2D
 {
-	[Export] private PackedScene _hitParticle;
+	[Export] private PackedScene _hitParticles;
+	[Export] private PackedScene _bloodSplatterParticles;
 	
 	[Export] private float _speed;
 	[Export] private float _speedRandomness;
@@ -69,7 +71,7 @@ public partial class Bullet : Node2D
 
 		if (hitUnit is null)
 		{
-			CreateHitParticles();
+			CreateParticlesOnCollisionPoint(_hitParticles);
 			return;
 		}
 		
@@ -78,16 +80,18 @@ public partial class Bullet : Node2D
 	
 	private void HitUnit(Unit unit)
 	{
+		CreateParticlesOnCollisionPoint(_bloodSplatterParticles);
+		
 		unit.Hit(new(_velocity, _damage));
 	}
 
-	private void CreateHitParticles()
+	private void CreateParticlesOnCollisionPoint(PackedScene particlesScene)
 	{
-		CpuParticles2D particles = _hitParticle.Instantiate<CpuParticles2D>();
+		MyParticles particles = _bloodSplatterParticles.Instantiate<MyParticles>();
 		
-		particles.Rotation = Rotation;
 		particles.MakeSiblingOf(this);
-		particles.GlobalPosition = GlobalPosition;
-		particles.Restart();
+		particles.GlobalRotation = GlobalRotation;
+		particles.GlobalPosition = _rayCast.GetCollisionPoint();
+		particles.Emit();
 	}
 }
