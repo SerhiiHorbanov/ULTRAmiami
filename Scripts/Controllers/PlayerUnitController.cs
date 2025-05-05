@@ -6,7 +6,10 @@ namespace ULTRAmiami.Controllers;
 
 public partial class PlayerUnitController : UnitController
 {
+	[Export] private MeleeAttacker _meleeAttacker;
+	
 	private static StringName _shoot = "shoot";
+	private static StringName _meleeAttack = "attack melee";
 	private static StringName _dropWeapon = "drop weapon";
 	private static StringName _pickUpWeapon = "pick up weapon";
 	private static StringName _left = "left";
@@ -36,6 +39,8 @@ public partial class PlayerUnitController : UnitController
 			Unit.DropWeapon();
 		if (Input.IsActionJustPressed(_pickUpWeapon))
 		    Unit.PickUpWeapon();
+		if (Input.IsActionJustPressed(_meleeAttack))
+			_meleeAttacker.TryAttack();
 	}
 	
 	private void CheckAndResolveShooting()
@@ -71,6 +76,9 @@ public partial class PlayerUnitController : UnitController
 
 	private void UpdatePointingAt()
 	{
+		if (_meleeAttacker is not null)
+			_meleeAttacker.SetRotation(GetLocalMousePosition().Angle());
+		
 		if (Weapon is null)
 			return;
 		

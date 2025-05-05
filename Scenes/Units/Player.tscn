@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=14 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -11,6 +11,10 @@
 [ext_resource type="Script" uid="uid://dhi603ffh8sbh" path="res://Scripts/Units/PlayerDeathSound.cs" id="8_jokor"]
 [ext_resource type="Script" uid="uid://70y5w1gml3pe" path="res://Scripts/Units/BloodFuel.cs" id="9_jokor"]
 [ext_resource type="Script" uid="uid://d2ccc8rp3eho5" path="res://Scripts/PlayerScoreInitializer.cs" id="10_nf6c1"]
+[ext_resource type="Script" uid="uid://7xnvw4rwv2x7" path="res://Scripts/Weapons/MeleeAttacker.cs" id="12_ehya8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2egk"]
+size = Vector2(80, 60)
 
 [node name="Player" node_paths=PackedStringArray("_unitMovement", "_weapon") groups=["Player"] instance=ExtResource("1_33iby")]
 _unitMovement = NodePath("PlayerMovement")
@@ -33,8 +37,9 @@ _maxWalkAcceleration = 10000.0
 _maxBrakeAcceleration = 15000.0
 _maxWalkSpeed = 800.0
 
-[node name="PlayerUnitController" type="Node2D" parent="." index="3" node_paths=PackedStringArray("_unit")]
+[node name="PlayerUnitController" type="Node2D" parent="." index="3" node_paths=PackedStringArray("_meleeAttacker", "_unit")]
 script = ExtResource("2_xf41u")
+_meleeAttacker = NodePath("../MeleeAttacker")
 _unit = NodePath("..")
 
 [node name="Pistol" parent="." index="4" instance=ExtResource("3_giihn")]
@@ -60,6 +65,23 @@ _movement = NodePath("../PlayerMovement")
 [node name="PlayerScoreInitializer" type="Node" parent="." index="8"]
 script = ExtResource("10_nf6c1")
 
+[node name="MeleeAttacker" type="Node2D" parent="." index="9" node_paths=PackedStringArray("_attackArea", "_ignoredUnit")]
+script = ExtResource("12_ehya8")
+_attackArea = NodePath("Area2D")
+_maxStamina = 2.0
+_attackStaminaCost = 1.0
+_ignoredUnit = NodePath("..")
+_damage = 4.0
+
+[node name="Area2D" type="Area2D" parent="MeleeAttacker" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttacker/Area2D" index="0"]
+position = Vector2(30, 0)
+shape = SubResource("RectangleShape2D_u2egk")
+debug_color = Color(1, 0, 0, 0.419608)
+
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
 [connection signal="RunOutOfBlood" from="BloodFuel" to="." method="Die"]
+[connection signal="body_entered" from="MeleeAttacker/Area2D" to="MeleeAttacker" method="OnBodyEntered"]
+[connection signal="body_exited" from="MeleeAttacker/Area2D" to="MeleeAttacker" method="OnBodyExited"]
