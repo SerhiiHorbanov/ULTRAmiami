@@ -13,6 +13,9 @@ public static class MyRandom
         return new(origin.X + xOffset, origin.Y + yOffset);
     }
 
+    public static float Range(float distanceFrom0)
+        => Range(-distanceFrom0, distanceFrom0);
+    
     public static float Range(float limit1, float limit2)
     {
         if (limit1 > limit2)
