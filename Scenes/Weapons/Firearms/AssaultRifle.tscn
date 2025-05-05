@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://tc4t7u7hg3qc"]
+[gd_scene load_steps=6 format=3 uid="uid://tc4t7u7hg3qc"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_f1tig"]
 [ext_resource type="AudioStream" uid="uid://3qbex1n00tw5" path="res://Audio/Sound Randomizers/Assault Rifle Shot Randomizer.tres" id="2_8634j"]
 [ext_resource type="PackedScene" uid="uid://bbs2toatsh08u" path="res://Scenes/Projectiles/AssaultRifleBullet.tscn" id="2_iimqx"]
-[ext_resource type="Texture2D" uid="uid://t5edokn48t6k" path="res://Textures/AssaultRifle.png" id="3_6j0jo"]
+[ext_resource type="Texture2D" uid="uid://d0b44lrp3v2fx" path="res://Textures/Weapons/AssaultRifle.png" id="3_6j0jo"]
+[ext_resource type="Texture2D" uid="uid://dxcb7qr5ilulv" path="res://Textures/Weapons/AssaultRifleNoMag.png" id="4_y2gf6"]
 
 [node name="AssaultRifle" instance=ExtResource("1_f1tig")]
 _bullet = ExtResource("2_iimqx")
@@ -14,6 +15,10 @@ _maxAmmo = 12
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("3_6j0jo")
+
+[node name="DroppedNotPickuppable" parent="." index="1"]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+texture = ExtResource("4_y2gf6")
 
 [node name="ReloadTimer" parent="." index="2"]
 wait_time = 4.0

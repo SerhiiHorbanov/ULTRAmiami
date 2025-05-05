@@ -13,6 +13,8 @@ script = ExtResource("1_27vj6")
 _droppedArea = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Dropped"]
+rotation = 0.261799
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_8gj08")
 
 [node name="Area2D" type="Area2D" parent="Dropped"]
@@ -21,6 +23,8 @@ texture = ExtResource("2_8gj08")
 shape = SubResource("CircleShape2D_t511x")
 
 [node name="DroppedNotPickuppable" type="Sprite2D" parent="."]
+rotation = 0.261799
+scale = Vector2(1.3, 1.3)
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 2.0

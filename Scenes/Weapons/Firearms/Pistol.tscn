@@ -11,12 +11,10 @@ _spread = 2.0
 _maxAmmo = 12
 
 [node name="Sprite2D" parent="Dropped" index="0"]
-scale = Vector2(1.4, 1.4)
 texture = ExtResource("2_jic2m")
 
 [node name="DroppedNotPickuppable" parent="." index="1"]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
-scale = Vector2(1.4, 1.4)
 texture = ExtResource("2_jic2m")
 
 [node name="Shot" parent="." index="3"]
