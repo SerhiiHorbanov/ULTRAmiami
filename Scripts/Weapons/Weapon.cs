@@ -21,6 +21,7 @@ public abstract partial class Weapon : Node2D
 
 	[Export] private DroppedWeapon _dropped;
 	[Export] private Node2D _droppedNotPickuppable;
+	[Export] private float _droppedRotationRandomness = 20f;
 	
 	[Export] private AudioStreamPlayer2D _shootingAudio;
 	[Export] private AudioStreamPlayer2D _failingShotAudio;
@@ -66,6 +67,10 @@ public abstract partial class Weapon : Node2D
 	
 	private float HalfSpreadRadians
 		=> float.DegreesToRadians(_spread * 0.5f);
+    
+	private float HalfDroppedRotationRandomness 
+		=> float.DegreesToRadians(_droppedRotationRandomness * 0.5f);
+
 
 	public override void _Ready()
 	{
@@ -92,18 +97,21 @@ public abstract partial class Weapon : Node2D
 	private void Drop(bool isPickUppable)
 	{
 		this.MakeSiblingOf(GetParent());
+		Node2D dropped = isPickUppable ? _dropped : _droppedNotPickuppable;
 		
 		if (isPickUppable)
 		{
 			AddChild(_dropped);
-			_dropped.GlobalPosition = GlobalPosition;
-			return;
+		}
+		else
+		{
+			_droppedNotPickuppable.MakeSiblingOf(this);
+			_dropped.DetachWeapon();
+			QueueFree();
 		}
 		
-		_droppedNotPickuppable.MakeSiblingOf(this);
-		_droppedNotPickuppable.GlobalPosition = GlobalPosition;
-		_dropped.DetachWeapon();
-		QueueFree();
+		dropped.GlobalPosition = GlobalPosition;
+		dropped.Rotation = MyRandom.Range(HalfDroppedRotationRandomness);
 	}
 
 	public void TryStartShooting()
