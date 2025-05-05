@@ -37,6 +37,9 @@ public abstract partial class Weapon : Node2D
 		_ammo = _maxAmmo;
 	}
 
+	public bool IsAutomatic
+		=> _isAutomatic;
+	
 	private ulong MicroSecondsBetweenShots
 		=> (ulong)(1 / _fireRate * 1_000_000);
 	
@@ -182,7 +185,7 @@ public abstract partial class Weapon : Node2D
 		return relativeShootingAt.Rotated(deviation) + GlobalWeaponPosition;
 	}
 
-	private bool EnoughTimeSinceLastShotToShootAgain()
+	public bool EnoughTimeSinceLastShotToShootAgain()
 	{
 		return MicroSecondsSinceShot >= MicroSecondsBetweenShots;
 	}
