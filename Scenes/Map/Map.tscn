@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxb34giu5ayyx"]
+[gd_scene load_steps=8 format=3 uid="uid://bxb34giu5ayyx"]
 
 [ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_iio4a"]
 [ext_resource type="Script" uid="uid://bhpu0is0y6qkb" path="res://Scripts/Map/MapGenerator.cs" id="1_lcs11"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dbgna6p0yjufx" path="res://Scenes/Map/Rooms/Room2.tscn" id="4_yju8x"]
 [ext_resource type="PackedScene" uid="uid://g3u8nsf1g5sb" path="res://Scenes/Map/Rooms/Room3.tscn" id="5_urk12"]
 [ext_resource type="PackedScene" uid="uid://s1ubvxagdyb5" path="res://Scenes/Map/Rooms/Room4.tscn" id="6_lats3"]
+[ext_resource type="PackedScene" uid="uid://bt5u06nugw0il" path="res://Scenes/Map/Rooms/Room5.tscn" id="7_eo4jh"]
 
 [node name="Map" type="Node2D" node_paths=PackedStringArray("_rooms")]
 script = ExtResource("1_lcs11")
@@ -13,6 +14,6 @@ _rooms = [NodePath("EmptyRoom")]
 _roomsTargetAmount = 20
 _allowedDistanceToDeletingRoom = 4000.0
 _roomSize = Vector2(830, 830)
-_packedRooms = Array[PackedScene]([ExtResource("1_iio4a"), ExtResource("3_11lgl"), ExtResource("4_yju8x"), ExtResource("5_urk12"), ExtResource("6_lats3")])
+_packedRooms = Array[PackedScene]([ExtResource("1_iio4a"), ExtResource("3_11lgl"), ExtResource("4_yju8x"), ExtResource("5_urk12"), ExtResource("6_lats3"), ExtResource("7_eo4jh")])
 
 [node name="EmptyRoom" parent="." instance=ExtResource("1_iio4a")]

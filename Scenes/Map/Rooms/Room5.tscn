@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt5u06nugw0il"]
+
+[ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_4us67"]
+[ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="2_coa51"]
+[ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="3_0m5ew"]
+
+[node name="EmptyRoom" instance=ExtResource("1_4us67")]
+
+[node name="NavigationRegion2D" parent="." index="2"]
+position = Vector2(-12, -49)
+
+[node name="LeftWall2" parent="." index="3" instance=ExtResource("2_coa51")]
+position = Vector2(-95, 0)
+rotation = 1.5708
+
+[node name="SMGEnemy" parent="." index="4" instance=ExtResource("3_0m5ew")]
+position = Vector2(243, -268)
+
+[node name="SMGEnemy2" parent="." index="5" instance=ExtResource("3_0m5ew")]
+position = Vector2(272, 246)
