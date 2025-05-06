@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4cilfx80rxgt"]
 
 [ext_resource type="Script" uid="uid://b6wvp84brnr64" path="res://Scripts/Effects/MyParticles.cs" id="1_w637f"]
-[ext_resource type="Texture2D" uid="uid://tpa4tj0ikyq3" path="res://Textures/Particles/BloodDrop2.png" id="2_5ogji"]
+[ext_resource type="Texture2D" uid="uid://tpa4tj0ikyq3" path="res://Textures/Effects/BloodDrop2.png" id="2_5ogji"]
 
 [node name="ArmHitBloodParticles" type="Node2D" node_paths=PackedStringArray("_particlesToStartEmitting", "_particlesToWaitFor")]
 script = ExtResource("1_w637f")
