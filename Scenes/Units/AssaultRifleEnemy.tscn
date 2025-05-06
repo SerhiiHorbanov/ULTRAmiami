@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx57b7r2bv2lv"]
+[gd_scene load_steps=6 format=3 uid="uid://cx57b7r2bv2lv"]
 
 [ext_resource type="PackedScene" uid="uid://ckld4b4xs2rjm" path="res://Scenes/Units/Enemy.tscn" id="1_0y5pl"]
 [ext_resource type="PackedScene" uid="uid://p4t86keainuc" path="res://Scenes/BloodFountain.tscn" id="2_rtdfd"]
 [ext_resource type="Script" uid="uid://cbpeisoqjr1up" path="res://Scripts/Units/Movement/UnitMovement.cs" id="2_x408u"]
+[ext_resource type="Texture2D" uid="uid://bbj23jyfyklql" path="res://Textures/Units/AssaultRifleEnemy.png" id="3_x408u"]
 [ext_resource type="PackedScene" uid="uid://tc4t7u7hg3qc" path="res://Scenes/Weapons/Firearms/AssaultRifle.tscn" id="4_3d1a6"]
 
 [node name="AssaultRifleEnemy" node_paths=PackedStringArray("_unitMovement", "_weapon") instance=ExtResource("1_0y5pl")]
 _unitMovement = NodePath("UnitMovement")
 _weapon = NodePath("AssaultRifle")
 _deadVersion = ExtResource("2_rtdfd")
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("3_x408u")
 
 [node name="Timer" parent="EnemyController" index="0"]
 wait_time = 0.15
