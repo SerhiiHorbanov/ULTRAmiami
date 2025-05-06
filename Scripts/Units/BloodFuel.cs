@@ -12,7 +12,9 @@ public partial class BloodFuel : Node
 	
 	[Export] private float _damageMultiplier;
 	
-	[Export] private float _bloodUsageForMaintenance;
+	[Export] private float _bloodUsageForMaintenanceGrowthMultiplier;
+	[Export] private float _initialBloodUsageForMaintenance;
+	private float _bloodUsageForMaintenance;
 	
 	[Export] private float _bloodUsageForWalking;
 	[Export] private UnitMovement _movement;
@@ -24,7 +26,12 @@ public partial class BloodFuel : Node
 
 	[Signal]
 	public delegate void OnBloodChangedEventHandler(float newBlood);
-	
+
+	public override void _Ready()
+	{
+		_bloodUsageForMaintenance = _initialBloodUsageForMaintenance;
+	}
+
 	public override void _Process(double delta)
 	{
 		float bloodForMaintenance = (float)delta * GetBloodUsagePerSecond();
@@ -60,6 +67,13 @@ public partial class BloodFuel : Node
 		if (_blood > _bloodWall)
 			newBlood = float.Max(newBlood, _bloodWall);
 		_blood = newBlood;
+
+		float a = damage + (_bloodUsageForMaintenance / _initialBloodUsageForMaintenance);
+		float b = damage + (_bloodUsageForMaintenance / _initialBloodUsageForMaintenance);
+		_bloodUsageForMaintenance += _bloodUsageForMaintenanceGrowthMultiplier / float.Log2(a);
+		GD.Print(_bloodUsageForMaintenance);
+		GD.Print(float.Log2(a));
+		GD.Print(float.Log2(b));
 		EmitSignalOnBloodChanged(newBlood);
 	}
 
