@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://7lvjncparfhn"]
 
-[ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="1_r3g7n"]
+[ext_resource type="Texture2D" uid="uid://q0uqo8lewaxe" path="res://Textures/Level/Wall.png" id="2_na7em"]
 [ext_resource type="Script" uid="uid://b6wvp84brnr64" path="res://Scripts/Effects/MyParticles.cs" id="2_r3g7n"]
 
 [sub_resource type="Curve" id="Curve_r3g7n"]
@@ -15,7 +15,7 @@ _particlesToWaitFor = [NodePath("BulletWallHitParticles")]
 [node name="BulletWallHitParticles" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 6
-texture = ExtResource("1_r3g7n")
+texture = ExtResource("2_na7em")
 lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
