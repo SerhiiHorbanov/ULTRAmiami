@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://p4t86keainuc"]
 
 [ext_resource type="Script" uid="uid://berdvmqdwlsif" path="res://Scripts/Units/BloodFountain.cs" id="1_i7emm"]
-[ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="2_80ug7"]
+[ext_resource type="SpriteFrames" uid="uid://h37mmldiotac" path="res://Animations/BloodSplatter.tres" id="3_xcyvr"]
 
 [sub_resource type="Curve" id="Curve_80ug7"]
 _data = [Vector2(0, 1), 0.0, -1.1347, 0, 0, Vector2(1, 0.201509), 0.0, 0.0, 0, 0]
@@ -27,10 +27,11 @@ wait_time = 0.4
 one_shot = true
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-scale = Vector2(-1, -1)
-texture = ExtResource("2_80ug7")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("3_xcyvr")
+autoplay = "default"
+frame_progress = 0.668501
 
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
 [connection signal="body_exited" from="Area2D" to="." method="OnBodyExited"]
