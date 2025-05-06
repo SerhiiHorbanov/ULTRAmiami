@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cohtgch7dg8in"]
+[gd_scene load_steps=3 format=3 uid="uid://cohtgch7dg8in"]
 
 [ext_resource type="Script" uid="uid://b6wvp84brnr64" path="res://Scripts/Effects/MyParticles.cs" id="1_qfkrn"]
+[ext_resource type="Texture2D" uid="uid://tpa4tj0ikyq3" path="res://Textures/Particles/BloodDrop2.png" id="2_acusf"]
 
 [node name="BloodSplatter" type="Node2D" node_paths=PackedStringArray("_particlesToStartEmitting", "_particlesToWaitFor")]
 script = ExtResource("1_qfkrn")
@@ -10,6 +11,7 @@ _particlesToWaitFor = [NodePath("BigBloodSplatterParticles"), NodePath("SmallBlo
 [node name="BigBloodSplatterParticles" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 5
+texture = ExtResource("2_acusf")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
@@ -20,12 +22,13 @@ initial_velocity_min = 300.0
 initial_velocity_max = 500.0
 linear_accel_min = -2000.0
 linear_accel_max = -1000.0
-scale_amount_min = 3.0
-scale_amount_max = 3.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
 color = Color(1, 0, 0, 1)
 
 [node name="SmallBloodSplatter" type="CPUParticles2D" parent="."]
 emitting = false
+texture = ExtResource("2_acusf")
 lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
@@ -36,4 +39,6 @@ initial_velocity_min = 400.0
 initial_velocity_max = 700.0
 linear_accel_min = -1000.0
 linear_accel_max = -1000.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
 color = Color(1, 0, 0, 1)
