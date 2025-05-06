@@ -12,7 +12,6 @@ public partial class PlayerArmHitParticlesSpawner : Node2D
 	{
 		MyParticles particles = _particlesScene.Instantiate<MyParticles>();
 		particles.MakeSiblingOf(_treeSiblingOfParticles);
-		GD.Print(position);
 		particles.GlobalPosition = position;
 		particles.GlobalRotation = GlobalRotation;
 		particles.Emit();

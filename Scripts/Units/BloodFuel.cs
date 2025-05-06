@@ -71,10 +71,6 @@ public partial class BloodFuel : Node
 		float a = damage + (_bloodUsageForMaintenance / _initialBloodUsageForMaintenance);
 		float b = damage + (_bloodUsageForMaintenance / _initialBloodUsageForMaintenance);
 		_bloodUsageForMaintenance += _bloodUsageForMaintenanceGrowthMultiplier / float.Log2(a);
-		GD.Print(_bloodUsageForMaintenance);
-		GD.Print(float.Log2(a));
-		GD.Print(float.Log2(b));
-		EmitSignalOnBloodChanged(newBlood);
 	}
 
 	private float GetBloodUsagePerSecond()
