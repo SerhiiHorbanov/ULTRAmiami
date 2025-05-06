@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkrwcrlvwt6f4"]
+[gd_scene load_steps=3 format=3 uid="uid://dkrwcrlvwt6f4"]
 
 [ext_resource type="Script" uid="uid://mginfu5ah2nm" path="res://Scripts/UI/BloodBar.cs" id="1_r7doy"]
+
+[sub_resource type="Gradient" id="Gradient_r7doy"]
+offsets = PackedFloat32Array(0, 0.994937)
+colors = PackedColorArray(1, 0, 0, 1, 0.501961, 0, 0, 1)
 
 [node name="BloodBar" type="Control" node_paths=PackedStringArray("_fill", "_fill2")]
 layout_mode = 3
@@ -8,10 +12,14 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1_r7doy")
+_goingUpColor = Color(1, 0.12549, 0.12549, 1)
+_defaultColor = SubResource("Gradient_r7doy")
+_bloodDifferenceForGradientEndColor = 0.3
 _fill = NodePath("RightBar/Fill")
 _fill2 = NodePath("LeftBar/Fill")
 _min = 0.5
 _max = 9.5
+_deltaSamplesAmount = 20
 
 [node name="RightBar" type="ColorRect" parent="."]
 layout_mode = 1
