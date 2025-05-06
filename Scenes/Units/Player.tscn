@@ -70,9 +70,10 @@ _movement = NodePath("../PlayerMovement")
 [node name="PlayerScoreInitializer" type="Node" parent="." index="8"]
 script = ExtResource("10_nf6c1")
 
-[node name="MeleeAttacker" type="Node2D" parent="." index="9" node_paths=PackedStringArray("_attackArea", "_ignoredUnit")]
+[node name="MeleeAttacker" type="Node2D" parent="." index="9" node_paths=PackedStringArray("_attackArea", "_attackDurationTimer", "_ignoredUnit")]
 script = ExtResource("12_ehya8")
 _attackArea = NodePath("Area2D")
+_attackDurationTimer = NodePath("AttackDurationTimer")
 _maxStamina = 1.0
 _attackStaminaCost = 0.6
 _ignoredUnit = NodePath("..")
@@ -100,6 +101,10 @@ _endRotationDeg = 160.0
 script = ExtResource("15_ideyk")
 _treeSiblingOfParticles = NodePath("../..")
 _particlesScene = ExtResource("16_gkp25")
+
+[node name="AttackDurationTimer" type="Timer" parent="MeleeAttacker" index="3"]
+wait_time = 0.06
+one_shot = true
 
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]

@@ -8,7 +8,8 @@ namespace ULTRAmiami.Weapons;
 public partial class MeleeAttacker : Node2D
 {
 	[Export] private Area2D _attackArea;
-
+	[Export] private Timer _attackDurationTimer;
+	
 	[Export] private float _maxStamina;
 	private float _stamina;
 	[Export] private float _attackStaminaCost;
@@ -22,6 +23,9 @@ public partial class MeleeAttacker : Node2D
 	public delegate void OnAttackingEventHandler();
 	[Signal]
 	public delegate void OnHittingEventHandler(Vector2 globalPosition);
+	
+	private bool IsAttacking
+		=> !_attackDurationTimer.IsStopped();
 	
 	public override void _Ready()
 	{
@@ -43,19 +47,24 @@ public partial class MeleeAttacker : Node2D
 	
 	private void Attack()
 	{
+		_attackDurationTimer.Start();
 		_stamina -= _attackStaminaCost;
-		
-		Hit hit = new(Vector2.FromAngle(Rotation), _damage);
 		
 		foreach (Unit unit in _unitsInArea.Values)
 		{
-			unit.Hit(hit);
+			HitUnit(unit);
 			EmitSignalOnHitting(unit.GlobalPosition);
 		}
 		
 		EmitSignalOnAttacking();
 	}
 	
+	private void HitUnit(Unit unit)
+	{
+		Hit hit = new(Vector2.FromAngle(Rotation), _damage);
+		unit.Hit(hit);
+	}
+
 	private void OnBodyEntered(Node2D body)
 	{
 		Unit unit = body.GetAncestor<Unit>();
@@ -65,6 +74,12 @@ public partial class MeleeAttacker : Node2D
 
 		if (_ignoredUnit == unit)
 			return;
+
+		if (IsAttacking)
+		{
+			CallDeferred(MethodName.HitUnit, unit);
+			return;
+		}
 		
 		_unitsInArea.Add(body, unit);
 	}
