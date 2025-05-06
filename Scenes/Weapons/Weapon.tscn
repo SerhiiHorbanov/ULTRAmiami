@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="2_8gj08"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t511x"]
-radius = 60.0
+radius = 80.0
 
 [node name="Weapon" type="Node2D"]
 
@@ -32,6 +32,7 @@ one_shot = true
 attenuation = 5.0
 
 [node name="FailingShot" type="AudioStreamPlayer2D" parent="."]
+volume_db = 18.0
 max_distance = 500.0
 attenuation = 4.0
 

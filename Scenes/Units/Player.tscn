@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c4cilfx80rxgt" path="res://Scenes/Effects/ArmHitBloodParticles.tscn" id="16_gkp25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2egk"]
-size = Vector2(80, 60)
+size = Vector2(70, 80)
 
 [node name="Player" node_paths=PackedStringArray("_unitMovement", "_weapon") groups=["Player"] instance=ExtResource("1_33iby")]
 _unitMovement = NodePath("PlayerMovement")
@@ -62,7 +62,7 @@ _blood = 9.5
 _max = 10.0
 _bloodWall = 1.5
 _damageMultiplier = 0.3
-_bloodUsageForMaintenanceGrowthMultiplier = 0.02
+_bloodUsageForMaintenanceGrowthMultiplier = 0.01
 _initialBloodUsageForMaintenance = 0.1
 _bloodUsageForWalking = 0.6
 _movement = NodePath("../PlayerMovement")
@@ -73,15 +73,15 @@ script = ExtResource("10_nf6c1")
 [node name="MeleeAttacker" type="Node2D" parent="." index="9" node_paths=PackedStringArray("_attackArea", "_ignoredUnit")]
 script = ExtResource("12_ehya8")
 _attackArea = NodePath("Area2D")
-_maxStamina = 2.0
-_attackStaminaCost = 1.0
+_maxStamina = 1.0
+_attackStaminaCost = 0.6
 _ignoredUnit = NodePath("..")
 _damage = 4.0
 
 [node name="Area2D" type="Area2D" parent="MeleeAttacker" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttacker/Area2D" index="0"]
-position = Vector2(30, 0)
+position = Vector2(33, 2)
 shape = SubResource("RectangleShape2D_u2egk")
 debug_color = Color(1, 0, 0, 0.419608)
 
@@ -93,7 +93,7 @@ texture = ExtResource("13_0bpcd")
 offset = Vector2(-0.5, -4)
 script = ExtResource("14_udi2h")
 _restingRotationDeg = 90.0
-_speedDeg = 720.0
+_speedDeg = 360.0
 _endRotationDeg = 160.0
 
 [node name="ParticleSpawner" type="Node2D" parent="MeleeAttacker" index="2" node_paths=PackedStringArray("_treeSiblingOfParticles")]
