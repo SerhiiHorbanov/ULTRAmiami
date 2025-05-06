@@ -87,7 +87,7 @@ public partial class Bullet : Node2D
 
 	private void CreateParticlesOnCollisionPoint(PackedScene particlesScene)
 	{
-		MyParticles particles = _bloodSplatterParticles.Instantiate<MyParticles>();
+		MyParticles particles = particlesScene.Instantiate<MyParticles>();
 		
 		particles.MakeSiblingOf(this);
 		particles.GlobalRotation = GlobalRotation;
