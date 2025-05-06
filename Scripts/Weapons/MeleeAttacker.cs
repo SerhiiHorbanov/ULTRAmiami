@@ -18,6 +18,9 @@ public partial class MeleeAttacker : Node2D
 	
 	private readonly Dictionary<Node2D, Unit> _unitsInArea = [];
 
+	[Signal]
+	public delegate void OnAttackingEventHandler();
+	
 	public override void _Ready()
 	{
 		_stamina = _maxStamina;
@@ -46,6 +49,8 @@ public partial class MeleeAttacker : Node2D
 		{
 			unit.Hit(hit);
 		}
+		
+		EmitSignalOnAttacking();
 	}
 	
 	private void OnBodyEntered(Node2D body)
