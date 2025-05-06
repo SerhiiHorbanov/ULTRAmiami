@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=18 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://7xnvw4rwv2x7" path="res://Scripts/Weapons/MeleeAttacker.cs" id="12_ehya8"]
 [ext_resource type="Texture2D" uid="uid://d1ne5p0x03afh" path="res://Textures/Units/V0Arm.png" id="13_0bpcd"]
 [ext_resource type="Script" uid="uid://p0bxinvlt1sm" path="res://Scripts/Units/PlayerArmAnimator.cs" id="14_udi2h"]
+[ext_resource type="Script" uid="uid://bfttqc36e8iud" path="res://Scripts/Effects/PlayerArmHitParticlesSpawner.cs" id="15_ideyk"]
+[ext_resource type="PackedScene" uid="uid://c4cilfx80rxgt" path="res://Scenes/Effects/ArmHitBloodParticles.tscn" id="16_gkp25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2egk"]
 size = Vector2(80, 60)
@@ -83,18 +85,25 @@ shape = SubResource("RectangleShape2D_u2egk")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Arm" type="Sprite2D" parent="MeleeAttacker" index="1"]
-position = Vector2(5, -20)
+position = Vector2(6, -20)
 rotation = 1.5708
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("13_0bpcd")
+offset = Vector2(-0.5, -4)
 script = ExtResource("14_udi2h")
 _restingRotationDeg = 90.0
 _speedDeg = 720.0
 _endRotationDeg = 160.0
 
+[node name="ParticleSpawner" type="Node2D" parent="MeleeAttacker" index="2" node_paths=PackedStringArray("_treeSiblingOfParticles")]
+script = ExtResource("15_ideyk")
+_treeSiblingOfParticles = NodePath("../..")
+_particlesScene = ExtResource("16_gkp25")
+
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
 [connection signal="RunOutOfBlood" from="BloodFuel" to="." method="Die"]
 [connection signal="OnAttacking" from="MeleeAttacker" to="MeleeAttacker/Arm" method="StartAnimation"]
+[connection signal="OnHitting" from="MeleeAttacker" to="MeleeAttacker/ParticleSpawner" method="SpawnParticles"]
 [connection signal="body_entered" from="MeleeAttacker/Area2D" to="MeleeAttacker" method="OnBodyEntered"]
 [connection signal="body_exited" from="MeleeAttacker/Area2D" to="MeleeAttacker" method="OnBodyExited"]

@@ -20,6 +20,8 @@ public partial class MeleeAttacker : Node2D
 
 	[Signal]
 	public delegate void OnAttackingEventHandler();
+	[Signal]
+	public delegate void OnHittingEventHandler(Vector2 globalPosition);
 	
 	public override void _Ready()
 	{
@@ -48,6 +50,7 @@ public partial class MeleeAttacker : Node2D
 		foreach (Unit unit in _unitsInArea.Values)
 		{
 			unit.Hit(hit);
+			EmitSignalOnHitting(unit.GlobalPosition);
 		}
 		
 		EmitSignalOnAttacking();
