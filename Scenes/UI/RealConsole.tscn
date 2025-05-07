@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://5iv5ppa52n8j"]
+[gd_scene load_steps=12 format=3 uid="uid://5iv5ppa52n8j"]
 
 [ext_resource type="Theme" uid="uid://bf6ih0083vpee" path="res://UIThemes/Console.tres" id="1_as4ja"]
 [ext_resource type="Script" uid="uid://cxo12y7mxikny" path="res://Scripts/UI/Console.cs" id="2_88034"]
+[ext_resource type="PackedScene" uid="uid://ustetj26a1sv" path="res://Scenes/Weapons/Firearms/Shotgun.tscn" id="3_oq62s"]
+[ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Firearms/Pistol.tscn" id="4_s5a2j"]
+[ext_resource type="PackedScene" uid="uid://d3laytvatekjx" path="res://Scenes/Weapons/Firearms/Submachinegun.tscn" id="5_pa8hy"]
+[ext_resource type="PackedScene" uid="uid://tc4t7u7hg3qc" path="res://Scenes/Weapons/Firearms/AssaultRifle.tscn" id="6_7o5ks"]
+[ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="7_0xlq0"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="8_r6ofq"]
+[ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="9_nh4sh"]
+[ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="10_pchh6"]
+[ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="11_yb7we"]
 
 [node name="RealConsole" type="Control" node_paths=PackedStringArray("_lineEdit", "_text", "_disappearingPart")]
 layout_mode = 3
@@ -16,13 +25,34 @@ _text = NodePath("BackingRect/RichTextLabel")
 _disappearingPart = NodePath("BackingRect")
 _helpText = "This is a debug console
 These are commands available:
-	echo [args]
-		outputs [args]
 	cls
 		clears console
+	echo [text]
+		outputs [text]
 	help
 		outputs this text
-		"
+	scenes
+		lists all available scenes
+	spawn [scenename]
+		instantiates a scene"
+_scenes = Dictionary[String, PackedScene]({
+"ar": ExtResource("6_7o5ks"),
+"ar_enemy": ExtResource("9_nh4sh"),
+"assault_rifle": ExtResource("6_7o5ks"),
+"assault_rifle_enemy": ExtResource("9_nh4sh"),
+"pistol": ExtResource("4_s5a2j"),
+"pistol_enemy": ExtResource("8_r6ofq"),
+"pl": ExtResource("7_0xlq0"),
+"player": ExtResource("7_0xlq0"),
+"sg": ExtResource("3_oq62s"),
+"sg_enemy": ExtResource("10_pchh6"),
+"shotgun": ExtResource("3_oq62s"),
+"shotgun_enemy": ExtResource("10_pchh6"),
+"smg": ExtResource("5_pa8hy"),
+"smg_enemy": ExtResource("11_yb7we"),
+"submachinegun": ExtResource("5_pa8hy"),
+"submachinegun_enemy": ExtResource("11_yb7we")
+})
 
 [node name="BackingRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -39,10 +69,11 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -122.0
+offset_top = -53.0
 grow_horizontal = 2
 grow_vertical = 0
 placeholder_text = "Enter command here. Type help for list of commands"
+keep_editing_on_text_submit = true
 select_all_on_focus = true
 caret_blink = true
 
@@ -50,6 +81,9 @@ caret_blink = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 368.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 436.0
 grow_horizontal = 2
 bbcode_enabled = true

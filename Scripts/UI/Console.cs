@@ -12,7 +12,6 @@ public partial class Console : Control
 	[Export] private Control _disappearingPart;
 	private bool _isOnScreen;
 	
-	
 	private readonly List<string> _history = [];
 	private int _currentCommandInHistoryIndex;
 
@@ -21,6 +20,9 @@ public partial class Console : Control
 	private readonly static StringName UITextCaretDown = new("ui_text_caret_down");
 
 	[Export(PropertyHint.MultilineText)] private string _helpText;
+	
+	[Export(PropertyHint.File)] private string _scenesPath = "res://Scenes/";
+	[Export] private Godot.Collections.Dictionary<string, PackedScene> _scenes;
 	
 	public override void _Ready()
 	{
@@ -48,7 +50,7 @@ public partial class Console : Control
 		_disappearingPart.Visible = _isOnScreen;
 	}
 
-	public void Echo(string text)
+	public void Echo(string text = "")
 	{
 		_text.AppendText(text);
 		_text.AppendText("\n");
@@ -100,7 +102,7 @@ public partial class Console : Control
 	{
 		string[] words = command.Split(' ');
 		
-		Echo(command);
+		Echo(">>> " + command);
 		
 		switch (words[0])
 		{
@@ -113,9 +115,59 @@ public partial class Console : Control
 			case "help":
 				Echo(_helpText);
 				break;
+			case "spawn":
+				Spawn(words[1], words.Skip(2).ToArray());
+				break;
+			case "scenes":
+				ShowScenes();
+				break;
 			default:
-				Echo("[color=red]Invalid command: [color=white]" + command);
+				Echo($"[color=red]Invalid command:[color=white] {command}");
 				break;
 		}
+	}
+
+	private void ShowScenes()
+	{
+		Echo("Scenes:");
+		foreach ((string name, PackedScene scene) in _scenes)
+		{
+			Echo($"\t{name}:");
+			Echo($"\t\tresource path: {scene.ResourcePath}");
+			Echo();
+		}
+		
+	}
+
+	private void Spawn(string scene, string[] args)
+	{
+		if (_scenes.TryGetValue(scene, out PackedScene packedScene))
+		{
+			Spawn(packedScene, args);
+			return;
+		}
+
+		if (!scene.EndsWith(".tscn"))
+		{
+			Echo($"[color=red]Couldn't find scene:[color=white] \"{scene}\"");
+			return;
+		}
+
+		if (!scene.StartsWith(_scenesPath))
+			scene = _scenesPath + scene;
+		
+		if (!ResourceLoader.Exists(scene))
+		{
+			Echo($"[color=red]Couldn't find scene resource:[color=white] \"{scene}\"");
+			return;
+		}
+		
+		Spawn(ResourceLoader.Load<PackedScene>(scene), args);
+	}
+	private void Spawn(PackedScene scene, string[] args)
+	{
+		Node instance = scene.Instantiate();
+		GetTree().CurrentScene.AddChild(instance);
+		Echo($"Spawned {instance.Name}");
 	}
 }
