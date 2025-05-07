@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://5iv5ppa52n8j"]
+
+[ext_resource type="Theme" uid="uid://bf6ih0083vpee" path="res://UIThemes/Console.tres" id="1_as4ja"]
+[ext_resource type="Script" uid="uid://cxo12y7mxikny" path="res://Scripts/UI/Console.cs" id="2_88034"]
+
+[node name="RealConsole" type="Control" node_paths=PackedStringArray("_lineEdit", "_text", "_disappearingPart")]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 498.0
+grow_horizontal = 2
+theme = ExtResource("1_as4ja")
+script = ExtResource("2_88034")
+_lineEdit = NodePath("BackingRect/LineEdit")
+_text = NodePath("BackingRect/RichTextLabel")
+_disappearingPart = NodePath("BackingRect")
+_helpText = "This is a debug console
+These are commands available:
+	echo [args]
+		outputs [args]
+	cls
+		clears console
+	help
+		outputs this text
+		"
+
+[node name="BackingRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="LineEdit" type="LineEdit" parent="BackingRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -122.0
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Enter command here. Type help for list of commands"
+select_all_on_focus = true
+caret_blink = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BackingRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 368.0
+grow_horizontal = 2
+bbcode_enabled = true
