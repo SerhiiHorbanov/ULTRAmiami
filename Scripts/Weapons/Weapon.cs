@@ -81,6 +81,7 @@ public abstract partial class Weapon : Node2D
 	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
 	{
 		_unit = unit;
+		_reloadingAudio.Stop();
 
 		if (unit is null)
 		{
