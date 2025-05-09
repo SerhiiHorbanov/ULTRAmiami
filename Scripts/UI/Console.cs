@@ -12,7 +12,7 @@ public partial class Console : Control
 	[Export] private Control _disappearingPart;
 	private bool _isOnScreen;
 	
-	private readonly List<string> _history = [];
+	private readonly static List<string> History = [];
 	private int _currentCommandInHistoryIndex;
 
 	private readonly static StringName ConsoleOpenClose = new("console open close");
@@ -70,28 +70,28 @@ public partial class Console : Control
 	private void MoveAlongHistory(int delta)
 	{
 		_currentCommandInHistoryIndex += delta;
-		_currentCommandInHistoryIndex = int.Clamp(_currentCommandInHistoryIndex, 0, _history.Count);
+		_currentCommandInHistoryIndex = int.Clamp(_currentCommandInHistoryIndex, 0, History.Count);
 
-		if (_currentCommandInHistoryIndex == _history.Count)
+		if (_currentCommandInHistoryIndex == History.Count)
 		{
 			_lineEdit.Text = "";
 			return;
 		}
-		_lineEdit.Text = _history[_currentCommandInHistoryIndex];
+		_lineEdit.Text = History[_currentCommandInHistoryIndex];
 	}
 	
 	private void TryAddToHistory(string line)
 	{
-		if (_history.Count == 0)
-			_history.Add(line);
-		else if (_history[^1] != line)
-			_history.Add(line);
+		if (History.Count == 0)
+			History.Add(line);
+		else if (History[^1] != line)
+			History.Add(line);
 	}
 	
 	public void EnterCommand(string line)
 	{
 		TryAddToHistory(line);
-		_currentCommandInHistoryIndex = _history.Count;
+		_currentCommandInHistoryIndex = History.Count;
 
 		ResolveCommand(line);
 		
