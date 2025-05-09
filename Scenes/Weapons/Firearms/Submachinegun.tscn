@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3laytvatekjx"]
+[gd_scene load_steps=7 format=3 uid="uid://d3laytvatekjx"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_cu785"]
 [ext_resource type="PackedScene" uid="uid://ckrt3udf0e7bu" path="res://Scenes/Projectiles/SMGBullet.tscn" id="2_nv5f2"]
 [ext_resource type="Texture2D" uid="uid://cak7vtt7shult" path="res://Textures/Weapons/Uzi.png" id="3_pbfh6"]
 [ext_resource type="Texture2D" uid="uid://dsh74k5g71g1u" path="res://Textures/Weapons/UziNoMag.png" id="4_mdfs6"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_xjwgq"]
+[ext_resource type="AudioStream" uid="uid://cq2kl2pdko5yi" path="res://Audio/SFX/SMGReload.wav" id="6_txk56"]
 
 [node name="Submachinegun" instance=ExtResource("1_cu785")]
 _bullet = ExtResource("2_nv5f2")
@@ -26,3 +27,7 @@ wait_time = 1.5
 [node name="Shot" parent="." index="3"]
 stream = ExtResource("5_xjwgq")
 volume_db = -8.0
+
+[node name="Reload" parent="." index="5"]
+stream = ExtResource("6_txk56")
+volume_db = 12.0
