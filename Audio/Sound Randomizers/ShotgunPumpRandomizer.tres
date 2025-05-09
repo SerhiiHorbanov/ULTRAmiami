@@ -1,0 +1,10 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://cuyxsptouasoo"]
+
+[ext_resource type="AudioStream" uid="uid://cqyu3p4c10vvv" path="res://Audio/SFX/ShotgunPump.wav" id="1_a286j"]
+[ext_resource type="AudioStream" uid="uid://cwtgpsqx8swnd" path="res://Audio/SFX/ShotgunPump2.wav" id="2_ksyh1"]
+
+[resource]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("1_a286j")
+stream_1/stream = ExtResource("2_ksyh1")

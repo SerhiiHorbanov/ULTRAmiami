@@ -32,6 +32,8 @@ public abstract partial class Weapon : Node2D
 	
 	public event Action<int> OnAmmoChanged;
 	public event Action OnReloadFinished;
+	public event Action<int> OnShoot;
+	public event Action OnUnitChanged;
 	
 	protected Weapon()
 	{
@@ -75,13 +77,14 @@ public abstract partial class Weapon : Node2D
 	public override void _Ready()
 	{
 		_droppedNotPickuppable.GetParent().RemoveChild(_droppedNotPickuppable);
-		_reloadTimer.Timeout += InstantReload;
+		_reloadTimer.Timeout += FinishReloading;
 	}
 
 	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
 	{
 		_unit = unit;
 		_reloadingAudio.Stop();
+		OnUnitChanged?.Invoke();
 
 		if (unit is null)
 		{
@@ -92,7 +95,7 @@ public abstract partial class Weapon : Node2D
 		Reparent(unit);
 		Position = Vector2.Zero;
 		RemoveChild(_dropped);
-		InstantReload();
+		SetMaxAmmo();
 	}
 
 	private void Drop(bool isPickUppable)
@@ -152,11 +155,16 @@ public abstract partial class Weapon : Node2D
 		_reloadingAudio?.Play();
 	}
 	
-	private void InstantReload()
+	private void FinishReloading()
+	{
+		SetMaxAmmo();
+		OnReloadFinished?.Invoke();
+	}
+
+	private void SetMaxAmmo()
 	{
 		_ammo = _maxAmmo;
 		OnAmmoChanged?.Invoke(_ammo);
-		OnReloadFinished?.Invoke();
 	}
 	
 	private void ShootAndDoRelatedProcesses()
@@ -169,6 +177,7 @@ public abstract partial class Weapon : Node2D
 		_ammo--;
 		_shootingAudio?.Play();
 		OnAmmoChanged?.Invoke(_ammo);
+		OnShoot?.Invoke(_ammo);
 	}
 
 	private void ShootWithSpread()

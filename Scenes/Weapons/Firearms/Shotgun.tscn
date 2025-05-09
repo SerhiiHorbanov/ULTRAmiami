@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ustetj26a1sv"]
+[gd_scene load_steps=8 format=3 uid="uid://ustetj26a1sv"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_hp2vk"]
 [ext_resource type="PackedScene" uid="uid://cjmxtn0xwbfp6" path="res://Scenes/Projectiles/ShotgunBullet.tscn" id="2_1jhyr"]
 [ext_resource type="AudioStream" uid="uid://dppjh7fse8l2q" path="res://Audio/Sound Randomizers/Shotgun Shot Randomizer.tres" id="2_4xjk2"]
 [ext_resource type="Texture2D" uid="uid://df6nqjcc5q2jj" path="res://Textures/Weapons/ShotgunPickUppable.png" id="3_wd4x3"]
 [ext_resource type="Texture2D" uid="uid://cwe8k0jbe2jyo" path="res://Textures/Weapons/Shotgun.png" id="3_wngdm"]
+[ext_resource type="AudioStream" uid="uid://cuyxsptouasoo" path="res://Audio/Sound Randomizers/ShotgunPumpRandomizer.tres" id="6_5hocu"]
+[ext_resource type="Script" uid="uid://di761nsqnfjgd" path="res://Scripts/Weapons/Audio/ShotgunPumper.cs" id="7_gnv3i"]
 
 [node name="Shotgun" instance=ExtResource("1_hp2vk")]
 _bullet = ExtResource("2_1jhyr")
@@ -25,3 +27,15 @@ wait_time = 4.0
 
 [node name="Shot" parent="." index="3"]
 stream = ExtResource("2_4xjk2")
+
+[node name="Pump" type="AudioStreamPlayer2D" parent="." index="6" node_paths=PackedStringArray("_shotgun", "_pumpingTimer")]
+stream = ExtResource("6_5hocu")
+attenuation = 1.5
+max_polyphony = 3
+script = ExtResource("7_gnv3i")
+_shotgun = NodePath("..")
+_pumpingTimer = NodePath("TimerUntilPumping")
+
+[node name="TimerUntilPumping" type="Timer" parent="Pump" index="0"]
+wait_time = 0.2
+one_shot = true
