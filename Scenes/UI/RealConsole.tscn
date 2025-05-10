@@ -29,6 +29,8 @@ These are commands available:
 		clears console
 	echo [text]
 		outputs [text]
+	godmode
+		toggles godmode
 	help
 		outputs this text
 	scenes

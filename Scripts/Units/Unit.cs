@@ -17,7 +17,7 @@ public partial class Unit : CharacterBody2D
 	[Export] private bool _dropsPickUppableWeapon;
 	
 	[ExportGroup("Death")]
-	[Export] private bool _godMode;
+	[Export] public bool GodMode;
 	[Export] private PackedScene _deadVersion;
 
 	public readonly List<DroppedWeapon> EnteredDroppedWeapons = [];
@@ -64,7 +64,7 @@ public partial class Unit : CharacterBody2D
 	
 	public void Die(Hit hit)
 	{
-		if (_godMode || _isDead)
+		if (GodMode || _isDead)
 			return;
 		
 		if (!IsPlayer)

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using ULTRAmiami.Units;
 
 namespace ULTRAmiami.UI;
 
@@ -20,7 +21,8 @@ public partial class Console : Control
 	private readonly static StringName UITextCaretDown = new("ui_text_caret_down");
 
 	[Export(PropertyHint.MultilineText)] private string _helpText;
-	
+
+	[Export] private Unit _player;
 	[Export(PropertyHint.File)] private string _scenesPath = "res://Scenes/";
 	[Export] private Godot.Collections.Dictionary<string, PackedScene> _scenes;
 	
@@ -120,6 +122,9 @@ public partial class Console : Control
 				break;
 			case "scenes":
 				ShowScenes();
+				break;
+			case "godmode":
+				_player.GodMode = !_player.GodMode;
 				break;
 			default:
 				Echo($"[color=red]Invalid command:[color=white] {command}");
