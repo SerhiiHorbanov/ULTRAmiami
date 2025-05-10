@@ -4,7 +4,7 @@
 
 [sub_resource type="Gradient" id="Gradient_r7doy"]
 offsets = PackedFloat32Array(0, 0.994937)
-colors = PackedColorArray(1, 0, 0, 1, 0.501961, 0, 0, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.25098, 0, 0, 1)
 
 [node name="BloodBar" type="Control" node_paths=PackedStringArray("_fill", "_fill2")]
 layout_mode = 3
