@@ -18,7 +18,7 @@ public partial class ShotgunPumper : AudioStreamPlayer2D
 
 	public override void _ExitTree()
 	{
-		//Stop();
+		Stop();
 	}
 
 	private void TryPumping(int ammo)
