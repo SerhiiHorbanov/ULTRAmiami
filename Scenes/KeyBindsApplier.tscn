@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://djdbtpushda4k"]
+
+[ext_resource type="Script" uid="uid://b0gjnoagnb54x" path="res://Scripts/KeyBindsApplier.cs" id="1_j13px"]
+[ext_resource type="Resource" uid="uid://deiw2nl0mcsei" path="res://MiscResources/KeyBinds.tres" id="2_p8twm"]
+
+[node name="KeyBindsApplier" type="Node"]
+script = ExtResource("1_j13px")
+_keyBinds = ExtResource("2_p8twm")
