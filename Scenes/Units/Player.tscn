@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=22 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://c4cilfx80rxgt" path="res://Scenes/Effects/ArmHitBloodParticles.tscn" id="16_gkp25"]
 [ext_resource type="AnimationLibrary" uid="uid://bierrju431t8h" path="res://MiscResources/Animations/PlayerArm.tres" id="17_c6vqk"]
 [ext_resource type="AudioStream" uid="uid://bul1g3ey30dhr" path="res://Audio/Sound Randomizers/ArmAttackSwooshRandomizer.tres" id="19_10dhr"]
+[ext_resource type="AudioStream" uid="uid://c2da3v5sudved" path="res://Audio/Sound Randomizers/MeleeHitSoundRandomizer.tres" id="20_hese3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2egk"]
 size = Vector2(70, 80)
@@ -73,7 +74,7 @@ _movement = NodePath("../PlayerMovement")
 [node name="PlayerScoreInitializer" type="Node" parent="." index="8"]
 script = ExtResource("10_nf6c1")
 
-[node name="MeleeAttacker" type="Node2D" parent="." index="9" node_paths=PackedStringArray("_attackArea", "_attackDurationTimer", "_ignoredUnit", "_attackAudio")]
+[node name="MeleeAttacker" type="Node2D" parent="." index="9" node_paths=PackedStringArray("_attackArea", "_attackDurationTimer", "_ignoredUnit", "_attackAudio", "_hitAudio")]
 script = ExtResource("12_ehya8")
 _attackArea = NodePath("Area2D")
 _attackDurationTimer = NodePath("AttackDurationTimer")
@@ -82,6 +83,7 @@ _attackStaminaCost = 0.6
 _ignoredUnit = NodePath("..")
 _damage = 4.0
 _attackAudio = NodePath("ArmAttackSwooshRandomizer")
+_hitAudio = NodePath("HitRandomizer")
 
 [node name="Area2D" type="Area2D" parent="MeleeAttacker" index="0"]
 
@@ -122,8 +124,12 @@ _animationName = &"attack"
 
 [node name="ArmAttackSwooshRandomizer" type="AudioStreamPlayer2D" parent="MeleeAttacker" index="5"]
 stream = ExtResource("19_10dhr")
-volume_db = -12.0
+volume_db = -18.0
 max_polyphony = 2
+
+[node name="HitRandomizer" type="AudioStreamPlayer2D" parent="MeleeAttacker" index="6"]
+stream = ExtResource("20_hese3")
+volume_db = -5.0
 
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]

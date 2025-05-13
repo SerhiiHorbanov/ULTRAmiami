@@ -18,6 +18,7 @@ public partial class MeleeAttacker : Node2D
 	[Export] private float _damage;
 
 	[Export] private AudioStreamPlayer2D _attackAudio;
+	[Export] private AudioStreamPlayer2D _hitAudio;
 	
 	private readonly Dictionary<Node2D, Unit> _unitsInArea = [];
 
@@ -64,6 +65,8 @@ public partial class MeleeAttacker : Node2D
 	
 	private void HitUnit(Unit unit)
 	{
+		_attackAudio.Stop();
+		_hitAudio.Play();
 		Hit hit = new(Vector2.FromAngle(Rotation), _damage);
 		unit.Hit(hit);
 	}
