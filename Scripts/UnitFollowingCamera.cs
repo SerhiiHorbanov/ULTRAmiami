@@ -76,7 +76,7 @@ public partial class UnitFollowingCamera : Camera2D
         else
             DoLinearMovement(delta);
         
-        _positionRelativeToUnit += _unit.Velocity * _velocityOffsetMultiplier;
+        _positionRelativeToUnit += _unit.Velocity * delta * _velocityOffsetMultiplier;
         
         UpdatePosition();
     }

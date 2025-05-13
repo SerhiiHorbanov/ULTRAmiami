@@ -9,4 +9,4 @@ _maxInputDistanceFromUnit = 400.0
 _linearMovementSpeed = 300.0
 _lerpMovementSpeed = 10.0
 _linearMovementThreshold = 50.0
-_velocityOffsetMultiplier = -0.01
+_velocityOffsetMultiplier = -1.0
