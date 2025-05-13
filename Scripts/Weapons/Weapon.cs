@@ -26,8 +26,8 @@ public abstract partial class Weapon : Node2D
 	[Export] private AudioStreamPlayer2D _shootingAudio;
 	[Export] private AudioStreamPlayer2D _failingShotAudio;
 	[Export] private AudioStreamPlayer2D _reloadingAudio;
-	
-	private Unit _unit;
+
+	public Unit Unit { get; private set; }
 	public Vector2 PointingAt;
 	
 	public event Action<int> OnAmmoChanged;
@@ -42,7 +42,7 @@ public abstract partial class Weapon : Node2D
 
 	public bool IsAutomatic
 		=> _isAutomatic;
-	
+
 	private ulong MicroSecondsBetweenShots
 		=> (ulong)(1 / _fireRate * 1_000_000);
 	
@@ -50,13 +50,13 @@ public abstract partial class Weapon : Node2D
 		=> Time.GetTicksUsec() - _lastShotMicroSeconds;
 
 	private bool IsDropped
-		=> _unit is null;
+		=> Unit is null;
 	
 	public Vector2 WeaponPosition
-		=> IsDropped ? _dropped.Position : _unit.Position;
+		=> IsDropped ? _dropped.Position : Unit.Position;
 	
 	public Vector2 GlobalWeaponPosition
-		=> IsDropped ? _dropped.GlobalPosition : _unit.GlobalPosition;
+		=> IsDropped ? _dropped.GlobalPosition : Unit.GlobalPosition;
 	
 	public Vector2 RelativePointingAt
 		=> PointingAt - GlobalWeaponPosition;
@@ -82,7 +82,7 @@ public abstract partial class Weapon : Node2D
 
 	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
 	{
-		_unit = unit;
+		Unit = unit;
 		_reloadingAudio.Stop();
 		OnUnitChanged?.Invoke();
 

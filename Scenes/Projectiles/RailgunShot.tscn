@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://csd02hl7qd1g4"]
+
+[ext_resource type="Script" uid="uid://de1ui3jpquxp" path="res://Scripts/Weapons/Projectiles/RailgunShot.cs" id="1_hxi76"]
+
+[node name="RailgunShot" type="Node2D" node_paths=PackedStringArray("_rayCast")]
+script = ExtResource("1_hxi76")
+_rayCast = NodePath("RayCast2D")
+_length = 10000.0
+_damage = 7.0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0)

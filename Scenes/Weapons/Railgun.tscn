@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg0s6f1srg0bq"]
+
+[ext_resource type="PackedScene" uid="uid://ctepmc8qidog4" path="res://Scenes/Weapons/Weapon.tscn" id="1_a138t"]
+[ext_resource type="Script" uid="uid://dtppgcjudqoi1" path="res://Scripts/Weapons/Railgun.cs" id="2_pbn1j"]
+[ext_resource type="Texture2D" uid="uid://cl6vcuf8m4asq" path="res://Textures/Weapons/Railgun.png" id="3_8c8qw"]
+[ext_resource type="PackedScene" uid="uid://csd02hl7qd1g4" path="res://Scenes/Projectiles/RailgunShot.tscn" id="3_pbn1j"]
+[ext_resource type="Texture2D" uid="uid://b37w5avb74v16" path="res://Textures/Weapons/RailgunNotPickuppable.png" id="4_k2u73"]
+
+[node name="Railgun" node_paths=PackedStringArray("_reloadTimer", "_dropped", "_droppedNotPickuppable", "_shootingAudio", "_failingShotAudio", "_reloadingAudio") instance=ExtResource("1_a138t")]
+script = ExtResource("2_pbn1j")
+_projectileScene = ExtResource("3_pbn1j")
+_fireRate = 1.0
+_maxAmmo = 1
+_reloadTimer = NodePath("ReloadTimer")
+_dropped = NodePath("Dropped")
+_droppedNotPickuppable = NodePath("DroppedNotPickuppable")
+_shootingAudio = NodePath("Shot")
+_failingShotAudio = NodePath("FailingShot")
+_reloadingAudio = NodePath("Reload")
+
+[node name="Dropped" parent="." index="0" node_paths=PackedStringArray("_weapon")]
+_weapon = NodePath("..")
+
+[node name="Sprite2D" parent="Dropped" index="0"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_8c8qw")
+
+[node name="DroppedNotPickuppable" parent="." index="1"]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_k2u73")
