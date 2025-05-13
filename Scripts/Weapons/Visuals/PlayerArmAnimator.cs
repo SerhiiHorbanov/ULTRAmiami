@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ULTRAmiami.Units;
+namespace ULTRAmiami.Weapons.Visuals;
 
 public partial class PlayerArmAnimator : AnimationPlayer
 {

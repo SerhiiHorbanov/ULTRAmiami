@@ -1,6 +1,7 @@
 using Godot;
+using ULTRAmiami.Data;
 
-namespace ULTRAmiami;
+namespace ULTRAmiami.Initialization;
 
 public partial class PlayerScoreInitializer : Node
 {

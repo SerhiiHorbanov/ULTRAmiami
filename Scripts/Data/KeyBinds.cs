@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-namespace ULTRAmiami.Resources;
+namespace ULTRAmiami.Data;
 
 [GlobalClass]
 public partial class KeyBinds : Resource

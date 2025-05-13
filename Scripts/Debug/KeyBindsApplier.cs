@@ -1,7 +1,7 @@
 using Godot;
-using ULTRAmiami.Resources;
+using ULTRAmiami.Data;
 
-namespace ULTRAmiami;
+namespace ULTRAmiami.Debug;
 
 public partial class KeyBindsApplier : Node
 {

@@ -1,8 +1,7 @@
 using Godot;
-using ULTRAmiami.Controllers;
 using ULTRAmiami.Units;
 
-namespace ULTRAmiami;
+namespace ULTRAmiami.Debug;
 
 public partial class TestEnemySpawner : Node
 {

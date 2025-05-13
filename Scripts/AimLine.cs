@@ -1,6 +1,7 @@
 using Godot;
-using System;
 using ULTRAmiami.Units;
+
+namespace ULTRAmiami;
 
 public partial class AimLine : Line2D
 {

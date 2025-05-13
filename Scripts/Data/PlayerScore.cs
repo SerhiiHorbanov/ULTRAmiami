@@ -1,4 +1,4 @@
-namespace ULTRAmiami;
+namespace ULTRAmiami.Data;
 
 public struct PlayerScore
 {
