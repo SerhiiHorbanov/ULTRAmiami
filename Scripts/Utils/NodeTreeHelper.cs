@@ -4,7 +4,7 @@ namespace ULTRAmiami.Utils;
 
 public static class NodeTreeHelper
 {
-	public static T GetChild<T>(this Node node) where T : Node
+	public static T GetChild<T>(this Node node) where T : class
 	{
 		foreach (Node child in node.GetChildren())
 			if (child is T t)
@@ -12,7 +12,7 @@ public static class NodeTreeHelper
 		return null;
 	}
 	
-	public static T GetAncestor<T>(this Node node) where T : Node
+	public static T GetAncestor<T>(this Node node) where T : class
 	{
 		while (node != null)
 		{
