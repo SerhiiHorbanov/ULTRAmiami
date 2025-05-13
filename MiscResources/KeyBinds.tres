@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="KeyBinds" load_steps=5 format=3 uid="uid://deiw2nl0mcsei"]
 
-[ext_resource type="Script" uid="uid://cws5gvxdpmxbc" path="res://Scripts/Resources/KeyBind.cs" id="1_xvmno"]
-[ext_resource type="Script" uid="uid://cuyp0s63ie7lb" path="res://Scripts/Resources/KeyBinds.cs" id="2_sifqi"]
+[ext_resource type="Script" uid="uid://cws5gvxdpmxbc" path="res://Scripts/Data/KeyBind.cs" id="1_xvmno"]
+[ext_resource type="Script" uid="uid://cuyp0s63ie7lb" path="res://Scripts/Data/KeyBinds.cs" id="2_sifqi"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_sifqi"]
 device = -1

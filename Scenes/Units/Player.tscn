@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dr8j3gjenfena" path="res://Audio/SFX/V0DeathScream.wav" id="7_g6b54"]
 [ext_resource type="Script" uid="uid://dhi603ffh8sbh" path="res://Scripts/Units/PlayerDeathSound.cs" id="8_jokor"]
 [ext_resource type="Script" uid="uid://70y5w1gml3pe" path="res://Scripts/Units/BloodFuel.cs" id="9_jokor"]
-[ext_resource type="Script" uid="uid://d2ccc8rp3eho5" path="res://Scripts/PlayerScoreInitializer.cs" id="10_nf6c1"]
+[ext_resource type="Script" uid="uid://d2ccc8rp3eho5" path="res://Scripts/Initialization/PlayerScoreInitializer.cs" id="10_nf6c1"]
 [ext_resource type="Script" uid="uid://7xnvw4rwv2x7" path="res://Scripts/Weapons/MeleeAttacker.cs" id="12_ehya8"]
 [ext_resource type="Texture2D" uid="uid://d1ne5p0x03afh" path="res://Textures/Units/V0Arm.png" id="13_0bpcd"]
 [ext_resource type="Script" uid="uid://p0bxinvlt1sm" path="res://Scripts/Weapons/Visuals/PlayerArmAnimator.cs" id="14_udi2h"]
