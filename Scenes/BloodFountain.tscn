@@ -11,6 +11,7 @@ point_count = 2
 radius = 300.0
 
 [node name="BloodFountain" type="Node2D" node_paths=PackedStringArray("_timer", "_fountainArea")]
+z_index = 10
 script = ExtResource("1_i7emm")
 _bloodAmount = 7.0
 _timer = NodePath("Timer")
