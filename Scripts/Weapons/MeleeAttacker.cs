@@ -16,6 +16,8 @@ public partial class MeleeAttacker : Node2D
 	
 	[Export] private Unit _ignoredUnit;
 	[Export] private float _damage;
+
+	[Export] private AudioStreamPlayer2D _attackAudio;
 	
 	private readonly Dictionary<Node2D, Unit> _unitsInArea = [];
 
@@ -47,6 +49,7 @@ public partial class MeleeAttacker : Node2D
 	
 	private void Attack()
 	{
+		_attackAudio.Play();
 		_attackDurationTimer.Start();
 		_stamina -= _attackStaminaCost;
 		
