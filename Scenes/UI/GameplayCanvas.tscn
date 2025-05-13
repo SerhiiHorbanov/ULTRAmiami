@@ -12,12 +12,12 @@
 offset_left = 100.0
 offset_right = 100.0
 
-[node name="GameplayRestartConsole" parent="." instance=ExtResource("2_1n21u")]
-
 [node name="BloodBar" parent="." instance=ExtResource("3_73qcr")]
 
 [node name="FpsCounter" parent="." instance=ExtResource("4_7boa3")]
 offset_left = 105.0
 offset_right = 105.0
+
+[node name="GameplayRestartConsole" parent="." instance=ExtResource("2_1n21u")]
 
 [node name="RealConsole" parent="." instance=ExtResource("5_2tfhg")]
