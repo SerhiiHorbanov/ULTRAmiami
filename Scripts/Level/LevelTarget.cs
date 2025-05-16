@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using Godot;
 using ULTRAmiami.Level.Requirements;
 using ULTRAmiami.Units;
@@ -27,11 +26,10 @@ public partial class LevelTarget : Node2D
 
 	public override void _Process(double delta)
 	{
-		if (IsEverythingIsCompleted())
-			EmitSignalOnCompleted();
+		ResolveCompletionAndFailure();
 	}
 	
-	private bool IsEverythingIsCompleted()
+	private void ResolveCompletionAndFailure()
 	{
 		bool everythingIsCompleted = true;
 
@@ -40,12 +38,14 @@ public partial class LevelTarget : Node2D
 			if (requirement.IsFailed())
 			{
 				Fail(requirement);
-				return false;
+				return;
 			}
 			
 			everythingIsCompleted &= requirement.IsCompleted();
 		}
-		return everythingIsCompleted;
+		
+		if (everythingIsCompleted)
+			EmitSignalOnCompleted();
 	}
 
 	private void Fail(CompletionRequirement requirement)
