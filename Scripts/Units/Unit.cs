@@ -8,7 +8,7 @@ using ULTRAmiami.Weapons;
 
 namespace ULTRAmiami.Units;
 
-public partial class Unit : CharacterBody2D
+public partial class Unit : CharacterBody2D, IAttackable
 {
 	private Vector2 _targetDirection;
 	private bool _isDead;
