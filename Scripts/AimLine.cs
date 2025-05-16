@@ -46,7 +46,8 @@ public partial class AimLine : Line2D
 	
 	private void SetLineEnd(Vector2 endPosition)
 	{
-		RemovePoint(1);
+		while (GetPointCount() > 1)
+			RemovePoint(1);
 		AddPoint(endPosition);
 	}
 

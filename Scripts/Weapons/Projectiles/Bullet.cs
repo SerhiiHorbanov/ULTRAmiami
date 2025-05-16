@@ -44,7 +44,7 @@ public partial class Bullet : Node2D
 		UpdateRayCast((float)delta);
 		
 		if (_rayCast.IsColliding())
-			OnHit(_rayCast.GetCollider());
+			OnCollided(_rayCast.GetCollider());
 	}
 
 	private void UpdateLifeSpan(float delta)
@@ -60,29 +60,30 @@ public partial class Bullet : Node2D
 		_rayCast.TargetPosition = new(_velocity.Length() * delta, 0);
 	}
 
-	private void OnHit(GodotObject objectHit)
+	private void OnCollided(GodotObject objectHit)
 	{
 		QueueFree();
 
 		if (objectHit is not Node hitNode)
 			return;
 		
-		Unit hitUnit = hitNode.GetAncestor<Unit>();
+		IAttackable attackable = hitNode.GetAncestor<IAttackable>();
 
-		if (hitUnit is null)
+		if (attackable is null)
 		{
 			CreateParticlesOnCollisionPoint(_hitParticles);
 			return;
 		}
 		
-		HitUnit(hitUnit);
+		Hit(attackable);
 	}
 	
-	private void HitUnit(Unit unit)
+	private void Hit(IAttackable attackable)
 	{
-		CreateParticlesOnCollisionPoint(_bloodSplatterParticles);
+		if (attackable is Unit)
+			CreateParticlesOnCollisionPoint(_bloodSplatterParticles);
 		
-		unit.Hit(new(_velocity, _damage));
+		attackable.Hit(new(_velocity, _damage));
 	}
 
 	private void CreateParticlesOnCollisionPoint(PackedScene particlesScene)

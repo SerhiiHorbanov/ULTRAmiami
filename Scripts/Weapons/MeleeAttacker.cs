@@ -20,7 +20,7 @@ public partial class MeleeAttacker : Node2D
 	[Export] private AudioStreamPlayer2D _attackAudio;
 	[Export] private AudioStreamPlayer2D _hitAudio;
 	
-	private readonly Dictionary<Node2D, Unit> _unitsInArea = [];
+	private readonly Dictionary<Node2D, IAttackable> _attackableInArea = [];
 
 	[Signal]
 	public delegate void OnAttackingEventHandler();
@@ -54,42 +54,46 @@ public partial class MeleeAttacker : Node2D
 		_attackDurationTimer.Start();
 		_stamina -= _attackStaminaCost;
 		
-		foreach (Unit unit in _unitsInArea.Values)
+		foreach ((Node2D node, IAttackable attackable) in _attackableInArea)
 		{
-			HitUnit(unit);
-			EmitSignalOnHitting(unit.GlobalPosition);
+			Hit(attackable, node.GlobalPosition);
 		}
 		
 		EmitSignalOnAttacking();
 	}
 	
-	private void HitUnit(Unit unit)
+	private void Hit(AttackableAsGodotObject attackable, Vector2 position)
+		=> Hit(attackable.Attackable, position);
+	
+	private void Hit(IAttackable attackable, Vector2 position)
 	{
 		_attackAudio.Stop();
 		_hitAudio.Play();
 		Hit hit = new(Vector2.FromAngle(Rotation), _damage);
-		unit.Hit(hit);
+		attackable.Hit(hit);
+		EmitSignalOnHitting(GlobalPosition);
 	}
 
 	private void OnBodyEntered(Node2D body)
 	{
-		Unit unit = body.GetAncestor<Unit>();
+		IAttackable attackable = body.GetAncestor<IAttackable>();
 
-		if (unit is null)
+		if (attackable is null)
 			return;
 
-		if (_ignoredUnit == unit)
+		if (attackable as Unit == _ignoredUnit)
 			return;
 
-		if (IsAttacking)
+		if (!IsAttacking)
 		{
-			CallDeferred(MethodName.HitUnit, unit);
+			_attackableInArea.Add(body, attackable);
 			return;
 		}
 		
-		_unitsInArea.Add(body, unit);
+		AttackableAsGodotObject godotObject = new(attackable);
+		CallDeferred(MethodName.Hit, godotObject, body.GlobalPosition);
 	}
 	
 	private void OnBodyExited(Node2D body)
-		=> _unitsInArea.Remove(body);
+		=> _attackableInArea.Remove(body);
 }

@@ -40,11 +40,8 @@ public partial class RailgunShot : Node2D
 		if (target is not Node2D node2D)
 			return;
 		
-		Unit unit = node2D.GetAncestor<Unit>();
-		
-		if (unit is null)
-			return;
-		
-		unit.Hit(new(_direction, _damage));
+		IAttackable attackable = node2D.GetAncestor<IAttackable>();
+
+		attackable?.Hit(new(_direction, _damage));
 	}
 }
