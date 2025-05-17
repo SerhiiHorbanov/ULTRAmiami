@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdfwiol3dqaba"]
+
+[ext_resource type="Script" uid="uid://c8i2xy07hrk8j" path="res://Scripts/Debug/TestEnemySpawner.cs" id="1_iym63"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="2_6huxt"]
+
+[node name="TestEnemySpawner" type="Node2D" node_paths=PackedStringArray("_timer", "_spawnPosition")]
+script = ExtResource("1_iym63")
+_spawnedEnemyPackedScene = ExtResource("2_6huxt")
+_timer = NodePath("Timer")
+_spawnPosition = NodePath(".")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

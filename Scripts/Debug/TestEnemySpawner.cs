@@ -3,7 +3,7 @@ using ULTRAmiami.Units;
 
 namespace ULTRAmiami.Debug;
 
-public partial class TestEnemySpawner : Node
+public partial class TestEnemySpawner : Node2D
 {
     [Export] private PackedScene _spawnedEnemyPackedScene;
     [Export] private Timer _timer;
