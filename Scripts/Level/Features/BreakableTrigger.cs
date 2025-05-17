@@ -20,6 +20,9 @@ public partial class BreakableTrigger : Node2D, IAttackable
 
 	public void Hit(Hit hit)
 	{
+		if (_isBroken)
+			return;
+		
 		_isBroken = true;
 		_notBrokenGraphics.QueueFree();
 		AddChild(_brokenGraphics);
