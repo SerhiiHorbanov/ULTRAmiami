@@ -16,6 +16,7 @@ _damage = 4.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708

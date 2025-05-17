@@ -92,6 +92,11 @@ restart={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Stops Units"
+2d_physics/layer_2="Stops Bullets"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
