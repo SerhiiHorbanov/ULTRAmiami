@@ -11,6 +11,12 @@ public partial class SpecificUnitKillRequirement : CompletionRequirement
 
 	public override void _Ready()
 	{
+		if (_target is null)
+		{
+			_isDead = true;
+			return;
+		}
+		
 		_target.OnDeath += OnDeath;
 	}
 
