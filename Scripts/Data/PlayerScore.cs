@@ -4,9 +4,9 @@ namespace ULTRAmiami.Data;
 
 public partial class PlayerScore : GodotObject
 {
-	public uint Kills { get; private set; }
-	public float BloodConsumed { get; private set; }
-	public float BloodLost { get; private set; }
+	[Export] public uint Kills { get; private set; }
+	[Export] public float BloodConsumed { get; private set; }
+	[Export] public float BloodLost { get; private set; }
 
 	public static PlayerScore Current;
 	
