@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://33fahnyv1k8v"]
+[gd_scene load_steps=8 format=3 uid="uid://33fahnyv1k8v"]
 
+[ext_resource type="Script" uid="uid://b1np88c8klccg" path="res://Scripts/Level.cs" id="1_4nh8f"]
 [ext_resource type="PackedScene" uid="uid://sdpp1fwhlvdp" path="res://Scenes/UI/GameplayCanvas.tscn" id="1_5lnup"]
 [ext_resource type="PackedScene" uid="uid://ch33vi8cwppji" path="res://Scenes/GameplayCamera.tscn" id="2_l0mwj"]
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="3_4nh8f"]
@@ -8,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ctvkp5fryx3o0" path="res://Scripts/LevelFeatures/LevelTarget.cs" id="6_d3u4r"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_4nh8f")
 
 [node name="Canvas" parent="." instance=ExtResource("1_5lnup")]
 
@@ -34,6 +36,7 @@ _player = NodePath("../Player")
 [connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
 [connection signal="OnDeath" from="Player" to="MusicManager" method="OnPlayerDeath"]
 [connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
+[connection signal="OnCompleted" from="LevelTarget" to="." method="OnCompleted"]
 
 [editable path="Canvas"]
 [editable path="Player"]
