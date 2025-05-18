@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3prpseiwpoym"]
 
 [ext_resource type="Script" uid="uid://jf3kyyan3kwh" path="res://Scripts/UI/MainMenu/MainMenuButtons.cs" id="1_853f1"]
-[ext_resource type="Resource" uid="uid://ckj0j1atbm3u4" path="res://LevelInfos/Level1.tres" id="2_8saeu"]
+[ext_resource type="Resource" uid="uid://ckj0j1atbm3u4" path="res://LevelInfos/Level1Info.tres" id="2_8saeu"]
 
 [sub_resource type="Theme" id="Theme_853f1"]
 default_font_size = 48
