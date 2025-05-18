@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_c7hr8")
+_levelName = "First"
 _scenePath = "uid://cei2onxx6reim"
 _nextLevel = ExtResource("1_38sy1")
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"

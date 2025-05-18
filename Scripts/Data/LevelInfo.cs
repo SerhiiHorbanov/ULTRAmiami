@@ -5,7 +5,8 @@ namespace ULTRAmiami.Data;
 [GlobalClass]
 public partial class LevelInfo : Resource
 {
-	[Export(PropertyHint.File)] private string _scenePath;
+	[Export(PropertyHint.None, "Must be a legal file name before dot")] private string _levelName;
+	[Export(PropertyHint.File, "*.tscn")] private string _scenePath;
 	[Export] private LevelInfo _nextLevel;
 	private LevelCompletionInfo _completionInfo;
 	

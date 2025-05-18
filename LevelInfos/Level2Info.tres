@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_jm0sa")
+_levelName = "Second"
 _scenePath = "uid://bbhga1tb2gsgj"
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"
