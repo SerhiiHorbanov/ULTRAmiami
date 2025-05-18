@@ -1,6 +1,8 @@
+using Godot;
+
 namespace ULTRAmiami.Data;
 
-public struct PlayerScore
+public partial class PlayerScore : GodotObject
 {
 	public uint Kills { get; private set; }
 	public float BloodConsumed { get; private set; }
