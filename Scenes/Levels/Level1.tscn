@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cei2onxx6reim"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_5jgm0"]
-[ext_resource type="Script" uid="uid://vovyd18b6883" path="res://Scripts/Level/Requirements/KillCountRequirement.cs" id="2_riv1q"]
+[ext_resource type="Script" uid="uid://vovyd18b6883" path="res://Scripts/LevelFeatures/Requirements/KillCountRequirement.cs" id="2_riv1q"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="3_xvio3"]
 
 [node name="Level" instance=ExtResource("1_5jgm0")]

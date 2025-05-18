@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7lxg1prscm7m"]
 
-[ext_resource type="Script" uid="uid://v36gx4pb1oet" path="res://Scripts/Level/Features/HintTrigger.cs" id="1_uscvk"]
+[ext_resource type="Script" uid="uid://d3bk73opuarcm" path="res://Scripts/LevelFeatures/HintTrigger.cs" id="1_uscvk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uscvk"]
 size = Vector2(100, 100)
