@@ -5,16 +5,17 @@ namespace ULTRAmiami.Data;
 [GlobalClass]
 public partial class LevelInfo : Resource
 {
-	[Export] private PackedScene _scene;
+	[Export(PropertyHint.File)] private string _scenePath;
 	[Export] private LevelInfo _nextLevel;
 	private LevelCompletionInfo _completionInfo;
 	
 	public bool HasNextLevel 
-		=> _completionInfo != null;
+		=> _nextLevel is not null;
 	
 	public void LoadLevel(Node treeNode)
 	{
-		treeNode.GetTree().ChangeSceneToPacked(_scene);
+		PackedScene scene = (PackedScene)ResourceLoader.Load(_scenePath);
+		treeNode.GetTree().ChangeSceneToPacked(scene);
 	}
 	
 	public void LoadNextLevel(Node treeNode)

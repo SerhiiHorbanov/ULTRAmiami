@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="LevelInfo" load_steps=4 format=3 uid="uid://ckj0j1atbm3u4"]
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://c7udd1xxwfk3g"]
 
-[ext_resource type="Resource" uid="uid://bunh050adolwn" path="res://LevelInfos/Level2Info.tres" id="1_4ylpc"]
-[ext_resource type="PackedScene" uid="uid://cei2onxx6reim" path="res://Scenes/Levels/Level1.tscn" id="1_6gt28"]
+[ext_resource type="Resource" uid="uid://tf5nmk2kvxbb" path="res://LevelInfos/Level2Info.tres" id="1_38sy1"]
 [ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_c7hr8"]
 
 [resource]
 script = ExtResource("1_c7hr8")
-_scene = ExtResource("1_6gt28")
-_nextLevel = ExtResource("1_4ylpc")
+_scenePath = "uid://cei2onxx6reim"
+_nextLevel = ExtResource("1_38sy1")
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"
