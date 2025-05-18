@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ULTRAmiami.Level.Features;
+namespace ULTRAmiami;
 
 public partial class TriggerableDoor : Node2D
 {

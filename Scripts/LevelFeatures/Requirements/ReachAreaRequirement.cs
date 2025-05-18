@@ -1,9 +1,8 @@
 using Godot;
 using Godot.Collections;
 using ULTRAmiami.Units;
-using ULTRAmiami.Utils;
 
-namespace ULTRAmiami.Level.Requirements;
+namespace ULTRAmiami.Requirements;
 
 public partial class ReachAreaRequirement : CompletionRequirement
 {

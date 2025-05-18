@@ -2,7 +2,7 @@ using Godot;
 using ULTRAmiami.Data;
 using ULTRAmiami.Units;
 
-namespace ULTRAmiami.Level.Features;
+namespace ULTRAmiami;
 
 public partial class HintTrigger : Area2D
 {

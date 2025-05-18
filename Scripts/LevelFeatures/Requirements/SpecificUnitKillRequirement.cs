@@ -1,7 +1,7 @@
 using Godot;
 using ULTRAmiami.Units;
 
-namespace ULTRAmiami.Level.Requirements;
+namespace ULTRAmiami.Requirements;
 
 public partial class SpecificUnitKillRequirement : CompletionRequirement
 {

@@ -1,7 +1,7 @@
 using Godot;
 using ULTRAmiami.Units;
 
-namespace ULTRAmiami.Level.Features;
+namespace ULTRAmiami;
 
 public partial class BreakableTrigger : Node2D, IAttackable
 {

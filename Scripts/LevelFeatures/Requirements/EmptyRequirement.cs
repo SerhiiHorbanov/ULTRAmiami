@@ -1,4 +1,4 @@
-namespace ULTRAmiami.Level.Requirements;
+namespace ULTRAmiami.Requirements;
 
 public partial class EmptyRequirement : CompletionRequirement
 {

@@ -1,7 +1,7 @@
 using Godot;
 using ULTRAmiami.Data;
 
-namespace ULTRAmiami.Level.Requirements;
+namespace ULTRAmiami.Requirements;
 
 public partial class KillCountRequirement : CompletionRequirement
 {

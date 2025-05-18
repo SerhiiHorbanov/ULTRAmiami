@@ -1,7 +1,7 @@
 using Godot;
 using Timer = Godot.Timer;
 
-namespace ULTRAmiami.Level.Requirements;
+namespace ULTRAmiami.Requirements;
 
 public partial class TimeLimitationRequirement : CompletionRequirement
 {

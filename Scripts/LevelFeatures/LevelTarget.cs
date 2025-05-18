@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Godot;
-using ULTRAmiami.Level.Requirements;
+using ULTRAmiami.Requirements;
 using ULTRAmiami.Units;
 
-namespace ULTRAmiami.Level;
+namespace ULTRAmiami;
 
 public partial class LevelTarget : Node2D
 {

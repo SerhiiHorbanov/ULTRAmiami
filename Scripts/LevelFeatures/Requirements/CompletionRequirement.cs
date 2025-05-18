@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ULTRAmiami.Level.Requirements;
+namespace ULTRAmiami.Requirements;
 
 public abstract partial class CompletionRequirement : Node
 {
