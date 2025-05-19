@@ -1,15 +1,14 @@
 using Godot;
-using ULTRAmiami.Data;
 
 namespace ULTRAmiami.UI.MainMenu;
 
 public partial class MainMenuButtons : Node
 {
-	[Export] private LevelInfo _level;
+	[Export] private Control _levelSelectionMenu;
 	
-	private void PlayLevel()
+	private void Play()
 	{
-		_level.LoadLevel(this);
+		_levelSelectionMenu.Visible = true;
 	}
 
 	private void ExitGame()

@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3prpseiwpoym"]
 
 [ext_resource type="Script" uid="uid://jf3kyyan3kwh" path="res://Scripts/UI/MainMenu/MainMenuButtons.cs" id="1_853f1"]
-[ext_resource type="Resource" uid="uid://ckj0j1atbm3u4" path="res://LevelInfos/Level1Info.tres" id="2_8saeu"]
+[ext_resource type="PackedScene" uid="uid://cgepdgkwb5xoc" path="res://Scenes/UI/LevelSelectionMenu/LevelSelectionMenu.tscn" id="3_8saeu"]
 
 [sub_resource type="Theme" id="Theme_853f1"]
 default_font_size = 48
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("_levelSelectionMenu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_853f1")
 script = ExtResource("1_853f1")
-_level = ExtResource("2_8saeu")
+_levelSelectionMenu = NodePath("LevelSelectionMenu")
 
 [node name="PlayButton" type="Button" parent="."]
 custom_minimum_size = Vector2(400, 100)
@@ -44,5 +44,9 @@ offset_bottom = -131.0
 grow_vertical = 0
 text = "Exit"
 
-[connection signal="pressed" from="PlayButton" to="." method="PlayLevel"]
+[node name="LevelSelectionMenu" parent="." instance=ExtResource("3_8saeu")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="PlayButton" to="." method="Play"]
 [connection signal="pressed" from="ExitButton" to="." method="ExitGame"]
