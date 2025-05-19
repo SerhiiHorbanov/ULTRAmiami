@@ -6,7 +6,8 @@ namespace ULTRAmiami.Data;
 [GlobalClass]
 public partial class LevelInfo : Resource
 {
-	[Export(PropertyHint.None, "Must be a legal file name before dot")] private string _levelName;
+	[Export(PropertyHint.None, "Must be a legal file name before dot")] private string _saveName;
+	[Export] private string _shownName;
 	[Export(PropertyHint.File, "*.tscn")] private string _scenePath;
 	[Export] private LevelInfo _nextLevel;
 	private LevelCompletionInfo _completionInfo;
@@ -16,14 +17,20 @@ public partial class LevelInfo : Resource
 	public bool HasNextLevel 
 		=> _nextLevel is not null;
 	
+	public string LevelName
+		=> _shownName;
+	
+	public bool IsCompleted()
+		=> _completionInfo?.IsCompleted ?? false;
+	
+	public void LoadNextLevel(Node treeNode)
+		=> _nextLevel.LoadLevel(treeNode);
+	
 	public void LoadLevel(Node treeNode)
 	{
 		PackedScene scene = (PackedScene)ResourceLoader.Load(_scenePath);
 		treeNode.GetTree().ChangeSceneToPacked(scene);
 	}
-	
-	public void LoadNextLevel(Node treeNode)
-		=> _nextLevel.LoadLevel(treeNode);
 
 	public void SaveCompletion(PlayerScore score)
 	{
@@ -51,9 +58,6 @@ public partial class LevelInfo : Resource
 			_completionInfo = new();
 	}
 	
-	public bool IsCompleted()
-		=> _completionInfo?.IsCompleted ?? false;
-
 	private string GetOwnCompletionInfoFilePath()
-		=> CompletionInfosSavePath + _levelName + ".tres";
+		=> CompletionInfosSavePath + _saveName + ".tres";
 }
