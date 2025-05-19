@@ -24,6 +24,9 @@ _unit = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("3_4nh8f")]
 
+[node name="BloodFuel" parent="Player" index="7"]
+_bloodUsageForMaintenanceGrowthMultiplier = 0.0
+
 [node name="GameplayRestarter" parent="." instance=ExtResource("4_etd3f")]
 
 [node name="MusicManager" parent="." instance=ExtResource("5_d3u4r")]
