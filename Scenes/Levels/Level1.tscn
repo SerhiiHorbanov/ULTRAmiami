@@ -1,40 +1,274 @@
-[gd_scene load_steps=5 format=3 uid="uid://cei2onxx6reim"]
+[gd_scene load_steps=13 format=3 uid="uid://cei2onxx6reim"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_5jgm0"]
+[ext_resource type="Script" uid="uid://vovyd18b6883" path="res://Scripts/LevelFeatures/Requirements/KillCountRequirement.cs" id="2_riv1q"]
 [ext_resource type="Resource" uid="uid://c7udd1xxwfk3g" path="res://LevelInfos/Level1Info.tres" id="3_4d3fe"]
-[ext_resource type="Script" uid="uid://bfga6j3troefm" path="res://Scripts/LevelFeatures/Requirements/SurvivingTimeRequirement.cs" id="3_kri6y"]
+[ext_resource type="Script" uid="uid://bts30iqag0b2l" path="res://Scripts/LevelFeatures/Requirements/ReachAreaRequirement.cs" id="3_8h4de"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="3_xvio3"]
+[ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="4_kri6y"]
+[ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="6_4d3fe"]
+[ext_resource type="PackedScene" uid="uid://c7lxg1prscm7m" path="res://Scenes/LevelDetails/HintTrigger.tscn" id="7_jcebb"]
+[ext_resource type="Script" uid="uid://bsnay7tcwvpmp" path="res://Scripts/Data/GameplayHint.cs" id="8_f3nwb"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="9_jcebb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcebb"]
+size = Vector2(1741, 312)
+
+[sub_resource type="Resource" id="Resource_57lp3"]
+script = ExtResource("8_f3nwb")
+Text = "Doors can be open by breaking breakableTrigger"
+Time = 6.0
+metadata/_custom_type_script = "uid://bsnay7tcwvpmp"
 
 [node name="Level" instance=ExtResource("1_5jgm0")]
 _info = ExtResource("3_4d3fe")
 
-[node name="Node2D" type="Node2D" parent="LevelTarget" index="0" node_paths=PackedStringArray("_timer", "_player")]
-script = ExtResource("3_kri6y")
-_timer = NodePath("Timer")
-_player = NodePath("../../Player")
+[node name="ReachAreaRequirement" type="Node2D" parent="LevelTarget" index="0" node_paths=PackedStringArray("_areas")]
+script = ExtResource("3_8h4de")
+_areas = [NodePath("Area2D")]
 
-[node name="Timer" type="Timer" parent="LevelTarget/Node2D" index="0"]
-wait_time = 3.0
+[node name="Area2D" type="Area2D" parent="LevelTarget/ReachAreaRequirement" index="0"]
 
-[node name="Obstacles" type="Node2D" parent="." index="6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTarget/ReachAreaRequirement/Area2D" index="0"]
+position = Vector2(2600, 2111)
+shape = SubResource("RectangleShape2D_jcebb")
 
-[node name="Wall" parent="Obstacles" index="0" instance=ExtResource("3_xvio3")]
-position = Vector2(0, -448)
-scale = Vector2(15, 1)
+[node name="KillsRequirement" type="Node2D" parent="LevelTarget" index="1"]
+script = ExtResource("2_riv1q")
+_minKills = 2
 
-[node name="Wall2" parent="Obstacles" index="1" instance=ExtResource("3_xvio3")]
-position = Vector2(0, 448)
-scale = Vector2(15, 1)
-
-[node name="Wall3" parent="Obstacles" index="2" instance=ExtResource("3_xvio3")]
-position = Vector2(448, 0)
+[node name="TriggerableDoor" parent="." index="6" instance=ExtResource("4_kri6y")]
+position = Vector2(-2.27374e-13, -1248)
 rotation = 1.5708
-scale = Vector2(15, 1)
+scale = Vector2(2, 2.7)
 
-[node name="Wall4" parent="Obstacles" index="3" instance=ExtResource("3_xvio3")]
-position = Vector2(-448, 0)
+[node name="BreakableTrigger" parent="." index="7" instance=ExtResource("6_4d3fe")]
+position = Vector2(-1152, 424)
+scale = Vector2(3.96, 1)
+
+[node name="Walls" type="Node2D" parent="." index="8"]
+
+[node name="Wall2" parent="Walls" index="0" instance=ExtResource("3_xvio3")]
+position = Vector2(0, 480)
+scale = Vector2(10, 1)
+
+[node name="Wall4" parent="Walls" index="1" instance=ExtResource("3_xvio3")]
+position = Vector2(-576, -96)
+scale = Vector2(10, 1)
+
+[node name="Wall10" parent="Walls" index="2" instance=ExtResource("3_xvio3")]
+position = Vector2(-1152, -672)
+scale = Vector2(10, 1)
+
+[node name="Wall11" parent="Walls" index="3" instance=ExtResource("3_xvio3")]
+position = Vector2(-576, -672)
+scale = Vector2(10, 1)
+
+[node name="Wall18" parent="Walls" index="4" instance=ExtResource("3_xvio3")]
+position = Vector2(0, -1824)
+scale = Vector2(10, 1)
+
+[node name="Wall19" parent="Walls" index="5" instance=ExtResource("3_xvio3")]
+position = Vector2(576, -1248)
+scale = Vector2(10, 1)
+
+[node name="Wall23" parent="Walls" index="6" instance=ExtResource("3_xvio3")]
+position = Vector2(1152, -1248)
+scale = Vector2(10, 1)
+
+[node name="Wall21" parent="Walls" index="7" instance=ExtResource("3_xvio3")]
+position = Vector2(576, -2400)
+scale = Vector2(10, 1)
+
+[node name="Wall24" parent="Walls" index="8" instance=ExtResource("3_xvio3")]
+position = Vector2(1728, -1248)
+scale = Vector2(10, 1)
+
+[node name="Wall44" parent="Walls" index="9" instance=ExtResource("3_xvio3")]
+position = Vector2(2304, 2208)
+scale = Vector2(10, 1)
+
+[node name="Wall45" parent="Walls" index="10" instance=ExtResource("3_xvio3")]
+position = Vector2(2880, 2208)
+scale = Vector2(10, 1)
+
+[node name="Wall32" parent="Walls" index="11" instance=ExtResource("3_xvio3")]
+position = Vector2(2304, -96)
+scale = Vector2(10, 1)
+
+[node name="Wall37" parent="Walls" index="12" instance=ExtResource("3_xvio3")]
+position = Vector2(2304, 480)
+scale = Vector2(10, 1)
+
+[node name="Wall33" parent="Walls" index="13" instance=ExtResource("3_xvio3")]
+position = Vector2(2880, -672)
+scale = Vector2(10, 1)
+
+[node name="Wall25" parent="Walls" index="14" instance=ExtResource("3_xvio3")]
+position = Vector2(1728, -2400)
+scale = Vector2(10, 1)
+
+[node name="Wall22" parent="Walls" index="15" instance=ExtResource("3_xvio3")]
+position = Vector2(1152, -2400)
+scale = Vector2(10, 1)
+
+[node name="Wall6" parent="Walls" index="16" instance=ExtResource("3_xvio3")]
+position = Vector2(-1152, 480)
+scale = Vector2(10, 1)
+
+[node name="Wall3" parent="Walls" index="17" instance=ExtResource("3_xvio3")]
+position = Vector2(-288, 192)
 rotation = 1.5708
-scale = Vector2(15, 1)
+scale = Vector2(10, 1)
+
+[node name="Wall12" parent="Walls" index="18" instance=ExtResource("3_xvio3")]
+position = Vector2(-288, 192)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall5" parent="Walls" index="19" instance=ExtResource("3_xvio3")]
+position = Vector2(-864, 192)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall7" parent="Walls" index="20" instance=ExtResource("3_xvio3")]
+position = Vector2(-1440, 192)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall8" parent="Walls" index="21" instance=ExtResource("3_xvio3")]
+position = Vector2(-1440, -384)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall9" parent="Walls" index="22" instance=ExtResource("3_xvio3")]
+position = Vector2(-1440, -384)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall13" parent="Walls" index="23" instance=ExtResource("3_xvio3")]
+position = Vector2(288, 192)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall14" parent="Walls" index="24" instance=ExtResource("3_xvio3")]
+position = Vector2(288, -384)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall15" parent="Walls" index="25" instance=ExtResource("3_xvio3")]
+position = Vector2(288, -960)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall20" parent="Walls" index="26" instance=ExtResource("3_xvio3")]
+position = Vector2(288, -2112)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall26" parent="Walls" index="27" instance=ExtResource("3_xvio3")]
+position = Vector2(2016, -2112)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall17" parent="Walls" index="28" instance=ExtResource("3_xvio3")]
+position = Vector2(-288, -1536)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall16" parent="Walls" index="29" instance=ExtResource("3_xvio3")]
+position = Vector2(-288, -960)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall27" parent="Walls" index="30" instance=ExtResource("3_xvio3")]
+position = Vector2(2304, -1824)
+scale = Vector2(10, 1)
+
+[node name="Wall28" parent="Walls" index="31" instance=ExtResource("3_xvio3")]
+position = Vector2(2592, -960)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall29" parent="Walls" index="32" instance=ExtResource("3_xvio3")]
+position = Vector2(2592, -1536)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall30" parent="Walls" index="33" instance=ExtResource("3_xvio3")]
+position = Vector2(2016, -960)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall31" parent="Walls" index="34" instance=ExtResource("3_xvio3")]
+position = Vector2(2016, -384)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall34" parent="Walls" index="35" instance=ExtResource("3_xvio3")]
+position = Vector2(3168, -384)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall38" parent="Walls" index="36" instance=ExtResource("3_xvio3")]
+position = Vector2(2016, 768)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall39" parent="Walls" index="37" instance=ExtResource("3_xvio3")]
+position = Vector2(3168, 768)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall40" parent="Walls" index="38" instance=ExtResource("3_xvio3")]
+position = Vector2(2016, 1344)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall41" parent="Walls" index="39" instance=ExtResource("3_xvio3")]
+position = Vector2(3168, 1344)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall42" parent="Walls" index="40" instance=ExtResource("3_xvio3")]
+position = Vector2(2016, 1920)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall43" parent="Walls" index="41" instance=ExtResource("3_xvio3")]
+position = Vector2(3168, 1920)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall36" parent="Walls" index="42" instance=ExtResource("3_xvio3")]
+position = Vector2(3168, 192)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall35" parent="Walls" index="43" instance=ExtResource("3_xvio3")]
+position = Vector2(2592, 192)
+rotation = 1.5708
+scale = Vector2(10, 1)
+
+[node name="HintTrigger" parent="." index="9" instance=ExtResource("7_jcebb")]
+position = Vector2(0, -752)
+scale = Vector2(6.76, 1)
+_hint = SubResource("Resource_57lp3")
+
+[node name="Unit" parent="." index="10" instance=ExtResource("9_jcebb")]
+position = Vector2(1824, -2032)
+
+[node name="Unit2" parent="." index="11" instance=ExtResource("9_jcebb")]
+position = Vector2(2424, 632)
+
+[node name="Unit3" parent="." index="12" instance=ExtResource("9_jcebb")]
+position = Vector2(2344, 816)
+
+[connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
+[connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
+[connection signal="OnCompleted" from="LevelTarget" to="." method="OnCompleted"]
+[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 
 [editable path="Canvas"]
 [editable path="Player"]
+[editable path="HintTrigger"]
