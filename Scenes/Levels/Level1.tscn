@@ -1,16 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://cei2onxx6reim"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_5jgm0"]
-[ext_resource type="Script" uid="uid://vovyd18b6883" path="res://Scripts/LevelFeatures/Requirements/KillCountRequirement.cs" id="2_riv1q"]
 [ext_resource type="Resource" uid="uid://c7udd1xxwfk3g" path="res://LevelInfos/Level1Info.tres" id="3_4d3fe"]
+[ext_resource type="Script" uid="uid://bfga6j3troefm" path="res://Scripts/LevelFeatures/Requirements/SurvivingTimeRequirement.cs" id="3_kri6y"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="3_xvio3"]
 
 [node name="Level" instance=ExtResource("1_5jgm0")]
 _info = ExtResource("3_4d3fe")
 
-[node name="Node2D" type="Node2D" parent="LevelTarget" index="0"]
-script = ExtResource("2_riv1q")
-_minKills = 1
+[node name="Node2D" type="Node2D" parent="LevelTarget" index="0" node_paths=PackedStringArray("_timer", "_player")]
+script = ExtResource("3_kri6y")
+_timer = NodePath("Timer")
+_player = NodePath("../../Player")
+
+[node name="Timer" type="Timer" parent="LevelTarget/Node2D" index="0"]
+wait_time = 3.0
 
 [node name="Obstacles" type="Node2D" parent="." index="6"]
 
