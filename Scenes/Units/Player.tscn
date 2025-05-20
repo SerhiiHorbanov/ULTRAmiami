@@ -67,8 +67,8 @@ _max = 10.0
 _bloodWall = 1.5
 _damageMultiplier = 0.3
 _bloodUsageForMaintenanceGrowthMultiplier = 0.01
-_initialBloodUsageForMaintenance = 0.1
-_bloodUsageForWalking = 0.6
+_initialBloodUsageForMaintenance = 0.05
+_bloodUsageForWalking = 0.3
 _movement = NodePath("../PlayerMovement")
 
 [node name="PlayerScoreInitializer" type="Node" parent="." index="8"]
