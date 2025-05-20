@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgepdgkwb5xoc"]
+[gd_scene load_steps=4 format=3 uid="uid://cgepdgkwb5xoc"]
 
 [ext_resource type="PackedScene" uid="uid://hvv6hn5106s7" path="res://Scenes/UI/LevelSelectionMenu/LevelWidget.tscn" id="1_i6n8f"]
 [ext_resource type="Script" uid="uid://c7ctuff7pypk4" path="res://Scripts/UI/LevelSelectionMenu/LevelSelection.cs" id="1_t880l"]
 [ext_resource type="Resource" uid="uid://c7udd1xxwfk3g" path="res://LevelInfos/Level1Info.tres" id="2_ithn6"]
-[ext_resource type="Resource" uid="uid://tf5nmk2kvxbb" path="res://LevelInfos/Level2Info.tres" id="3_6vfj7"]
 
 [node name="LevelSelectionMenu" type="MarginContainer" node_paths=PackedStringArray("_widgetsParent")]
 anchors_preset = 15
@@ -16,7 +15,7 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 script = ExtResource("1_t880l")
-_levels = Array[Object]([ExtResource("2_ithn6"), ExtResource("3_6vfj7")])
+_firstLevel = ExtResource("2_ithn6")
 _levelWidgetScene = ExtResource("1_i6n8f")
 _widgetsParent = NodePath("ColorRect/MarginContainer/ScrollContainer/VBoxContainer")
 

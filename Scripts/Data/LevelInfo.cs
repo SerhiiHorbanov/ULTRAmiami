@@ -17,6 +17,9 @@ public partial class LevelInfo : Resource
 	public bool HasNextLevel 
 		=> _nextLevel is not null;
 	
+	public LevelInfo NextLevel
+		=> _nextLevel;
+	
 	public string LevelName
 		=> _shownName;
 

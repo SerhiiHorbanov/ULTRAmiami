@@ -6,16 +6,25 @@ namespace ULTRAmiami.UI.LevelSelectionMenu;
 public partial class LevelWidget : Node
 {
 	[Export] private Label _nameLabel;
-
-	private LevelInfo _levelInfo;
+	[Export] private Control _levelLockedOverlay;
 	
-	public void Initialize(LevelInfo levelInfo)
+	private LevelInfo _levelInfo;
+	private bool _isLocked;
+	
+	public void Initialize(LevelInfo levelInfo, bool isLocked)
 	{
 		_levelInfo = levelInfo;
+		_isLocked = isLocked;
 		
 		_nameLabel.Text = levelInfo.LevelName;
+		_levelLockedOverlay.Visible = isLocked;
 	}
 
-	private void LoadLevel()
-		=> _levelInfo.LoadLevel(this);
+	private void OnPressed()
+	{
+		if (_isLocked)
+			return;
+		
+		_levelInfo.LoadLevel(this);
+	}
 }

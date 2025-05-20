@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://hvv6hn5106s7"]
+[gd_scene load_steps=3 format=3 uid="uid://hvv6hn5106s7"]
 
 [ext_resource type="Script" uid="uid://djds8vpabt8nh" path="res://Scripts/UI/LevelSelectionMenu/LevelWidget.cs" id="1_sun6l"]
+[ext_resource type="Texture2D" uid="uid://vtu68wxyw6al" path="res://Textures/UI/Lock.png" id="2_jeb2o"]
 
-[node name="LevelWidget" type="ColorRect" node_paths=PackedStringArray("_nameLabel")]
+[node name="LevelWidget" type="ColorRect" node_paths=PackedStringArray("_nameLabel", "_levelLockedOverlay")]
 custom_minimum_size = Vector2(400, 600)
 offset_right = 400.0
 offset_bottom = 600.0
@@ -10,6 +11,7 @@ size_flags_horizontal = 4
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_sun6l")
 _nameLabel = NodePath("NameLabel")
+_levelLockedOverlay = NodePath("ColorRect")
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 1
@@ -22,6 +24,30 @@ text = "Default level name"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.752941)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -190.0
+offset_right = 160.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jeb2o")
+
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -31,4 +57,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="pressed" from="Button" to="." method="LoadLevel"]
+[connection signal="pressed" from="Button" to="." method="OnPressed"]
