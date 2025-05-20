@@ -126,6 +126,9 @@ public partial class Console : Control
 			case "godmode":
 				_player.GodMode = !_player.GodMode;
 				break;
+			case "load":
+				Load(words[1]);
+				break;
 			default:
 				Echo($"[color=red]Invalid command:[color=white] {command}");
 				break;
@@ -155,6 +158,19 @@ public partial class Console : Control
 		}
 		
 		Spawn(scene, args);
+	}
+
+	private void Load(string sceneString)
+	{
+		PackedScene scene = GetScene(sceneString);
+
+		if (scene is null)
+		{
+			Echo($"[color=red]Invalid scene:[color=white] {sceneString}");
+			return;
+		}
+		
+		GetTree().ChangeSceneToPacked(scene);
 	}
 
 	private PackedScene GetScene(string scene)

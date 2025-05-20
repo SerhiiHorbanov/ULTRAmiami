@@ -33,6 +33,8 @@ These are commands available:
 		toggles godmode
 	help
 		outputs this text
+	load [scenename]
+		loads a scene
 	scenes
 		lists all available scenes
 	spawn [scenename]
