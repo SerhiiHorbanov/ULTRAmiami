@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cbvksvv5sa6ow"]
+
+[node name="StatLabels" type="Control"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 192.0
+grow_horizontal = 2
+
+[node name="NameLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Kills:"
+vertical_alignment = 1
+
+[node name="ValueLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "default text"
+horizontal_alignment = 2
+vertical_alignment = 1

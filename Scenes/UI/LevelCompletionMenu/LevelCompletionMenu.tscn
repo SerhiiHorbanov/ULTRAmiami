@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmfbpn6mp0bki"]
+
+[ext_resource type="Script" uid="uid://bjh2ctraav6n" path="res://Scripts/UI/LevelCompletionMenu.cs" id="1_i1q4p"]
+[ext_resource type="PackedScene" uid="uid://cbvksvv5sa6ow" path="res://Scenes/UI/LevelCompletionMenu/StatLabel.tscn" id="2_fapo4"]
+
+[sub_resource type="Theme" id="Theme_gquv8"]
+default_font_size = 64
+
+[node name="LevelCompletionMenu" type="Control" node_paths=PackedStringArray("_levelNameLabel", "_killsLabel", "_bloodConsumedLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gquv8")
+script = ExtResource("1_i1q4p")
+_levelNameLabel = NodePath("ColorRect/MarginContainer/Control/LevelNameLabel")
+_killsLabel = NodePath("ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/KillsLabels/ValueLabel")
+_bloodConsumedLabel = NodePath("ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels/ValueLabel")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.25098)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="LevelNameLabel" type="RichTextLabel" parent="ColorRect/MarginContainer/Control"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 128.0
+grow_horizontal = 2
+text = "level name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 128.0
+offset_right = 910.0
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/MarginContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/Control/Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="KillsLabels" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control" instance=ExtResource("2_fapo4")]
+layout_mode = 1
+
+[node name="ValueLabel" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/KillsLabels" index="1"]
+text = "default"
+
+[node name="BloodConsumedLabels" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control" instance=ExtResource("2_fapo4")]
+layout_mode = 1
+offset_top = 192.0
+offset_bottom = 384.0
+
+[node name="NameLabel" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels" index="0"]
+bbcode_enabled = true
+text = "[color=red][b]Blood[/b][color=white] consumed:"
+
+[node name="ValueLabel" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels" index="1"]
+text = "default"
+
+[editable path="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/KillsLabels"]
+[editable path="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels"]
