@@ -60,6 +60,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_top = 128.0
 offset_right = 910.0
+offset_bottom = -111.0
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect/MarginContainer/Control/Control"]
@@ -103,6 +104,19 @@ text = "[color=red][b]Blood[/b][color=white] consumed:"
 
 [node name="ValueLabel" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels" index="1"]
 text = "default"
+
+[node name="LevelNameLabel2" type="RichTextLabel" parent="ColorRect/MarginContainer/Control"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press [N] to play next level"
+vertical_alignment = 2
 
 [editable path="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/KillsLabels"]
 [editable path="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels"]
