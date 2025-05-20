@@ -144,31 +144,35 @@ public partial class Console : Control
 		
 	}
 
-	private void Spawn(string scene, string[] args)
+	private void Spawn(string sceneString, string[] args)
+	{
+		PackedScene scene = GetScene(sceneString);
+		
+		if (scene is null)
+		{
+			Echo($"[color=red]Invalid scene:[color=white] {sceneString}");
+			return;
+		}
+		
+		Spawn(scene, args);
+	}
+
+	private PackedScene GetScene(string scene)
 	{
 		if (_scenes.TryGetValue(scene, out PackedScene packedScene))
-		{
-			Spawn(packedScene, args);
-			return;
-		}
-
+			return packedScene;
 		if (!scene.EndsWith(".tscn"))
-		{
-			Echo($"[color=red]Couldn't find scene:[color=white] \"{scene}\"");
-			return;
-		}
-
+			return null;
+		
 		if (!scene.StartsWith(_scenesPath))
 			scene = _scenesPath + scene;
 		
 		if (!ResourceLoader.Exists(scene))
-		{
-			Echo($"[color=red]Couldn't find scene resource:[color=white] \"{scene}\"");
-			return;
-		}
-		
-		Spawn(ResourceLoader.Load<PackedScene>(scene), args);
+			return null;
+
+		return ResourceLoader.Load<PackedScene>(scene);
 	}
+	
 	private void Spawn(PackedScene scene, string[] args)
 	{
 		Node instance = scene.Instantiate();
