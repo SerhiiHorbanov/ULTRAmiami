@@ -28,6 +28,7 @@ public abstract partial class UnitController : Node2D
 			return;
 		
 		Unit.OnDeath -= DetachUnit;
+		SetUnit(null);
 	}
 
 	private void SetUnit(Unit newUnit)
@@ -38,6 +39,8 @@ public abstract partial class UnitController : Node2D
 		if (newUnit is not null)
 			newUnit.OnDeath += DetachUnit;
 			
+		_unit?.SetTargetDirection(Vector2.Zero);
+		
 		_unit = newUnit;
 	}
 	
