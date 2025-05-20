@@ -9,7 +9,8 @@ public partial class LevelTarget : Node2D
 {
 	[Export] private Unit _player;
 	private readonly List<CompletionRequirement> _requirements = [];
-
+	private bool _isCompleted;
+	
 	[Signal]
 	public delegate void OnCompletedEventHandler();
 	
@@ -31,6 +32,9 @@ public partial class LevelTarget : Node2D
 	
 	private void ResolveCompletionAndFailure()
 	{
+		if (_isCompleted)
+			return;
+		
 		bool everythingIsCompleted = true;
 
 		foreach (CompletionRequirement requirement in _requirements)
@@ -43,9 +47,12 @@ public partial class LevelTarget : Node2D
 			
 			everythingIsCompleted &= requirement.IsCompleted();
 		}
-		
+
 		if (everythingIsCompleted)
+		{
+			_isCompleted = true;
 			EmitSignalOnCompleted();
+		}
 	}
 
 	private void Fail(CompletionRequirement requirement)
