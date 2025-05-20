@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxggr46o0t455"]
+[gd_scene load_steps=7 format=3 uid="uid://bxggr46o0t455"]
 
 [ext_resource type="Script" uid="uid://cecx1qsja4qa5" path="res://Scripts/UI/GameplayHintText.cs" id="1_8phox"]
+
+[sub_resource type="Theme" id="Theme_8phox"]
+default_font_size = 32
 
 [sub_resource type="Animation" id="Animation_8phox"]
 resource_name = "Hiding"
@@ -132,6 +135,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_8phox")
 bbcode_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
