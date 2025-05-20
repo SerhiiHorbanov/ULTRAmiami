@@ -19,11 +19,6 @@ public partial class SurvivingTimeRequirement : CompletionRequirement
 		_timer.Start();
 	}
 
-	public override void _Process(double delta)
-	{
-		GD.Print(_timer.TimeLeft);
-	}
-
 	private void OnDeath(Hit hit)
 	{
 		_isDead = true;
