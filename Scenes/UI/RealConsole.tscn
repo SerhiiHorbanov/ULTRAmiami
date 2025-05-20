@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5iv5ppa52n8j"]
+[gd_scene load_steps=14 format=3 uid="uid://5iv5ppa52n8j"]
 
 [ext_resource type="Theme" uid="uid://bf6ih0083vpee" path="res://UIThemes/Console.tres" id="1_as4ja"]
 [ext_resource type="Script" uid="uid://cxo12y7mxikny" path="res://Scripts/UI/Console.cs" id="2_88034"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="9_nh4sh"]
 [ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="10_pchh6"]
 [ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="11_yb7we"]
+[ext_resource type="PackedScene" uid="uid://b3prpseiwpoym" path="res://Scenes/MainMenu.tscn" id="12_nh4sh"]
+[ext_resource type="PackedScene" uid="uid://b6u4rioaf4ul4" path="res://Scenes/Game.tscn" id="13_pchh6"]
 
 [node name="RealConsole" type="Control" node_paths=PackedStringArray("_lineEdit", "_text", "_disappearingPart")]
 layout_mode = 3
@@ -44,6 +46,8 @@ _scenes = Dictionary[String, PackedScene]({
 "ar_enemy": ExtResource("9_nh4sh"),
 "assault_rifle": ExtResource("6_7o5ks"),
 "assault_rifle_enemy": ExtResource("9_nh4sh"),
+"infinite_mode": ExtResource("13_pchh6"),
+"main_menu": ExtResource("12_nh4sh"),
 "pistol": ExtResource("4_s5a2j"),
 "pistol_enemy": ExtResource("8_r6ofq"),
 "pl": ExtResource("7_0xlq0"),
