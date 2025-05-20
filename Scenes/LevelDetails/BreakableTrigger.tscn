@@ -11,7 +11,7 @@ script = ExtResource("1_fntpr")
 _notBrokenGraphics = NodePath("NotBrokenVersion")
 _brokenGraphics = NodePath("BrokenVersion")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="StaticBody2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
