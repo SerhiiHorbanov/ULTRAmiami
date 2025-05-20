@@ -19,9 +19,12 @@ public partial class LevelInfo : Resource
 	
 	public string LevelName
 		=> _shownName;
-	
+
 	public bool IsCompleted()
-		=> _completionInfo?.IsCompleted ?? false;
+	{
+		EnsureCompletionNotNull();
+		return _completionInfo.IsCompleted;
+	}
 	
 	public void LoadNextLevel(Node treeNode)
 		=> _nextLevel.LoadLevel(treeNode);
