@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bklnfqgrgmf8u"]
 
-[ext_resource type="Script" uid="uid://bjjqfi1tupi52" path="res://Scripts/Level/Features/TriggerableDoor.cs" id="1_5cj7t"]
+[ext_resource type="Script" uid="uid://b8jkottnjw5vu" path="res://Scripts/LevelFeatures/TriggerableDoor.cs" id="1_5cj7t"]
 [ext_resource type="Texture2D" uid="uid://nmhxhpi37fbw" path="res://Textures/Level/MetallicDoor.png" id="1_by8ie"]
 
 [sub_resource type="Animation" id="Animation_0eifa"]
@@ -117,6 +117,7 @@ size = Vector2(20, 128)
 
 [node name="TriggerableDoor" type="Node2D" node_paths=PackedStringArray("_animationPlayer")]
 script = ExtResource("1_5cj7t")
+_triggersNeeded = 1
 _animationPlayer = NodePath("AnimationPlayer")
 _openingAnimationName = &"Open"
 
