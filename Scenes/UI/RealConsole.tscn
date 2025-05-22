@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b6u4rioaf4ul4" path="res://Scenes/Game.tscn" id="13_pchh6"]
 
 [node name="RealConsole" type="Control" node_paths=PackedStringArray("_lineEdit", "_text", "_disappearingPart")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
