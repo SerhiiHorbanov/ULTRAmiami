@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://brj54d7w7qibq"]
+
+[ext_resource type="PackedScene" uid="uid://dm7l2n6vccl3u" path="res://Scenes/UI/PauseMenu/PauseMenuButton.tscn" id="1_e4e6r"]
+[ext_resource type="Script" uid="uid://dc8bh6xfituvl" path="res://Scripts/UI/PauseMenu.cs" id="1_psikb"]
+[ext_resource type="PackedScene" uid="uid://b3prpseiwpoym" path="res://Scenes/MainMenu.tscn" id="2_7g5nr"]
+
+[sub_resource type="Theme" id="Theme_hmuvl"]
+default_font_size = 48
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hmuvl")
+script = ExtResource("1_psikb")
+_sceneExitingTo = ExtResource("2_7g5nr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(600, 700)
+layout_mode = 0
+offset_left = -300.0
+offset_top = -350.0
+offset_right = 300.0
+offset_bottom = 350.0
+color = Color(0, 0, 0, 0.501961)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" parent="ColorRect/MarginContainer/VBoxContainer" instance=ExtResource("1_e4e6r")]
+layout_mode = 2
+text = "RESUME"
+
+[node name="SettingsButton" parent="ColorRect/MarginContainer/VBoxContainer" instance=ExtResource("1_e4e6r")]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+
+[node name="RestartLevelButton" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_e4e6r")]
+layout_mode = 2
+text = "RESTART
+LEVEL"
+
+[node name="NextLevelButton" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_e4e6r")]
+layout_mode = 2
+text = "NEXT LEVEL"
+
+[node name="ExitButton" parent="ColorRect/MarginContainer/VBoxContainer" instance=ExtResource("1_e4e6r")]
+layout_mode = 2
+text = "EXIT"
+
+[node name="PausedLabel" type="Label" parent="ColorRect"]
+custom_minimum_size = Vector2(600, 150)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 64
+text = "PAUSED
+================"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ResumeButton" to="." method="Resume"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/SettingsButton" to="." method="Settings"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/RestartLevelButton" to="." method="RestartLevel"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/NextLevelButton" to="." method="NextLevel"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ExitButton" to="." method="Exit"]

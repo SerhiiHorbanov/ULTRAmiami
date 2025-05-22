@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dm7l2n6vccl3u"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(250, 125)
+theme_override_font_sizes/font_size = 48
+text = "DEFAULT TEXT"
+autowrap_mode = 3
