@@ -14,7 +14,7 @@
 [node name="AmmoDisplay" parent="Canvas" index="0" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player")
 
-[node name="RealConsole" parent="Canvas" index="4" node_paths=PackedStringArray("_player")]
+[node name="RealConsole" parent="Canvas" index="5" node_paths=PackedStringArray("_player")]
 _player = NodePath("../../Player")
 
 [node name="GameplayCamera" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("2_b2bpf")]

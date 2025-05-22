@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://sdpp1fwhlvdp"]
+[gd_scene load_steps=8 format=3 uid="uid://sdpp1fwhlvdp"]
 
 [ext_resource type="PackedScene" uid="uid://d2hk6a38fe2k1" path="res://Scenes/UI/HUD/AmmoDisplay.tscn" id="1_of5y6"]
 [ext_resource type="PackedScene" uid="uid://borpe0wg55dui" path="res://Scenes/UI/GameplayRestartConsole.tscn" id="2_1n21u"]
 [ext_resource type="PackedScene" uid="uid://dkrwcrlvwt6f4" path="res://Scenes/UI/HUD/BloodBar.tscn" id="3_73qcr"]
 [ext_resource type="PackedScene" uid="uid://b3kfqqpvf6jxu" path="res://Scenes/UI/FPSCounter.tscn" id="4_7boa3"]
 [ext_resource type="PackedScene" uid="uid://5iv5ppa52n8j" path="res://Scenes/UI/RealConsole.tscn" id="5_2tfhg"]
+[ext_resource type="PackedScene" uid="uid://brj54d7w7qibq" path="res://Scenes/UI/PauseMenu/PauseMenu.tscn" id="5_w614y"]
 [ext_resource type="PackedScene" uid="uid://bxggr46o0t455" path="res://Scenes/UI/Gameplay/GameplayHintText.tscn" id="6_eq84l"]
 
 [node name="Canvas" type="CanvasLayer"]
@@ -21,6 +22,8 @@ offset_right = 105.0
 
 [node name="GameplayRestartConsole" parent="." instance=ExtResource("2_1n21u")]
 
+[node name="GameplayHintText" parent="." instance=ExtResource("6_eq84l")]
+
 [node name="RealConsole" parent="." instance=ExtResource("5_2tfhg")]
 
-[node name="GameplayHintText" parent="." instance=ExtResource("6_eq84l")]
+[node name="PauseMenu" parent="." instance=ExtResource("5_w614y")]

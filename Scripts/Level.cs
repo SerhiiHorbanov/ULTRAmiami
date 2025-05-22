@@ -33,6 +33,11 @@ public partial class Level : Node
 		_info.SaveCompletion(PlayerScore.Current);
 		_completionMenu.Display(_info, PlayerScore.Current);
 	}
+
+	private void LoadNextLevel()
+	{
+		_info.LoadNextLevel(this);
+	}
 	
 	public override void _UnhandledInput(InputEvent @event)
 	{
