@@ -1,4 +1,5 @@
 using Godot;
+using ULTRAmiami.UI.SettingsMenuUI;
 
 namespace ULTRAmiami.UI;
 
@@ -6,6 +7,8 @@ public partial class PauseMenu : Control
 {
 	private readonly static StringName Escape = "escape";
 
+	[Export] private SettingsMenu _settings;
+	
 	[Export] private PackedScene _sceneExitingTo;
 
 	[Export] private bool _isPaused;
@@ -44,6 +47,7 @@ public partial class PauseMenu : Control
 
 	private void Settings()
 	{
+		_settings.Open();
 	}
 	
 	private void RestartLevel()

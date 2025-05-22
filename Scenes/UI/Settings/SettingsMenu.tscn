@@ -1,0 +1,125 @@
+[gd_scene load_steps=3 format=3 uid="uid://vjj53cmmoiac"]
+
+[ext_resource type="Script" uid="uid://b17r4oleouw0r" path="res://Scripts/UI/SettingsMenuUI/SettingsMenu.cs" id="1_jn4g8"]
+
+[sub_resource type="Theme" id="Theme_6wqx3"]
+default_font_size = 48
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jn4g8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 520
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/ColorRect/HSplitContainer"]
+layout_mode = 2
+split_offset = 150
+
+[node name="Label" type="Label" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "===SETTINGS==="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_6wqx3")
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="ExitButton" type="Button" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "EXIT"
+
+[node name="GraphicsButton" type="Button" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "GRAPHICS"
+
+[node name="AudioButton" type="Button" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "AUDIO"
+
+[node name="ControlsButton" type="Button" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "CONTROLS"
+
+[node name="OtherButton" type="Button" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "OTHER"
+
+[node name="Control" type="HSplitContainer" parent="MarginContainer/ColorRect/HSplitContainer"]
+layout_mode = 2
+split_offset = 25
+
+[node name="Control" type="Control" parent="MarginContainer/ColorRect/HSplitContainer/Control"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 884.0
+offset_bottom = 59.0
+grow_horizontal = 0
+rotation = 1.5708
+theme_override_font_sizes/font_size = 64
+text = "======================="
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ColorRect/HSplitContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/ExitButton" to="." method="Close"]
