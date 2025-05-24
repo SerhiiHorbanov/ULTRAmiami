@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://vjj53cmmoiac"]
+[gd_scene load_steps=4 format=3 uid="uid://vjj53cmmoiac"]
 
 [ext_resource type="Script" uid="uid://b17r4oleouw0r" path="res://Scripts/UI/SettingsMenuUI/SettingsMenu.cs" id="1_jn4g8"]
+[ext_resource type="PackedScene" uid="uid://c35bw7v6qdbnt" path="res://Scenes/UI/Settings/SettingsTab.tscn" id="2_1r8m7"]
 
 [sub_resource type="Theme" id="Theme_6wqx3"]
 default_font_size = 48
 
-[node name="SettingsMenu" type="Control"]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("_tabs")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jn4g8")
+_tabs = [NodePath("MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics"), NodePath("MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio"), NodePath("MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls"), NodePath("MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -116,10 +118,40 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer"]
+[node name="Graphics" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
+visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/ScrollContainer"]
+[node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer" index="0"]
+text = "GRAPHICS"
+
+[node name="Audio" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
+visible = false
 layout_mode = 2
+
+[node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer" index="0"]
+text = "AUDIO"
+
+[node name="Controls" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
+layout_mode = 2
+
+[node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="0"]
+text = "CONTROLS"
+
+[node name="Other" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
+visible = false
+layout_mode = 2
+
+[node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer" index="0"]
+text = "OTHER"
 
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/ExitButton" to="." method="Close"]
+[connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/GraphicsButton" to="." method="SetTab" binds= [0]]
+[connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/AudioButton" to="." method="SetTab" binds= [1]]
+[connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/ControlsButton" to="." method="SetTab" binds= [2]]
+[connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/OtherButton" to="." method="SetTab" binds= [3]]
+
+[editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics"]
+[editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio"]
+[editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls"]
+[editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other"]
