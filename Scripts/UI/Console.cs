@@ -124,7 +124,7 @@ public partial class Console : Control
 				ShowScenes();
 				break;
 			case "godmode":
-				_player.GodMode = !_player.GodMode;
+				GodMode();
 				break;
 			case "load":
 				Load(words[1]);
@@ -133,6 +133,13 @@ public partial class Console : Control
 				Echo($"[color=red]Invalid command:[color=white] {command}");
 				break;
 		}
+	}
+	private void GodMode()
+	{
+		if (_player is null)
+			Echo($"[color=red]No player assigned[color=white]");
+		else
+			_player.GodMode = !_player.GodMode;
 	}
 
 	private void ShowScenes()
