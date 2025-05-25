@@ -30,20 +30,20 @@ public partial class KillCountRequirement : CompletionRequirement
 
 	public override Node InstantiateAndConnectToUI()
 	{
-		Node ui = InstantiateUI();
+		Node node = InstantiateUI();
 
-		if (ui is not KillCountRequirementDisplay killCountRequirementDisplay)
+		if (node is not KillCountRequirementDisplay ui)
 		{
-			GD.PrintErr("KillCountRequirementDisplay is not a KillCountRequirementDisplay");
+			GD.PrintErr("Instantiated node is not a KillCountRequirementDisplay");
 			return null;
 		}
 		
-		killCountRequirementDisplay.Initialize(_minKills, _maxKills);
-		OnKillsChanged += killCountRequirementDisplay.UpdateText;
+		ui.Initialize(_minKills, _maxKills);
+		OnKillsChanged += ui.UpdateText;
 		
 		EmitSignalOnKillsChanged(Kills);
 		
-		return ui;
+		return node;
 	}
 
 	public override bool IsCompleted()

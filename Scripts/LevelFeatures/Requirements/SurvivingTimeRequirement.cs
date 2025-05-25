@@ -28,7 +28,7 @@ public partial class SurvivingTimeRequirement : CompletionRequirement
 
 		if (node is not TimedLevelRequirementUI ui)
 		{
-			GD.PrintErr("TimedLevelRequirementUI is not a TimedLevelRequirementUI");
+			GD.PrintErr("Instantiated node is not a TimedLevelRequirementUI");
 			return null;
 		}
 		
