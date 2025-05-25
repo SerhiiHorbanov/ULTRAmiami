@@ -264,9 +264,6 @@ position = Vector2(2424, 632)
 [node name="Unit3" parent="." index="12" instance=ExtResource("9_jcebb")]
 position = Vector2(2344, 816)
 
-[connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
-[connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
-[connection signal="OnCompleted" from="LevelTarget" to="." method="OnCompleted"]
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 
 [editable path="Canvas"]
