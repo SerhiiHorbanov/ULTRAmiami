@@ -7,12 +7,13 @@
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_xjwgq"]
 [ext_resource type="AudioStream" uid="uid://cq2kl2pdko5yi" path="res://Audio/SFX/SMGReload.wav" id="6_txk56"]
 
-[node name="Submachinegun" instance=ExtResource("1_cu785")]
+[node name="Submachinegun" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_cu785")]
 _bullet = ExtResource("2_nv5f2")
 _isAutomatic = true
 _fireRate = 48.0
 _spread = 12.0
 _maxAmmo = 16
+_shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("3_pbfh6")
@@ -24,10 +25,10 @@ texture = ExtResource("4_mdfs6")
 [node name="ReloadTimer" parent="." index="2"]
 wait_time = 1.5
 
-[node name="Shot" parent="." index="3"]
+[node name="Shot" parent="." index="4"]
 stream = ExtResource("5_xjwgq")
 volume_db = -8.0
 
-[node name="Reload" parent="." index="5"]
+[node name="Reload" parent="." index="6"]
 stream = ExtResource("6_txk56")
 volume_db = 12.0

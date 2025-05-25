@@ -7,12 +7,13 @@
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_y2gf6"]
 [ext_resource type="AudioStream" uid="uid://b10uxcb5rwiea" path="res://Audio/SFX/AssaultRifleReload.wav" id="6_h2fas"]
 
-[node name="AssaultRifle" instance=ExtResource("1_f1tig")]
+[node name="AssaultRifle" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_f1tig")]
 _bullet = ExtResource("2_iimqx")
 _isAutomatic = true
 _fireRate = 8.0
 _spread = 8.0
 _maxAmmo = 12
+_shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("3_6j0jo")
@@ -21,11 +22,11 @@ texture = ExtResource("3_6j0jo")
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
 texture = ExtResource("4_y2gf6")
 
-[node name="Shot" parent="." index="3"]
+[node name="Shot" parent="." index="4"]
 stream = ExtResource("5_y2gf6")
 volume_db = -6.0
 max_polyphony = 2
 
-[node name="Reload" parent="." index="5"]
+[node name="Reload" parent="." index="6"]
 stream = ExtResource("6_h2fas")
 volume_db = 8.0

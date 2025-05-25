@@ -11,13 +11,13 @@ public abstract partial class Weapon : Node2D
 	[Export] private float _fireRate;
 	[Export] private float _spread;
 	[Export] private uint _shootsPerShot = 1;
-	
-	private ulong _lastShotMicroSeconds;
 
+	[Export] private Timer _reloadTimer;
 	private int _ammo;
 	[Export] private int _maxAmmo;
 
-	[Export] private Timer _reloadTimer;
+	[Export] private Timer _shootingCooldownTimer;
+	[Export] private bool _shootingCooldownDone = true;
 
 	[Export] private DroppedWeapon _dropped;
 	[Export] private Node2D _droppedNotPickuppable;
@@ -45,9 +45,6 @@ public abstract partial class Weapon : Node2D
 
 	private ulong MicroSecondsBetweenShots
 		=> (ulong)(1 / _fireRate * 1_000_000);
-	
-	private ulong MicroSecondsSinceShot
-		=> Time.GetTicksUsec() - _lastShotMicroSeconds;
 
 	private bool IsDropped
 		=> Unit is null;
@@ -78,6 +75,7 @@ public abstract partial class Weapon : Node2D
 	{
 		_droppedNotPickuppable.GetParent().RemoveChild(_droppedNotPickuppable);
 		_reloadTimer.Timeout += FinishReloading;
+		_shootingCooldownTimer.Timeout += CompleteCoolDown;
 	}
 
 	public void TryAttachUnit(Unit unit, bool isPickUppable = true)
@@ -160,6 +158,9 @@ public abstract partial class Weapon : Node2D
 		SetMaxAmmo();
 		OnReloadFinished?.Invoke();
 	}
+	
+	private void CompleteCoolDown()
+		=> _shootingCooldownDone = true;
 
 	private void SetMaxAmmo()
 	{
@@ -169,7 +170,9 @@ public abstract partial class Weapon : Node2D
 	
 	private void ShootAndDoRelatedProcesses()
 	{
-		_lastShotMicroSeconds = Time.GetTicksUsec();
+		_shootingCooldownTimer.WaitTime = 1.0f / _fireRate;
+		 _shootingCooldownTimer.Start();
+		 _shootingCooldownDone = false;
 		
 		for (int i = 0 ; i < _shootsPerShot ; i++)
 			ShootWithSpread();
@@ -204,9 +207,7 @@ public abstract partial class Weapon : Node2D
 	}
 
 	public bool EnoughTimeSinceLastShotToShootAgain()
-	{
-		return MicroSecondsSinceShot >= MicroSecondsBetweenShots;
-	}
+		=> _shootingCooldownDone;
 	
 	protected abstract void Shoot(Vector2 shootingAt);
 }
