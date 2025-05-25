@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dng3xp3tqxkq0"]
+
+[node name="VolumeSlider" type="Control"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 504.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 32
+text = "Volume slider default text"
+
+[node name="HSlider" type="HSlider" parent="ColorRect/Label"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 0
+offset_top = 48.0
+offset_right = 400.0
+offset_bottom = 64.0
+max_value = 1.0
+step = 0.0
