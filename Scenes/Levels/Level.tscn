@@ -17,10 +17,10 @@ _player = NodePath("Player")
 
 [node name="Canvas" parent="." instance=ExtResource("1_5lnup")]
 
-[node name="AmmoDisplay" parent="Canvas" index="0" node_paths=PackedStringArray("_unit")]
+[node name="AmmoDisplay" parent="Canvas" index="1" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player")
 
-[node name="RealConsole" parent="Canvas" index="5" node_paths=PackedStringArray("_player")]
+[node name="RealConsole" parent="Canvas" index="6" node_paths=PackedStringArray("_player")]
 _player = NodePath("../../Player")
 
 [node name="LevelCompletionMenu" parent="Canvas" instance=ExtResource("3_etd3f")]

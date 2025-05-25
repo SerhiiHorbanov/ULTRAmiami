@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://spsh7fhugw7u"]
+
+[ext_resource type="Script" uid="uid://blj1bxpb1b5gi" path="res://Scripts/UI/LevelRequirementsUI/LevelTargetsUI.cs" id="1_t132w"]
+
+[node name="LevelTargetsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -130.0
+offset_right = -100.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_t132w")
