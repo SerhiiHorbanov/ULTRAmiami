@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="10_pchh6"]
 [ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="11_yb7we"]
 
-[node name="RealConsole" type="Control" node_paths=PackedStringArray("_lineEdit", "_text", "_disappearingPart")]
+[node name="RealConsole" type="Control" node_paths=PackedStringArray("_lineEdit", "_text")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 10
@@ -23,7 +23,6 @@ theme = ExtResource("1_as4ja")
 script = ExtResource("2_88034")
 _lineEdit = NodePath("BackingRect/LineEdit")
 _text = NodePath("BackingRect/RichTextLabel")
-_disappearingPart = NodePath("BackingRect")
 _helpText = "This is a debug console
 These are commands available:
 	cls

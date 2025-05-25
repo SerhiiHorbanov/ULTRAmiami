@@ -9,8 +9,7 @@ public partial class Console : Control
 {
 	[Export] private LineEdit _lineEdit;
 	[Export] private RichTextLabel _text;
-
-	[Export] private Control _disappearingPart;
+	
 	private bool _isOnScreen;
 	
 	private readonly static List<string> History = [];
@@ -29,7 +28,7 @@ public partial class Console : Control
 	public override void _Ready()
 	{
 		_lineEdit.TextSubmitted += EnterCommand;
-		_disappearingPart.Visible = _isOnScreen;
+		Visible = _isOnScreen;
 	}
 
 	public override void _Process(double delta)
@@ -49,7 +48,7 @@ public partial class Console : Control
 	private void SwitchIsOnScreen()
 	{
 		_isOnScreen = !_isOnScreen;
-		_disappearingPart.Visible = _isOnScreen;
+		Visible = _isOnScreen;
 	}
 
 	public void Echo(string text = "")
