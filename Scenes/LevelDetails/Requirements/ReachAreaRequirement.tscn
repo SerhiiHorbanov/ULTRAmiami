@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnqi8a1n3yf1x"]
+[gd_scene load_steps=3 format=3 uid="uid://cnqi8a1n3yf1x"]
 
 [ext_resource type="Script" uid="uid://bts30iqag0b2l" path="res://Scripts/LevelFeatures/Requirements/ReachAreaRequirement.cs" id="1_b6mqo"]
+[ext_resource type="PackedScene" uid="uid://dgqv57wfjsibm" path="res://Scenes/UI/LevelRequirementsUI/ReachAreaRequirementUI.tscn" id="2_vuiw3"]
 
 [node name="ReachAreaRequirement" type="Node2D" node_paths=PackedStringArray("_areas")]
 script = ExtResource("1_b6mqo")
 _areas = []
+_requirementUI = ExtResource("2_vuiw3")

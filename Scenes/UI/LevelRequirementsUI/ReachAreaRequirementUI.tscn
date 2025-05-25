@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgqv57wfjsibm"]
+
+[ext_resource type="Script" uid="uid://6bnoonf7qlfe" path="res://Scripts/UI/LevelRequirementsUI/ReachAreaRequirementUI.cs" id="1_thc8f"]
+
+[node name="ReachAreaRequirementUi" type="MarginContainer" node_paths=PackedStringArray("_label")]
+custom_minimum_size = Vector2(200, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_thc8f")
+_label = NodePath("RichTextLabel")
+_prefixBeforeReached = "reach [color=yellow]"
+_prefixAfterReached = "[color=green]"
+_suffixAfterReached = "[color=white] reached"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+fit_content = true

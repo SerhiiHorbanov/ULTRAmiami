@@ -1,14 +1,19 @@
 using Godot;
 using Godot.Collections;
+using ULTRAmiami.UI.LevelRequirementsUI;
 using ULTRAmiami.Units;
 
 namespace ULTRAmiami.Requirements;
 
 public partial class ReachAreaRequirement : CompletionRequirement
 {
+	[Export] private string _areasName; 
 	[Export] private Array<Area2D> _areas;
 
 	private bool _reached;
+
+	[Signal]
+	public delegate void AreaReachedEventHandler();
 	
 	public override void _Ready()
 	{
@@ -20,6 +25,21 @@ public partial class ReachAreaRequirement : CompletionRequirement
 		}
 	}
 
+	public override Node InstantiateAndConnectToUI()
+	{
+		Node node = InstantiateUI();
+
+		if (node is not ReachAreaRequirementUI ui)
+		{
+			GD.PrintErr("Instantiated node is not a ReachAreaRequirementUI");
+			return null;
+		}
+		
+		ui.Initialize(_areasName);
+		AreaReached += ui.OnAreaReached;
+		return ui;
+	}
+
 	private void BodyEntered(Node2D body)
 	{
 		if (body is not Unit unit)
@@ -28,6 +48,7 @@ public partial class ReachAreaRequirement : CompletionRequirement
 			return;
 		
 		_reached = true;
+		EmitSignalAreaReached();
 		UnsubscribeFromAreas();
 	}
 	
