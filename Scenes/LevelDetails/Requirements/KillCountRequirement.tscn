@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cchkdwswpp6r6"]
+[gd_scene load_steps=3 format=3 uid="uid://cchkdwswpp6r6"]
 
 [ext_resource type="Script" uid="uid://vovyd18b6883" path="res://Scripts/LevelFeatures/Requirements/KillCountRequirement.cs" id="1_4mfgv"]
+[ext_resource type="PackedScene" uid="uid://d3aia0w1svaf7" path="res://Scenes/UI/LevelRequirementsUI/KillCountRequirementDisplay.tscn" id="2_wiuip"]
 
 [node name="KillCountRequirement" type="Node2D"]
 script = ExtResource("1_4mfgv")
 _minKills = 1
+_requirementUI = ExtResource("2_wiuip")
