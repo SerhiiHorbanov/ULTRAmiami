@@ -1,4 +1,5 @@
 using Godot;
+using ULTRAmiami.UI.LevelRequirementsUI;
 using ULTRAmiami.Units;
 
 namespace ULTRAmiami.Requirements;
@@ -19,6 +20,20 @@ public partial class SurvivingTimeRequirement : CompletionRequirement
 		_timer.Timeout += Timeout;
 		_player.OnDeath += OnDeath;
 		_timer.Start();
+	}
+
+	public override Node InstantiateAndConnectToUI()
+	{
+		Node node = InstantiateUI();
+
+		if (node is not TimedLevelRequirementUI ui)
+		{
+			GD.PrintErr("TimedLevelRequirementUI is not a TimedLevelRequirementUI");
+			return null;
+		}
+		
+		ui.Initialize(_timer);
+		return ui;
 	}
 
 	private void OnDeath(Hit hit)

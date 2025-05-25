@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqankgmeojmru"]
+
+[ext_resource type="PackedScene" uid="uid://botjy862ckj0h" path="res://Scenes/UI/LevelRequirementsUI/TimedLevelRequirementUI.tscn" id="1_jiwik"]
+
+[node name="TimeLimitationRequirementUI" instance=ExtResource("1_jiwik")]
+_prefix = "[color=red]"

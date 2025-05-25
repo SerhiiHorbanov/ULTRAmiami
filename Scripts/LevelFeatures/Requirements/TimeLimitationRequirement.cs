@@ -1,4 +1,5 @@
 using Godot;
+using ULTRAmiami.UI.LevelRequirementsUI;
 using Timer = Godot.Timer;
 
 namespace ULTRAmiami.Requirements;
@@ -14,6 +15,20 @@ public partial class TimeLimitationRequirement : CompletionRequirement
 		
 		_timer.Timeout += Timeout;
 		_timer.Start();
+	}
+
+	public override Node InstantiateAndConnectToUI()
+	{
+		Node node = InstantiateUI();
+
+		if (node is not TimedLevelRequirementUI ui)
+		{
+			GD.PrintErr("TimedLevelRequirementUI is not a TimedLevelRequirementUI");
+			return null;
+		}
+		
+		ui.Initialize(_timer);
+		return ui;
 	}
 
 	private void Timeout()

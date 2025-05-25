@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ck0m3y7131xtl"]
+[gd_scene load_steps=3 format=3 uid="uid://ck0m3y7131xtl"]
 
 [ext_resource type="Script" uid="uid://bfga6j3troefm" path="res://Scripts/LevelFeatures/Requirements/SurvivingTimeRequirement.cs" id="1_37dvk"]
+[ext_resource type="PackedScene" uid="uid://b5nxl6q3015hl" path="res://Scenes/UI/LevelRequirementsUI/SurviveTimeRequirementUI.tscn" id="2_i5nj6"]
 
-[node name="SurvivingTimeRequirement" type="Timer" node_paths=PackedStringArray("_timer")]
+[node name="SurvivingTimeRequirement" type="Node2D" node_paths=PackedStringArray("_timer")]
+script = ExtResource("1_37dvk")
+_timer = NodePath("Timer")
+_requirementUI = ExtResource("2_i5nj6")
+
+[node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
-script = ExtResource("1_37dvk")
-_timer = NodePath(".")

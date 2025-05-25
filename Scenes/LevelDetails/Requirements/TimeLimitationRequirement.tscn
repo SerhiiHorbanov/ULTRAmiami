@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqof712s4pssr"]
+[gd_scene load_steps=3 format=3 uid="uid://dqof712s4pssr"]
 
 [ext_resource type="Script" uid="uid://b6jfe6lxw4y17" path="res://Scripts/LevelFeatures/Requirements/TimeLimitationRequirement.cs" id="1_vlc0q"]
+[ext_resource type="PackedScene" uid="uid://cqankgmeojmru" path="res://Scenes/UI/LevelRequirementsUI/TimeLimitationRequiremenUI.tscn" id="2_iopwe"]
 
-[node name="TimeLimitationRequirement" type="Timer" node_paths=PackedStringArray("_timer")]
+[node name="TimeLimitationRequirement" type="Node2D" node_paths=PackedStringArray("_timer")]
+script = ExtResource("1_vlc0q")
+_timer = NodePath("Timer")
+_requirementUI = ExtResource("2_iopwe")
+
+[node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
-script = ExtResource("1_vlc0q")
-_timer = NodePath(".")
