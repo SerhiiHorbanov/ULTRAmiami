@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cchkdwswpp6r6"]
+
+[ext_resource type="Script" uid="uid://vovyd18b6883" path="res://Scripts/LevelFeatures/Requirements/KillCountRequirement.cs" id="1_4mfgv"]
+
+[node name="KillCountRequirement" type="Node2D"]
+script = ExtResource("1_4mfgv")
+_minKills = 1

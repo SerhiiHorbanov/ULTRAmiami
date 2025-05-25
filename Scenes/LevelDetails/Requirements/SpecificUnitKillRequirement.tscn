@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://86xpoiadpegm"]
+
+[ext_resource type="Script" uid="uid://c3763v5r6dulu" path="res://Scripts/LevelFeatures/Requirements/SpecificUnitKillRequirement.cs" id="1_d7ede"]
+
+[node name="SpecificUnitKillRequirement" type="Node2D"]
+script = ExtResource("1_d7ede")

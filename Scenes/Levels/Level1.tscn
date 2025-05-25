@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://cei2onxx6reim"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_5jgm0"]
-[ext_resource type="Script" uid="uid://vovyd18b6883" path="res://Scripts/LevelFeatures/Requirements/KillCountRequirement.cs" id="2_riv1q"]
 [ext_resource type="Resource" uid="uid://c7udd1xxwfk3g" path="res://LevelInfos/Level1Info.tres" id="3_4d3fe"]
-[ext_resource type="Script" uid="uid://bts30iqag0b2l" path="res://Scripts/LevelFeatures/Requirements/ReachAreaRequirement.cs" id="3_8h4de"]
+[ext_resource type="PackedScene" uid="uid://cchkdwswpp6r6" path="res://Scenes/LevelDetails/Requirements/KillCountRequirement.tscn" id="3_f3nwb"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="3_xvio3"]
+[ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="4_57lp3"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="4_kri6y"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="6_4d3fe"]
 [ext_resource type="PackedScene" uid="uid://c7lxg1prscm7m" path="res://Scenes/LevelDetails/HintTrigger.tscn" id="7_jcebb"]
@@ -23,8 +23,10 @@ metadata/_custom_type_script = "uid://bsnay7tcwvpmp"
 [node name="Level" instance=ExtResource("1_5jgm0")]
 _info = ExtResource("3_4d3fe")
 
-[node name="ReachAreaRequirement" type="Node2D" parent="LevelTarget" index="0" node_paths=PackedStringArray("_areas")]
-script = ExtResource("3_8h4de")
+[node name="KillCountRequirement" parent="LevelTarget" index="0" instance=ExtResource("3_f3nwb")]
+_minKills = 2
+
+[node name="ReachAreaRequirement" parent="LevelTarget" index="1" node_paths=PackedStringArray("_areas") instance=ExtResource("4_57lp3")]
 _areas = [NodePath("Area2D")]
 
 [node name="Area2D" type="Area2D" parent="LevelTarget/ReachAreaRequirement" index="0"]
@@ -32,10 +34,6 @@ _areas = [NodePath("Area2D")]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTarget/ReachAreaRequirement/Area2D" index="0"]
 position = Vector2(2600, 2111)
 shape = SubResource("RectangleShape2D_jcebb")
-
-[node name="KillsRequirement" type="Node2D" parent="LevelTarget" index="1"]
-script = ExtResource("2_riv1q")
-_minKills = 2
 
 [node name="TriggerableDoor" parent="." index="6" instance=ExtResource("4_kri6y")]
 position = Vector2(-2.27374e-13, -1248)
