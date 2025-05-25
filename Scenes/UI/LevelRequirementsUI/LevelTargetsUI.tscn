@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blj1bxpb1b5gi" path="res://Scripts/UI/LevelRequirementsUI/LevelTargetsUI.cs" id="1_t132w"]
 
-[node name="LevelTargetsUI" type="Control"]
-layout_mode = 3
+[node name="LevelTargetsUI" type="HBoxContainer"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
