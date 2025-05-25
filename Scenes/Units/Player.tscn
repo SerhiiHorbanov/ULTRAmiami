@@ -128,10 +128,12 @@ _animationName = &"attack"
 stream = ExtResource("19_10dhr")
 volume_db = -18.0
 max_polyphony = 2
+bus = &"SFX"
 
 [node name="HitRandomizer" type="AudioStreamPlayer2D" parent="MeleeAttacker" index="6"]
 stream = ExtResource("20_hese3")
 volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
