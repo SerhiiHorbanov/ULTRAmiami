@@ -12,6 +12,8 @@ public partial class ReachAreaRequirement : CompletionRequirement
 	
 	public override void _Ready()
 	{
+		base._Ready();
+		
 		foreach (Area2D area in _areas)
 		{
 			area.BodyEntered += BodyEntered;

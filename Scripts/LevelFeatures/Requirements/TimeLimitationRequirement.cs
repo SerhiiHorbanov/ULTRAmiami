@@ -10,6 +10,8 @@ public partial class TimeLimitationRequirement : CompletionRequirement
 
 	public override void _Ready()
 	{
+		base._Ready();
+		
 		_timer.Timeout += Timeout;
 		_timer.Start();
 	}

@@ -14,6 +14,8 @@ public partial class SurvivingTimeRequirement : CompletionRequirement
 	
 	public override void _Ready()
 	{
+		base._Ready();
+		
 		_timer.Timeout += Timeout;
 		_player.OnDeath += OnDeath;
 		_timer.Start();
