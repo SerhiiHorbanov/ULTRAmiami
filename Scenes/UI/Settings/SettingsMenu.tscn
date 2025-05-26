@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c35bw7v6qdbnt" path="res://Scenes/UI/Settings/SettingsTab.tscn" id="2_1r8m7"]
 [ext_resource type="Script" uid="uid://dp4faltafiseg" path="res://Scripts/UI/SettingsMenuUI/AudioSettings.cs" id="3_av71w"]
 [ext_resource type="Script" uid="uid://dxrqmhyq1twrh" path="res://Scripts/UI/SettingsMenuUI/VolumeSetting.cs" id="4_av71w"]
-[ext_resource type="PackedScene" uid="uid://dng3xp3tqxkq0" path="res://Scenes/UI/Settings/VolumeSlider.tscn" id="5_wywac"]
+[ext_resource type="PackedScene" uid="uid://dng3xp3tqxkq0" path="res://Scenes/UI/Settings/SettingSlider.tscn" id="5_wywac"]
 
 [sub_resource type="Theme" id="Theme_6wqx3"]
 default_font_size = 48
@@ -143,13 +143,13 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="Graphics" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
-visible = false
 layout_mode = 2
 
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer" index="0"]
 text = "GRAPHICS"
 
 [node name="Audio" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" node_paths=PackedStringArray("_sliders") instance=ExtResource("2_1r8m7")]
+visible = false
 layout_mode = 2
 script = ExtResource("3_av71w")
 _sliders = [NodePath("VBoxContainer/VolumeSlider/ColorRect/Label/HSlider"), NodePath("VBoxContainer/VolumeSlider2/ColorRect/Label/HSlider"), NodePath("VBoxContainer/VolumeSlider3/ColorRect/Label/HSlider")]

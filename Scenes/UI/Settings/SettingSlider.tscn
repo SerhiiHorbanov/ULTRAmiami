@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dng3xp3tqxkq0"]
 
-[node name="VolumeSlider" type="Control"]
+[node name="SettingSlider" type="Control"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 3
 anchors_preset = 15
@@ -30,7 +30,7 @@ offset_top = 16.0
 offset_right = 504.0
 offset_bottom = 45.0
 theme_override_font_sizes/font_size = 32
-text = "Volume slider default text"
+text = "Setting slider default text"
 
 [node name="HSlider" type="HSlider" parent="ColorRect/Label"]
 custom_minimum_size = Vector2(400, 0)
