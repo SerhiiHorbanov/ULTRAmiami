@@ -7,10 +7,15 @@ namespace ULTRAmiami.Data;
 public partial class GameplayHint : Resource
 {
 	[Export] public string Text { get; private set; }
-	[Export] public float Time { get; private set; }
+	[Export] public float Time;
+
+	[Export] public bool OverrideCurrentHint { get; private set; }
 
 	public void Display()
 	{
-		GameplayHintText.AddHintToQueue(this);
+		if (OverrideCurrentHint)
+			GameplayHintText.OverrideCurrentHint(this);
+		else
+			GameplayHintText.AddHintToQueue(this);
 	}
 }

@@ -20,10 +20,11 @@ public partial class GameplayHintText : Control
 	private static GameplayHintText _instance;
 	
 	public static void AddHintToQueue(GameplayHint hint)
-	{
-		_instance.AddHintToQueueInternal(hint);
-	}
-	
+		=> _instance.AddHintToQueueInternal(hint);
+
+	public static void OverrideCurrentHint(GameplayHint hint)
+		=> _instance.OverrideCurrentHintInternal(hint);
+
 	public override void _Ready()
 	{
 		_isHidden = true;
@@ -59,10 +60,10 @@ public partial class GameplayHintText : Control
 			ShowText();
 		
 		GameplayHint next = _hintsQueue.Dequeue();
-		OverrideCurrentHint(next);
+		OverrideCurrentHintInternal(next);
 	}
 
-	private void OverrideCurrentHint(GameplayHint hint)
+	private void OverrideCurrentHintInternal(GameplayHint hint)
 	{
 		if (hint is null)
 			HideText();
