@@ -1,34 +1,52 @@
-[gd_scene load_steps=10 format=3 uid="uid://vjj53cmmoiac"]
+[gd_scene load_steps=14 format=3 uid="uid://vjj53cmmoiac"]
 
 [ext_resource type="Script" uid="uid://b17r4oleouw0r" path="res://Scripts/UI/SettingsMenuUI/SettingsMenu.cs" id="1_jn4g8"]
 [ext_resource type="PackedScene" uid="uid://c35bw7v6qdbnt" path="res://Scenes/UI/Settings/SettingsTab.tscn" id="2_1r8m7"]
 [ext_resource type="Script" uid="uid://dp4faltafiseg" path="res://Scripts/UI/SettingsMenuUI/AudioSettings.cs" id="3_av71w"]
-[ext_resource type="Script" uid="uid://dxrqmhyq1twrh" path="res://Scripts/UI/SettingsMenuUI/VolumeSetting.cs" id="4_av71w"]
+[ext_resource type="Script" uid="uid://dhmm8kbt2gn2k" path="res://Scripts/Data/SettingSliderData.cs" id="4_hq2us"]
 [ext_resource type="PackedScene" uid="uid://dng3xp3tqxkq0" path="res://Scenes/UI/Settings/SettingSlider.tscn" id="5_wywac"]
 
 [sub_resource type="Theme" id="Theme_6wqx3"]
 default_font_size = 48
 
 [sub_resource type="Resource" id="Resource_wywac"]
-script = ExtResource("4_av71w")
-_saveName = "GlobalVolume"
-_bus = 0
-Volume = 1.0
-metadata/_custom_type_script = "uid://dxrqmhyq1twrh"
+script = ExtResource("4_hq2us")
+Value = 0.0
+_defaultValue = 1.0
+metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
 
 [sub_resource type="Resource" id="Resource_hq2us"]
-script = ExtResource("4_av71w")
-_saveName = "SFXVolume"
-_bus = 1
-Volume = 1.0
-metadata/_custom_type_script = "uid://dxrqmhyq1twrh"
+script = ExtResource("4_hq2us")
+Value = 0.0
+_defaultValue = 1.0
+metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
 
 [sub_resource type="Resource" id="Resource_ftgty"]
-script = ExtResource("4_av71w")
-_saveName = "MusicVolume"
-_bus = 2
-Volume = 1.0
-metadata/_custom_type_script = "uid://dxrqmhyq1twrh"
+script = ExtResource("4_hq2us")
+Value = 0.0
+_defaultValue = 1.0
+metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
+
+[sub_resource type="Environment" id="Environment_5ewu0"]
+adjustment_enabled = true
+
+[sub_resource type="Resource" id="Resource_xqoo2"]
+script = ExtResource("4_hq2us")
+Value = 0.0
+_defaultValue = 1.0
+metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
+
+[sub_resource type="Resource" id="Resource_0qkjt"]
+script = ExtResource("4_hq2us")
+Value = 0.0
+_defaultValue = 1.0
+metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
+
+[sub_resource type="Resource" id="Resource_krf4f"]
+script = ExtResource("4_hq2us")
+Value = 0.0
+_defaultValue = 1.0
+metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("_tabs")]
 layout_mode = 3
@@ -143,36 +161,57 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="Graphics" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
+visible = false
 layout_mode = 2
 
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer" index="0"]
 text = "GRAPHICS"
 
-[node name="Audio" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" node_paths=PackedStringArray("_sliders") instance=ExtResource("2_1r8m7")]
-visible = false
+[node name="SettingSlider" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer" index="1" instance=ExtResource("5_wywac")]
+layout_mode = 2
+_settingName = "Brightness"
+_data = SubResource("Resource_wywac")
+
+[node name="SettingSlider2" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer" index="2" instance=ExtResource("5_wywac")]
+layout_mode = 2
+_settingName = "Contrast"
+_data = SubResource("Resource_hq2us")
+
+[node name="SettingSlider3" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer" index="3" instance=ExtResource("5_wywac")]
+layout_mode = 2
+_settingName = "Saturation"
+_data = SubResource("Resource_ftgty")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer" index="4"]
+environment = SubResource("Environment_5ewu0")
+
+[node name="Audio" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
 layout_mode = 2
 script = ExtResource("3_av71w")
-_sliders = [NodePath("VBoxContainer/VolumeSlider/ColorRect/Label/HSlider"), NodePath("VBoxContainer/VolumeSlider2/ColorRect/Label/HSlider"), NodePath("VBoxContainer/VolumeSlider3/ColorRect/Label/HSlider")]
-_volumeSettings = Array[ExtResource("4_av71w")]([SubResource("Resource_wywac"), SubResource("Resource_hq2us"), SubResource("Resource_ftgty")])
 
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer" index="0"]
-custom_minimum_size = Vector2(1060, 0)
 text = "AUDIO"
 
 [node name="VolumeSlider" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer" index="1" instance=ExtResource("5_wywac")]
 layout_mode = 2
+_settingName = "GlobalVolume"
+_data = SubResource("Resource_xqoo2")
 
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider/ColorRect" index="0"]
 text = "Global volume"
 
 [node name="VolumeSlider2" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer" index="2" instance=ExtResource("5_wywac")]
 layout_mode = 2
+_settingName = "SFXVolume"
+_data = SubResource("Resource_0qkjt")
 
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider2/ColorRect" index="0"]
 text = "SFX volume"
 
 [node name="VolumeSlider3" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer" index="3" instance=ExtResource("5_wywac")]
 layout_mode = 2
+_settingName = "MusicVolume"
+_data = SubResource("Resource_krf4f")
 
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider3/ColorRect" index="0"]
 text = "Music volume"
@@ -197,9 +236,9 @@ text = "OTHER"
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/AudioButton" to="." method="SetTab" binds= [1]]
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/ControlsButton" to="." method="SetTab" binds= [2]]
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/OtherButton" to="." method="SetTab" binds= [3]]
-[connection signal="value_changed" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider/ColorRect/Label/HSlider" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="SetAndApplyVolume" binds= [0]]
-[connection signal="value_changed" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider2/ColorRect/Label/HSlider" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="SetAndApplyVolume" binds= [1]]
-[connection signal="value_changed" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider3/ColorRect/Label/HSlider" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="SetAndApplyVolume" binds= [2]]
+[connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="ApplyVolume" binds= [0]]
+[connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider2" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="ApplyVolume" binds= [1]]
+[connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider3" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="ApplyVolume" binds= [2]]
 
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio"]
