@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg4l4hpp7kyp3"]
+
+[ext_resource type="Script" uid="uid://cpioi6vcu1cou" path="res://Scripts/LevelFeatures/AreaTrigger.cs" id="1_kna28"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5ptj"]
+size = Vector2(100, 100)
+
+[node name="AreaTrigger" type="Area2D"]
+script = ExtResource("1_kna28")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n5ptj")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
