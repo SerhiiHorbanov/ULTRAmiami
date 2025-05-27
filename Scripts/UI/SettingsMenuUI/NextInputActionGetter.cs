@@ -14,7 +14,7 @@ public partial class NextInputActionGetter : Node
 	public async Task<InputEventKey> GetNextKeyPress()
 		=> await GetNextKeyPressInternal();
 
-	public override void _UnhandledInput(InputEvent @event)
+	public override void _Input(InputEvent @event)
 	{
 		if (_keyTaskSource is not null && @event is InputEventKey eventKey)
 			HandleEventKey(eventKey);
