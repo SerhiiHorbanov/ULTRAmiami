@@ -30,9 +30,14 @@ public partial class KeyBindSetting : Control
 	
 	public override void _Ready()
 	{
-		Load();
 		_nameStringName = _name;
 		_nameLabel.Text = _name;
+		
+		Load();
+		Apply();
+		
+		UpdateRebindingKeyButtonText();
+		UpdateRebindingMouseButtonButtonText();
 	}
 
 	private void Load()
@@ -67,6 +72,11 @@ public partial class KeyBindSetting : Control
 		_keyBind.Key = key;
 		Apply();
 		
+		UpdateRebindingKeyButtonText();
+	}
+	
+	private void UpdateRebindingKeyButtonText()
+	{
 		string keyName = _keyBind.Key?.KeyLabel.ToString() ?? "none";
 		_rebindKeyButton.Text = _rebindKeyButtonTextPrefix + keyName;
 	}
@@ -86,7 +96,12 @@ public partial class KeyBindSetting : Control
 		_keyBind.MouseButton = button;
 		Apply();
 
-		string mouseButtonName = _keyBind.MouseButton?.ButtonIndex.ToString() ?? "none"; 
+		UpdateRebindingMouseButtonButtonText();
+	}
+	
+	private void UpdateRebindingMouseButtonButtonText()
+	{
+		string mouseButtonName = _keyBind.MouseButton?.ButtonIndex.ToString() ?? "none";
 		_rebindMouseButtonButton.Text = _rebindMouseButtonButtonTextPrefix + mouseButtonName;
 	}
 	
