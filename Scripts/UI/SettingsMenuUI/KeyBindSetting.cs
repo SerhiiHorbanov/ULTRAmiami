@@ -76,7 +76,7 @@ public partial class KeyBindSetting : Control
 	
 	private void UpdateRebindingKeyButtonText()
 	{
-		string keyName = _keyBind.Key?.KeyLabel.ToString() ?? "none";
+		string keyName = _keyBind.Key?.PhysicalKeycode.ToString() ?? "none";
 		_rebindKeyButton.Text = _rebindKeyButtonTextPrefix + keyName;
 	}
 	
