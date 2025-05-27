@@ -9,7 +9,6 @@ public partial class KeyBindSetting : Control
 {
 	[Export(PropertyHint.None, "must be a legal filename")] private string _name;
 	private KeyBind _keyBind;
-	[Export] private KeyBind _defaultKeyBind;
 
 	[Export(PropertyHint.Dir)] private string _dir;
 
@@ -47,7 +46,7 @@ public partial class KeyBindSetting : Control
 
 		if (!File.Exists(globalPath))
 		{
-			_keyBind = new(_defaultKeyBind);
+			_keyBind = KeyBind.CreateFromAction(_nameStringName);
 			return;
 		}
 		

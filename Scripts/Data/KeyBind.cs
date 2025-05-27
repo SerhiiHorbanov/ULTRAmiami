@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 namespace ULTRAmiami.Data;
 
@@ -40,5 +41,24 @@ public partial class KeyBind : Resource
 			validMouseButton &= MouseButton.ButtonIndex != Godot.MouseButton.None;
 		
 		return validMouseButton || validKeyEvent;
+	}
+
+	public static KeyBind CreateFromAction(StringName name)
+	{
+		Array<InputEvent> events = InputMap.ActionGetEvents(name);
+		KeyBind keyBind = new();
+		
+		foreach (InputEvent @event in events)
+		{
+			if (keyBind.Key is not null && keyBind.MouseButton is not null)
+				return keyBind;
+			
+			if (@event is InputEventKey key)
+				keyBind.Key = key;
+			if (@event is InputEventMouseButton button)
+				keyBind.MouseButton = button;
+		}
+		
+		return keyBind;
 	}
 }
