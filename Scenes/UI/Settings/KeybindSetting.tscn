@@ -7,7 +7,7 @@
 default_font_size = 48
 
 [node name="KeybindSetting" type="ColorRect" node_paths=PackedStringArray("_nextActionGetter", "_rebindKeyButton", "_rebindMouseButtonButton", "_nameLabel")]
-custom_minimum_size = Vector2(1060, 150)
+custom_minimum_size = Vector2(1050, 150)
 theme = SubResource("Theme_6sap6")
 color = Color(0.25098, 0.25098, 0.25098, 1)
 script = ExtResource("1_4kpcu")
