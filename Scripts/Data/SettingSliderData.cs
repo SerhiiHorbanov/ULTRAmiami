@@ -1,3 +1,4 @@
+using System.IO;
 using Godot;
 
 namespace ULTRAmiami.Data;
@@ -10,16 +11,15 @@ public partial class SettingSliderData : Resource
 	
 	public void Save(string dir, string fileName)
 	{
-		System.IO.Directory.CreateDirectory(ProjectSettings.GlobalizePath(dir));
-		var huh = ResourceSaver.Save(this, dir + fileName);
-		return;
+		Directory.CreateDirectory(ProjectSettings.GlobalizePath(dir)); 
+		ResourceSaver.Save(this, dir + fileName);
 	}
 
 	public void Load(string path)
 	{
 		string globalPath = ProjectSettings.GlobalizePath(path);
 
-		if (!System.IO.File.Exists(globalPath))
+		if (!File.Exists(globalPath))
 		{
 			Value = _defaultValue;
 			return;
