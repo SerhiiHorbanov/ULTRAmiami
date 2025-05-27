@@ -5,8 +5,17 @@ namespace ULTRAmiami.Data;
 [GlobalClass]
 public partial class KeyBind : Resource
 {
-	[Export] private InputEventKey _key;
-	[Export] private InputEventMouseButton _mouseButton;
+	[Export] public InputEventKey Key;
+	[Export] public InputEventMouseButton MouseButton;
+	
+	public KeyBind(KeyBind original)
+	{
+		Key = original.Key;
+		MouseButton = original.MouseButton;
+	}
+	
+	public KeyBind()
+	{ }
 
 	public void TryApplying(StringName name)
 	{
@@ -14,19 +23,21 @@ public partial class KeyBind : Resource
 			return;
 		
 		InputMap.ActionEraseEvents(name);
-		InputMap.ActionAddEvent(name, _key);
-		InputMap.ActionAddEvent(name, _mouseButton);
+		if (Key is not null)
+			InputMap.ActionAddEvent(name, Key);
+		if (MouseButton is not null)
+			InputMap.ActionAddEvent(name, MouseButton);
 	}
 
 	private bool CanBeApplied()
 	{
-		bool validKeyEvent = _key is not null;
-		bool validMouseButton = _mouseButton is not null;
+		bool validKeyEvent = Key is not null;
+		bool validMouseButton = MouseButton is not null;
 		
 		if (validKeyEvent)
-			validKeyEvent &= _key.Keycode != Key.None;
+			validKeyEvent &= Key.Keycode != Godot.Key.None;
 		if (validMouseButton)
-			validMouseButton &= _mouseButton.ButtonIndex != MouseButton.None;
+			validMouseButton &= MouseButton.ButtonIndex != Godot.MouseButton.None;
 		
 		return validMouseButton || validKeyEvent;
 	}

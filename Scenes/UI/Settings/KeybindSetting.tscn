@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://d32k5wo1ctqsq"]
+
+[ext_resource type="Script" uid="uid://bxh161jrtxnce" path="res://Scripts/UI/SettingsMenuUI/KeyBindSetting.cs" id="1_4kpcu"]
+[ext_resource type="Script" uid="uid://8jtyck3illd3" path="res://Scripts/UI/SettingsMenuUI/NextInputActionGetter.cs" id="3_h03l0"]
+
+[sub_resource type="Theme" id="Theme_6sap6"]
+default_font_size = 48
+
+[node name="KeybindSetting" type="ColorRect" node_paths=PackedStringArray("_nextActionGetter", "_rebindKeyButton", "_rebindMouseButtonButton", "_nameLabel")]
+custom_minimum_size = Vector2(1060, 150)
+theme = SubResource("Theme_6sap6")
+color = Color(0.25098, 0.25098, 0.25098, 1)
+script = ExtResource("1_4kpcu")
+_dir = "user://Keybinds/"
+_rebindKeyButtonTextPrefix = "Key: "
+_rebindMouseButtonButtonTextPrefix = "Mouse button: "
+_rebindingKeyText = "Press a key"
+_rebindingMouseButtonText = "Press a mouse button"
+_nextActionGetter = NodePath("NextInputActionGetter")
+_rebindKeyButton = NodePath("HSplitContainer/Control2/HBoxContainer/RebindKeyButton")
+_rebindMouseButtonButton = NodePath("HSplitContainer/Control2/HBoxContainer/RebindMouseButtonButton")
+_nameLabel = NodePath("HSplitContainer/Control/Label")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 250
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="Control" type="ColorRect" parent="HSplitContainer"]
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="Label" type="Label" parent="HSplitContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Default text"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control2" type="Control" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="RebindKeyButton" type="Button" parent="HSplitContainer/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Default text"
+autowrap_mode = 3
+
+[node name="RebindMouseButtonButton" type="Button" parent="HSplitContainer/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Default text"
+autowrap_mode = 3
+
+[node name="NextInputActionGetter" type="Node" parent="."]
+script = ExtResource("3_h03l0")
+
+[connection signal="pressed" from="HSplitContainer/Control2/HBoxContainer/RebindKeyButton" to="." method="RebindKey"]
+[connection signal="pressed" from="HSplitContainer/Control2/HBoxContainer/RebindMouseButtonButton" to="." method="RebindMouseButton"]
