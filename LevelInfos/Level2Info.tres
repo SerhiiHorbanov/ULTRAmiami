@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="LevelInfo" load_steps=2 format=3 uid="uid://tf5nmk2kvxbb"]
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://tf5nmk2kvxbb"]
 
 [ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_jm0sa"]
+[ext_resource type="Resource" uid="uid://ker5hlfeol46" path="res://LevelInfos/Level3Info.tres" id="1_qieef"]
 
 [resource]
 script = ExtResource("1_jm0sa")
 _saveName = "second"
-_shownName = "Weaponry"
+_shownName = "Preparation"
 _scenePath = "uid://bbhga1tb2gsgj"
+_nextLevel = ExtResource("1_qieef")
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"
