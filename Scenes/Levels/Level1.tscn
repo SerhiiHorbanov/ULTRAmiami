@@ -35,7 +35,6 @@ _info = ExtResource("3_4d3fe")
 _minKills = 2
 
 [node name="ReachAreaRequirement" parent="LevelTarget" index="1" node_paths=PackedStringArray("_areas") instance=ExtResource("4_57lp3")]
-_areasName = "end of the level"
 _areas = [NodePath("Area2D")]
 
 [node name="Area2D" type="Area2D" parent="LevelTarget/ReachAreaRequirement" index="0"]
