@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://vjj53cmmoiac"]
+[gd_scene load_steps=16 format=3 uid="uid://vjj53cmmoiac"]
 
 [ext_resource type="Script" uid="uid://b17r4oleouw0r" path="res://Scripts/UI/SettingsMenuUI/SettingsMenu.cs" id="1_jn4g8"]
 [ext_resource type="PackedScene" uid="uid://c35bw7v6qdbnt" path="res://Scenes/UI/Settings/SettingsTab.tscn" id="2_1r8m7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bpjv7jcsr6w8e" path="res://Scripts/UI/SettingsMenuUI/GraphicsSettings.cs" id="3_hq2us"]
 [ext_resource type="Script" uid="uid://dhmm8kbt2gn2k" path="res://Scripts/Data/SettingSliderData.cs" id="4_hq2us"]
 [ext_resource type="PackedScene" uid="uid://dng3xp3tqxkq0" path="res://Scenes/UI/Settings/SettingSlider.tscn" id="5_wywac"]
+[ext_resource type="PackedScene" uid="uid://d32k5wo1ctqsq" path="res://Scenes/UI/Settings/KeybindSetting.tscn" id="7_ftgty"]
 
 [sub_resource type="Theme" id="Theme_6wqx3"]
 default_font_size = 48
@@ -250,6 +251,38 @@ layout_mode = 2
 
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="0"]
 text = "CONTROLS"
+
+[node name="AttackMelee" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="1" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "attack melee"
+
+[node name="Up" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="2" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "up"
+
+[node name="Down" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="3" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "down"
+
+[node name="Left" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="4" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "left"
+
+[node name="Right" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="5" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "right"
+
+[node name="Shoot" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="6" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "shoot"
+
+[node name="PickUpWeapon" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="7" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "pick up weapon"
+
+[node name="DropWeapon" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="8" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "drop weapon"
 
 [node name="Other" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
 visible = false
