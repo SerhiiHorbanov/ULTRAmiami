@@ -64,12 +64,14 @@ alignment = 1
 [node name="RebindKeyButton" type="Button" parent="HSplitContainer/Control2/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+focus_mode = 0
 text = "Default text"
 autowrap_mode = 3
 
 [node name="RebindMouseButtonButton" type="Button" parent="HSplitContainer/Control2/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+focus_mode = 0
 text = "Default text"
 autowrap_mode = 3
 
