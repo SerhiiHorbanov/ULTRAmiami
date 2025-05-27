@@ -29,6 +29,9 @@ public partial class PauseMenu : Control
 	
 	public override void _UnhandledInput(InputEvent @event)
 	{
+		if (_settings.Visible)
+			return;
+		
 		if (@event.IsActionPressed(Escape))
 		{
 			SetPaused(!_isPaused);
