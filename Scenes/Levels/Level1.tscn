@@ -51,7 +51,6 @@ scale = Vector2(2, 2.7)
 
 [node name="BreakableTrigger" parent="." index="7" instance=ExtResource("6_4d3fe")]
 position = Vector2(-576, 424)
-scale = Vector2(3.96, 1)
 
 [node name="Walls" type="Node2D" parent="." index="8"]
 
@@ -198,9 +197,6 @@ scale = Vector2(10, 1)
 position = Vector2(0, -480)
 scale = Vector2(6.76, 3.17)
 _hint = SubResource("Resource_57lp3")
-
-[node name="CollisionShape2D" parent="Hints/HintTrigger" index="0"]
-scale = Vector2(1, 1)
 
 [node name="HintTrigger2" parent="Hints" index="1" instance=ExtResource("7_jcebb")]
 position = Vector2(296, -960)

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="2_1r4gn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r4gn"]
-size = Vector2(50, 50)
+size = Vector2(200, 50)
 
 [node name="BreakableTrigger" type="Node2D" node_paths=PackedStringArray("_notBrokenGraphics", "_brokenGraphics")]
 script = ExtResource("1_fntpr")
@@ -19,12 +19,11 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_1r4gn")
 
 [node name="NotBrokenVersion" type="Sprite2D" parent="."]
-position = Vector2(3.33786e-06, 9.53674e-07)
-scale = Vector2(0.390625, 0.390625)
+scale = Vector2(1.5625, 0.390625)
 texture = ExtResource("2_1r4gn")
 
 [node name="BrokenVersion" type="Sprite2D" parent="."]
 modulate = Color(0.325441, 0.325441, 0.325441, 1)
-position = Vector2(3.33786e-06, 9.53674e-07)
-scale = Vector2(0.390625, 0.390625)
+position = Vector2(0, -2.38419e-06)
+scale = Vector2(1.5625, 0.390625)
 texture = ExtResource("2_1r4gn")
