@@ -1,17 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2hk6a38fe2k1"]
 
 [ext_resource type="Script" uid="uid://ca3uk24c7swvl" path="res://Scripts/UI/AmmoDisplay.cs" id="1_16lg4"]
+[ext_resource type="PackedScene" uid="uid://cgk2u8scypcrn" path="res://Scenes/UI/HUD/AmmoIcon.tscn" id="2_fh487"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_16lg4"]
-font_size = 48
-
-[node name="AmmoDisplay" type="Control" node_paths=PackedStringArray("_label")]
+[node name="AmmoDisplay" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 50.0
+offset_bottom = 50.0
 script = ExtResource("1_16lg4")
-_label = NodePath("AmmoAmountText")
-
-[node name="AmmoAmountText" type="Label" parent="."]
-layout_mode = 0
-text = "Default ammo text"
-label_settings = SubResource("LabelSettings_16lg4")
+_ammoIconScene = ExtResource("2_fh487")

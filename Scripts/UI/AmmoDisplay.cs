@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Godot;
+using ULTRAmiami.Data;
 using ULTRAmiami.Units;
 using ULTRAmiami.Weapons;
 
@@ -6,9 +8,14 @@ namespace ULTRAmiami.UI;
 
 public partial class AmmoDisplay : Control
 {
-	[Export] private Label _label;
 	[Export] private Unit _unit;
-
+	[Export] private PackedScene _ammoIconScene;
+	
+	private AmmoUIInfo _iconsInfo;
+	
+	private List<TextureRect> _ammoIcons = [];
+	
+	
 	private Weapon ObservedWeapon
 		=> _unit.Weapon;
 	
@@ -39,16 +46,19 @@ public partial class AmmoDisplay : Control
 		
 		if (weapon is null)
 		{
-			UpdateText(0);
+			SetIconsAmount(0);
 			return;
 		}
+
+		_iconsInfo = weapon.AmmoUIInfo;
 		
-		weapon.OnAmmoChanged += UpdateText;
+		ClearIcons();
+		weapon.OnAmmoChanged += SetIconsAmount;
 	}
 
 	private void StopObservingWeapon()
 	{
-		_unit.Weapon.OnAmmoChanged -= UpdateText;
+		_unit.Weapon.OnAmmoChanged -= SetIconsAmount;
 	}
 
 	public override void _ExitTree()
@@ -56,11 +66,51 @@ public partial class AmmoDisplay : Control
 		StartObservingWeapon(null);
 	}
 
-	private void UpdateText(int ammo)
+	private void SetIconsAmount(int ammo)
 	{
-		_label.Text = GetAmmoText(ammo);
+		if (ammo > _ammoIcons.Count)
+		{
+			ClearIcons();
+			GenerateIcons(ammo);
+		}
+		
+		while (_ammoIcons.Count > ammo)
+		{
+			_ammoIcons[^1].QueueFree();
+			_ammoIcons.RemoveAt(_ammoIcons.Count - 1);	
+		}
 	}
 
-	private string GetAmmoText(int ammo)
-		=> "Ammo: " + ammo;
+	private void GenerateIcons(int amount)
+	{
+		_ammoIcons = new(amount);
+		
+		TextureRect current = _ammoIconScene.Instantiate<TextureRect>();
+		current.Texture = _iconsInfo.Texture;
+		current.Position = _iconsInfo.StartingPosition;
+		current.Rotation = float.DegreesToRadians(_iconsInfo.StartingRotation);
+
+		_ammoIcons.Add(current);
+		AddChild(current);
+		
+		for (int i = 1; i < amount; i++)
+		{
+			TextureRect prev = current;
+			current = _ammoIconScene.Instantiate<TextureRect>();
+			current.Texture = _iconsInfo.Texture;
+			
+			_ammoIcons.Add(current);
+			_ammoIcons[i - 1].AddChild(current);
+
+			current.Rotation = float.DegreesToRadians(_iconsInfo.DeltaRotation);
+			current.Position = _iconsInfo.DeltaPosition;
+		}
+	}
+	
+	private void ClearIcons()
+	{
+		foreach (TextureRect icon in _ammoIcons)
+			icon.QueueFree();
+		_ammoIcons = [];
+	}
 }

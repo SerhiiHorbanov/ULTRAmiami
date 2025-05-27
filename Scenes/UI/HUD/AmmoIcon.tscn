@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgk2u8scypcrn"]
+
+[ext_resource type="Texture2D" uid="uid://dmd46rtdggfku" path="res://Textures/UI/Ammo/AmmoUI9mm.png" id="1_sv45j"]
+
+[node name="AmmoIcon" type="TextureRect"]
+texture = ExtResource("1_sv45j")
