@@ -12,6 +12,11 @@ public partial class AreaTrigger : Area2D
 	[Signal]
 	public delegate void OnTriggeringEventHandler();
 
+	public override void _Ready()
+	{
+		BodyEntered += OnBodyEntered;
+	}
+
 	private void OnBodyEntered(Node2D body)
 	{
 		if (body is not Unit unit)

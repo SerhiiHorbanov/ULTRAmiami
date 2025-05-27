@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg4l4hpp7kyp3"]
+[gd_scene load_steps=4 format=3 uid="uid://dg4l4hpp7kyp3"]
 
 [ext_resource type="Script" uid="uid://cpioi6vcu1cou" path="res://Scripts/LevelFeatures/AreaTrigger.cs" id="1_kna28"]
+[ext_resource type="SpriteFrames" uid="uid://dk7usepepabml" path="res://Animations/WireAnimation.tres" id="2_5t21m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5ptj"]
 size = Vector2(100, 100)
@@ -11,4 +12,8 @@ script = ExtResource("1_kna28")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n5ptj")
 
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.563, 1.563)
+sprite_frames = ExtResource("2_5t21m")
+
+[connection signal="OnTriggering" from="." to="AnimatedSprite2D" method="play"]
