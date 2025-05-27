@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using ULTRAmiami.Data;
 using ULTRAmiami.Units;
 using ULTRAmiami.Utils;
 
@@ -27,6 +28,8 @@ public abstract partial class Weapon : Node2D
 	[Export] private AudioStreamPlayer2D _failingShotAudio;
 	[Export] private AudioStreamPlayer2D _reloadingAudio;
 
+	[Export] public AmmoUIInfo AmmoUIInfo { get; private set; }
+	
 	public Unit Unit { get; private set; }
 	public Vector2 PointingAt;
 	
