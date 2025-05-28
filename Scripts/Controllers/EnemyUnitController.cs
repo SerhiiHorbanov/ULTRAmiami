@@ -13,10 +13,12 @@ public partial class EnemyUnitController : AIUnitController
 	[Export] private float _targetDistance;
 	[Export] private float _tooFarFromTargetDistance;
 	[Export] private Vector2 _destinationRandomizationRange;
+	
 	[Export] private Timer _shootingTimer;
 	[Export] private EnemyLineOfSightToTarget _lineOfSightToTarget;
 
 	[Export] private float _targetMoveThresholdForPathRebuilding;
+	[Export] private Timer _pathRebuildingSuppressionTimer;
 	
 	private bool _targetWasInView;
 	private Weapon _weaponToUnsubscribeFrom;
@@ -109,6 +111,9 @@ public partial class EnemyUnitController : AIUnitController
 		if (!_lineOfSightToTarget.TargetWasInView)
 			return;
 		
+		if (_pathRebuildingSuppressionTimer.TimeLeft > 0)
+			return;
+		
 		if (!_lineOfSightToTarget.IsTargetInView)
 			GoToTargetUnit();
 		else if (DistanceSquaredToTarget < TooCloseToTargetDistanceSquared || DistanceSquaredToTarget > TooFarFromTargetDistanceSquared)
@@ -116,16 +121,20 @@ public partial class EnemyUnitController : AIUnitController
 	}
 	private void GoToTargetUnit()
 	{
-		if (Destination.DistanceSquaredTo(_targetUnit.GlobalPosition) > TargetMoveThresholdForPathRebuildingSquared)
-			GoTo(_targetUnit.GlobalPosition);
+		if (!(Destination.DistanceSquaredTo(_targetUnit.GlobalPosition) > TargetMoveThresholdForPathRebuildingSquared))
+			return;
+		
+		GoTo(_targetUnit.GlobalPosition);
+		_pathRebuildingSuppressionTimer.Start();
 	}
 
 	private void GoToDistanceFromTarget(float distance)
 	{
 		Vector2 notRandomizedDestination = _targetUnit.GlobalPosition + DirectionFromTarget * distance;
-			
 		Vector2 newDestination = GetRandomizedDestination(notRandomizedDestination);
+		
 		GoTo(newDestination);
+		_pathRebuildingSuppressionTimer.Start();
 	}
 
 	private Vector2 GetRandomizedDestination(Vector2 destination)

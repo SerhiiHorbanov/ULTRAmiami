@@ -9,7 +9,7 @@ radius = 700.0
 
 [node name="Unit" instance=ExtResource("1_tma0q")]
 
-[node name="EnemyController" type="Node2D" parent="." index="2" node_paths=PackedStringArray("_shootingTimer", "_lineOfSightToTarget", "_playerNoticingArea", "_unit")]
+[node name="EnemyController" type="Node2D" parent="." index="2" node_paths=PackedStringArray("_shootingTimer", "_lineOfSightToTarget", "_pathRebuildingSuppressionTimer", "_playerNoticingArea", "_unit")]
 script = ExtResource("2_4kc1i")
 _tooCloseToTargetDistance = 200.0
 _targetDistance = 300.0
@@ -18,6 +18,7 @@ _destinationRandomizationRange = Vector2(20, 20)
 _shootingTimer = NodePath("Timer")
 _lineOfSightToTarget = NodePath("LineOfSightToTarget")
 _targetMoveThresholdForPathRebuilding = 10.0
+_pathRebuildingSuppressionTimer = NodePath("PathRebuildingSuppresionTimer")
 _playerNoticingArea = NodePath("PlayerNoticingArea")
 _unit = NodePath("..")
 
@@ -33,5 +34,9 @@ shape = SubResource("CircleShape2D_f44r0")
 
 [node name="LineOfSightToTarget" type="RayCast2D" parent="EnemyController" index="3"]
 script = ExtResource("3_x27d5")
+
+[node name="PathRebuildingSuppresionTimer" type="Timer" parent="EnemyController" index="4"]
+wait_time = 0.1
+one_shot = true
 
 [connection signal="OnHit" from="." to="." method="Die"]
