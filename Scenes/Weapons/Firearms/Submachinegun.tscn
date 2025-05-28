@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3laytvatekjx"]
+[gd_scene load_steps=12 format=3 uid="uid://d3laytvatekjx"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_cu785"]
 [ext_resource type="PackedScene" uid="uid://ckrt3udf0e7bu" path="res://Scenes/Projectiles/SMGBullet.tscn" id="2_nv5f2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="3_ejnrc"]
 [ext_resource type="Texture2D" uid="uid://cak7vtt7shult" path="res://Textures/Weapons/Uzi.png" id="3_pbfh6"]
 [ext_resource type="Texture2D" uid="uid://dsh74k5g71g1u" path="res://Textures/Weapons/UziNoMag.png" id="4_mdfs6"]
+[ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="5_psmf8"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_xjwgq"]
 [ext_resource type="AudioStream" uid="uid://cq2kl2pdko5yi" path="res://Audio/SFX/SMGReload.wav" id="6_txk56"]
 
@@ -18,6 +19,14 @@ DeltaPosition = Vector2(0, 15)
 DeltaRotation = 0.0
 metadata/_custom_type_script = "uid://d0rajgo22sr22"
 
+[sub_resource type="Resource" id="Resource_yicgv"]
+script = ExtResource("5_psmf8")
+Color = Color(1, 1, 1, 1)
+NoAmmoColor = Color(1, 1, 1, 0.25098)
+LineWidth = 2.0
+ShowSpread = false
+metadata/_custom_type_script = "uid://fbtjd4ropgt2"
+
 [node name="Submachinegun" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_cu785")]
 _bullet = ExtResource("2_nv5f2")
 _isAutomatic = true
@@ -26,6 +35,7 @@ _spread = 12.0
 _maxAmmo = 16
 _shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
 AmmoUIInfo = SubResource("Resource_67h2h")
+AimLineInfo = SubResource("Resource_yicgv")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("3_pbfh6")

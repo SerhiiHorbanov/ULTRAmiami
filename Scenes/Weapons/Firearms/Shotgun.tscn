@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ustetj26a1sv"]
+[gd_scene load_steps=13 format=3 uid="uid://ustetj26a1sv"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_hp2vk"]
 [ext_resource type="PackedScene" uid="uid://cjmxtn0xwbfp6" path="res://Scenes/Projectiles/ShotgunBullet.tscn" id="2_1jhyr"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://df6nqjcc5q2jj" path="res://Textures/Weapons/ShotgunPickUppable.png" id="3_wd4x3"]
 [ext_resource type="Texture2D" uid="uid://cwe8k0jbe2jyo" path="res://Textures/Weapons/Shotgun.png" id="3_wngdm"]
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="4_k5p5k"]
+[ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="5_k5p5k"]
 [ext_resource type="AudioStream" uid="uid://cuyxsptouasoo" path="res://Audio/Sound Randomizers/ShotgunPumpRandomizer.tres" id="6_5hocu"]
 [ext_resource type="Script" uid="uid://di761nsqnfjgd" path="res://Scripts/Weapons/Audio/ShotgunPumper.cs" id="7_gnv3i"]
 
@@ -19,6 +20,14 @@ DeltaPosition = Vector2(50, 0)
 DeltaRotation = 0.0
 metadata/_custom_type_script = "uid://d0rajgo22sr22"
 
+[sub_resource type="Resource" id="Resource_n8ysm"]
+script = ExtResource("5_k5p5k")
+Color = Color(0, 0, 1, 1)
+NoAmmoColor = Color(0, 0, 1, 0.25098)
+LineWidth = 10.0
+ShowSpread = true
+metadata/_custom_type_script = "uid://fbtjd4ropgt2"
+
 [node name="Shotgun" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_hp2vk")]
 _bullet = ExtResource("2_1jhyr")
 _fireRate = 3.0
@@ -27,6 +36,7 @@ _shootsPerShot = 16
 _maxAmmo = 3
 _shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
 AmmoUIInfo = SubResource("Resource_gvd2d")
+AimLineInfo = SubResource("Resource_n8ysm")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("3_wd4x3")

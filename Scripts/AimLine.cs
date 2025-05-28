@@ -1,4 +1,5 @@
 using Godot;
+using ULTRAmiami.Data;
 using ULTRAmiami.Units;
 
 namespace ULTRAmiami;
@@ -18,17 +19,36 @@ public partial class AimLine : Line2D
 	public override void _Process(double delta)
 	{
 		ClearPoints();
+
+		if (!ShouldBeShown())
+			return;
+
+		WeaponAimLineInfo info = _unit.Weapon.AimLineInfo;
 		
-		if (ShouldBeShown())
-			CreateLine();
+		DefaultColor = _unit.Weapon.HasAmmo() ? info.Color : info.NoAmmoColor;
+		
+		Width = info.LineWidth;
+		
+		if (info.ShowSpread)		
+			CreateLinesWithSpread();
+		else
+			CreateSingleLine();
+	}
+
+	private void CreateSingleLine()
+	{
+		Vector2 dir = PointingDirection;
+
+		Vector2 collision = GetCollisionByDirection(dir);
+		
+		AddPointFromGlobal(collision);
+		AddPoint(Vector2.Zero);
 	}
 	
-	private void CreateLine()
+	private void CreateLinesWithSpread()
 	{
 		Vector2 leftDir = PointingDirection.Rotated(-_unit.Weapon.HalfSpreadRadians);
 		Vector2 rightDir = PointingDirection.Rotated(_unit.Weapon.HalfSpreadRadians);
-		
-		UpdateRaycast(leftDir);
 		
 		AddPointFromGlobal(GetCollisionByDirection(leftDir));
 		AddPoint(Vector2.Zero);
@@ -54,5 +74,5 @@ public partial class AimLine : Line2D
 	}
 
 	private bool ShouldBeShown()
-		=> _unit.Weapon is not null;
+		=> _unit?.Weapon?.AimLineInfo is not null;
 }

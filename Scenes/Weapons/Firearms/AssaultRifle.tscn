@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://tc4t7u7hg3qc"]
+[gd_scene load_steps=12 format=3 uid="uid://tc4t7u7hg3qc"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_f1tig"]
 [ext_resource type="PackedScene" uid="uid://bbs2toatsh08u" path="res://Scenes/Projectiles/AssaultRifleBullet.tscn" id="2_iimqx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d0b44lrp3v2fx" path="res://Textures/Weapons/AssaultRifle.png" id="3_6j0jo"]
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="4_ixmxd"]
 [ext_resource type="Texture2D" uid="uid://dxcb7qr5ilulv" path="res://Textures/Weapons/AssaultRifleNoMag.png" id="4_y2gf6"]
+[ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="5_ixmxd"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_y2gf6"]
 [ext_resource type="AudioStream" uid="uid://b10uxcb5rwiea" path="res://Audio/SFX/AssaultRifleReload.wav" id="6_h2fas"]
 
@@ -18,6 +19,14 @@ DeltaPosition = Vector2(0, 20)
 DeltaRotation = -4.0
 metadata/_custom_type_script = "uid://d0rajgo22sr22"
 
+[sub_resource type="Resource" id="Resource_pydsa"]
+script = ExtResource("5_ixmxd")
+Color = Color(1, 0, 0, 1)
+NoAmmoColor = Color(1, 0, 0, 0.25098)
+LineWidth = 5.0
+ShowSpread = true
+metadata/_custom_type_script = "uid://fbtjd4ropgt2"
+
 [node name="AssaultRifle" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_f1tig")]
 _bullet = ExtResource("2_iimqx")
 _isAutomatic = true
@@ -26,6 +35,7 @@ _spread = 8.0
 _maxAmmo = 12
 _shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
 AmmoUIInfo = SubResource("Resource_wjaf3")
+AimLineInfo = SubResource("Resource_pydsa")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("3_6j0jo")
