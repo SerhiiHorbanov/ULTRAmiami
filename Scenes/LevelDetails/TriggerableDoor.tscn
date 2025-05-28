@@ -102,6 +102,42 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 0.11)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("NavigationLink2D:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("NavigationLink2D2:enabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("NavigationLink2D3:enabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_by8ie"]
 length = 0.001
@@ -201,6 +237,42 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("NavigationLink2D:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("NavigationLink2D2:enabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("NavigationLink2D3:enabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2djb"]
 _data = {
@@ -261,3 +333,20 @@ shape = SubResource("RectangleShape2D_5cj7t")
 [node name="Sprite2D" type="Sprite2D" parent="Mask/Node2D2"]
 position = Vector2(0, -64)
 texture = ExtResource("1_by8ie")
+
+[node name="NavigationLink2D" type="NavigationLink2D" parent="."]
+enabled = false
+start_position = Vector2(50, 0)
+end_position = Vector2(-50, 0)
+
+[node name="NavigationLink2D2" type="NavigationLink2D" parent="."]
+position = Vector2(0, 50)
+enabled = false
+start_position = Vector2(50, 0)
+end_position = Vector2(-50, 0)
+
+[node name="NavigationLink2D3" type="NavigationLink2D" parent="."]
+position = Vector2(0, -50)
+enabled = false
+start_position = Vector2(50, 0)
+end_position = Vector2(-50, 0)
