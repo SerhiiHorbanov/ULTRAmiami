@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbhga1tb2gsgj"]
+[gd_scene load_steps=11 format=3 uid="uid://bbhga1tb2gsgj"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_0ryud"]
 [ext_resource type="Resource" uid="uid://tf5nmk2kvxbb" path="res://LevelInfos/Level2Info.tres" id="2_m40gi"]
@@ -11,6 +11,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1swa"]
 size = Vector2(712, 418)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_lmdar"]
+vertices = PackedVector2Array(3210, 330, 3210, -246, 3702, -246, 3702, 1398, 3210, 1398, 3210, 822, 2550, 330, 2058, 822, 2058, 246, 2550, -1398, 1482, 246, 1482, -238, 2058, -238, 2058, -906, 906, -1398, 1398, -906, 906, 338, 1398, 822, -246, 822, 246, 338, -246, -246, 246, -246)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5), PackedInt32Array(0, 3, 5), PackedInt32Array(6, 0, 5, 7), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(8, 10, 11, 12), PackedInt32Array(9, 8, 12), PackedInt32Array(9, 12, 13), PackedInt32Array(14, 9, 13, 15), PackedInt32Array(16, 14, 15, 17), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(19, 18, 20, 21)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-256, -256, 256, -256, 256, 328, 896, 328, 896, -1408, 2560, -1408, 2560, 320, 3200, 320, 3200, -256, 3712, -256, 3712, 1408, 3200, 1408, 3200, 832, 2048, 832, 2048, 256, 1472, 256, 1472, -248, 2048, -248, 2048, -896, 1408, -896, 1408, 832, -256, 832)])
+agent_radius = 25.0
 
 [node name="Level" instance=ExtResource("1_0ryud")]
 _info = ExtResource("2_m40gi")
@@ -200,6 +206,9 @@ scale = Vector2(2.135, 2.63)
 [node name="AreaTrigger" parent="." index="11" instance=ExtResource("6_4rk67")]
 position = Vector2(1152, -352)
 scale = Vector2(5.92, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="12"]
+navigation_polygon = SubResource("NavigationPolygon_lmdar")
 
 [connection signal="OnTriggering" from="AreaTrigger" to="TriggerableDoor" method="Trigger"]
 

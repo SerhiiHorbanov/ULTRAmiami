@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://caf7v5q6mfl3t"]
+[gd_scene load_steps=11 format=3 uid="uid://caf7v5q6mfl3t"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_y77v7"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_6rkx2"]
@@ -11,6 +11,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5el5"]
 size = Vector2(562, 402)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_d4xud"]
+vertices = PackedVector2Array(906, -1334, 906, -1398, 2550, -1398, 2550, -245.859, 2550, 822, 2058, 822, 2058, -246, 2122, -246, 2486, -246.023, 2122, -330, 2486, -329.883, 2058, -330, 2058, -906, 1398, -822, 1974, -822, 1974, -330, 1398, -330, 1398, -246, 1974, -246, 1974, 822, 906, 822, 906, -970, 1398, -906, -246, -758, -246, -822, 822, -822, 330, -330, 822, 246, -246, 246, -246, -246, 330, -246, -246, -330, -246, -394, -330, -758, -330, -394, -822, -1398, -330, 330, 822, 330, 822, 822, -822, 822, -330, -905.93, 822, -1398, 822, -1334, 822, -970, 822, -913.93, 2550, -330.648)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7), PackedInt32Array(8, 3, 7), PackedInt32Array(8, 7, 9, 10), PackedInt32Array(9, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(17, 20, 21, 16), PackedInt32Array(13, 16, 21), PackedInt32Array(22, 13, 21), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(25, 27, 30, 26), PackedInt32Array(26, 31, 32), PackedInt32Array(23, 26, 32, 33), PackedInt32Array(33, 32, 34, 35), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(36, 39, 35, 34), PackedInt32Array(40, 33, 35), PackedInt32Array(40, 35, 41, 42), PackedInt32Array(43, 44, 40), PackedInt32Array(43, 40, 42, 0), PackedInt32Array(21, 43, 0, 2), PackedInt32Array(12, 2, 45, 10, 9), PackedInt32Array(22, 21, 2, 12)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-256, -256, 320, -256, 320, -320, -256, -320, -256, -384, -320, -384, -320, 320, 832, 320, 832, 832, -832, 832, -832, -1408, 832, -1408, 832, -1344, 896, -1344, 896, -1408, 2560, -1408, 2560, -320.762, 2496, -320, 2496, -256, 2560, -255.84, 2560, 832, 2048, 832, 2048, -256, 2112, -256, 2112, -320, 2048, -320, 2048, -896, 1408, -896, 1408, -832, 1984, -832, 1984, -320, 1408, -320, 1408, -256, 1984, -256, 1984, 832, 896, 832, 896, -960, 832, -960, 832, -904, -320, -896, -320, -768, -256, -768, -256, -832, 832, -832, 832, 256, -256, 256)])
+agent_radius = 25.0
 
 [node name="Level" instance=ExtResource("1_y77v7")]
 
@@ -67,7 +73,7 @@ position = Vector2(0, -288)
 scale = Vector2(10, 1)
 
 [node name="Wall27" parent="Walls" index="9" instance=ExtResource("2_6rkx2")]
-position = Vector2(1728, -294)
+position = Vector2(1728, -288)
 scale = Vector2(10, 1)
 
 [node name="Wall29" parent="Walls" index="10" instance=ExtResource("2_6rkx2")]
@@ -231,6 +237,9 @@ position = Vector2(2096, -168)
 
 [node name="Unit7" parent="." index="21" instance=ExtResource("5_0kf4d")]
 position = Vector2(2472, 8)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="22"]
+navigation_polygon = SubResource("NavigationPolygon_d4xud")
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor3" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger3" to="TriggerableDoor" method="Trigger"]
