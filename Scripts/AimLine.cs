@@ -17,40 +17,41 @@ public partial class AimLine : Line2D
 	
 	public override void _Process(double delta)
 	{
-		if (!ShouldBeShown())
-		{
-			if (GetPointCount() > 1)
-				RemovePoint(1);	
-			return;
-		}
-
-		UpdateLine();
+		ClearPoints();
+		
+		if (ShouldBeShown())
+			CreateLine();
 	}
 	
-	private void UpdateLine()
+	private void CreateLine()
 	{
-		Vector2 direction = PointingDirection;
-		UpdateRaycast(direction);
-
-		if (_rayCast.IsColliding())
-			SetLineEnd(_rayCast.GetCollisionPoint() - GlobalPosition);
-		else
-			SetLineEnd(direction * _maxLength);
+		Vector2 leftDir = PointingDirection.Rotated(-_unit.Weapon.HalfSpreadRadians);
+		Vector2 rightDir = PointingDirection.Rotated(_unit.Weapon.HalfSpreadRadians);
+		
+		UpdateRaycast(leftDir);
+		
+		AddPointFromGlobal(GetCollisionByDirection(leftDir));
+		AddPoint(Vector2.Zero);
+		AddPointFromGlobal(GetCollisionByDirection(rightDir));
 	}
+
+	private void AddPointFromGlobal(Vector2 point)
+		=> AddPoint(point - GlobalPosition);
 	
+	private Vector2 GetCollisionByDirection(Vector2 dir)
+	{
+		UpdateRaycast(dir);
+		
+		if (_rayCast.IsColliding())
+			return _rayCast.GetCollisionPoint();
+		return dir * _maxLength + GlobalPosition;
+	}
+
 	private void UpdateRaycast(Vector2 direction)
 	{
 		_rayCast.TargetPosition = direction * _maxLength;
 		_rayCast.ForceRaycastUpdate();
 	}
-	
-	private void SetLineEnd(Vector2 endPosition)
-	{
-		while (GetPointCount() > 1)
-			RemovePoint(1);
-		AddPoint(endPosition);
-	}
-
 
 	private bool ShouldBeShown()
 		=> _unit.Weapon is not null;

@@ -67,7 +67,7 @@ public abstract partial class Weapon : Node2D
 	public bool IsReloading
 		=> !_reloadTimer.IsStopped();
 	
-	private float HalfSpreadRadians
+	public float HalfSpreadRadians
 		=> float.DegreesToRadians(_spread * 0.5f);
     
 	private float HalfDroppedRotationRandomness 
