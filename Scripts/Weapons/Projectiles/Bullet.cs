@@ -5,7 +5,7 @@ using ULTRAmiami.Utils;
 
 namespace ULTRAmiami.Weapons.Projectiles;
 
-public partial class Bullet : Node2D
+public partial class Bullet : Node2D, IFirearmProjectile
 {
 	[Export] private PackedScene _hitParticles;
 	[Export] private PackedScene _bloodSplatterParticles;

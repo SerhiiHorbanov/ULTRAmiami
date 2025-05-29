@@ -10,8 +10,15 @@ public partial class Firearm : Weapon
     
     protected override void Shoot(Vector2 shootingAt)
     {
-        Bullet projectile = _bullet.Instantiate<Bullet>();
+        Node projectile = _bullet.Instantiate();
         projectile.MakeSiblingOf(GetParent());
-        projectile.Initialize(GlobalPosition, shootingAt);
+        
+        if (projectile is not IFirearmProjectile firearmProjectile)
+        {
+            GD.PrintErr("Projectile is not a IFirearmProjectile");
+            return;
+        }
+        
+        firearmProjectile.Initialize(GlobalPosition, shootingAt);
     }
 }
