@@ -20,8 +20,8 @@ metadata/_custom_type_script = "uid://d0rajgo22sr22"
 
 [sub_resource type="Resource" id="Resource_c84om"]
 script = ExtResource("4_c2513")
-Color = Color(0, 1, 0, 0.501961)
-NoAmmoColor = Color(0, 1, 0, 0.12549)
+Color = Color(0, 1, 0, 1)
+NoAmmoColor = Color(0, 1, 0, 0.25098)
 LineWidth = 5.0
 ShowSpread = false
 metadata/_custom_type_script = "uid://fbtjd4ropgt2"
