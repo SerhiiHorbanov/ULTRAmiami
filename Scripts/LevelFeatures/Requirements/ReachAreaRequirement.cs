@@ -12,6 +12,8 @@ public partial class ReachAreaRequirement : CompletionRequirement
 
 	private bool _reached;
 
+	[Export(PropertyHint.Layers2DPhysics)] private uint _mask;
+	
 	[Signal]
 	public delegate void AreaReachedEventHandler();
 	
@@ -21,6 +23,7 @@ public partial class ReachAreaRequirement : CompletionRequirement
 		
 		foreach (Area2D area in _areas)
 		{
+			area.CollisionMask |= _mask;
 			area.BodyEntered += BodyEntered;
 		}
 	}
