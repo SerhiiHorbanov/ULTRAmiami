@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://m8wuhl3sh26g"]
+
+[ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_efqec"]
+[ext_resource type="PackedScene" uid="uid://c6k4qw8pwj245" path="res://Scenes/Projectiles/FlameThrowerFire.tscn" id="2_wdyhk"]
+[ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="3_eyaiw"]
+
+[sub_resource type="Resource" id="Resource_crg4d"]
+script = ExtResource("3_eyaiw")
+StartingPosition = Vector2(0, 0)
+StartingRotation = 0.0
+DeltaPosition = Vector2(0, 0)
+DeltaRotation = 0.0
+metadata/_custom_type_script = "uid://d0rajgo22sr22"
+
+[node name="Flamethrower" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_efqec")]
+_bullet = ExtResource("2_wdyhk")
+_isAutomatic = true
+_fireRate = 30.0
+_spread = 30.0
+_shootsPerShot = 3
+_maxAmmo = 150
+_shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
+AmmoUIInfo = SubResource("Resource_crg4d")
