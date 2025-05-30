@@ -17,6 +17,12 @@ public partial class Level : Node
 	
 	private readonly static StringName PlayNextLevel = "play next level";
 	
+	public override void _Ready()
+	{
+		if (_info is null)
+			GD.PrintErr("Info is null");
+	}
+
 	private void OnCompleted()
 	{
 		if (_info is null)
