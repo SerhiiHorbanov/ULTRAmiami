@@ -26,3 +26,6 @@ _maxBrakeAcceleration = 10000.0
 _maxWalkSpeed = 500.0
 
 [node name="Submachinegun" parent="." index="4" instance=ExtResource("5_emoad")]
+
+[node name="DeathFromFireTimer" parent="." index="5"]
+wait_time = 0.1

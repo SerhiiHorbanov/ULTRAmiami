@@ -28,6 +28,7 @@ size = Vector2(70, 80)
 _unitMovement = NodePath("PlayerMovement")
 _weapon = NodePath("Pistol")
 _dropsPickUppableWeapon = false
+_isImmuneToFire = true
 
 [node name="Sprite2D" parent="Graphics" index="0"]
 texture = ExtResource("2_cj8nc")

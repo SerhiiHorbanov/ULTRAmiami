@@ -20,6 +20,7 @@ public partial class Unit : CharacterBody2D, IAttackable
 	[ExportGroup("Death")]
 	[Export] public bool GodMode;
 	[Export] private PackedScene _deadVersion;
+	[Export] private bool _isImmuneToFire;
 
 	public readonly List<DroppedWeapon> EnteredDroppedWeapons = [];
 
@@ -31,6 +32,9 @@ public partial class Unit : CharacterBody2D, IAttackable
 	[Signal]
 	public delegate void OnHitEventHandler(Hit hit);
 	
+	[Signal]
+	public delegate void OnLitUpOnFireEventHandler();
+	
 	private const float DirectionDeadZoneSquared = 0.01f;
 	
 	public Vector2 TargetDirection
@@ -41,6 +45,7 @@ public partial class Unit : CharacterBody2D, IAttackable
 	
 	public bool IsPlayer
 		=> IsInGroup(PlayerGroupName);
+	
 	private readonly static StringName PlayerGroupName = "Player";
 	
 	public override void _Ready()
@@ -76,6 +81,17 @@ public partial class Unit : CharacterBody2D, IAttackable
 		DropWeapon(); 
 		MakeDeadVersion();
 		QueueFree();
+	}
+
+	private void DieFromFire()
+	{
+		Die(new(Vector2.Zero, 1));
+	}
+	
+	public void TrySetOnFire()
+	{
+		if (!_isImmuneToFire)
+			EmitSignalOnLitUpOnFire();
 	}
 	
 	private void MakeDeadVersion()

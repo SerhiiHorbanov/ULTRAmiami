@@ -48,13 +48,7 @@ public partial class FlamethrowerFire : RigidBody2D, IFirearmProjectile
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is not Unit unit)
-			return;
-
-		if (unit.IsPlayer)
-			return;
-		
-		unit.CallDeferred(Unit.MethodName.Hit, new Hit(Vector2.Zero, 1));
+		(body as Unit)?.TrySetOnFire();
 	}
 
 	public override void _PhysicsProcess(double delta)

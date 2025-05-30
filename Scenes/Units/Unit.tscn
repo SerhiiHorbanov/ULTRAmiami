@@ -36,3 +36,10 @@ texture = ExtResource("2_f2dp4")
 scale = Vector2(1.3, 1.3)
 sprite_frames = ExtResource("4_f2dp4")
 autoplay = "default"
+
+[node name="DeathFromFireTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="OnLitUpOnFire" from="." to="DeathFromFireTimer" method="start"]
+[connection signal="timeout" from="DeathFromFireTimer" to="." method="DieFromFire"]
