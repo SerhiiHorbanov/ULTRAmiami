@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv2prq8qs7toe"]
+
+[ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="1_xna7y"]
+
+[node name="TriggerableDoor" instance=ExtResource("1_xna7y")]
+_baseStateAnimationName = &"OPENED"
+_changingStateAnimationName = &"Close"
+
+[node name="Mask" parent="Mask/Node2D" index="1"]
+visible = true
+
+[node name="CollisionShape2D" parent="Mask/Node2D2/StaticBody2D" index="0"]
+position = Vector2(0, -32)
+
+[node name="Sprite2D" parent="Mask/Node2D2" index="1"]
+visible = true

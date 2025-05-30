@@ -7,8 +7,14 @@ public partial class TriggerableDoor : Node2D
 	[Export] private int _triggersNeeded;
 
 	[Export] private AnimationPlayer _animationPlayer;
-	[Export] private StringName _openingAnimationName;
-	
+	[Export] private StringName _baseStateAnimationName;
+	[Export] private StringName _changingStateAnimationName;
+
+	public override void _Ready()
+	{
+		_animationPlayer.Play(_baseStateAnimationName);
+	}
+
 	public void Trigger()
 	{
 		if (_triggersNeeded == 0)
@@ -17,12 +23,12 @@ public partial class TriggerableDoor : Node2D
 		_triggersNeeded--;
 
 		if (_triggersNeeded == 0)
-			Open();
+			ChangeState();
 	}
 
-	public void Open()
+	public void ChangeState()
 	{
 		_triggersNeeded = 0;
-		_animationPlayer.Play(_openingAnimationName);
+		_animationPlayer.Play(_changingStateAnimationName);
 	}
 }
