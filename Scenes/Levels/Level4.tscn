@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://blqn3w5w668yt"]
+[gd_scene load_steps=17 format=3 uid="uid://blqn3w5w668yt"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_inj8u"]
 [ext_resource type="PackedScene" uid="uid://cchkdwswpp6r6" path="res://Scenes/LevelDetails/Requirements/KillCountRequirement.tscn" id="2_bfawm"]
@@ -18,6 +18,30 @@ Text = "Some doors get closed when triggered"
 Time = 4.0
 OverrideCurrentHint = false
 metadata/_custom_type_script = "uid://bsnay7tcwvpmp"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_613b2"]
+vertices = PackedVector2Array(1383, -807, 1383, 231, 921, 231, 921, -345, -231, -807, 231, -345, -231, -231, 231, 231, -807, 231, -807, -231)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(6, 7, 8, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -256, -256, -256, -256, -832, 1408, -832, 1408, 256, 896, 256, 896, -320, 256, -320, 256, 256, -832, 256)])
+agent_radius = 25.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7f72b"]
+vertices = PackedVector2Array(-345, -1383, -345, -345, -807, -345, -807, -921, -1383, -1383, -921, -921, -1383, 231, -921, 231)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(896, 256, -832, 256, 256, 256, 256, -320, 896, -320)])
+agent_radius = 25.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fsn6e"]
+vertices = PackedVector2Array(807, -921, -231, -921, -231, -1383, 807, -1383)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-256, -1408, 832, -1408, 832, -896, -256, -896)])
+agent_radius = 25.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_l5kak"]
+vertices = PackedVector2Array(1959, -1959, 1959, -921, 1497, -921, 1497, -1497, 921, -1959, 1383, -1497, 921, -921, 1383, -921)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(896, -896, 1408, -896, 1408, -1472, 1472, -1472, 1472, -896, 1984, -896, 1984, -1984, 896, -1984)])
+agent_radius = 25.0
 
 [node name="Level" instance=ExtResource("1_inj8u")]
 _info = ExtResource("2_ca5bt")
@@ -226,6 +250,24 @@ position = Vector2(424, -1128)
 scale = Vector2(1, 5.96)
 _hint = SubResource("Resource_fsn6e")
 
+[node name="Navmeshes" type="Node2D" parent="." index="16"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Navmeshes" index="0"]
+navigation_polygon = SubResource("NavigationPolygon_613b2")
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Navmeshes" index="1"]
+navigation_polygon = SubResource("NavigationPolygon_7f72b")
+
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="Navmeshes" index="2"]
+navigation_polygon = SubResource("NavigationPolygon_fsn6e")
+
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="Navmeshes" index="3"]
+navigation_polygon = SubResource("NavigationPolygon_l5kak")
+
+[connection signal="OnRestartLevel" from="Canvas/PauseMenu" to="GameplayRestarter" method="RestartGameplay"]
+[connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
+[connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
+[connection signal="OnCompleted" from="LevelTarget" to="." method="OnCompleted"]
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger2" to="TriggerableDoor3" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger3" to="TriggerableDoor3" method="Trigger"]
