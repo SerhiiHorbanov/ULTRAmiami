@@ -38,7 +38,7 @@ public partial class Level : Node
 	
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (_info is null)
+		if (!_info?.HasNextLevel ?? true)
 			return;
 		if (!_info.IsCompleted())
 			return;
