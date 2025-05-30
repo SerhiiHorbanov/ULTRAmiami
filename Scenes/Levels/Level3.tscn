@@ -264,10 +264,6 @@ navigation_polygon = SubResource("NavigationPolygon_t0ble")
 [node name="NavigationRegion2D4" type="NavigationRegion2D" parent="." index="25"]
 navigation_polygon = SubResource("NavigationPolygon_nvbyj")
 
-[connection signal="OnRestartLevel" from="Canvas/PauseMenu" to="GameplayRestarter" method="RestartGameplay"]
-[connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
-[connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
-[connection signal="OnCompleted" from="LevelTarget" to="." method="OnCompleted"]
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor3" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger3" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger2" to="TriggerableDoor2" method="Trigger"]

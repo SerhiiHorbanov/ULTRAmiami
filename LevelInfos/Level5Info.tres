@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://d2evw05h38bkh"]
+
+[ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_m120p"]
+[ext_resource type="Resource" uid="uid://bxdk7d00rp17w" path="res://LevelInfos/Level6Info.tres" id="1_yl5tj"]
+
+[resource]
+script = ExtResource("1_m120p")
+_saveName = "5th"
+_shownName = "Specification"
+_scenePath = "uid://bosapuiklpsrh"
+_nextLevel = ExtResource("1_yl5tj")
+metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"

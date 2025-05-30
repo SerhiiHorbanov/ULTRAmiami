@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="LevelInfo" load_steps=2 format=3 uid="uid://bd4u0cggt4a3g"]
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://bd4u0cggt4a3g"]
 
+[ext_resource type="Resource" uid="uid://d2evw05h38bkh" path="res://LevelInfos/Level5Info.tres" id="1_0xcaa"]
 [ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_smreq"]
 
 [resource]
@@ -7,4 +8,5 @@ script = ExtResource("1_smreq")
 _saveName = "4th"
 _shownName = "Order"
 _scenePath = "uid://blqn3w5w668yt"
+_nextLevel = ExtResource("1_0xcaa")
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"
