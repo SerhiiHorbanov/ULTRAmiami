@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://caf7v5q6mfl3t"]
+[gd_scene load_steps=14 format=3 uid="uid://caf7v5q6mfl3t"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_y77v7"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_6rkx2"]
 [ext_resource type="Resource" uid="uid://ker5hlfeol46" path="res://LevelInfos/Level3Info.tres" id="2_q5el5"]
-[ext_resource type="PackedScene" uid="uid://dqof712s4pssr" path="res://Scenes/LevelDetails/Requirements/TimeLimitationRequirement.tscn" id="2_ve7n4"]
 [ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="3_d4xud"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="3_y6rnf"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="4_c01y6"]
@@ -40,12 +39,7 @@ agent_radius = 25.0
 [node name="Level" instance=ExtResource("1_y77v7")]
 _info = ExtResource("2_q5el5")
 
-[node name="TimeLimitationRequirement" parent="LevelTarget" index="0" instance=ExtResource("2_ve7n4")]
-
-[node name="Timer" parent="LevelTarget/TimeLimitationRequirement" index="0"]
-wait_time = 30.0
-
-[node name="ReachAreaRequirement" parent="LevelTarget" index="1" node_paths=PackedStringArray("_areas") instance=ExtResource("3_d4xud")]
+[node name="ReachAreaRequirement" parent="LevelTarget" index="0" node_paths=PackedStringArray("_areas") instance=ExtResource("3_d4xud")]
 _areas = [NodePath("Area2D")]
 
 [node name="Area2D" type="Area2D" parent="LevelTarget/ReachAreaRequirement" index="0"]
@@ -270,10 +264,13 @@ navigation_polygon = SubResource("NavigationPolygon_t0ble")
 [node name="NavigationRegion2D4" type="NavigationRegion2D" parent="." index="25"]
 navigation_polygon = SubResource("NavigationPolygon_nvbyj")
 
+[connection signal="OnRestartLevel" from="Canvas/PauseMenu" to="GameplayRestarter" method="RestartGameplay"]
+[connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
+[connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
+[connection signal="OnCompleted" from="LevelTarget" to="." method="OnCompleted"]
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor3" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger3" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger2" to="TriggerableDoor2" method="Trigger"]
 
 [editable path="Canvas"]
 [editable path="Player"]
-[editable path="LevelTarget/TimeLimitationRequirement"]
