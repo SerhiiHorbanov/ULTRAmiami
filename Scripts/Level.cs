@@ -22,9 +22,6 @@ public partial class Level : Node
 		if (_info is null)
 			return;
 
-		if (!_info.HasNextLevel)
-			return;
-			
 		_player.GodMode = true;
 
 		foreach (Node node in _nodesToFreeOnCompletion)

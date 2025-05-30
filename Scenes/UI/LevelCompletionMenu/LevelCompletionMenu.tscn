@@ -6,7 +6,7 @@
 [sub_resource type="Theme" id="Theme_gquv8"]
 default_font_size = 64
 
-[node name="LevelCompletionMenu" type="Control" node_paths=PackedStringArray("_levelNameLabel", "_killsLabel", "_bloodConsumedLabel")]
+[node name="LevelCompletionMenu" type="Control" node_paths=PackedStringArray("_levelNameLabel", "_killsLabel", "_bloodConsumedLabel", "_nextLevelLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +18,8 @@ script = ExtResource("1_i1q4p")
 _levelNameLabel = NodePath("ColorRect/MarginContainer/Control/LevelNameLabel")
 _killsLabel = NodePath("ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/KillsLabels/ValueLabel")
 _bloodConsumedLabel = NodePath("ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels/ValueLabel")
+_nextLevelLabel = NodePath("ColorRect/MarginContainer/Control/NextLevelLabel")
+_noNextLevelText = "Press [R] to replay this level"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -105,7 +107,7 @@ text = "[color=red][b]Blood[/b][color=white] consumed:"
 [node name="ValueLabel" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels" index="1"]
 text = "default"
 
-[node name="LevelNameLabel2" type="RichTextLabel" parent="ColorRect/MarginContainer/Control"]
+[node name="NextLevelLabel" type="RichTextLabel" parent="ColorRect/MarginContainer/Control"]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 12
