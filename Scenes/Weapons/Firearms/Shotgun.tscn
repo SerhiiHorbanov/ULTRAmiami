@@ -16,7 +16,7 @@ script = ExtResource("4_k5p5k")
 Texture = ExtResource("3_oe3mo")
 StartingPosition = Vector2(100, 0)
 StartingRotation = 0.0
-DeltaPosition = Vector2(50, 0)
+DeltaPosition = Vector2(90, 0)
 DeltaRotation = 0.0
 metadata/_custom_type_script = "uid://d0rajgo22sr22"
 
