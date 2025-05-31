@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://5iv5ppa52n8j"]
+[gd_scene load_steps=14 format=3 uid="uid://5iv5ppa52n8j"]
 
 [ext_resource type="Theme" uid="uid://bf6ih0083vpee" path="res://UIThemes/Console.tres" id="1_as4ja"]
 [ext_resource type="Script" uid="uid://cxo12y7mxikny" path="res://Scripts/UI/Console.cs" id="2_88034"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="10_pchh6"]
 [ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="11_yb7we"]
 [ext_resource type="PackedScene" uid="uid://m8wuhl3sh26g" path="res://Scenes/Weapons/Firearms/Flamethrower.tscn" id="12_r6ofq"]
+[ext_resource type="PackedScene" uid="uid://bg0s6f1srg0bq" path="res://Scenes/Weapons/Railgun.tscn" id="13_nh4sh"]
 
 [node name="RealConsole" type="Control" node_paths=PackedStringArray("_lineEdit", "_text")]
 process_mode = 3
@@ -51,6 +52,8 @@ _scenes = Dictionary[String, PackedScene]({
 "pistol_enemy": ExtResource("8_r6ofq"),
 "pl": ExtResource("7_0xlq0"),
 "player": ExtResource("7_0xlq0"),
+"railgun": ExtResource("13_nh4sh"),
+"rg": ExtResource("13_nh4sh"),
 "sg": ExtResource("3_oq62s"),
 "sg_enemy": ExtResource("10_pchh6"),
 "shotgun": ExtResource("3_oq62s"),
