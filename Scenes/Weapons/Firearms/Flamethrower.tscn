@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://m8wuhl3sh26g"]
+[gd_scene load_steps=6 format=3 uid="uid://m8wuhl3sh26g"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_efqec"]
 [ext_resource type="PackedScene" uid="uid://c6k4qw8pwj245" path="res://Scenes/Projectiles/FlameThrowerFire.tscn" id="2_wdyhk"]
+[ext_resource type="Texture2D" uid="uid://bsv6i5t1jioxl" path="res://Textures/UI/Ammo/AmmoUIFlamethrowerAmmoUnit.png" id="3_crg4d"]
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="3_eyaiw"]
 
 [sub_resource type="Resource" id="Resource_crg4d"]
 script = ExtResource("3_eyaiw")
-StartingPosition = Vector2(0, 0)
+Texture = ExtResource("3_crg4d")
+StartingPosition = Vector2(10, -40)
 StartingRotation = 0.0
-DeltaPosition = Vector2(0, 0)
+DeltaPosition = Vector2(0, 4)
 DeltaRotation = 0.0
 metadata/_custom_type_script = "uid://d0rajgo22sr22"
 
