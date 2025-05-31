@@ -5,9 +5,11 @@ namespace ULTRAmiami;
 
 public partial class GameplayRestarter : Node
 {
-	public override void _Process(double delta)
+	private readonly static StringName Restart = "restart";
+	
+	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (Input.IsActionJustPressed("restart"))
+		if (@event.IsActionPressed(Restart))
 			RestartGameplay();
 	}
 
