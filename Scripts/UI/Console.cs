@@ -128,17 +128,41 @@ public partial class Console : Control
 			case "load":
 				Load(words[1]);
 				break;
+			case "infammo":
+				InfAmmoCheat();
+				break;
+			case "pickup":
+				PickUpCheat();
+				break;
 			default:
 				Echo($"[color=red]Invalid command:[color=white] {command}");
 				break;
 		}
 	}
+	
+	private void InfAmmoCheat()
+	{
+		if (!LogIfNoPlayer())
+			_player.IgnoresAmmo = !_player.IgnoresAmmo;
+	}
+	
+	private void PickUpCheat()
+	{
+		if (!LogIfNoPlayer())
+			_player.DropsPickUppableWeapon = !_player.DropsPickUppableWeapon;
+	}
+	
 	private void GodMode()
+	{
+		if (!LogIfNoPlayer())
+			_player.GodMode = !_player.GodMode;
+	}
+
+	private bool LogIfNoPlayer()
 	{
 		if (_player is null)
 			Echo($"[color=red]No player assigned[color=white]");
-		else
-			_player.GodMode = !_player.GodMode;
+		return _player is null;
 	}
 
 	private void ShowScenes()

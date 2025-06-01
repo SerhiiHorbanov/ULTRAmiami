@@ -35,8 +35,12 @@ These are commands available:
 		toggles godmode
 	help
 		outputs this text
+	infammo
+		makes player ignore ammo count
 	load [scenename]
 		loads a scene
+	pickup
+		makes player drop pickuppable weapons
 	scenes
 		lists all available scenes
 	spawn [scenename]

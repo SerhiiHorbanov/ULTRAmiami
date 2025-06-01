@@ -27,7 +27,7 @@ size = Vector2(70, 80)
 [node name="Player" node_paths=PackedStringArray("_unitMovement", "_weapon") groups=["Player"] instance=ExtResource("1_33iby")]
 _unitMovement = NodePath("PlayerMovement")
 _weapon = NodePath("Pistol")
-_dropsPickUppableWeapon = false
+DropsPickUppableWeapon = false
 _isImmuneToFire = true
 
 [node name="Sprite2D" parent="Graphics" index="0"]

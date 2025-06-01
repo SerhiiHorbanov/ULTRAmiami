@@ -15,7 +15,8 @@ public partial class Unit : CharacterBody2D, IAttackable
 	
 	[Export] private UnitMovement _unitMovement;
 	[Export] private Weapon _weapon;
-	[Export] private bool _dropsPickUppableWeapon;
+	[Export] public bool DropsPickUppableWeapon;
+	[Export] public bool IgnoresAmmo;
 	
 	[ExportGroup("Death")]
 	[Export] public bool GodMode;
@@ -162,7 +163,7 @@ public partial class Unit : CharacterBody2D, IAttackable
 		
 		OnWeaponChanged?.Invoke(weapon);
 		
-		oldWeapon?.TryAttachUnit(null, _dropsPickUppableWeapon);
+		oldWeapon?.TryAttachUnit(null, DropsPickUppableWeapon);
 		weapon?.TryAttachUnit(this);
 	}
 }
