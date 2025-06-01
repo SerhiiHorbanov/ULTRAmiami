@@ -35,6 +35,20 @@ public partial class PlayerUnitController : UnitController
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
+		if (@event is InputEventMouseButton)
+			return;
+		
+		HandleInputEvent(@event);
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton)
+			HandleInputEvent(@event);
+	}
+
+	private void HandleInputEvent(InputEvent @event)
+	{
 		ResolveEventForMovement(@event);
 		CheckAndResolveShooting(@event);
 		
@@ -44,7 +58,6 @@ public partial class PlayerUnitController : UnitController
 			Unit.PickUpWeapon();
 		if (@event.IsActionPressed(_meleeAttack))
 			_meleeAttacker.TryAttack();
-		
 	}
 	
 	private void ResolveEventForMovement(InputEvent @event)
