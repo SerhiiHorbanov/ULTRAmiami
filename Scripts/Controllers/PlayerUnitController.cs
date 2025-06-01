@@ -19,10 +19,55 @@ public partial class PlayerUnitController : UnitController
 
 	private bool _isBufferingShot;
 
+	private bool _isHoldingLeft;
+	private bool _isHoldingRight;
+	private bool _isHoldingUp;
+	private bool _isHoldingDown;
+
+	private bool _isJustPressingShoot;
+	private bool _isHoldingShoot;
+	
 	public override void _Ready()
 	{
 		base._Ready();
 		Unit.OnWeaponChanged += _ => _isBufferingShot = false;
+	}
+
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		ResolveEventForMovement(@event);
+		CheckAndResolveShooting(@event);
+		
+		if (@event.IsActionPressed(_dropWeapon))
+			Unit.DropWeapon();
+		if (@event.IsActionPressed(_pickUpWeapon))
+			Unit.PickUpWeapon();
+		if (@event.IsActionPressed(_meleeAttack))
+			_meleeAttacker.TryAttack();
+		
+	}
+	
+	private void ResolveEventForMovement(InputEvent @event)
+	{
+		if (_isHoldingLeft)
+			_isHoldingLeft &= !@event.IsActionReleased(_left);
+		else
+			_isHoldingLeft |= @event.IsActionPressed(_left);
+		
+		if (_isHoldingRight)
+			_isHoldingRight &= !@event.IsActionReleased(_right);
+		else
+			_isHoldingRight |= @event.IsActionPressed(_right);
+		
+		if (_isHoldingUp)
+			_isHoldingUp &= !@event.IsActionReleased(_up);
+		else
+			_isHoldingUp |= @event.IsActionPressed(_up);
+		
+		if (_isHoldingDown)
+			_isHoldingDown &= !@event.IsActionReleased(_down);
+		else
+			_isHoldingDown |= @event.IsActionPressed(_down);
 	}
 
 	public override void _Process(double delta)
@@ -33,32 +78,26 @@ public partial class PlayerUnitController : UnitController
 			return;
 		
 		UpdatePointingAt();
-		CheckAndResolveShooting();
-
-		if (Input.IsActionJustPressed(_dropWeapon))
-			Unit.DropWeapon();
-		if (Input.IsActionJustPressed(_pickUpWeapon))
-		    Unit.PickUpWeapon();
-		if (Input.IsActionJustPressed(_meleeAttack))
-			_meleeAttacker.TryAttack();
 	}
 	
-	private void CheckAndResolveShooting()
+	private void CheckAndResolveShooting(InputEvent @event)
 	{
 		if (_isBufferingShot && Weapon.EnoughTimeSinceLastShotToShootAgain())
 		{
 			Weapon.TryStartShooting();
 			_isBufferingShot = false;
 		}
-		else if (Input.IsActionJustPressed(_shoot))
+		else if (@event.IsActionPressed(_shoot))
 		{
+			_isHoldingShoot = true;
 			TryStartShootingAndProcessBuffering();
 		}
-		else if (Input.IsActionPressed(_shoot))
-		{
+		else if (_isHoldingLeft)
 			Weapon?.TryAutomaticShooting();
-		}
+
+		_isHoldingShoot &= !@event.IsActionReleased(_shoot);
 	}
+	
 	private void TryStartShootingAndProcessBuffering()
 	{
 		bool enoughTimeSinceLastShot = Weapon?.EnoughTimeSinceLastShotToShootAgain() ?? false;
@@ -88,6 +127,17 @@ public partial class PlayerUnitController : UnitController
 	
 	protected override Vector2 GetTargetDirection()
 	{
-		return Input.GetVector(_left, _right, _up, _down);
+		Vector2 direction = Vector2.Zero;
+		
+		if (_isHoldingLeft)
+			direction += Vector2.Left;
+		else if (_isHoldingRight)
+			direction += Vector2.Right;
+		if (_isHoldingUp)
+			direction += Vector2.Up;
+		else if (_isHoldingDown)
+			direction += Vector2.Down;
+		
+		return direction;
 	}
 }
