@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3prpseiwpoym"]
+[gd_scene load_steps=6 format=3 uid="uid://b3prpseiwpoym"]
 
 [ext_resource type="Script" uid="uid://jf3kyyan3kwh" path="res://Scripts/UI/MainMenu/MainMenuButtons.cs" id="1_853f1"]
 [ext_resource type="PackedScene" uid="uid://cgepdgkwb5xoc" path="res://Scenes/UI/LevelSelectionMenu/LevelSelectionMenu.tscn" id="3_8saeu"]
 [ext_resource type="PackedScene" uid="uid://5iv5ppa52n8j" path="res://Scenes/UI/RealConsole.tscn" id="3_ghw46"]
+[ext_resource type="PackedScene" uid="uid://vjj53cmmoiac" path="res://Scenes/UI/Settings/SettingsMenu.tscn" id="4_ghw46"]
 
 [sub_resource type="Theme" id="Theme_853f1"]
 default_font_size = 48
@@ -18,31 +19,32 @@ theme = SubResource("Theme_853f1")
 script = ExtResource("1_853f1")
 _levelSelectionMenu = NodePath("LevelSelectionMenu")
 
-[node name="PlayButton" type="Button" parent="."]
-custom_minimum_size = Vector2(400, 100)
+[node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 133.0
-offset_top = -351.0
-offset_right = 533.0
-offset_bottom = -251.0
+offset_left = 100.0
+offset_top = -420.0
+offset_right = 500.0
+offset_bottom = -100.0
 grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="PlayButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
 text = "Play
 "
 
-[node name="ExitButton" type="Button" parent="."]
+[node name="SettingsButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(400, 100)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 133.0
-offset_top = -231.0
-offset_right = 533.0
-offset_bottom = -131.0
-grow_vertical = 0
+layout_mode = 2
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
 text = "Exit"
 
 [node name="LevelSelectionMenu" parent="." instance=ExtResource("3_8saeu")]
@@ -52,5 +54,10 @@ layout_mode = 1
 [node name="RealConsole" parent="." instance=ExtResource("3_ghw46")]
 layout_mode = 1
 
-[connection signal="pressed" from="PlayButton" to="." method="Play"]
-[connection signal="pressed" from="ExitButton" to="." method="ExitGame"]
+[node name="SettingsMenu" parent="." instance=ExtResource("4_ghw46")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Buttons/PlayButton" to="." method="Play"]
+[connection signal="pressed" from="Buttons/SettingsButton" to="SettingsMenu" method="Open"]
+[connection signal="pressed" from="Buttons/ExitButton" to="." method="ExitGame"]
