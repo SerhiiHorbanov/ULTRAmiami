@@ -53,6 +53,7 @@ public partial class Console : Control
 
 	public void Echo(string text = "")
 	{
+		_text.AppendText("[color=white]");
 		_text.AppendText(text);
 		_text.AppendText("\n");
 	}
@@ -147,20 +148,29 @@ public partial class Console : Control
 	
 	private void InfAmmoCheat()
 	{
-		if (!LogIfNoPlayer())
-			_player.IgnoresAmmo = !_player.IgnoresAmmo;
+		if (LogIfNoPlayer())
+			return;
+		
+		_player.IgnoresAmmo = !_player.IgnoresAmmo;
+		Echo("Set infammo cheat to " + GetColoredBoolText(_player.IgnoresAmmo));
 	}
 	
 	private void PickUpCheat()
 	{
-		if (!LogIfNoPlayer())
-			_player.DropsPickUppableWeapon = !_player.DropsPickUppableWeapon;
+		if (LogIfNoPlayer())
+			return;
+		
+		_player.DropsPickUppableWeapon = !_player.DropsPickUppableWeapon;
+		Echo("Set pickup cheat to " + GetColoredBoolText(_player.DropsPickUppableWeapon));
 	}
 	
 	private void GodMode()
 	{
-		if (!LogIfNoPlayer())
-			_player.GodMode = !_player.GodMode;
+		if (LogIfNoPlayer())
+			return;
+		
+		_player.GodMode = !_player.GodMode;
+		Echo("Set godmode cheat to " + GetColoredBoolText(_player.GodMode));
 	}
 
 	private bool LogIfNoPlayer()
@@ -230,4 +240,7 @@ public partial class Console : Control
 		GetTree().CurrentScene.AddChild(instance);
 		Echo($"Spawned {instance.Name}");
 	}
+
+	private string GetColoredBoolText(bool value)
+		=> value ? "[color=green]true" : "[color=red]false";
 }
