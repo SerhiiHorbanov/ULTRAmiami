@@ -107,6 +107,11 @@ public partial class Console : Control
 		
 		switch (words[0])
 		{
+			case "all":
+				GodMode();
+				InfAmmoCheat();
+				PickUpCheat();
+				break;
 			case "echo":
 				Echo(string.Join(' ', words.Skip(1)));
 				break;

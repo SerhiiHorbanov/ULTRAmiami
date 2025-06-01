@@ -27,6 +27,8 @@ _lineEdit = NodePath("BackingRect/LineEdit")
 _text = NodePath("BackingRect/RichTextLabel")
 _helpText = "This is a debug console
 These are commands available:
+	all
+		toggles all cheats
 	cls
 		clears console
 	echo [text]
