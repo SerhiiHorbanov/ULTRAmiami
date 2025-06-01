@@ -6,33 +6,48 @@ namespace ULTRAmiami.Weapons.Projectiles;
 
 public partial class RailgunShot : Node2D
 {
-	[Export] private RayCast2D _rayCast;
+	[Export] private ShapeCast2D _shapeCast;
+	[Export] private Line2D _line;
 	[Export] private float _length;
 	[Export] private float _damage;
-	//[Export] private AnimationPlayer _animationPlayer;
+	
 	private Vector2 _direction;
 	
 	public void Initialize(Vector2 globalPosition, Vector2 shootingAt)
 	{
 		GlobalPosition = globalPosition;
-		_direction = shootingAt - globalPosition;
+		_direction = (shootingAt - globalPosition).Normalized();
 		SetTargetPosition(_direction * _length);
 		
-		_rayCast.ForceRaycastUpdate();
-		while (_rayCast.IsColliding())
+		ResolveAllCollisions();
+	}
+	private void ResolveAllCollisions()
+	{
+		_shapeCast.ForceShapecastUpdate();
+		
+		int collisionsAmount = _shapeCast.GetCollisionCount();
+		while (collisionsAmount > 0)
 		{
-			GodotObject collider = _rayCast.GetCollider();
-			TryAttackUnitByCollider(collider);
-			_rayCast.AddException((CollisionObject2D)collider);
-			_rayCast.ForceRaycastUpdate();
+			_shapeCast.ForceShapecastUpdate();
+			collisionsAmount = _shapeCast.GetCollisionCount();
+			
+			for (int i = 0; i < collisionsAmount; i++)
+			{
+				GodotObject collider = _shapeCast.GetCollider(i);
+				TryAttackUnitByCollider(collider);
+				_shapeCast.AddException(collider as CollisionObject2D);
+				_shapeCast.AddException(null);
+			}
 		}
-		QueueFree();
 	}
 
 	private void SetTargetPosition(Vector2 targetPosition)
 	{
-		_rayCast.TargetPosition = targetPosition;
+		_shapeCast.TargetPosition = targetPosition;
 		
+		_line.ClearPoints();
+		_line.AddPoint(Vector2.Zero);
+		_line.AddPoint(targetPosition);
 	}
 	
 	private void TryAttackUnitByCollider(GodotObject target)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg0s6f1srg0bq"]
+[gd_scene load_steps=11 format=3 uid="uid://bg0s6f1srg0bq"]
 
 [ext_resource type="PackedScene" uid="uid://ctepmc8qidog4" path="res://Scenes/Weapons/Weapon.tscn" id="1_a138t"]
 [ext_resource type="Script" uid="uid://dtppgcjudqoi1" path="res://Scripts/Weapons/Railgun.cs" id="2_pbn1j"]
@@ -7,15 +7,24 @@
 [ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="4_7t7ca"]
 [ext_resource type="Texture2D" uid="uid://b37w5avb74v16" path="res://Textures/Weapons/RailgunNotPickuppable.png" id="4_k2u73"]
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="5_5xwwa"]
+[ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="6_7t7ca"]
 
 [sub_resource type="Resource" id="Resource_bu6yk"]
 script = ExtResource("5_5xwwa")
 Texture = ExtResource("4_7t7ca")
-StartingPosition = Vector2(0, 0)
+StartingPosition = Vector2(50, 0)
 StartingRotation = 0.0
 DeltaPosition = Vector2(0, 0)
 DeltaRotation = 0.0
 metadata/_custom_type_script = "uid://d0rajgo22sr22"
+
+[sub_resource type="Resource" id="Resource_5xwwa"]
+script = ExtResource("6_7t7ca")
+Color = Color(0, 1, 1, 1)
+NoAmmoColor = Color(1, 0, 0, 1)
+LineWidth = 2.0
+ShowSpread = false
+metadata/_custom_type_script = "uid://fbtjd4ropgt2"
 
 [node name="Railgun" node_paths=PackedStringArray("_reloadTimer", "_shootingCooldownTimer", "_dropped", "_droppedNotPickuppable", "_shootingAudio", "_failingShotAudio", "_reloadingAudio") instance=ExtResource("1_a138t")]
 script = ExtResource("2_pbn1j")
@@ -30,6 +39,7 @@ _shootingAudio = NodePath("Shot")
 _failingShotAudio = NodePath("FailingShot")
 _reloadingAudio = NodePath("Reload")
 AmmoUIInfo = SubResource("Resource_bu6yk")
+AimLineInfo = SubResource("Resource_5xwwa")
 
 [node name="Dropped" parent="." index="0" node_paths=PackedStringArray("_weapon")]
 _weapon = NodePath("..")
