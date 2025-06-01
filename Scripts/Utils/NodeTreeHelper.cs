@@ -30,6 +30,6 @@ public static class NodeTreeHelper
 		if (node.GetParent() != null)
 			node.Reparent(sibling.GetParent());
 		else
-			sibling.GetParent().AddChild(node);
+			sibling?.GetParent()?.AddChild(node);
 	}
 }
