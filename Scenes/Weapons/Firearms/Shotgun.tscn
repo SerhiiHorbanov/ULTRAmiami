@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="5_k5p5k"]
 [ext_resource type="AudioStream" uid="uid://cuyxsptouasoo" path="res://Audio/Sound Randomizers/ShotgunPumpRandomizer.tres" id="6_5hocu"]
 [ext_resource type="Script" uid="uid://di761nsqnfjgd" path="res://Scripts/Weapons/Audio/ShotgunPumper.cs" id="7_gnv3i"]
-[ext_resource type="Script" uid="uid://clodh758uxlqc" path="res://Scripts/Weapons/Visuals/CartridgeCaseSpawner.cs" id="11_n8ysm"]
+[ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="11_n8ysm"]
 [ext_resource type="PackedScene" uid="uid://ukvmrb52owl1" path="res://Scenes/Effects/CartridgeCases/ShotgunShell.tscn" id="12_qpube"]
 
 [sub_resource type="Resource" id="Resource_gvd2d"]
@@ -68,11 +68,11 @@ one_shot = true
 [node name="CartridgeCaseSpawner" type="Node2D" parent="Pump" index="1" node_paths=PackedStringArray("_weapon")]
 script = ExtResource("11_n8ysm")
 _weapon = NodePath("../..")
-_cartridgeCase = ExtResource("12_qpube")
+_scene = ExtResource("12_qpube")
 
 [node name="CartridgeCaseTimer" type="Timer" parent="Pump" index="2"]
 wait_time = 0.3
 one_shot = true
 
 [connection signal="timeout" from="Pump/TimerUntilPumping" to="Pump/CartridgeCaseTimer" method="start"]
-[connection signal="timeout" from="Pump/CartridgeCaseTimer" to="Pump/CartridgeCaseSpawner" method="SpawnCartridgeCase"]
+[connection signal="timeout" from="Pump/CartridgeCaseTimer" to="Pump/CartridgeCaseSpawner" method="Spawn"]

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="5_psmf8"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_xjwgq"]
 [ext_resource type="AudioStream" uid="uid://cq2kl2pdko5yi" path="res://Audio/SFX/SMGReload.wav" id="6_txk56"]
-[ext_resource type="Script" uid="uid://clodh758uxlqc" path="res://Scripts/Weapons/Visuals/CartridgeCaseSpawner.cs" id="10_ucn8r"]
+[ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="10_ucn8r"]
 [ext_resource type="PackedScene" uid="uid://fdnh28wh0tk2" path="res://Scenes/Effects/CartridgeCases/SMG9mmCasing.tscn" id="11_b408b"]
 
 [sub_resource type="Resource" id="Resource_67h2h"]
@@ -60,6 +60,6 @@ volume_db = 12.0
 [node name="CartridgeCaseSpawner" type="Node2D" parent="." index="7" node_paths=PackedStringArray("_weapon")]
 script = ExtResource("10_ucn8r")
 _weapon = NodePath("..")
-_cartridgeCase = ExtResource("11_b408b")
+_scene = ExtResource("11_b408b")
 
-[connection signal="OnShooting" from="." to="CartridgeCaseSpawner" method="SpawnCartridgeCase"]
+[connection signal="OnShooting" from="." to="CartridgeCaseSpawner" method="Spawn"]
