@@ -89,48 +89,53 @@ public partial class PlayerUnitController : UnitController
 		
 		if (Unit is null) 
 			return;
+
+
+		if (_isJustPressingShoot)
+		{
+			Unit.Weapon.TryStartShooting();
+			_isJustPressingShoot = false;
+		}
+		if (_isBufferingShot)
+			TryStartShootingAndProcessBuffering();
+		else if (_isHoldingShoot)
+			Weapon?.TryAutomaticShooting();
 		
 		UpdatePointingAt();
 	}
 	
 	private void CheckAndResolveShooting(InputEvent @event)
 	{
-		if (_isBufferingShot && Weapon.EnoughTimeSinceLastShotToShootAgain())
-		{
-			Weapon.TryStartShooting();
-			_isBufferingShot = false;
-		}
-		else if (@event.IsActionPressed(_shoot))
+		if (@event.IsActionPressed(_shoot))
 		{
 			_isHoldingShoot = true;
-			TryStartShootingAndProcessBuffering();
+			_isJustPressingShoot = true;
 		}
-		else if (_isHoldingLeft)
-			Weapon?.TryAutomaticShooting();
-
+		
 		_isHoldingShoot &= !@event.IsActionReleased(_shoot);
 	}
 	
 	private void TryStartShootingAndProcessBuffering()
 	{
-		bool enoughTimeSinceLastShot = Weapon?.EnoughTimeSinceLastShotToShootAgain() ?? false;
-			
-		if (enoughTimeSinceLastShot)
+		if (Weapon is null)
 		{
-			Weapon.TryStartShooting();
+			_isBufferingShot = false;
 			return;
 		}
-			
-		bool hasAmmo = Weapon?.HasAmmo() ?? false;
-			
-		_isBufferingShot |= hasAmmo;
+		
+		bool shootingBufferedShot = Weapon?.EnoughTimeSinceLastShotToShootAgain() ?? false;
+
+		if (!shootingBufferedShot)
+			return;
+		
+		Weapon.TryStartShooting();
+		_isBufferingShot = false;
 	}
 
 	private void UpdatePointingAt()
 	{
-		if (_meleeAttacker is not null)
-			_meleeAttacker.SetRotation(GetLocalMousePosition().Angle());
-		
+		_meleeAttacker?.SetRotation(GetLocalMousePosition().Angle());
+
 		if (Weapon is null)
 			return;
 		
