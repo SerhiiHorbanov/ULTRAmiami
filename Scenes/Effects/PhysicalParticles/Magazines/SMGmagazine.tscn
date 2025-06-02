@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://drccyaw3p0vef"]
+
+[ext_resource type="PackedScene" uid="uid://cqjtudxgxpjdu" path="res://Scenes/Effects/PhysicalParticles/Magazines/Magazine.tscn" id="1_0sb63"]
+[ext_resource type="Texture2D" uid="uid://cfjfaejb8d5iy" path="res://Textures/Effects/SMGMagazine.png" id="2_ajsrp"]
+
+[node name="SMGMagazine" instance=ExtResource("1_0sb63")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ajsrp")

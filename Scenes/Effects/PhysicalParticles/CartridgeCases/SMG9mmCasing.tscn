@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://fdnh28wh0tk2"]
 
-[ext_resource type="PackedScene" uid="uid://ckmhcmp6302u" path="res://Scenes/Effects/CartridgeCases/CartridgeCase.tscn" id="1_wy0gq"]
+[ext_resource type="PackedScene" uid="uid://ckmhcmp6302u" path="res://Scenes/Effects/PhysicalParticles/CartridgeCases/CartridgeCase.tscn" id="1_wy0gq"]
 [ext_resource type="Texture2D" uid="uid://85xfxms3cjsy" path="res://Textures/Effects/9mmCasing.png" id="2_uqh31"]
 
 [node name="SMG9mmCasing" instance=ExtResource("1_wy0gq")]

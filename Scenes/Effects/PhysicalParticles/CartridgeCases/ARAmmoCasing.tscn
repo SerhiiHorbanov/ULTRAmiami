@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://djijfm1v7yqmi"]
 
-[ext_resource type="PackedScene" uid="uid://ckmhcmp6302u" path="res://Scenes/Effects/CartridgeCases/CartridgeCase.tscn" id="1_2fig8"]
+[ext_resource type="PackedScene" uid="uid://ckmhcmp6302u" path="res://Scenes/Effects/PhysicalParticles/CartridgeCases/CartridgeCase.tscn" id="1_2fig8"]
 [ext_resource type="Texture2D" uid="uid://dirff40ofwsfp" path="res://Textures/Effects/AssaultRifleAmmoCasing.png" id="2_vqrcf"]
 
 [node name="ARAmmoCasing" instance=ExtResource("1_2fig8")]

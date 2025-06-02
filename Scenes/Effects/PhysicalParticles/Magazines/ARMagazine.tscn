@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://brooko1kvvb37"]
+
+[ext_resource type="PackedScene" uid="uid://cqjtudxgxpjdu" path="res://Scenes/Effects/PhysicalParticles/Magazines/Magazine.tscn" id="1_yjwmx"]
+[ext_resource type="Texture2D" uid="uid://c0ige0t8j7agd" path="res://Textures/Effects/AssaultRifleMagazine.png" id="2_ikm0e"]
+
+[node name="ARMagazine" instance=ExtResource("1_yjwmx")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ikm0e")

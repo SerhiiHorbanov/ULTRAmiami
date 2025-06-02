@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ukvmrb52owl1"]
 
-[ext_resource type="PackedScene" uid="uid://ckmhcmp6302u" path="res://Scenes/Effects/CartridgeCases/CartridgeCase.tscn" id="1_7v20t"]
+[ext_resource type="PackedScene" uid="uid://ckmhcmp6302u" path="res://Scenes/Effects/PhysicalParticles/CartridgeCases/CartridgeCase.tscn" id="1_7v20t"]
 [ext_resource type="Texture2D" uid="uid://bsfrvboxqp8e2" path="res://Textures/Effects/ShotgunShell.png" id="2_u5nh2"]
 
 [node name="ShotgunShell" instance=ExtResource("1_7v20t")]

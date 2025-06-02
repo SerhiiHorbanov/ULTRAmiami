@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3laytvatekjx"]
+[gd_scene load_steps=15 format=3 uid="uid://d3laytvatekjx"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_cu785"]
 [ext_resource type="PackedScene" uid="uid://ckrt3udf0e7bu" path="res://Scenes/Projectiles/SMGBullet.tscn" id="2_nv5f2"]
@@ -10,7 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_xjwgq"]
 [ext_resource type="AudioStream" uid="uid://cq2kl2pdko5yi" path="res://Audio/SFX/SMGReload.wav" id="6_txk56"]
 [ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="10_ucn8r"]
-[ext_resource type="PackedScene" uid="uid://fdnh28wh0tk2" path="res://Scenes/Effects/CartridgeCases/SMG9mmCasing.tscn" id="11_b408b"]
+[ext_resource type="PackedScene" uid="uid://fdnh28wh0tk2" path="res://Scenes/Effects/PhysicalParticles/CartridgeCases/SMG9mmCasing.tscn" id="11_b408b"]
+[ext_resource type="PackedScene" uid="uid://drccyaw3p0vef" path="res://Scenes/Effects/PhysicalParticles/Magazines/SMGmagazine.tscn" id="12_b408b"]
 
 [sub_resource type="Resource" id="Resource_67h2h"]
 script = ExtResource("3_ejnrc")
@@ -62,4 +63,14 @@ script = ExtResource("10_ucn8r")
 _weapon = NodePath("..")
 _scene = ExtResource("11_b408b")
 
+[node name="MagazineSpawner" type="Node2D" parent="." index="8" node_paths=PackedStringArray("_weapon")]
+script = ExtResource("10_ucn8r")
+_weapon = NodePath("..")
+_scene = ExtResource("12_b408b")
+
+[node name="Timer" type="Timer" parent="MagazineSpawner" index="0"]
+one_shot = true
+
+[connection signal="OnReloadStarted" from="." to="MagazineSpawner/Timer" method="start"]
 [connection signal="OnShooting" from="." to="CartridgeCaseSpawner" method="Spawn"]
+[connection signal="timeout" from="MagazineSpawner/Timer" to="MagazineSpawner" method="Spawn"]
