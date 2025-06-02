@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckmhcmp6302u"]
 
-[ext_resource type="Script" uid="uid://oj6kp54b7o6l" path="res://Scripts/Weapons/Visuals/CartridgeCase.cs" id="1_qpk0u"]
+[ext_resource type="Script" uid="uid://c7atfd71meegk" path="res://Scripts/Effects/PhysicalParticle.cs" id="1_qpk0u"]
 
 [sub_resource type="Animation" id="Animation_qpk0u"]
 resource_name = "Disappearing"
