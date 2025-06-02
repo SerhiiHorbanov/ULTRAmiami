@@ -39,6 +39,9 @@ public abstract partial class Weapon : Node2D
 	public event Action<int> OnShoot;
 	public event Action OnUnitChanged;
 	
+	[Signal]
+	public delegate void OnShootingEventHandler();
+	
 	protected Weapon()
 	{
 		_ammo = _maxAmmo;
@@ -187,6 +190,7 @@ public abstract partial class Weapon : Node2D
 		_shootingAudio?.Play();
 		OnAmmoChanged?.Invoke(_ammo);
 		OnShoot?.Invoke(_ammo);
+		EmitSignalOnShooting();
 	}
 
 	private void ShootWithSpread()
