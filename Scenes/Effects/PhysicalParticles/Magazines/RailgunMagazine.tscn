@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq7qeaaaa4lue"]
+
+[ext_resource type="PackedScene" uid="uid://cqjtudxgxpjdu" path="res://Scenes/Effects/PhysicalParticles/Magazines/Magazine.tscn" id="1_q6soi"]
+[ext_resource type="Texture2D" uid="uid://ca76ofix4c8b1" path="res://Textures/Effects/RailgunMagazine.png" id="2_bu6s3"]
+
+[node name="RailgunMagazine" instance=ExtResource("1_q6soi")]
+_avgVelocity = Vector2(-3000, 1500)
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_bu6s3")

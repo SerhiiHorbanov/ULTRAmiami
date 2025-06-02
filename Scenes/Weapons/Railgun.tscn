@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bg0s6f1srg0bq"]
+[gd_scene load_steps=14 format=3 uid="uid://bg0s6f1srg0bq"]
 
 [ext_resource type="PackedScene" uid="uid://ctepmc8qidog4" path="res://Scenes/Weapons/Weapon.tscn" id="1_a138t"]
 [ext_resource type="Script" uid="uid://dtppgcjudqoi1" path="res://Scripts/Weapons/Railgun.cs" id="2_pbn1j"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b37w5avb74v16" path="res://Textures/Weapons/RailgunNotPickuppable.png" id="4_k2u73"]
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="5_5xwwa"]
 [ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="6_7t7ca"]
+[ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="9_whbnk"]
+[ext_resource type="PackedScene" uid="uid://bq7qeaaaa4lue" path="res://Scenes/Effects/PhysicalParticles/Magazines/RailgunMagazine.tscn" id="10_61jkl"]
+[ext_resource type="PackedScene" uid="uid://dcpjdjeubcllp" path="res://Scenes/Effects/PhysicalParticles/Magazines/LeftRailgunMagazine.tscn" id="11_05ya7"]
 
 [sub_resource type="Resource" id="Resource_bu6yk"]
 script = ExtResource("5_5xwwa")
@@ -52,3 +55,16 @@ texture = ExtResource("3_8c8qw")
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_k2u73")
+
+[node name="MagazineSpawner" type="Node2D" parent="." index="7" node_paths=PackedStringArray("_weapon")]
+script = ExtResource("9_whbnk")
+_weapon = NodePath("..")
+_scene = ExtResource("10_61jkl")
+
+[node name="MagazineSpawner2" type="Node2D" parent="." index="8" node_paths=PackedStringArray("_weapon")]
+script = ExtResource("9_whbnk")
+_weapon = NodePath("..")
+_scene = ExtResource("11_05ya7")
+
+[connection signal="OnShooting" from="." to="MagazineSpawner" method="Spawn"]
+[connection signal="OnShooting" from="." to="MagazineSpawner2" method="Spawn"]

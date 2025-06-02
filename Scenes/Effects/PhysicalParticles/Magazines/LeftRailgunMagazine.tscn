@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcpjdjeubcllp"]
+
+[ext_resource type="PackedScene" uid="uid://bq7qeaaaa4lue" path="res://Scenes/Effects/PhysicalParticles/Magazines/RailgunMagazine.tscn" id="1_f3yyp"]
+
+[node name="LeftRailgunMagazine" instance=ExtResource("1_f3yyp")]
+_avgVelocity = Vector2(-3000, -1500)
