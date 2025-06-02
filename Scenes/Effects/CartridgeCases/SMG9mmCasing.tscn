@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://fdnh28wh0tk2"]
+
+[ext_resource type="PackedScene" uid="uid://ckmhcmp6302u" path="res://Scenes/Effects/CartridgeCases/CartridgeCase.tscn" id="1_wy0gq"]
+[ext_resource type="Texture2D" uid="uid://85xfxms3cjsy" path="res://Textures/Effects/9mmCasing.png" id="2_uqh31"]
+
+[node name="SMG9mmCasing" instance=ExtResource("1_wy0gq")]
+_velocityRandomization = Vector2(1000, 1000)
+_randomizedRotationDegrees = 20.0
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_uqh31")
+
+[node name="AnimationPlayer" parent="." index="2"]
+speed_scale = 4.0
