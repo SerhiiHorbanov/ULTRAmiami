@@ -238,7 +238,24 @@ public partial class Console : Control
 	{
 		Node instance = scene.Instantiate();
 		GetTree().CurrentScene.AddChild(instance);
+
+		HandleSpawnArgs(args, instance);
+		
 		Echo($"Spawned {instance.Name}");
+	}
+	
+	private void HandleSpawnArgs(string[] args, Node instance)
+	{
+		if (args.Contains("atplayer"))
+		{
+			if (!LogIfNoPlayer())
+			{
+				if (instance is Node2D node2D)
+					node2D.SetGlobalPosition(_player.Position);
+				else
+					Echo("[color=red]Spawned scene is not a Node2D");
+			}
+		}
 	}
 
 	private string GetColoredBoolText(bool value)

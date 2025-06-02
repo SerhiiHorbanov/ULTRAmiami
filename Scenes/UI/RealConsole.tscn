@@ -31,8 +31,11 @@ These are commands available:
 		toggles all cheats
 	cls
 		clears console
-	echo [text]
+	echo [text] [args]
 		outputs [text]
+		args:
+			atplayer:
+				sets global position of spawned scene to player's global position
 	godmode
 		toggles godmode
 	help
