@@ -93,7 +93,7 @@ public partial class PlayerUnitController : UnitController
 
 		if (_isJustPressingShoot)
 		{
-			Unit.Weapon.TryStartShooting();
+			Weapon?.TryStartShooting();
 			_isJustPressingShoot = false;
 		}
 		if (_isBufferingShot)
@@ -128,7 +128,7 @@ public partial class PlayerUnitController : UnitController
 		if (!shootingBufferedShot)
 			return;
 		
-		Weapon.TryStartShooting();
+		Weapon?.TryStartShooting();
 		_isBufferingShot = false;
 	}
 
