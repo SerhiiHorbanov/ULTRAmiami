@@ -110,10 +110,10 @@ theme = SubResource("Theme_6wqx3")
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="ExitButton" type="Button" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer"]
+[node name="CloseButton" type="Button" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "EXIT"
+text = "CLOSE"
 
 [node name="GraphicsButton" type="Button" parent="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -291,8 +291,8 @@ layout_mode = 2
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer" index="0"]
 text = "OTHER"
 
-[connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/ExitButton" to="." method="Close"]
-[connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/ExitButton" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="Save"]
+[connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/CloseButton" to="." method="Close"]
+[connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/CloseButton" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="Save"]
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/GraphicsButton" to="." method="SetTab" binds= [0]]
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/AudioButton" to="." method="SetTab" binds= [1]]
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/ControlsButton" to="." method="SetTab" binds= [2]]
