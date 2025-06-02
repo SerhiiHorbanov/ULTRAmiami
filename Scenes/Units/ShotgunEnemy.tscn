@@ -10,7 +10,6 @@
 _unitMovement = NodePath("UnitMovement")
 _weapon = NodePath("Shotgun")
 _deadVersion = ExtResource("2_hpbr5")
-_isImmuneToFire = true
 
 [node name="Sprite2D" parent="Graphics" index="0"]
 scale = Vector2(0.65, 0.65)
@@ -33,3 +32,6 @@ _maxBrakeAcceleration = 10000.0
 _maxWalkSpeed = 200.0
 
 [node name="Shotgun" parent="." index="4" instance=ExtResource("4_a4bow")]
+
+[node name="DeathFromFireTimer" parent="." index="5"]
+wait_time = 2.0
