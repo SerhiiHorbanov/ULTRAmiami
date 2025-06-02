@@ -42,6 +42,9 @@ public abstract partial class Weapon : Node2D
 	[Signal]
 	public delegate void OnShootingEventHandler();
 	
+	[Signal]
+	public delegate void OnReloadStartedEventHandler();
+	
 	protected Weapon()
 	{
 		_ammo = _maxAmmo;
@@ -158,6 +161,7 @@ public abstract partial class Weapon : Node2D
 		
 		_reloadTimer.Start();
 		_reloadingAudio?.Play();
+		EmitSignalOnReloadStarted();
 	}
 	
 	private void FinishReloading()
