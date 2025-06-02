@@ -21,6 +21,7 @@ public partial class RailgunShot : Node2D
 		
 		ResolveAllCollisions();
 	}
+	
 	private void ResolveAllCollisions()
 	{
 		_shapeCast.ForceShapecastUpdate();
@@ -35,8 +36,9 @@ public partial class RailgunShot : Node2D
 			{
 				GodotObject collider = _shapeCast.GetCollider(i);
 				TryAttackUnitByCollider(collider);
-				_shapeCast.AddException(collider as CollisionObject2D);
-				_shapeCast.AddException(null);
+				
+				if (collider is CollisionObject2D collisionObject)
+					_shapeCast.AddException(collisionObject);
 			}
 		}
 	}
