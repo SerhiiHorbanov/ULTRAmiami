@@ -39,7 +39,7 @@ collision_mask = 5
 script = ExtResource("3_x27d5")
 
 [node name="PathRebuildingSuppresionTimer" type="Timer" parent="EnemyController" index="4"]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 
 [connection signal="OnHit" from="." to="." method="Die"]
