@@ -13,11 +13,13 @@ public partial class RailgunShot : Node2D
 	
 	private Vector2 _direction;
 	
-	public void Initialize(Vector2 globalPosition, Vector2 shootingAt)
+	public void Initialize(Vector2 globalPosition, Vector2 shootingAt, Unit ignored)
 	{
 		GlobalPosition = globalPosition;
 		_direction = (shootingAt - globalPosition).Normalized();
 		SetTargetPosition(_direction * _length);
+		
+		_shapeCast.AddException(ignored);
 		
 		ResolveAllCollisions();
 	}

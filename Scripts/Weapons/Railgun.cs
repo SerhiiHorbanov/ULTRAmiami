@@ -13,7 +13,7 @@ public partial class Railgun : Weapon
 	{
 		RailgunShot shot = _projectileScene.Instantiate<RailgunShot>();
 		shot.MakeSiblingOf(GetParent());
-		shot.Initialize(GlobalPosition, shootingAt);
+		shot.Initialize(GlobalPosition, shootingAt, Unit);
 		Unit.CallDeferred(Units.Unit.MethodName.DropWeapon);
 	}
 }
