@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=23 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://70y5w1gml3pe" path="res://Scripts/Units/BloodFuel.cs" id="9_jokor"]
 [ext_resource type="Script" uid="uid://d2ccc8rp3eho5" path="res://Scripts/Initialization/PlayerScoreInitializer.cs" id="10_nf6c1"]
 [ext_resource type="Script" uid="uid://7xnvw4rwv2x7" path="res://Scripts/Weapons/MeleeAttacker.cs" id="12_ehya8"]
+[ext_resource type="Script" uid="uid://bkird12un76th" path="res://Scripts/Units/PlayerTimeAliveScoreUpdater.cs" id="12_t5c2b"]
 [ext_resource type="Texture2D" uid="uid://d1ne5p0x03afh" path="res://Textures/Units/V0Arm.png" id="13_0bpcd"]
 [ext_resource type="Script" uid="uid://p0bxinvlt1sm" path="res://Scripts/Weapons/Visuals/PlayerArmAnimator.cs" id="14_udi2h"]
 [ext_resource type="Script" uid="uid://bfttqc36e8iud" path="res://Scripts/Effects/PlayerArmHitParticlesSpawner.cs" id="15_ideyk"]
@@ -75,7 +76,10 @@ _movement = NodePath("../PlayerMovement")
 [node name="PlayerScoreInitializer" type="Node" parent="." index="8"]
 script = ExtResource("10_nf6c1")
 
-[node name="MeleeAttacker" type="Node2D" parent="." index="9" node_paths=PackedStringArray("_attackArea", "_attackDurationTimer", "_ignoredUnit", "_attackAudio", "_hitAudio")]
+[node name="PlayerTimeAliveScoreUpdater" type="Node" parent="." index="9"]
+script = ExtResource("12_t5c2b")
+
+[node name="MeleeAttacker" type="Node2D" parent="." index="10" node_paths=PackedStringArray("_attackArea", "_attackDurationTimer", "_ignoredUnit", "_attackAudio", "_hitAudio")]
 script = ExtResource("12_ehya8")
 _attackArea = NodePath("Area2D")
 _attackDurationTimer = NodePath("AttackDurationTimer")
