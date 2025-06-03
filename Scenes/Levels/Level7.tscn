@@ -1,0 +1,160 @@
+[gd_scene load_steps=9 format=3 uid="uid://doen703uf20tb"]
+
+[ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_dep18"]
+[ext_resource type="Resource" uid="uid://busuvqpawi621" path="res://LevelInfos/Level7Info.tres" id="2_3be8h"]
+[ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="2_8mbuo"]
+[ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_jqpi3"]
+[ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="3_grs4q"]
+[ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="4_8mbuo"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="5_3be8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3be8h"]
+size = Vector2(288, 528)
+
+[node name="Level" instance=ExtResource("1_dep18")]
+_info = ExtResource("2_3be8h")
+
+[node name="ReachAreaRequirement" parent="LevelTarget" index="0" node_paths=PackedStringArray("_areas") instance=ExtResource("2_8mbuo")]
+_areas = [NodePath("Area2D")]
+
+[node name="Area2D" type="Area2D" parent="LevelTarget/ReachAreaRequirement" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTarget/ReachAreaRequirement/Area2D" index="0"]
+position = Vector2(3000, -577)
+shape = SubResource("RectangleShape2D_3be8h")
+
+[node name="Walls" type="Node2D" parent="." index="6"]
+
+[node name="Wall" parent="Walls" index="0" instance=ExtResource("2_jqpi3")]
+position = Vector2(0, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall2" parent="Walls" index="1" instance=ExtResource("2_jqpi3")]
+position = Vector2(-288, 0)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall3" parent="Walls" index="2" instance=ExtResource("2_jqpi3")]
+position = Vector2(1, -288)
+scale = Vector2(10, 1)
+
+[node name="Wall4" parent="Walls" index="3" instance=ExtResource("2_jqpi3")]
+position = Vector2(576, -288)
+scale = Vector2(10, 1)
+
+[node name="Wall5" parent="Walls" index="4" instance=ExtResource("2_jqpi3")]
+position = Vector2(864, 1)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall6" parent="Walls" index="5" instance=ExtResource("2_jqpi3")]
+position = Vector2(288, 576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall10" parent="Walls" index="6" instance=ExtResource("2_jqpi3")]
+position = Vector2(576, 864)
+scale = Vector2(10, 1)
+
+[node name="Wall11" parent="Walls" index="7" instance=ExtResource("2_jqpi3")]
+position = Vector2(1152, 864)
+scale = Vector2(10, 1)
+
+[node name="Wall12" parent="Walls" index="8" instance=ExtResource("2_jqpi3")]
+position = Vector2(1728, 864)
+scale = Vector2(10, 1)
+
+[node name="Wall7" parent="Walls" index="9" instance=ExtResource("2_jqpi3")]
+position = Vector2(1440, 0)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall8" parent="Walls" index="10" instance=ExtResource("2_jqpi3")]
+position = Vector2(864, -576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall13" parent="Walls" index="11" instance=ExtResource("2_jqpi3")]
+position = Vector2(864, -1152)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall14" parent="Walls" index="12" instance=ExtResource("2_jqpi3")]
+position = Vector2(1152, -1440)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall15" parent="Walls" index="13" instance=ExtResource("2_jqpi3")]
+position = Vector2(1728, -1440)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall16" parent="Walls" index="14" instance=ExtResource("2_jqpi3")]
+position = Vector2(2016, -1152)
+rotation = 4.71238
+scale = Vector2(10, 1)
+
+[node name="Wall17" parent="Walls" index="15" instance=ExtResource("2_jqpi3")]
+position = Vector2(2016, -576)
+rotation = 4.71238
+scale = Vector2(10, 1)
+
+[node name="Wall18" parent="Walls" index="16" instance=ExtResource("2_jqpi3")]
+position = Vector2(2016, 1)
+rotation = 4.71238
+scale = Vector2(10, 1)
+
+[node name="Wall19" parent="Walls" index="17" instance=ExtResource("2_jqpi3")]
+position = Vector2(2304, 864)
+rotation = 6.28318
+scale = Vector2(10, 1)
+
+[node name="Wall20" parent="Walls" index="18" instance=ExtResource("2_jqpi3")]
+position = Vector2(2592, 576)
+rotation = 4.71238
+scale = Vector2(10, 1)
+
+[node name="Wall21" parent="Walls" index="19" instance=ExtResource("2_jqpi3")]
+position = Vector2(2592, 0)
+rotation = 4.71238
+scale = Vector2(10, 1)
+
+[node name="Wall22" parent="Walls" index="20" instance=ExtResource("2_jqpi3")]
+position = Vector2(2880, -294)
+rotation = 6.28318
+scale = Vector2(10, 1)
+
+[node name="Wall24" parent="Walls" index="21" instance=ExtResource("2_jqpi3")]
+position = Vector2(2880, -864)
+rotation = 6.28318
+scale = Vector2(10, 1)
+
+[node name="Wall25" parent="Walls" index="22" instance=ExtResource("2_jqpi3")]
+position = Vector2(3168, -576)
+rotation = 7.85397
+scale = Vector2(10, 1)
+
+[node name="Wall23" parent="Walls" index="23" instance=ExtResource("2_jqpi3")]
+position = Vector2(2304, -864)
+rotation = 6.28318
+scale = Vector2(10, 1)
+
+[node name="Wall9" parent="Walls" index="24" instance=ExtResource("2_jqpi3")]
+position = Vector2(1152, -288)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="ShotgunEnemy" parent="." index="7" instance=ExtResource("3_grs4q")]
+position = Vector2(1160, 24)
+
+[node name="AssaultRifleEnemy" parent="." index="8" instance=ExtResource("4_8mbuo")]
+position = Vector2(2320, -32)
+
+[node name="Unit" parent="." index="9" instance=ExtResource("5_3be8h")]
+position = Vector2(1144, -1128)
+
+[node name="Unit2" parent="." index="10" instance=ExtResource("5_3be8h")]
+position = Vector2(1240, -1160)
+
+[editable path="Canvas"]
+[editable path="Player"]
