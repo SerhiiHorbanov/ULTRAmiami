@@ -7,6 +7,7 @@ public partial class PlayerScore : GodotObject
 	[Export] public uint Kills { get; private set; }
 	[Export] public float BloodConsumed { get; private set; }
 	[Export] public float BloodLost { get; private set; }
+	[Export] public float TimeAlive { get; private set; }
 
 	public static PlayerScore Current;
 	
@@ -18,4 +19,7 @@ public partial class PlayerScore : GodotObject
 	
 	public void AddBloodLost(float value)
 		=> BloodLost += value;
+	
+	public void AddTime(float value)
+		=> TimeAlive += value;
 }
