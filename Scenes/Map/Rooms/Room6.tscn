@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://ca1o5oo575nd"]
+
+[ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_bsb0m"]
+[ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="2_ncybp"]
+[ext_resource type="Texture2D" uid="uid://q0uqo8lewaxe" path="res://Textures/Level/Wall.png" id="3_otj54"]
+[ext_resource type="PackedScene" uid="uid://bg0s6f1srg0bq" path="res://Scenes/Weapons/Railgun.tscn" id="4_k2fto"]
+[ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="5_oso7a"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="6_se2gj"]
+[ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="7_ncybp"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_d0yy0"]
+vertices = PackedVector2Array(-375, 375, -375, -372.938, 55, -372.047, -137, 55, 137, -55, 137, -367, 375, -367, 375, 55, 55, 55, 55, -55, 55, 137, 375, 137, 375, 375, -55, 375, -55, 55, -137, 375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(4, 7, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(10, 13, 14, 8), PackedInt32Array(9, 8, 14), PackedInt32Array(3, 15, 0), PackedInt32Array(3, 2, 9, 14)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-400, -398, 80, -397, 80, -80, 112, -80, 112, -392, 400, -392, 400, 80, 80, 80, 80, 112, 400, 112, 400, 400, -80, 400, -80, 80, -112, 80, -112, 400, -400, 400, -400, -80, -400, -112)])
+agent_radius = 25.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e1li"]
+size = Vector2(350, 30)
+
+[node name="EmptyRoom" instance=ExtResource("1_bsb0m")]
+
+[node name="NavigationRegion2D" parent="." index="2"]
+navigation_polygon = SubResource("NavigationPolygon_d0yy0")
+
+[node name="TopWall3" parent="." index="3" instance=ExtResource("2_ncybp")]
+position = Vector2(97, 2)
+rotation = 1.57079
+
+[node name="CollisionShape2D" parent="TopWall3" index="0"]
+position = Vector2(-255, 2)
+
+[node name="CollisionShape2D2" parent="TopWall3" index="1"]
+position = Vector2(255, 191)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="TopWall3" index="2"]
+position = Vector2(94.0004, -158)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_2e1li")
+
+[node name="Sprite2D" type="Sprite2D" parent="TopWall3/CollisionShape2D3" index="0"]
+scale = Vector2(5.45, 0.46)
+texture = ExtResource("3_otj54")
+
+[node name="Railgun" parent="." index="4" instance=ExtResource("4_k2fto")]
+position = Vector2(268, -248)
+
+[node name="SMGEnemy" parent="." index="5" instance=ExtResource("5_oso7a")]
+position = Vector2(-219, -246)
+
+[node name="Unit2" parent="." index="6" instance=ExtResource("6_se2gj")]
+position = Vector2(-318, -340)
+
+[node name="Unit3" parent="." index="7" instance=ExtResource("6_se2gj")]
+position = Vector2(214, 172)
+
+[node name="ShotgunEnemy" parent="." index="8" instance=ExtResource("7_ncybp")]
+position = Vector2(336, 241)
+
+[editable path="TopWall3"]
