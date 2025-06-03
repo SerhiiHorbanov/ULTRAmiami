@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpi8uwrjq8vwi"]
+[gd_scene load_steps=9 format=3 uid="uid://cpi8uwrjq8vwi"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_r8q88"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_irt0h"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="3_irt0h"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="6_cbrqw"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="7_qggba"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qggba"]
+vertices = PackedVector2Array(231, 345, 807, 345, 807, 1497, 345, 807, 1383, 1497, 1383, 1959, 807, 1959, 807, 3111, 345, 3111, 345, 2535, -231, 2535, -231, 1497, 231, 2073, 231, 1497, 345, 2073, 345, 1383, -231, 1383, -231, 921, 345, 921, -231, 807, -231, -231, 231, -231, 1383, 3111, 921, 3111, 921, 2649, 1383, 2649)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(11, 13, 12), PackedInt32Array(9, 12, 14), PackedInt32Array(6, 9, 14), PackedInt32Array(6, 14, 15, 2), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(3, 19, 20, 0), PackedInt32Array(20, 21, 0), PackedInt32Array(18, 3, 2), PackedInt32Array(18, 2, 15), PackedInt32Array(22, 23, 24, 25)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-256, -256, 256, -256, 256, 320, 832, 320, 832, 1472, 1408, 1472, 1408, 1984, 832, 1984, 832, 3136, 320, 3136, 320, 2560, -256, 2560, -256, 1472, 256, 1472, 256, 2048, 320, 2048, 320, 1408, -256, 1408, -256, 896, 320, 896, 320, 832, -256, 832), PackedVector2Array(1408, 2624, 896, 2624, 896, 3136, 1408, 3136)])
+agent_radius = 25.0
 
 [node name="Level" instance=ExtResource("1_r8q88")]
 _info = ExtResource("2_vigkb")
@@ -147,6 +153,9 @@ scale = Vector2(2.135, 2.615)
 
 [node name="BreakableTrigger" parent="." index="13" instance=ExtResource("7_qggba")]
 position = Vector2(1, 1496)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="14"]
+navigation_polygon = SubResource("NavigationPolygon_qggba")
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 

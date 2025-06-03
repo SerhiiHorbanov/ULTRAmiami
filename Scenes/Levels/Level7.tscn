@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://doen703uf20tb"]
+[gd_scene load_steps=12 format=3 uid="uid://doen703uf20tb"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_dep18"]
 [ext_resource type="Resource" uid="uid://busuvqpawi621" path="res://LevelInfos/Level7Info.tres" id="2_3be8h"]
@@ -12,6 +12,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3be8h"]
 size = Vector2(288, 528)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6lk1x"]
+vertices = PackedVector2Array(1959, 807, 345, 807, 345, 231, 807, 345, -231, 231, -231, -231, 807, -231, 921, 345, 921, -231, 1383, -231, 1383, 345, 1497, 345, 1959, -1383, 1497, -345, 921, -1383, 921, -345, 3111, -807, 3111, -353, 2535, -353, 2073, -807, 2073, 807, 2535, 807)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6), PackedInt32Array(2, 6, 3), PackedInt32Array(0, 3, 7), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(0, 7, 10), PackedInt32Array(0, 10, 11), PackedInt32Array(12, 0, 11, 13), PackedInt32Array(14, 12, 13, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(20, 19, 18, 21)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(896, -1408, 1984, -1408, 1984, 832, 320, 832, 320, 256, -256, 256, -256, -256, 832, -256, 832, 320, 896, 320, 896, -256, 1408, -256, 1408, 320, 1472, 320, 1472, -320, 896, -320), PackedVector2Array(2048, -832, 3136, -832, 3136, -328, 2560, -328, 2560, 832, 2048, 832)])
+agent_radius = 25.0
 
 [node name="Level" instance=ExtResource("1_dep18")]
 _info = ExtResource("2_3be8h")
@@ -164,6 +170,9 @@ scale = Vector2(2.135, 2.615)
 
 [node name="BreakableTrigger" parent="." index="12" instance=ExtResource("9_6lk1x")]
 position = Vector2(1152, -1384)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="13"]
+navigation_polygon = SubResource("NavigationPolygon_6lk1x")
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 

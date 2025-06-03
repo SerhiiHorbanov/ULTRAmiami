@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuj824h7iw8tp"]
+[gd_scene load_steps=15 format=3 uid="uid://cuj824h7iw8tp"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_ue8b6"]
 [ext_resource type="PackedScene" uid="uid://cchkdwswpp6r6" path="res://Scenes/LevelDetails/Requirements/KillCountRequirement.tscn" id="2_2n0ss"]
@@ -15,6 +15,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n0ss"]
 size = Vector2(344, 536)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ebwqq"]
+vertices = PackedVector2Array(-345, 4263, -807, 4263, -807, 3801, -345, 3801, 345, 3225, 345, 2649, 1383, 2649, 807, 3111, 1383, 3111, 807, 4263, 345, 3687, 345, 4263, -345, 3225, -1383, 3687, -1383, 3225, -807, 3225, -345, 2073, -807, 2073, -231, 345, -231, -231, 231, -231, 231, 807, -921, 807, -921, 345, -231, 1497, -231, 921, 231, 921, 231, 1497, 1383, 1497, 1383, 1959, 807, 1959, 807, 2535, 231, 2535, 345, 2073, 231, 3111, -231, 3111, -231, 2073, 345, 1959, -1383, 1959, -921, 1497, -1383, -231, -921, -231, 1959, 3111, 1497, 3111, 1497, 2649, 1959, 2649, -921, 2535, -1383, 2535, -1383, 2073, -921, 2073, 1383, 2535, 921, 2535, 921, 2073, 1383, 2073, 807, 1383, 345, 1383, 345, 921, 807, 921)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(6, 8, 7), PackedInt32Array(4, 7, 9, 10), PackedInt32Array(9, 11, 10), PackedInt32Array(12, 4, 10, 13), PackedInt32Array(13, 14, 15), PackedInt32Array(12, 13, 15), PackedInt32Array(16, 12, 15, 17), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(18, 21, 22, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(30, 31, 32, 33), PackedInt32Array(32, 34, 35, 36), PackedInt32Array(32, 36, 33), PackedInt32Array(30, 33, 37), PackedInt32Array(27, 30, 37), PackedInt32Array(27, 37, 38, 24), PackedInt32Array(39, 24, 38), PackedInt32Array(39, 38, 40, 22), PackedInt32Array(23, 22, 40), PackedInt32Array(41, 23, 40), PackedInt32Array(42, 43, 44, 45), PackedInt32Array(46, 47, 48, 49), PackedInt32Array(50, 51, 52, 53), PackedInt32Array(54, 55, 56, 57)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-256, -256, 256, -256, 256, 832, -896, 832, -896, 1472, -256, 1472, -256, 896, 256, 896, 256, 1472, 1408, 1472, 1408, 1984, 832, 1984, 832, 2560, 256, 2560, 256, 3136, -256, 3136, -256, 2048, 320, 2048, 320, 1984, -1408, 1984, -1408, -256, -896, -256, -896, 320, -256, 320), PackedVector2Array(320, 896, 832, 896, 832, 1408, 320, 1408), PackedVector2Array(-832, 2048, -320, 2048, -320, 3200, 320, 3200, 320, 2624, 1408, 2624, 1408, 3136, 832, 3136, 832, 4288, 320, 4288, 320, 3712, -1408, 3712, -1408, 3200, -832, 3200), PackedVector2Array(-1408, 2048, -896, 2048, -896, 2560, -1408, 2560), PackedVector2Array(-832, 3776, -320, 3776, -320, 4288, -832, 4288), PackedVector2Array(896, 2048, 1408, 2048, 1408, 2560, 896, 2560), PackedVector2Array(1472, 2624, 1984, 2624, 1984, 3136, 1472, 3136)])
+agent_radius = 25.0
 
 [node name="Level" instance=ExtResource("1_ue8b6")]
 _info = ExtResource("2_iwnsr")
@@ -79,7 +85,7 @@ rotation = 10.9956
 scale = Vector2(10, 1)
 
 [node name="Wall14" parent="Walls" index="9" instance=ExtResource("2_n5263")]
-position = Vector2(-584, 1440)
+position = Vector2(-576, 1440)
 rotation = 12.5664
 scale = Vector2(10, 1)
 
@@ -314,7 +320,7 @@ rotation = 1.57079
 scale = Vector2(2.135, 2.615)
 
 [node name="TriggerableDoor7" parent="." index="9" instance=ExtResource("10_ljqb7")]
-position = Vector2(-872, 1152)
+position = Vector2(-864, 1152)
 rotation = 3.14159
 scale = Vector2(2.135, 2.615)
 
@@ -358,6 +364,9 @@ rotation = 1.57079
 [node name="BreakableTrigger4" parent="." index="19" instance=ExtResource("12_n1ahd")]
 position = Vector2(344, 2880)
 rotation = 1.57079
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="20"]
+navigation_polygon = SubResource("NavigationPolygon_ebwqq")
 
 [connection signal="OnTriggering" from="AreaTrigger" to="TriggerableDoor7" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dty7po8iykk71"]
+[gd_scene load_steps=14 format=3 uid="uid://dty7po8iykk71"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_qo2ue"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_dukwi"]
@@ -14,6 +14,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7g4t"]
 size = Vector2(336, 600)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5yvxo"]
+vertices = PackedVector2Array(807, -1383, 807, -921, -345, -921, -807, -1383, -807, 1383, -345, 921, 807, 1383, 807, 921, 231, 807, -231, 807, -231, 345, 231, 345, 231, 231, -231, 231, -231, -231, 231, -231, 807, 231, 345, 231, 345, -231, 807, -231, 231, -345, -231, -345, -231, -807, 231, -807)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(20, 21, 22, 23)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -1408, 832, -1408, 832, -896, -320, -896, -320, 896, 832, 896, 832, 1408, -832, 1408), PackedVector2Array(256, -832, 256, -320, -256, -320, -256, -832), PackedVector2Array(256, -256, 256, 256, -256, 256, -256, -256), PackedVector2Array(256, 320, -256, 320, -256, 832, 256, 832), PackedVector2Array(320, -256, 832, -256, 832, 256, 320, 256)])
+agent_radius = 25.0
 
 [node name="Level" instance=ExtResource("1_qo2ue")]
 _info = ExtResource("2_fkr78")
@@ -169,34 +175,51 @@ position = Vector2(288, 0)
 scale = Vector2(2.135, 2.615)
 _triggersNeeded = 2
 
-[node name="TriggerableDoor2" parent="." index="9" instance=ExtResource("10_s7g4t")]
+[node name="TriggerableDoor4" parent="." index="9" instance=ExtResource("10_s7g4t")]
+position = Vector2(-288, 0)
+scale = Vector2(2.135, 2.615)
+_triggersNeeded = 2
+
+[node name="TriggerableDoor2" parent="." index="10" instance=ExtResource("10_s7g4t")]
 position = Vector2(-288, -576)
 scale = Vector2(2.135, 2.615)
 
-[node name="TriggerableDoor3" parent="." index="10" instance=ExtResource("10_s7g4t")]
+[node name="TriggerableDoor3" parent="." index="11" instance=ExtResource("10_s7g4t")]
 position = Vector2(-288, 576)
 scale = Vector2(2.135, 2.615)
 
-[node name="BreakableTrigger" parent="." index="11" instance=ExtResource("11_5yvxo")]
+[node name="BreakableTrigger" parent="." index="12" instance=ExtResource("11_5yvxo")]
 position = Vector2(232, -576)
 rotation = 1.57079
 
-[node name="BreakableTrigger2" parent="." index="12" instance=ExtResource("11_5yvxo")]
+[node name="BreakableTrigger2" parent="." index="13" instance=ExtResource("11_5yvxo")]
 position = Vector2(808, -1160)
 rotation = 1.57079
 
-[node name="BreakableTrigger3" parent="." index="13" instance=ExtResource("11_5yvxo")]
+[node name="BreakableTrigger3" parent="." index="14" instance=ExtResource("11_5yvxo")]
 position = Vector2(232, 576)
 rotation = 1.57079
 
-[node name="BreakableTrigger4" parent="." index="14" instance=ExtResource("11_5yvxo")]
+[node name="BreakableTrigger4" parent="." index="15" instance=ExtResource("11_5yvxo")]
 position = Vector2(808, 1152)
 rotation = 1.57079
+
+[node name="BreakableTrigger5" parent="." index="16" instance=ExtResource("11_5yvxo")]
+position = Vector2(0, -232)
+
+[node name="BreakableTrigger6" parent="." index="17" instance=ExtResource("11_5yvxo")]
+position = Vector2(0, 232)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="18"]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_5yvxo")
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger2" to="TriggerableDoor3" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger3" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger4" to="TriggerableDoor2" method="Trigger"]
+[connection signal="OnBroken" from="BreakableTrigger5" to="TriggerableDoor4" method="Trigger"]
+[connection signal="OnBroken" from="BreakableTrigger6" to="TriggerableDoor4" method="Trigger"]
 
 [editable path="Canvas"]
 [editable path="Player"]
