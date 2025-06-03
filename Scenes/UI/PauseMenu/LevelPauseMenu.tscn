@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkvo6vbc5mokf"]
+
+[ext_resource type="PackedScene" uid="uid://brj54d7w7qibq" path="res://Scenes/UI/PauseMenu/PauseMenu.tscn" id="1_ll6yk"]
+
+[node name="PauseMenu" instance=ExtResource("1_ll6yk")]
+
+[node name="RestartLevelButton" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+custom_minimum_size = Vector2(250, 125)
+
+[node name="NextLevelButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+custom_minimum_size = Vector2(250, 125)
+layout_mode = 2
+text = "NEXT
+LEVEL"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/NextLevelButton" to="." method="NextLevel"]

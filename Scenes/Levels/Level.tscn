@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://33fahnyv1k8v"]
+[gd_scene load_steps=10 format=3 uid="uid://33fahnyv1k8v"]
 
 [ext_resource type="Script" uid="uid://b1np88c8klccg" path="res://Scripts/Level.cs" id="1_4nh8f"]
 [ext_resource type="PackedScene" uid="uid://sdpp1fwhlvdp" path="res://Scenes/UI/GameplayCanvas.tscn" id="1_5lnup"]
 [ext_resource type="PackedScene" uid="uid://ch33vi8cwppji" path="res://Scenes/GameplayCamera.tscn" id="2_l0mwj"]
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="3_4nh8f"]
 [ext_resource type="PackedScene" uid="uid://dmfbpn6mp0bki" path="res://Scenes/UI/LevelCompletionMenu/LevelCompletionMenu.tscn" id="3_etd3f"]
+[ext_resource type="PackedScene" uid="uid://dkvo6vbc5mokf" path="res://Scenes/UI/PauseMenu/LevelPauseMenu.tscn" id="4_d3u4r"]
 [ext_resource type="PackedScene" uid="uid://o86viig4gjbo" path="res://Scenes/GameplayRestarter.tscn" id="4_etd3f"]
 [ext_resource type="PackedScene" uid="uid://bjl70xv1gmndx" path="res://Scenes/MusicManager.tscn" id="5_d3u4r"]
 [ext_resource type="Script" uid="uid://ctvkp5fryx3o0" path="res://Scripts/LevelFeatures/LevelTarget.cs" id="6_d3u4r"]
@@ -20,11 +21,13 @@ _player = NodePath("Player")
 [node name="AmmoDisplay" parent="Canvas" index="1" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player")
 
-[node name="RealConsole" parent="Canvas" index="6" node_paths=PackedStringArray("_player")]
-_player = NodePath("../../Player")
-
 [node name="LevelCompletionMenu" parent="Canvas" instance=ExtResource("3_etd3f")]
 visible = false
+
+[node name="PauseMenu" parent="Canvas" instance=ExtResource("4_d3u4r")]
+
+[node name="RealConsole" parent="Canvas" index="8" node_paths=PackedStringArray("_player")]
+_player = NodePath("../../Player")
 
 [node name="GameplayCamera" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("2_l0mwj")]
 _unit = NodePath("../Player")

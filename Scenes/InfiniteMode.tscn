@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6u4rioaf4ul4"]
+[gd_scene load_steps=8 format=3 uid="uid://b6u4rioaf4ul4"]
 
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://ch33vi8cwppji" path="res://Scenes/GameplayCamera.tscn" id="2_b2bpf"]
+[ext_resource type="PackedScene" uid="uid://brj54d7w7qibq" path="res://Scenes/UI/PauseMenu/PauseMenu.tscn" id="2_d35lu"]
 [ext_resource type="PackedScene" uid="uid://sdpp1fwhlvdp" path="res://Scenes/UI/GameplayCanvas.tscn" id="2_gl6un"]
 [ext_resource type="PackedScene" uid="uid://bjl70xv1gmndx" path="res://Scenes/MusicManager.tscn" id="6_2irst"]
 [ext_resource type="PackedScene" uid="uid://bxb34giu5ayyx" path="res://Scenes/Map/Map.tscn" id="6_7lihs"]
@@ -14,7 +15,9 @@
 [node name="AmmoDisplay" parent="Canvas" index="1" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player")
 
-[node name="RealConsole" parent="Canvas" index="6" node_paths=PackedStringArray("_player")]
+[node name="PauseMenu" parent="Canvas" instance=ExtResource("2_d35lu")]
+
+[node name="RealConsole" parent="Canvas" index="7" node_paths=PackedStringArray("_player")]
 _player = NodePath("../../Player")
 
 [node name="GameplayCamera" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("2_b2bpf")]
@@ -29,6 +32,7 @@ _unit = NodePath("../Player")
 
 [node name="MusicManager" parent="." instance=ExtResource("6_2irst")]
 
+[connection signal="OnRestartLevel" from="Canvas/PauseMenu" to="GameplayRestarter" method="RestartGameplay"]
 [connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
 [connection signal="OnDeath" from="Player" to="MusicManager" method="OnPlayerDeath"]
 [connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]

@@ -60,13 +60,10 @@ custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
 
 [node name="RestartLevelButton" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_e4e6r")]
+custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
 text = "RESTART
 LEVEL"
-
-[node name="NextLevelButton" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_e4e6r")]
-layout_mode = 2
-text = "NEXT LEVEL"
 
 [node name="ExitButton" parent="ColorRect/MarginContainer/VBoxContainer" instance=ExtResource("1_e4e6r")]
 layout_mode = 2
@@ -94,5 +91,4 @@ offset_bottom = 540.0
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ResumeButton" to="." method="Resume"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/SettingsButton" to="." method="Settings"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/RestartLevelButton" to="." method="RestartLevel"]
-[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/NextLevelButton" to="." method="NextLevel"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ExitButton" to="." method="Exit"]
