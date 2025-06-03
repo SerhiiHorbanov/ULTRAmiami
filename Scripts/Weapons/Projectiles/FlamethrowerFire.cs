@@ -53,10 +53,6 @@ public partial class FlamethrowerFire : RigidBody2D, IFirearmProjectile
 
 	public override void _PhysicsProcess(double delta)
 	{
-		KinematicCollision2D collision = MoveAndCollide(Velocity * (float)delta, true);
-		
-		ResolveCollision(collision);
-		
 		ApplyFriction(delta);
 	}
 
