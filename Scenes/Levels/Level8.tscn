@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpi8uwrjq8vwi"]
+[gd_scene load_steps=8 format=3 uid="uid://cpi8uwrjq8vwi"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_r8q88"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_irt0h"]
 [ext_resource type="PackedScene" uid="uid://cchkdwswpp6r6" path="res://Scenes/LevelDetails/Requirements/KillCountRequirement.tscn" id="2_v6v34"]
 [ext_resource type="Resource" uid="uid://cpwm5av8k6arh" path="res://LevelInfos/Level8Info.tres" id="2_vigkb"]
 [ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="3_irt0h"]
+[ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="6_cbrqw"]
+[ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="7_qggba"]
 
 [node name="Level" instance=ExtResource("1_r8q88")]
 _info = ExtResource("2_vigkb")
@@ -138,6 +140,15 @@ position = Vector2(1168, 2880)
 
 [node name="ShotgunEnemy5" parent="." index="11" instance=ExtResource("3_irt0h")]
 position = Vector2(584, 392)
+
+[node name="TriggerableDoor" parent="." index="12" instance=ExtResource("6_cbrqw")]
+position = Vector2(864, 2880)
+scale = Vector2(2.135, 2.615)
+
+[node name="BreakableTrigger" parent="." index="13" instance=ExtResource("7_qggba")]
+position = Vector2(1, 1496)
+
+[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 
 [editable path="Canvas"]
 [editable path="Player"]
