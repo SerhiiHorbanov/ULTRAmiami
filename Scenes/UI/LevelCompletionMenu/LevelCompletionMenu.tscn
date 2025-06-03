@@ -6,7 +6,7 @@
 [sub_resource type="Theme" id="Theme_gquv8"]
 default_font_size = 64
 
-[node name="LevelCompletionMenu" type="Control" node_paths=PackedStringArray("_levelNameLabel", "_killsLabel", "_bloodConsumedLabel", "_nextLevelLabel")]
+[node name="LevelCompletionMenu" type="Control" node_paths=PackedStringArray("_levelNameLabel", "_killsLabel", "_bloodConsumedLabel", "_timeLabel", "_nextLevelLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +18,7 @@ script = ExtResource("1_i1q4p")
 _levelNameLabel = NodePath("ColorRect/MarginContainer/Control/LevelNameLabel")
 _killsLabel = NodePath("ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/KillsLabels/ValueLabel")
 _bloodConsumedLabel = NodePath("ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels/ValueLabel")
+_timeLabel = NodePath("ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/TimeLabel/ValueLabel")
 _nextLevelLabel = NodePath("ColorRect/MarginContainer/Control/NextLevelLabel")
 _noNextLevelText = "Press [R] to replay this level"
 
@@ -107,6 +108,18 @@ text = "[color=red][b]Blood[/b][color=white] consumed:"
 [node name="ValueLabel" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels" index="1"]
 text = "default"
 
+[node name="TimeLabel" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control" instance=ExtResource("2_fapo4")]
+layout_mode = 1
+offset_top = 384.0
+offset_bottom = 576.0
+
+[node name="NameLabel" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/TimeLabel" index="0"]
+bbcode_enabled = true
+text = "Time:"
+
+[node name="ValueLabel" parent="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/TimeLabel" index="1"]
+text = "default"
+
 [node name="NextLevelLabel" type="RichTextLabel" parent="ColorRect/MarginContainer/Control"]
 clip_contents = false
 layout_mode = 1
@@ -122,3 +135,4 @@ vertical_alignment = 2
 
 [editable path="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/KillsLabels"]
 [editable path="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/BloodConsumedLabels"]
+[editable path="ColorRect/MarginContainer/Control/Control/ColorRect/MarginContainer/Control/TimeLabel"]
