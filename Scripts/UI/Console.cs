@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using ULTRAmiami.Units;
+using ULTRAmiami.Utils;
 
 namespace ULTRAmiami.UI;
 
@@ -112,6 +113,7 @@ public partial class Console : Control
 				GodMode();
 				InfAmmoCheat();
 				PickUpCheat();
+				NoDrainCheat();
 				break;
 			case "echo":
 				Echo(string.Join(' ', words.Skip(1)));
@@ -140,12 +142,25 @@ public partial class Console : Control
 			case "pickup":
 				PickUpCheat();
 				break;
+			case "nodrain":
+				NoDrainCheat();
+				break;
 			default:
 				Echo($"[color=red]Invalid command:[color=white] {command}");
 				break;
 		}
 	}
-	
+
+	private void NoDrainCheat()
+	{
+		if (LogIfNoPlayer())
+			return;
+
+		BloodFuel blood = _player.GetChild<BloodFuel>();
+		if (blood is not null)
+			blood.BloodDrains = !blood.BloodDrains;
+	}
+
 	private void InfAmmoCheat()
 	{
 		if (LogIfNoPlayer())

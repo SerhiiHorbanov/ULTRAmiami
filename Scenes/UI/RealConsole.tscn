@@ -44,6 +44,8 @@ These are commands available:
 		makes player ignore ammo count
 	load [scenename]
 		loads a scene
+	nodrain
+		toggles blood draining
 	pickup
 		makes player drop pickuppable weapons
 	scenes

@@ -28,6 +28,8 @@ public partial class BloodFuel : Node
 	[Signal]
 	public delegate void OnBloodChangedEventHandler(float newBlood);
 
+	public bool BloodDrains = true;
+
 	public override void _Ready()
 	{
 		_bloodUsageForMaintenance = _initialBloodUsageForMaintenance;
@@ -76,6 +78,9 @@ public partial class BloodFuel : Node
 
 	private float GetBloodUsagePerSecond()
 	{
+		if (!BloodDrains)
+			return 0;
+		
 		float currentWalkingBloodUsage = _movement.GetSpeedRelativeToWalkingSpeed() * _bloodUsageForWalking;
 		return _bloodUsageForMaintenance + currentWalkingBloodUsage;
 	}
