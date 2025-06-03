@@ -48,6 +48,7 @@ public partial class Unit : CharacterBody2D, IAttackable
 		=> IsInGroup(PlayerGroupName);
 	
 	private readonly static StringName PlayerGroupName = "Player";
+	private readonly static StringName OnFireGroupName = "OnFire";
 	
 	public override void _Ready()
 	{
@@ -91,6 +92,11 @@ public partial class Unit : CharacterBody2D, IAttackable
 	
 	public void TrySetOnFire()
 	{
+		if (IsInGroup(OnFireGroupName))
+			return;
+		
+		AddToGroup(OnFireGroupName);
+		
 		if (!_isImmuneToFire)
 			EmitSignalOnLitUpOnFire();
 	}
