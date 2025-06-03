@@ -5,4 +5,4 @@
 [node name="ShotgunBullet" instance=ExtResource("1_8twa6")]
 _speed = 2000.0
 _speedRandomness = 0.2
-_damage = 0.6
+_damage = 0.3
