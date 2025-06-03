@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://vjj53cmmoiac"]
+[gd_scene load_steps=18 format=3 uid="uid://vjj53cmmoiac"]
 
 [ext_resource type="Script" uid="uid://b17r4oleouw0r" path="res://Scripts/UI/SettingsMenuUI/SettingsMenu.cs" id="1_jn4g8"]
 [ext_resource type="PackedScene" uid="uid://c35bw7v6qdbnt" path="res://Scenes/UI/Settings/SettingsTab.tscn" id="2_1r8m7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dhmm8kbt2gn2k" path="res://Scripts/Data/SettingSliderData.cs" id="4_hq2us"]
 [ext_resource type="PackedScene" uid="uid://dng3xp3tqxkq0" path="res://Scenes/UI/Settings/SettingSlider.tscn" id="5_wywac"]
 [ext_resource type="PackedScene" uid="uid://d32k5wo1ctqsq" path="res://Scenes/UI/Settings/KeybindSetting.tscn" id="7_ftgty"]
+[ext_resource type="Script" uid="uid://c8msar3hrixk3" path="res://Scripts/UI/SettingsMenuUI/OtherSettings.cs" id="8_5ewu0"]
 
 [sub_resource type="Theme" id="Theme_6wqx3"]
 default_font_size = 48
@@ -49,6 +50,12 @@ metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
 script = ExtResource("4_hq2us")
 Value = 0.0
 _defaultValue = 1.0
+metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
+
+[sub_resource type="Resource" id="Resource_5ewu0"]
+script = ExtResource("4_hq2us")
+Value = 140.0
+_defaultValue = 140.0
 metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("_tabs")]
@@ -164,6 +171,7 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="Graphics" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" node_paths=PackedStringArray("_worldEnvironment") instance=ExtResource("2_1r8m7")]
+visible = false
 layout_mode = 2
 script = ExtResource("3_hq2us")
 _worldEnvironment = NodePath("WorldEnvironment")
@@ -285,11 +293,25 @@ layout_mode = 2
 _name = "drop weapon"
 
 [node name="Other" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
-visible = false
 layout_mode = 2
+script = ExtResource("8_5ewu0")
 
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer" index="0"]
 text = "OTHER"
+
+[node name="SettingSlider" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer" index="1" instance=ExtResource("5_wywac")]
+layout_mode = 2
+_settingName = "MaxFPS"
+_data = SubResource("Resource_5ewu0")
+
+[node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer/SettingSlider/ColorRect" index="0"]
+text = "FPS limit"
+
+[node name="HSlider" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer/SettingSlider/ColorRect/Label" index="0"]
+min_value = 30.0
+max_value = 330.0
+step = 1.0
+value = 140.0
 
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/CloseButton" to="." method="Close"]
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/CloseButton" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="Save"]
@@ -303,6 +325,7 @@ text = "OTHER"
 [connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="ApplyVolume" binds= [0]]
 [connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider2" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="ApplyVolume" binds= [1]]
 [connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider3" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="ApplyVolume" binds= [2]]
+[connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer/SettingSlider" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other" method="SetMaxFps"]
 
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider"]
@@ -314,3 +337,4 @@ text = "OTHER"
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider3"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other"]
+[editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer/SettingSlider"]
