@@ -18,6 +18,7 @@ grow_vertical = 2
 theme = SubResource("Theme_853f1")
 script = ExtResource("1_853f1")
 _levelSelectionMenu = NodePath("LevelSelectionMenu")
+_infiniteModeScenePath = "uid://b6u4rioaf4ul4"
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -31,11 +32,16 @@ offset_bottom = -100.0
 grow_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="PlayButton" type="Button" parent="Buttons"]
+[node name="SelectLevelButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
-text = "Play
+text = "Select level
 "
+
+[node name="PlayInfiniteButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+text = "Play infinite"
 
 [node name="SettingsButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(400, 100)
@@ -58,6 +64,7 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="Buttons/PlayButton" to="." method="Play"]
+[connection signal="pressed" from="Buttons/SelectLevelButton" to="." method="SelectLevel"]
+[connection signal="pressed" from="Buttons/PlayInfiniteButton" to="." method="PlayInfinite"]
 [connection signal="pressed" from="Buttons/SettingsButton" to="SettingsMenu" method="Open"]
 [connection signal="pressed" from="Buttons/ExitButton" to="." method="ExitGame"]
