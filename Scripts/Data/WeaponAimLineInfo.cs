@@ -10,4 +10,6 @@ public partial class WeaponAimLineInfo : Resource
 
 	[Export] public float LineWidth { get; private set; } = 5;
 	[Export] public bool ShowSpread{ get; private set; }
+
+	[Export] public bool StopOnHit { get; private set; } = true;
 }

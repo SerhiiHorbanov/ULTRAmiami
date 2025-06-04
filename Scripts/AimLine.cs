@@ -9,6 +9,8 @@ public partial class AimLine : Line2D
 	[Export] private Unit _unit;
 	[Export] private RayCast2D _rayCast;
 	[Export] private float _maxLength;
+
+	private WeaponAimLineInfo _info;
 	
 	private Vector2 PointingAt
 		=> _unit.Weapon.PointingAt;
@@ -23,13 +25,13 @@ public partial class AimLine : Line2D
 		if (!ShouldBeShown())
 			return;
 
-		WeaponAimLineInfo info = _unit.Weapon.AimLineInfo;
+		_info = _unit.Weapon.AimLineInfo;
 		
-		DefaultColor = _unit.Weapon.HasAmmo() ? info.Color : info.NoAmmoColor;
+		DefaultColor = _unit.Weapon.HasAmmo() ? _info.Color : _info.NoAmmoColor;
 		
-		Width = info.LineWidth;
+		Width = _info.LineWidth;
 		
-		if (info.ShowSpread)		
+		if (_info.ShowSpread)		
 			CreateLinesWithSpread();
 		else
 			CreateSingleLine();
@@ -60,6 +62,9 @@ public partial class AimLine : Line2D
 	
 	private Vector2 GetCollisionByDirection(Vector2 dir)
 	{
+		if (!_info.StopOnHit)
+			return dir * _maxLength + GlobalPosition;
+		
 		UpdateRaycast(dir);
 		
 		if (_rayCast.IsColliding())

@@ -27,6 +27,7 @@ Color = Color(0, 1, 1, 1)
 NoAmmoColor = Color(1, 0, 0, 1)
 LineWidth = 2.0
 ShowSpread = false
+StopOnHit = false
 metadata/_custom_type_script = "uid://fbtjd4ropgt2"
 
 [node name="Railgun" node_paths=PackedStringArray("_reloadTimer", "_shootingCooldownTimer", "_dropped", "_droppedNotPickuppable", "_shootingAudio", "_failingShotAudio", "_reloadingAudio") instance=ExtResource("1_a138t")]
