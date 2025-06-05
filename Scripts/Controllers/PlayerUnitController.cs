@@ -100,8 +100,6 @@ public partial class PlayerUnitController : UnitController
 			TryStartShootingAndProcessBuffering();
 		else if (_isHoldingShoot)
 			Weapon?.TryAutomaticShooting();
-		
-		UpdatePointingAt();
 	}
 	
 	private void CheckAndResolveShooting(InputEvent @event)
@@ -131,17 +129,6 @@ public partial class PlayerUnitController : UnitController
 		Weapon?.TryStartShooting();
 		_isBufferingShot = false;
 	}
-
-	private void UpdatePointingAt()
-	{
-		_meleeAttacker?.SetRotation(GetLocalMousePosition().Angle());
-
-		if (Weapon is null)
-			return;
-		
-		Vector2 pointingAt = GetGlobalMousePosition();
-		Weapon.PointingAt = pointingAt;
-	}
 	
 	protected override Vector2 GetTargetDirection()
 	{
@@ -157,5 +144,13 @@ public partial class PlayerUnitController : UnitController
 			direction += Vector2.Down;
 		
 		return direction;
+	}
+
+	private void SetAimingPositionToRelative(Vector2 relative)
+	{
+		if (Weapon is not null)
+			Weapon.PointingAt = relative + GlobalPosition;
+		
+		_meleeAttacker?.SetRotation(relative.Angle());
 	}
 }

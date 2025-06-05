@@ -21,18 +21,21 @@ _player = NodePath("Player")
 [node name="AmmoDisplay" parent="Canvas" index="1" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player")
 
+[node name="RealConsole" parent="Canvas" index="6" node_paths=PackedStringArray("_player")]
+_player = NodePath("../../Player")
+
 [node name="LevelCompletionMenu" parent="Canvas" instance=ExtResource("3_etd3f")]
 visible = false
 
 [node name="PauseMenu" parent="Canvas" instance=ExtResource("4_d3u4r")]
 
-[node name="RealConsole" parent="Canvas" index="8" node_paths=PackedStringArray("_player")]
-_player = NodePath("../../Player")
-
 [node name="GameplayCamera" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("2_l0mwj")]
 _unit = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("3_4nh8f")]
+
+[node name="PlayerSight" parent="Player/PlayerUnitController" index="0" node_paths=PackedStringArray("_camera")]
+_camera = NodePath("../../../GameplayCamera")
 
 [node name="BloodFuel" parent="Player" index="7"]
 _bloodUsageForMaintenanceGrowthMultiplier = 0.0

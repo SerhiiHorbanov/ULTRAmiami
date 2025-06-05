@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=25 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Firearms/Pistol.tscn" id="3_giihn"]
 [ext_resource type="Script" uid="uid://diyjjhrtrk6qf" path="res://Scripts/Units/Movement/PlayerMovement.cs" id="4_u2egk"]
 [ext_resource type="PackedScene" uid="uid://ch5wvmkytoo1o" path="res://Scenes/Units/AimLine.tscn" id="4_v5kf0"]
+[ext_resource type="Script" uid="uid://bf2ajtg11efkx" path="res://Scripts/PlayerAim.cs" id="6_5ssqx"]
+[ext_resource type="Texture2D" uid="uid://8jy1je6ukpw0" path="res://Textures/UI/Crosshair.png" id="7_5ssqx"]
 [ext_resource type="AudioStream" uid="uid://dr8j3gjenfena" path="res://Audio/SFX/V0DeathScream.wav" id="7_g6b54"]
 [ext_resource type="Script" uid="uid://dhi603ffh8sbh" path="res://Scripts/Units/PlayerDeathSound.cs" id="8_jokor"]
 [ext_resource type="Script" uid="uid://70y5w1gml3pe" path="res://Scripts/Units/BloodFuel.cs" id="9_jokor"]
@@ -51,6 +53,14 @@ _maxWalkSpeed = 800.0
 script = ExtResource("2_xf41u")
 _meleeAttacker = NodePath("../MeleeAttacker")
 _unit = NodePath("..")
+
+[node name="PlayerAim" type="Node2D" parent="PlayerUnitController" index="0"]
+script = ExtResource("6_5ssqx")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerUnitController/PlayerAim" index="0"]
+z_index = 100
+scale = Vector2(6, 6)
+texture = ExtResource("7_5ssqx")
 
 [node name="Pistol" parent="." index="4" instance=ExtResource("3_giihn")]
 
@@ -142,6 +152,9 @@ bus = &"SFX"
 
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
+[connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="PlayerUnitController" method="SetAimingPositionToRelative"]
+[connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="PlayerUnitController/PlayerAim/Sprite2D" method="set_position"]
+[connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="AimLine" method="Update"]
 [connection signal="RunOutOfBlood" from="BloodFuel" to="." method="Die"]
 [connection signal="OnAttacking" from="MeleeAttacker" to="MeleeAttacker/AnimationPlayer" method="StartAnimation"]
 [connection signal="OnHitting" from="MeleeAttacker" to="MeleeAttacker/ParticleSpawner" method="SpawnParticles"]

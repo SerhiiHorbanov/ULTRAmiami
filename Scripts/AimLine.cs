@@ -17,8 +17,11 @@ public partial class AimLine : Line2D
 
 	private Vector2 PointingDirection
 		=> (PointingAt - GlobalPosition).Normalized();
+
+	private void Update(Vector2 _)
+		=> Update();
 	
-	public override void _Process(double delta)
+	private void Update()
 	{
 		ClearPoints();
 

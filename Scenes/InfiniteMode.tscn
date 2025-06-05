@@ -15,10 +15,10 @@
 [node name="AmmoDisplay" parent="Canvas" index="1" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player")
 
-[node name="PauseMenu" parent="Canvas" instance=ExtResource("2_d35lu")]
-
-[node name="RealConsole" parent="Canvas" index="7" node_paths=PackedStringArray("_player")]
+[node name="RealConsole" parent="Canvas" index="6" node_paths=PackedStringArray("_player")]
 _player = NodePath("../../Player")
+
+[node name="PauseMenu" parent="Canvas" instance=ExtResource("2_d35lu")]
 
 [node name="GameplayCamera" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("2_b2bpf")]
 _unit = NodePath("../Player")
@@ -27,6 +27,9 @@ _unit = NodePath("../Player")
 _unit = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
+
+[node name="PlayerSight" parent="Player/PlayerUnitController" index="0" node_paths=PackedStringArray("_camera")]
+_camera = NodePath("../../../GameplayCamera")
 
 [node name="GameplayRestarter" parent="." instance=ExtResource("6_fgofq")]
 
