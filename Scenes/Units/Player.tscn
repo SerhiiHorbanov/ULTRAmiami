@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=34 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -8,11 +8,15 @@
 [ext_resource type="Script" uid="uid://diyjjhrtrk6qf" path="res://Scripts/Units/Movement/PlayerMovement.cs" id="4_u2egk"]
 [ext_resource type="PackedScene" uid="uid://ch5wvmkytoo1o" path="res://Scenes/Units/AimLine.tscn" id="4_v5kf0"]
 [ext_resource type="Script" uid="uid://bf2ajtg11efkx" path="res://Scripts/PlayerAim.cs" id="6_5ssqx"]
-[ext_resource type="Texture2D" uid="uid://8jy1je6ukpw0" path="res://Textures/UI/Crosshair.png" id="7_5ssqx"]
 [ext_resource type="AudioStream" uid="uid://dr8j3gjenfena" path="res://Audio/SFX/V0DeathScream.wav" id="7_g6b54"]
 [ext_resource type="Script" uid="uid://dhi603ffh8sbh" path="res://Scripts/Units/PlayerDeathSound.cs" id="8_jokor"]
+[ext_resource type="Script" uid="uid://bygcsgekb4qug" path="res://Scripts/UI/Crosshair.cs" id="8_rfdr6"]
 [ext_resource type="Script" uid="uid://70y5w1gml3pe" path="res://Scripts/Units/BloodFuel.cs" id="9_jokor"]
+[ext_resource type="Texture2D" uid="uid://m5bovy7g7w18" path="res://Textures/Crosshair/CrosshairCenter1.png" id="9_tcx7m"]
+[ext_resource type="Texture2D" uid="uid://2yaurwhqx2ue" path="res://Textures/Crosshair/CrosshairCorner1.png" id="10_cijlh"]
+[ext_resource type="Script" uid="uid://di45w16121rtc" path="res://Scripts/Data/CrosshairInfo.cs" id="10_egyh6"]
 [ext_resource type="Script" uid="uid://d2ccc8rp3eho5" path="res://Scripts/Initialization/PlayerScoreInitializer.cs" id="10_nf6c1"]
+[ext_resource type="Script" uid="uid://b7ruqvv15s7rk" path="res://Scripts/Data/CrosshairCornerInfo.cs" id="11_q4ehp"]
 [ext_resource type="Script" uid="uid://7xnvw4rwv2x7" path="res://Scripts/Weapons/MeleeAttacker.cs" id="12_ehya8"]
 [ext_resource type="Script" uid="uid://bkird12un76th" path="res://Scripts/Units/PlayerTimeAliveScoreUpdater.cs" id="12_t5c2b"]
 [ext_resource type="Texture2D" uid="uid://d1ne5p0x03afh" path="res://Textures/Units/V0Arm.png" id="13_0bpcd"]
@@ -23,6 +27,49 @@
 [ext_resource type="AnimationLibrary" uid="uid://bierrju431t8h" path="res://MiscResources/Animations/PlayerArm.tres" id="17_c6vqk"]
 [ext_resource type="AudioStream" uid="uid://bul1g3ey30dhr" path="res://Audio/Sound Randomizers/ArmAttackSwooshRandomizer.tres" id="19_10dhr"]
 [ext_resource type="AudioStream" uid="uid://c2da3v5sudved" path="res://Audio/Sound Randomizers/MeleeHitSoundRandomizer.tres" id="20_hese3"]
+
+[sub_resource type="Resource" id="Resource_twvct"]
+script = ExtResource("11_q4ehp")
+Texture = ExtResource("10_cijlh")
+Color = Color(1, 1, 1, 1)
+Direction = Vector2(1, 0)
+Scale = Vector2(5, 5)
+RotationDeg = 0.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_64afi"]
+script = ExtResource("11_q4ehp")
+Texture = ExtResource("10_cijlh")
+Color = Color(1, 1, 1, 1)
+Direction = Vector2(0, 1)
+Scale = Vector2(5, 5)
+RotationDeg = 90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_f836t"]
+script = ExtResource("11_q4ehp")
+Texture = ExtResource("10_cijlh")
+Color = Color(1, 1, 1, 1)
+Direction = Vector2(-1, 0)
+Scale = Vector2(5, 5)
+RotationDeg = 0.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_u0vlr"]
+script = ExtResource("11_q4ehp")
+Texture = ExtResource("10_cijlh")
+Color = Color(1, 1, 1, 1)
+Direction = Vector2(0, -1)
+Scale = Vector2(5, 5)
+RotationDeg = 90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_tcx7m"]
+script = ExtResource("10_egyh6")
+CenterTexture = ExtResource("9_tcx7m")
+CenterScale = Vector2(5, 5)
+Corners = Array[Resource]([SubResource("Resource_twvct"), SubResource("Resource_64afi"), SubResource("Resource_f836t"), SubResource("Resource_u0vlr")])
+metadata/_custom_type_script = "uid://di45w16121rtc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2egk"]
 size = Vector2(70, 80)
@@ -57,10 +104,12 @@ _unit = NodePath("..")
 [node name="PlayerAim" type="Node2D" parent="PlayerUnitController" index="0"]
 script = ExtResource("6_5ssqx")
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerUnitController/PlayerAim" index="0"]
+[node name="Crosshair" type="Node2D" parent="PlayerUnitController/PlayerAim" index="0" node_paths=PackedStringArray("_player")]
 z_index = 100
-scale = Vector2(6, 6)
-texture = ExtResource("7_5ssqx")
+script = ExtResource("8_rfdr6")
+_info = SubResource("Resource_tcx7m")
+_defaultCornersDistance = 15.0
+_player = NodePath("../../..")
 
 [node name="Pistol" parent="." index="4" instance=ExtResource("3_giihn")]
 
@@ -153,7 +202,7 @@ bus = &"SFX"
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
 [connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="PlayerUnitController" method="SetAimingPositionToRelative"]
-[connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="PlayerUnitController/PlayerAim/Sprite2D" method="set_position"]
+[connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="PlayerUnitController/PlayerAim/Crosshair" method="set_position"]
 [connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="AimLine" method="Update"]
 [connection signal="RunOutOfBlood" from="BloodFuel" to="." method="Die"]
 [connection signal="OnAttacking" from="MeleeAttacker" to="MeleeAttacker/AnimationPlayer" method="StartAnimation"]
