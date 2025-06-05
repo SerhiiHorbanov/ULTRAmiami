@@ -24,8 +24,6 @@ public partial class Unit : CharacterBody2D, IAttackable
 	[Export] private bool _isImmuneToFire;
 
 	public readonly List<DroppedWeapon> EnteredDroppedWeapons = [];
-
-	public event Action<Weapon> OnWeaponChanged;
 	
 	[Signal]
 	public delegate void OnDeathEventHandler(Hit hit);
@@ -35,6 +33,9 @@ public partial class Unit : CharacterBody2D, IAttackable
 	
 	[Signal]
 	public delegate void OnLitUpOnFireEventHandler();
+
+	[Signal]
+	public delegate void OnWeaponChangedEventHandler(Weapon weapon);
 	
 	private const float DirectionDeadZoneSquared = 0.01f;
 	
@@ -167,7 +168,7 @@ public partial class Unit : CharacterBody2D, IAttackable
 		Weapon oldWeapon = _weapon;
 		_weapon = weapon;
 		
-		OnWeaponChanged?.Invoke(weapon);
+		EmitSignalOnWeaponChanged(weapon);
 		
 		oldWeapon?.TryAttachUnit(null, DropsPickUppableWeapon);
 		weapon?.TryAttachUnit(this);
