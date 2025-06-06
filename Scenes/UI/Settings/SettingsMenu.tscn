@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://vjj53cmmoiac"]
+[gd_scene load_steps=22 format=3 uid="uid://vjj53cmmoiac"]
 
 [ext_resource type="Script" uid="uid://b17r4oleouw0r" path="res://Scripts/UI/SettingsMenuUI/SettingsMenu.cs" id="1_jn4g8"]
 [ext_resource type="PackedScene" uid="uid://c35bw7v6qdbnt" path="res://Scenes/UI/Settings/SettingsTab.tscn" id="2_1r8m7"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dng3xp3tqxkq0" path="res://Scenes/UI/Settings/SettingSlider.tscn" id="5_wywac"]
 [ext_resource type="PackedScene" uid="uid://d32k5wo1ctqsq" path="res://Scenes/UI/Settings/KeybindSetting.tscn" id="7_ftgty"]
 [ext_resource type="Script" uid="uid://c8msar3hrixk3" path="res://Scripts/UI/SettingsMenuUI/OtherSettings.cs" id="8_5ewu0"]
+[ext_resource type="PackedScene" uid="uid://b7dd5e3dpow3y" path="res://Scenes/UI/Settings/SettingToggle.tscn" id="9_xqoo2"]
+[ext_resource type="Script" uid="uid://c27r45vrr75b6" path="res://Scripts/Data/SettingToggleData.cs" id="10_krf4f"]
+[ext_resource type="Script" uid="uid://5kpk4sttfd7h" path="res://Scripts/UI/SettingsMenuUI/DynamicCameraSetting.cs" id="10_w6ika"]
 
 [sub_resource type="Theme" id="Theme_6wqx3"]
 default_font_size = 48
@@ -57,6 +60,12 @@ script = ExtResource("4_hq2us")
 Value = 140.0
 _defaultValue = 140.0
 metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
+
+[sub_resource type="Resource" id="Resource_hgc0h"]
+script = ExtResource("10_krf4f")
+Value = false
+_defaultValue = true
+metadata/_custom_type_script = "uid://c27r45vrr75b6"
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("_tabs")]
 layout_mode = 3
@@ -313,6 +322,15 @@ max_value = 330.0
 step = 1.0
 value = 140.0
 
+[node name="SettingToggle" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer" index="2" instance=ExtResource("9_xqoo2")]
+layout_mode = 2
+script = ExtResource("10_w6ika")
+_settingName = "dynamicCamera"
+_data = SubResource("Resource_hgc0h")
+
+[node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer/SettingToggle/ColorRect" index="0"]
+text = "Dynamic camera"
+
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/CloseButton" to="." method="Close"]
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/CloseButton" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="Save"]
 [connection signal="pressed" from="MarginContainer/ColorRect/HSplitContainer/VSplitContainer/MarginContainer2/VBoxContainer/GraphicsButton" to="." method="SetTab" binds= [0]]
@@ -338,3 +356,4 @@ value = 140.0
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer/SettingSlider"]
+[editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer/SettingToggle"]
