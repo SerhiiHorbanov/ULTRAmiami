@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://m8wuhl3sh26g"]
+[gd_scene load_steps=16 format=3 uid="uid://m8wuhl3sh26g"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_efqec"]
 [ext_resource type="PackedScene" uid="uid://c6k4qw8pwj245" path="res://Scenes/Projectiles/FlameThrowerFire.tscn" id="2_wdyhk"]
 [ext_resource type="Texture2D" uid="uid://bsv6i5t1jioxl" path="res://Textures/UI/Ammo/AmmoUIFlamethrowerAmmoUnit.png" id="3_crg4d"]
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="3_eyaiw"]
+[ext_resource type="Texture2D" uid="uid://dy88cefq20f3e" path="res://Textures/Crosshair/CrosshairCorner2.png" id="5_8vqaf"]
 [ext_resource type="SpriteFrames" uid="uid://d2ul3rjn34sbo" path="res://Animations/Flamethrower.tres" id="5_rvy82"]
 [ext_resource type="Texture2D" uid="uid://y28vdtbc2pff" path="res://Textures/Weapons/FlamethrowerNotPickuppable.png" id="6_dgoit"]
+[ext_resource type="Script" uid="uid://b7ruqvv15s7rk" path="res://Scripts/Data/CrosshairCornerInfo.cs" id="6_puxoe"]
+[ext_resource type="Script" uid="uid://di45w16121rtc" path="res://Scripts/Data/CrosshairInfo.cs" id="7_vkn7b"]
 
 [sub_resource type="Resource" id="Resource_crg4d"]
 script = ExtResource("3_eyaiw")
@@ -16,6 +19,57 @@ DeltaPosition = Vector2(0, 4)
 DeltaRotation = 0.0
 metadata/_custom_type_script = "uid://d0rajgo22sr22"
 
+[sub_resource type="Resource" id="Resource_gw1ma"]
+script = ExtResource("6_puxoe")
+Texture = ExtResource("5_8vqaf")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 90.0
+Direction = Vector2(1, 1)
+Scale = Vector2(5, 5)
+RotationDeg = 90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_4x10l"]
+script = ExtResource("6_puxoe")
+Texture = ExtResource("5_8vqaf")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 90.0
+Direction = Vector2(1, -1)
+Scale = Vector2(5, 5)
+RotationDeg = 0.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_fa8vt"]
+script = ExtResource("6_puxoe")
+Texture = ExtResource("5_8vqaf")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 90.0
+Direction = Vector2(-1, -1)
+Scale = Vector2(5, 5)
+RotationDeg = -90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_gujiw"]
+script = ExtResource("6_puxoe")
+Texture = ExtResource("5_8vqaf")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 90.0
+Direction = Vector2(-1, 1)
+Scale = Vector2(5, 5)
+RotationDeg = 180.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_giuwc"]
+script = ExtResource("7_vkn7b")
+CenterScale = Vector2(5, 5)
+ShownSpreadDeg = 25.0
+Corners = Array[Object]([SubResource("Resource_gw1ma"), SubResource("Resource_4x10l"), SubResource("Resource_fa8vt"), SubResource("Resource_gujiw")])
+metadata/_custom_type_script = "uid://di45w16121rtc"
+
 [node name="Flamethrower" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_efqec")]
 _bullet = ExtResource("2_wdyhk")
 _isAutomatic = true
@@ -25,6 +79,7 @@ _shootsPerShot = 2
 _maxAmmo = 100
 _shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
 AmmoUIInfo = SubResource("Resource_crg4d")
+CrosshairInfo = SubResource("Resource_giuwc")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = null
