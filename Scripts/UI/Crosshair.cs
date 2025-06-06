@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using Godot;
 using ULTRAmiami.Data;
 using ULTRAmiami.Units;
+using ULTRAmiami.Weapons;
 
 namespace ULTRAmiami.UI;
 
@@ -9,25 +11,33 @@ public partial class Crosshair : Node2D
 	private record struct Corner(CrosshairCornerInfo Info, Sprite2D Sprite);
 
 	private Corner[] _corners;
+	private List<Corner> _spreadShowingCorners;
 	private Sprite2D _center;
 	
-	[Export] private CrosshairInfo _info;
-	[Export] private float _defaultCornersDistance;
+	private CrosshairInfo _info;
+	[Export] private CrosshairInfo _defaultInfo;
 
 	[Export] private Unit _player;
-
-	public override void _Ready()
-	{
-		ApplyInfo(_info);
-	}
-
+	
 	public override void _Process(double delta)
 	{
+		if (_spreadShowingCorners is null)
+			return;
 		
+		float dist = GetCurrentSpreadDistance();
+		
+		foreach (Corner corner in _spreadShowingCorners)
+		{
+			float currDist = float.Max(dist, corner.Info.MinDistance);
+			corner.Sprite.Position = corner.Info.Direction * currDist;
+		}
 	}
-
+	
 	private void ApplyInfo(CrosshairInfo info)
 	{
+		if (info is null)
+			return;
+		
 		_info = info;
 		GenerateCorners();
 		
@@ -46,6 +56,7 @@ public partial class Crosshair : Node2D
 				cornerInfo.Sprite.QueueFree();
 		
 		_corners = new Corner[_info.Corners.Count];
+		_spreadShowingCorners = [];
 		
 		for (int i = 0; i < _corners.Length; i++)
 		{
@@ -56,22 +67,34 @@ public partial class Crosshair : Node2D
 		}
 	}
 
-	private Sprite2D GenerateCorner(CrosshairCornerInfo cornerInfo)
+	private Sprite2D GenerateCorner(CrosshairCornerInfo info)
 	{
 		Sprite2D corner = new();
 		
-		corner.Texture = cornerInfo.Texture;
-		corner.SelfModulate = cornerInfo.Color;
-		corner.Rotation = cornerInfo.RotationRad;
-		corner.Position = cornerInfo.Direction * GetCurrentCornersDistance();
-		corner.Scale = cornerInfo.Scale;
+		corner.Texture = info.Texture;
+		corner.SelfModulate = info.Color;
+		corner.Rotation = info.RotationRad;
+		corner.Position = info.Direction;
+		corner.Scale = info.Scale;
 		AddChild(corner);
 
+		if (info.ShowsSpread)
+		{
+			_spreadShowingCorners.Add(new(info, corner));
+			corner.Position *= GetCurrentSpreadDistance();
+		}
+		
 		return corner;
 	}
 
-	private float GetCurrentCornersDistance()
+	private float GetCurrentSpreadDistance()
 	{
-		return _defaultCornersDistance;
+		float distanceFromPlayer = Position.Length();
+		float alpha = _info.HalfShownSpreadRad;
+		
+		return float.Sin(alpha) * distanceFromPlayer;
 	}
+
+	private void UpdateCrosshair(Weapon weapon)
+		=> ApplyInfo(weapon?.CrosshairInfo ?? _defaultInfo);
 }

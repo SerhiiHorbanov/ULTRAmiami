@@ -30,6 +30,7 @@ public abstract partial class Weapon : Node2D
 
 	[Export] public AmmoUIInfo AmmoUIInfo { get; private set; }
 	[Export] public WeaponAimLineInfo AimLineInfo { get; private set; }
+	[Export] public CrosshairInfo CrosshairInfo { get; private set; }
 	
 	public Unit Unit { get; private set; }
 	public Vector2 PointingAt;
