@@ -23,10 +23,22 @@ public partial class LevelInfo : Resource
 	public string LevelName
 		=> _shownName;
 
-	public PlayerScore GetSavedCompletionScore()
+	public PlayerScore GetMaxKillsScore()
 	{
 		EnsureCompletionNotNull();
-		return _completionInfo.Score;
+		return _completionInfo?.MaxKillsScore;
+	}
+
+	public PlayerScore GetMaxBloodScore()
+	{
+		EnsureCompletionNotNull();
+		return _completionInfo?.MaxBloodScore;
+	}
+	
+	public PlayerScore GetBestTimeScore()
+	{
+		EnsureCompletionNotNull();
+		return _completionInfo?.BestTimeScore;
 	}
 	
 	public bool IsCompleted()
@@ -44,25 +56,16 @@ public partial class LevelInfo : Resource
 		treeNode.GetTree().ChangeSceneToPacked(scene);
 	}
 
-	public void SaveCompletionIfShould(PlayerScore score)
+	public void AddCompletion(PlayerScore score)
 	{
 		EnsureCompletionNotNull();
+		_completionInfo.AddCompletion(score);
 
-		if (!_completionInfo.IsCompleted)
-		{
-			SaveCompletion(score);
-			return;
-		}
-		
-		if (_completionInfo.Score.TimeAlive > score.TimeAlive)
-			SaveCompletion(score);
+		SaveCompletion();
 	}
 	
-	public void SaveCompletion(PlayerScore score)
+	private void SaveCompletion()
 	{
-		_completionInfo = new(score);
-		_completionInfo.CompleteLevel();
-
 		string globalPath = ProjectSettings.GlobalizePath(CompletionInfosSavePath);
 
 		if (!Directory.Exists(globalPath))

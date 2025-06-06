@@ -11,13 +11,14 @@ public partial class LevelWidget : Node
 	[Export] private Label _killsLabel;
 	[Export] private Label _bloodConsumedLabel;
 	[Export] private Label _timeLabel;
+
+	[Export] private Button _maxKillsScoreButton;
+	[Export] private Button _maxBloodScoreButton;
+	[Export] private Button _bestTimeScoreButton;
 	
 	private LevelInfo _levelInfo;
 	private bool _isLocked;
 
-	private PlayerScore Score
-		=> _levelInfo.GetSavedCompletionScore();
-	
 	public void Initialize(LevelInfo levelInfo, bool isLocked)
 	{
 		_levelInfo = levelInfo;
@@ -26,9 +27,18 @@ public partial class LevelWidget : Node
 		_nameLabel.Text = levelInfo.LevelName;
 		_levelLockedOverlay.Visible = isLocked;
 		
-		_timeLabel.Text = Score.TimeAlive.ToString("0.000");
-		_killsLabel.Text = Score.Kills.ToString();
-		_bloodConsumedLabel.Text = Score.BloodConsumed.ToString("0.0");
+		DisplayScore(_levelInfo.GetBestTimeScore());
+		_bestTimeScoreButton.SetPressed(true);
+	}
+	
+	private void DisplayScore(PlayerScore score)
+	{
+		if (score is null)
+			return;
+		
+		_timeLabel.Text = score.TimeAlive.ToString("0.000");
+		_killsLabel.Text = score.Kills.ToString();
+		_bloodConsumedLabel.Text = score.BloodConsumed.ToString("0.0");
 	}
 
 	private void OnPressed()
@@ -37,5 +47,32 @@ public partial class LevelWidget : Node
 			return;
 		
 		_levelInfo.LoadLevel(this);
+	}
+
+	private void SetMaxKillsScore()
+	{
+		DisplayScore(_levelInfo.GetMaxKillsScore());
+		
+		_maxKillsScoreButton.SetPressed(true);
+		_maxBloodScoreButton.SetPressed(false);
+		_bestTimeScoreButton.SetPressed(false);
+	}
+	
+	private void SetMaxBloodScore()
+	{
+		DisplayScore(_levelInfo.GetMaxBloodScore());
+		
+		_maxKillsScoreButton.SetPressed(false);
+		_maxBloodScoreButton.SetPressed(true);
+		_bestTimeScoreButton.SetPressed(false);
+	}
+	
+	private void SetBestTimeScore()
+	{
+		DisplayScore(_levelInfo.GetBestTimeScore());
+		
+		_maxKillsScoreButton.SetPressed(false);
+		_maxBloodScoreButton.SetPressed(false);
+		_bestTimeScoreButton.SetPressed(true);
 	}
 }

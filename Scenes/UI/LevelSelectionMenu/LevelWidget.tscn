@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://hvv6hn5106s7"]
+[gd_scene load_steps=6 format=3 uid="uid://hvv6hn5106s7"]
 
 [ext_resource type="Script" uid="uid://djds8vpabt8nh" path="res://Scripts/UI/LevelSelectionMenu/LevelWidget.cs" id="1_sun6l"]
+[ext_resource type="Texture2D" uid="uid://cnuceqes3poqd" path="res://Textures/UI/SkullIcon.png" id="2_45apl"]
 [ext_resource type="Texture2D" uid="uid://vtu68wxyw6al" path="res://Textures/UI/Lock.png" id="2_jeb2o"]
+[ext_resource type="Texture2D" uid="uid://ngac5yehct3f" path="res://Textures/UI/BloodDropIcon.png" id="3_0muf2"]
+[ext_resource type="Texture2D" uid="uid://dinv4jeygw28h" path="res://Textures/UI/ClockIcon.png" id="4_0muf2"]
 
-[node name="LevelWidget" type="ColorRect" node_paths=PackedStringArray("_nameLabel", "_levelLockedOverlay", "_killsLabel", "_bloodConsumedLabel", "_timeLabel")]
-custom_minimum_size = Vector2(400, 600)
+[node name="LevelWidget" type="ColorRect" node_paths=PackedStringArray("_nameLabel", "_levelLockedOverlay", "_killsLabel", "_bloodConsumedLabel", "_timeLabel", "_maxKillsScoreButton", "_maxBloodScoreButton", "_bestTimeScoreButton")]
+custom_minimum_size = Vector2(400, 700)
 offset_right = 400.0
 offset_bottom = 600.0
 size_flags_horizontal = 4
@@ -15,6 +18,9 @@ _levelLockedOverlay = NodePath("ColorRect")
 _killsLabel = NodePath("Button/MarginContainer/Control/CompletionStat/ValueLabel")
 _bloodConsumedLabel = NodePath("Button/MarginContainer/Control/CompletionStat2/ValueLabel")
 _timeLabel = NodePath("Button/MarginContainer/Control/CompletionStat3/ValueLabel")
+_maxKillsScoreButton = NodePath("Button/MarginContainer/Control/Control2/HBoxContainer/Button")
+_maxBloodScoreButton = NodePath("Button/MarginContainer/Control/Control2/HBoxContainer/Button2")
+_bestTimeScoreButton = NodePath("Button/MarginContainer/Control/Control2/HBoxContainer/Button3")
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 1
@@ -167,6 +173,77 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Control2" type="Control" parent="Button/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Button/MarginContainer/Control/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Button" type="Button" parent="Button/MarginContainer/Control/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Control/Control2/HBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_45apl")
+
+[node name="Button2" type="Button" parent="Button/MarginContainer/Control/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Control/Control2/HBoxContainer/Button2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0muf2")
+
+[node name="Button3" type="Button" parent="Button/MarginContainer/Control/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Control/Control2/HBoxContainer/Button3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0muf2")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 layout_mode = 1
@@ -194,3 +271,6 @@ grow_vertical = 2
 texture = ExtResource("2_jeb2o")
 
 [connection signal="pressed" from="Button" to="." method="OnPressed"]
+[connection signal="pressed" from="Button/MarginContainer/Control/Control2/HBoxContainer/Button" to="." method="SetMaxKillsScore"]
+[connection signal="pressed" from="Button/MarginContainer/Control/Control2/HBoxContainer/Button2" to="." method="SetMaxBloodScore"]
+[connection signal="pressed" from="Button/MarginContainer/Control/Control2/HBoxContainer/Button3" to="." method="SetBestTimeScore"]
