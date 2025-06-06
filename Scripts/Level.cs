@@ -33,7 +33,7 @@ public partial class Level : Node
 		foreach (Node node in _nodesToFreeOnCompletion)
 			node.QueueFree();
 		
-		_info.SaveCompletion(PlayerScore.Current);
+		_info.SaveCompletionIfShould(PlayerScore.Current);
 		_completionMenu.Display(_info, PlayerScore.Current);
 	}
 

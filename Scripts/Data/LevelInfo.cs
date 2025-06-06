@@ -44,6 +44,20 @@ public partial class LevelInfo : Resource
 		treeNode.GetTree().ChangeSceneToPacked(scene);
 	}
 
+	public void SaveCompletionIfShould(PlayerScore score)
+	{
+		EnsureCompletionNotNull();
+
+		if (!_completionInfo.IsCompleted)
+		{
+			SaveCompletion(score);
+			return;
+		}
+		
+		if (_completionInfo.Score.TimeAlive > score.TimeAlive)
+			SaveCompletion(score);
+	}
+	
 	public void SaveCompletion(PlayerScore score)
 	{
 		_completionInfo = new(score);
