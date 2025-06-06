@@ -9,6 +9,9 @@ public partial class LevelCompletionInfo : Resource
 
 	[Export] private PlayerScore _score;
 	
+	public PlayerScore Score
+		=> _score;
+	
 	public LevelCompletionInfo()
 	{ }
 	

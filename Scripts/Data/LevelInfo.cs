@@ -23,6 +23,12 @@ public partial class LevelInfo : Resource
 	public string LevelName
 		=> _shownName;
 
+	public PlayerScore GetSavedCompletionScore()
+	{
+		EnsureCompletionNotNull();
+		return _completionInfo.Score;
+	}
+	
 	public bool IsCompleted()
 	{
 		EnsureCompletionNotNull();

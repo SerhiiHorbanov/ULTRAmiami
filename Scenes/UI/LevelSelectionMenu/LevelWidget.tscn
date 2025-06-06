@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://djds8vpabt8nh" path="res://Scripts/UI/LevelSelectionMenu/LevelWidget.cs" id="1_sun6l"]
 [ext_resource type="Texture2D" uid="uid://vtu68wxyw6al" path="res://Textures/UI/Lock.png" id="2_jeb2o"]
 
-[node name="LevelWidget" type="ColorRect" node_paths=PackedStringArray("_nameLabel", "_levelLockedOverlay")]
+[node name="LevelWidget" type="ColorRect" node_paths=PackedStringArray("_nameLabel", "_levelLockedOverlay", "_killsLabel", "_bloodConsumedLabel", "_timeLabel")]
 custom_minimum_size = Vector2(400, 600)
 offset_right = 400.0
 offset_bottom = 600.0
@@ -12,6 +12,9 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("1_sun6l")
 _nameLabel = NodePath("NameLabel")
 _levelLockedOverlay = NodePath("ColorRect")
+_killsLabel = NodePath("Button/MarginContainer/Control/CompletionStat/ValueLabel")
+_bloodConsumedLabel = NodePath("Button/MarginContainer/Control/CompletionStat2/ValueLabel")
+_timeLabel = NodePath("Button/MarginContainer/Control/CompletionStat3/ValueLabel")
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 1
@@ -19,18 +22,21 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 192.0
 grow_horizontal = 2
+mouse_filter = 1
 theme_override_font_sizes/font_size = 64
 text = "Default level name"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.752941)
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
@@ -56,5 +62,135 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="Button/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CompletionStat" type="Control" parent="Button/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 200.0
+offset_bottom = 300.0
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="NameLabel" type="RichTextLabel" parent="Button/MarginContainer/Control/CompletionStat"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "Kills:"
+vertical_alignment = 1
+
+[node name="ValueLabel" type="Label" parent="Button/MarginContainer/Control/CompletionStat"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CompletionStat2" type="Control" parent="Button/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 300.0
+offset_bottom = 400.0
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="NameLabel" type="RichTextLabel" parent="Button/MarginContainer/Control/CompletionStat2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[color=red][b]Blood[/b][color=white]:"
+vertical_alignment = 1
+
+[node name="ValueLabel" type="Label" parent="Button/MarginContainer/Control/CompletionStat2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CompletionStat3" type="Control" parent="Button/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 400.0
+offset_bottom = 500.0
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="NameLabel" type="RichTextLabel" parent="Button/MarginContainer/Control/CompletionStat3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "Time:"
+vertical_alignment = 1
+
+[node name="ValueLabel" type="Label" parent="Button/MarginContainer/Control/CompletionStat3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="OnPressed"]

@@ -8,8 +8,15 @@ public partial class LevelWidget : Node
 	[Export] private Label _nameLabel;
 	[Export] private Control _levelLockedOverlay;
 	
+	[Export] private Label _killsLabel;
+	[Export] private Label _bloodConsumedLabel;
+	[Export] private Label _timeLabel;
+	
 	private LevelInfo _levelInfo;
 	private bool _isLocked;
+
+	private PlayerScore Score
+		=> _levelInfo.SavedCompletionScore;
 	
 	public void Initialize(LevelInfo levelInfo, bool isLocked)
 	{
@@ -18,6 +25,10 @@ public partial class LevelWidget : Node
 		
 		_nameLabel.Text = levelInfo.LevelName;
 		_levelLockedOverlay.Visible = isLocked;
+		
+		_timeLabel.Text = Score.TimeAlive.ToString("0.000");
+		_killsLabel.Text = Score.Kills.ToString();
+		_bloodConsumedLabel.Text = Score.BloodConsumed.ToString("0.0");
 	}
 
 	private void OnPressed()
