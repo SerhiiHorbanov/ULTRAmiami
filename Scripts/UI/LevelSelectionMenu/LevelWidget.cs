@@ -16,7 +16,7 @@ public partial class LevelWidget : Node
 	private bool _isLocked;
 
 	private PlayerScore Score
-		=> _levelInfo.SavedCompletionScore;
+		=> _levelInfo.GetSavedCompletionScore();
 	
 	public void Initialize(LevelInfo levelInfo, bool isLocked)
 	{
