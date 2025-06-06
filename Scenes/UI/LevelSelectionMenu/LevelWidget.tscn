@@ -21,6 +21,8 @@ _timeLabel = NodePath("Button/MarginContainer/Control/CompletionStat3/ValueLabel
 _maxKillsScoreButton = NodePath("Button/MarginContainer/Control/Control2/HBoxContainer/Button")
 _maxBloodScoreButton = NodePath("Button/MarginContainer/Control/Control2/HBoxContainer/Button2")
 _bestTimeScoreButton = NodePath("Button/MarginContainer/Control/Control2/HBoxContainer/Button3")
+_selectedStatColor = Color(0.501961, 0.501961, 0.501961, 1)
+_unselectedStatColor = Color(1, 1, 1, 1)
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 1

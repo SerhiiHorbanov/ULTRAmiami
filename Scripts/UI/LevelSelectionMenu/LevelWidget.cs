@@ -15,6 +15,9 @@ public partial class LevelWidget : Node
 	[Export] private Button _maxKillsScoreButton;
 	[Export] private Button _maxBloodScoreButton;
 	[Export] private Button _bestTimeScoreButton;
+
+	[Export] private Color _selectedStatColor;
+	[Export] private Color _unselectedStatColor;
 	
 	private LevelInfo _levelInfo;
 	private bool _isLocked;
@@ -27,8 +30,7 @@ public partial class LevelWidget : Node
 		_nameLabel.Text = levelInfo.LevelName;
 		_levelLockedOverlay.Visible = isLocked;
 		
-		DisplayScore(_levelInfo.GetBestTimeScore());
-		_bestTimeScoreButton.SetPressed(true);
+		SetBestTimeScore();
 	}
 	
 	private void DisplayScore(PlayerScore score)
@@ -53,26 +55,26 @@ public partial class LevelWidget : Node
 	{
 		DisplayScore(_levelInfo.GetMaxKillsScore());
 		
-		_maxKillsScoreButton.SetPressed(true);
-		_maxBloodScoreButton.SetPressed(false);
-		_bestTimeScoreButton.SetPressed(false);
+		_maxKillsScoreButton.Modulate = _selectedStatColor;
+		_maxBloodScoreButton.Modulate = _unselectedStatColor;
+		_bestTimeScoreButton.Modulate = _unselectedStatColor;
 	}
 	
 	private void SetMaxBloodScore()
 	{
 		DisplayScore(_levelInfo.GetMaxBloodScore());
 		
-		_maxKillsScoreButton.SetPressed(false);
-		_maxBloodScoreButton.SetPressed(true);
-		_bestTimeScoreButton.SetPressed(false);
+		_maxKillsScoreButton.Modulate = _unselectedStatColor;
+		_maxBloodScoreButton.Modulate = _selectedStatColor;
+		_bestTimeScoreButton.Modulate = _unselectedStatColor;
 	}
 	
 	private void SetBestTimeScore()
 	{
 		DisplayScore(_levelInfo.GetBestTimeScore());
 		
-		_maxKillsScoreButton.SetPressed(false);
-		_maxBloodScoreButton.SetPressed(false);
-		_bestTimeScoreButton.SetPressed(true);
+		_maxKillsScoreButton.Modulate = _unselectedStatColor;
+		_maxBloodScoreButton.Modulate = _unselectedStatColor;
+		_bestTimeScoreButton.Modulate = _selectedStatColor;
 	}
 }
