@@ -25,8 +25,19 @@ public partial class UnitFollowingCamera : Camera2D
     private float LinearMovementThresholdSquared
         => _linearMovementThreshold * _linearMovementThreshold;
     
+    private static UnitFollowingCamera _instance;
+    private bool _isDynamic = true;
+    
+    public static void SetDynamic(bool isDynamic)
+    {
+        if (_instance is not null)
+            _instance._isDynamic = isDynamic;
+    }
+    
     public override void _Ready()
     {
+        _instance ??= this;
+        
         AttachToUnit(_unit);
     }
 
@@ -34,6 +45,12 @@ public partial class UnitFollowingCamera : Camera2D
     {
         if (_unit is null)
             return;
+
+        if (!_isDynamic)
+        {
+            GlobalPosition = _unit.GlobalPosition;
+            return;
+        }
         
         UpdateTargetPositionRelativeToUnit();
         DoMovement((float)delta);
@@ -42,6 +59,9 @@ public partial class UnitFollowingCamera : Camera2D
     public override void _ExitTree()
     {
         DetachUnit();
+        
+        if (_instance == this)
+            _instance = null;
     }
 
     private void AttachToUnit(Unit unit)
