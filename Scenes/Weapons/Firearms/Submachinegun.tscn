@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3laytvatekjx"]
+[gd_scene load_steps=24 format=3 uid="uid://d3laytvatekjx"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_cu785"]
 [ext_resource type="PackedScene" uid="uid://ckrt3udf0e7bu" path="res://Scenes/Projectiles/SMGBullet.tscn" id="2_nv5f2"]
@@ -8,7 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dsh74k5g71g1u" path="res://Textures/Weapons/UziNoMag.png" id="4_mdfs6"]
 [ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="5_psmf8"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_xjwgq"]
+[ext_resource type="Texture2D" uid="uid://bxsboa2urtbys" path="res://Textures/Crosshair/CrosshairCenter3.png" id="6_lnvbv"]
 [ext_resource type="AudioStream" uid="uid://cq2kl2pdko5yi" path="res://Audio/SFX/SMGReload.wav" id="6_txk56"]
+[ext_resource type="Texture2D" uid="uid://2yaurwhqx2ue" path="res://Textures/Crosshair/CrosshairCorner1.png" id="7_3icas"]
+[ext_resource type="Script" uid="uid://b7ruqvv15s7rk" path="res://Scripts/Data/CrosshairCornerInfo.cs" id="8_50q50"]
+[ext_resource type="Script" uid="uid://di45w16121rtc" path="res://Scripts/Data/CrosshairInfo.cs" id="9_uth5n"]
 [ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="10_ucn8r"]
 [ext_resource type="PackedScene" uid="uid://fdnh28wh0tk2" path="res://Scenes/Effects/PhysicalParticles/CartridgeCases/SMG9mmCasing.tscn" id="11_b408b"]
 [ext_resource type="PackedScene" uid="uid://drccyaw3p0vef" path="res://Scenes/Effects/PhysicalParticles/Magazines/SMGmagazine.tscn" id="12_b408b"]
@@ -28,7 +32,60 @@ Color = Color(1, 1, 1, 1)
 NoAmmoColor = Color(1, 1, 1, 0.25098)
 LineWidth = 2.0
 ShowSpread = false
+StopOnHit = true
 metadata/_custom_type_script = "uid://fbtjd4ropgt2"
+
+[sub_resource type="Resource" id="Resource_2iuoc"]
+script = ExtResource("8_50q50")
+Texture = ExtResource("7_3icas")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 15.0
+Direction = Vector2(0.707, 0.707)
+Scale = Vector2(5, 5)
+RotationDeg = -45.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_t30cu"]
+script = ExtResource("8_50q50")
+Texture = ExtResource("7_3icas")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 15.0
+Direction = Vector2(-0.707, 0.707)
+Scale = Vector2(5, 5)
+RotationDeg = 45.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_yt0vt"]
+script = ExtResource("8_50q50")
+Texture = ExtResource("7_3icas")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 15.0
+Direction = Vector2(-0.707, -0.707)
+Scale = Vector2(5, 5)
+RotationDeg = -45.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_guwjq"]
+script = ExtResource("8_50q50")
+Texture = ExtResource("7_3icas")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 15.0
+Direction = Vector2(0.707, -0.707)
+Scale = Vector2(5, 5)
+RotationDeg = 45.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_buubo"]
+script = ExtResource("9_uth5n")
+CenterTexture = ExtResource("6_lnvbv")
+CenterScale = Vector2(5, 5)
+ShownSpreadDeg = 12.0
+Corners = Array[Object]([SubResource("Resource_2iuoc"), SubResource("Resource_t30cu"), SubResource("Resource_yt0vt"), SubResource("Resource_guwjq")])
+metadata/_custom_type_script = "uid://di45w16121rtc"
 
 [node name="Submachinegun" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_cu785")]
 _bullet = ExtResource("2_nv5f2")
@@ -39,6 +96,7 @@ _maxAmmo = 16
 _shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
 AmmoUIInfo = SubResource("Resource_67h2h")
 AimLineInfo = SubResource("Resource_yicgv")
+CrosshairInfo = SubResource("Resource_buubo")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("3_pbfh6")

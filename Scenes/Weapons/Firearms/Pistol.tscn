@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://2frk84kfwokl"]
+[gd_scene load_steps=23 format=3 uid="uid://2frk84kfwokl"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_hhr6j"]
 [ext_resource type="Texture2D" uid="uid://68x3bf4wexgk" path="res://Textures/Weapons/PistolPickUppable.png" id="2_ijucp"]
@@ -6,8 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dmd46rtdggfku" path="res://Textures/UI/Ammo/AmmoUI9mm.png" id="2_y8nk4"]
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="3_c2513"]
 [ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="4_c2513"]
+[ext_resource type="Texture2D" uid="uid://m5bovy7g7w18" path="res://Textures/Crosshair/CrosshairCenter1.png" id="5_evhld"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_jic2m"]
+[ext_resource type="Texture2D" uid="uid://2yaurwhqx2ue" path="res://Textures/Crosshair/CrosshairCorner1.png" id="6_ssdph"]
 [ext_resource type="AudioStream" uid="uid://c0tqt8n52rbip" path="res://Audio/SFX/Pistol Reload.wav" id="7_jtjwi"]
+[ext_resource type="Script" uid="uid://b7ruqvv15s7rk" path="res://Scripts/Data/CrosshairCornerInfo.cs" id="7_l33vp"]
+[ext_resource type="Script" uid="uid://di45w16121rtc" path="res://Scripts/Data/CrosshairInfo.cs" id="8_36wp3"]
 [ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="9_c84om"]
 [ext_resource type="PackedScene" uid="uid://00wxg3eqwgom" path="res://Scenes/Effects/PhysicalParticles/CartridgeCases/Pistol9mmCasing.tscn" id="10_qa63j"]
 [ext_resource type="PackedScene" uid="uid://cqbt4qtflvha5" path="res://Scenes/Effects/PhysicalParticles/Magazines/PistolMagazine.tscn" id="11_qa63j"]
@@ -27,7 +31,60 @@ Color = Color(0, 1, 0, 1)
 NoAmmoColor = Color(0, 1, 0, 0.25098)
 LineWidth = 5.0
 ShowSpread = false
+StopOnHit = true
 metadata/_custom_type_script = "uid://fbtjd4ropgt2"
+
+[sub_resource type="Resource" id="Resource_twvct"]
+script = ExtResource("7_l33vp")
+Texture = ExtResource("6_ssdph")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = false
+MinDistance = 0.0
+Direction = Vector2(15, 0)
+Scale = Vector2(5, 5)
+RotationDeg = 0.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_64afi"]
+script = ExtResource("7_l33vp")
+Texture = ExtResource("6_ssdph")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = false
+MinDistance = 0.0
+Direction = Vector2(0, 15)
+Scale = Vector2(5, 5)
+RotationDeg = 90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_f836t"]
+script = ExtResource("7_l33vp")
+Texture = ExtResource("6_ssdph")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = false
+MinDistance = 0.0
+Direction = Vector2(-15, 0)
+Scale = Vector2(5, 5)
+RotationDeg = 0.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_u0vlr"]
+script = ExtResource("7_l33vp")
+Texture = ExtResource("6_ssdph")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = false
+MinDistance = 0.0
+Direction = Vector2(0, -15)
+Scale = Vector2(5, 5)
+RotationDeg = 90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_3h8kd"]
+script = ExtResource("8_36wp3")
+CenterTexture = ExtResource("5_evhld")
+CenterScale = Vector2(5, 5)
+ShownSpreadDeg = 0.0
+Corners = Array[Resource]([SubResource("Resource_twvct"), SubResource("Resource_64afi"), SubResource("Resource_f836t"), SubResource("Resource_u0vlr")])
+metadata/_custom_type_script = "uid://di45w16121rtc"
 
 [node name="Pistol" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_hhr6j")]
 _fireRate = 6.0
@@ -36,6 +93,7 @@ _maxAmmo = 12
 _shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
 AmmoUIInfo = SubResource("Resource_n3ogq")
 AimLineInfo = SubResource("Resource_c84om")
+CrosshairInfo = SubResource("Resource_3h8kd")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("2_ijucp")

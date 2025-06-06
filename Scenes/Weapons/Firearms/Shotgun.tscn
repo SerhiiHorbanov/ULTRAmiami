@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ustetj26a1sv"]
+[gd_scene load_steps=24 format=3 uid="uid://ustetj26a1sv"]
 
 [ext_resource type="PackedScene" uid="uid://inxhvy46fkay" path="res://Scenes/Weapons/Firearms/Firearm.tscn" id="1_hp2vk"]
 [ext_resource type="PackedScene" uid="uid://cjmxtn0xwbfp6" path="res://Scenes/Projectiles/ShotgunBullet.tscn" id="2_1jhyr"]
@@ -9,7 +9,11 @@
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="4_k5p5k"]
 [ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="5_k5p5k"]
 [ext_resource type="AudioStream" uid="uid://cuyxsptouasoo" path="res://Audio/Sound Randomizers/ShotgunPumpRandomizer.tres" id="6_5hocu"]
+[ext_resource type="Texture2D" uid="uid://bfl4t4hjtl7m0" path="res://Textures/Crosshair/CrosshairCenter2.png" id="6_ggdd1"]
+[ext_resource type="Texture2D" uid="uid://dy88cefq20f3e" path="res://Textures/Crosshair/CrosshairCorner2.png" id="7_adxcm"]
 [ext_resource type="Script" uid="uid://di761nsqnfjgd" path="res://Scripts/Weapons/Audio/ShotgunPumper.cs" id="7_gnv3i"]
+[ext_resource type="Script" uid="uid://b7ruqvv15s7rk" path="res://Scripts/Data/CrosshairCornerInfo.cs" id="8_5thw2"]
+[ext_resource type="Script" uid="uid://di45w16121rtc" path="res://Scripts/Data/CrosshairInfo.cs" id="9_ih7vx"]
 [ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="11_n8ysm"]
 [ext_resource type="PackedScene" uid="uid://ukvmrb52owl1" path="res://Scenes/Effects/PhysicalParticles/CartridgeCases/ShotgunShell.tscn" id="12_qpube"]
 
@@ -28,7 +32,60 @@ Color = Color(0, 0, 1, 1)
 NoAmmoColor = Color(0, 0, 1, 0.25098)
 LineWidth = 10.0
 ShowSpread = true
+StopOnHit = true
 metadata/_custom_type_script = "uid://fbtjd4ropgt2"
+
+[sub_resource type="Resource" id="Resource_bh6gj"]
+script = ExtResource("8_5thw2")
+Texture = ExtResource("7_adxcm")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 10.0
+Direction = Vector2(1, 1)
+Scale = Vector2(5, 5)
+RotationDeg = 90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_bsely"]
+script = ExtResource("8_5thw2")
+Texture = ExtResource("7_adxcm")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 10.0
+Direction = Vector2(-1, 1)
+Scale = Vector2(5, 5)
+RotationDeg = 180.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_tiutg"]
+script = ExtResource("8_5thw2")
+Texture = ExtResource("7_adxcm")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 10.0
+Direction = Vector2(-1, -1)
+Scale = Vector2(5, 5)
+RotationDeg = 270.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_k5j6r"]
+script = ExtResource("8_5thw2")
+Texture = ExtResource("7_adxcm")
+Color = Color(1, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 10.0
+Direction = Vector2(1, -1)
+Scale = Vector2(5, 5)
+RotationDeg = 0.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_m8qxu"]
+script = ExtResource("9_ih7vx")
+CenterTexture = ExtResource("6_ggdd1")
+CenterScale = Vector2(5, 5)
+ShownSpreadDeg = 20.0
+Corners = Array[Object]([SubResource("Resource_bh6gj"), SubResource("Resource_bsely"), SubResource("Resource_tiutg"), SubResource("Resource_k5j6r")])
+metadata/_custom_type_script = "uid://di45w16121rtc"
 
 [node name="Shotgun" node_paths=PackedStringArray("_shootingCooldownTimer") instance=ExtResource("1_hp2vk")]
 _bullet = ExtResource("2_1jhyr")
@@ -39,6 +96,7 @@ _maxAmmo = 3
 _shootingCooldownTimer = NodePath("ShootingCoolDownTimer")
 AmmoUIInfo = SubResource("Resource_gvd2d")
 AimLineInfo = SubResource("Resource_n8ysm")
+CrosshairInfo = SubResource("Resource_m8qxu")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
 texture = ExtResource("3_wd4x3")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bg0s6f1srg0bq"]
+[gd_scene load_steps=27 format=3 uid="uid://bg0s6f1srg0bq"]
 
 [ext_resource type="PackedScene" uid="uid://ctepmc8qidog4" path="res://Scenes/Weapons/Weapon.tscn" id="1_a138t"]
 [ext_resource type="Script" uid="uid://dtppgcjudqoi1" path="res://Scripts/Weapons/Railgun.cs" id="2_pbn1j"]
@@ -8,8 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://b37w5avb74v16" path="res://Textures/Weapons/RailgunNotPickuppable.png" id="4_k2u73"]
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="5_5xwwa"]
 [ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="6_7t7ca"]
+[ext_resource type="Texture2D" uid="uid://dy88cefq20f3e" path="res://Textures/Crosshair/CrosshairCorner2.png" id="8_88oef"]
+[ext_resource type="Script" uid="uid://b7ruqvv15s7rk" path="res://Scripts/Data/CrosshairCornerInfo.cs" id="9_1e02f"]
 [ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="9_whbnk"]
 [ext_resource type="PackedScene" uid="uid://bq7qeaaaa4lue" path="res://Scenes/Effects/PhysicalParticles/Magazines/RailgunMagazine.tscn" id="10_61jkl"]
+[ext_resource type="Texture2D" uid="uid://2yaurwhqx2ue" path="res://Textures/Crosshair/CrosshairCorner1.png" id="10_88oef"]
+[ext_resource type="Script" uid="uid://di45w16121rtc" path="res://Scripts/Data/CrosshairInfo.cs" id="10_mihgc"]
 [ext_resource type="PackedScene" uid="uid://dcpjdjeubcllp" path="res://Scenes/Effects/PhysicalParticles/Magazines/LeftRailgunMagazine.tscn" id="11_05ya7"]
 
 [sub_resource type="Resource" id="Resource_bu6yk"]
@@ -30,6 +34,101 @@ ShowSpread = false
 StopOnHit = false
 metadata/_custom_type_script = "uid://fbtjd4ropgt2"
 
+[sub_resource type="Resource" id="Resource_gqbpv"]
+script = ExtResource("9_1e02f")
+Texture = ExtResource("8_88oef")
+Color = Color(0, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 10.0
+Direction = Vector2(1, 1)
+Scale = Vector2(5, 5)
+RotationDeg = -90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_r3gao"]
+script = ExtResource("9_1e02f")
+Texture = ExtResource("8_88oef")
+Color = Color(0, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 10.0
+Direction = Vector2(-1, 1)
+Scale = Vector2(5, 5)
+RotationDeg = 0.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_8jy7l"]
+script = ExtResource("9_1e02f")
+Texture = ExtResource("8_88oef")
+Color = Color(0, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 10.0
+Direction = Vector2(-1, -1)
+Scale = Vector2(5, 5)
+RotationDeg = 90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_ua4em"]
+script = ExtResource("9_1e02f")
+Texture = ExtResource("8_88oef")
+Color = Color(0, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 10.0
+Direction = Vector2(1, -1)
+Scale = Vector2(5, 5)
+RotationDeg = 180.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_sehmv"]
+script = ExtResource("9_1e02f")
+Texture = ExtResource("10_88oef")
+Color = Color(0, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 30.0
+Direction = Vector2(0.8, 0)
+Scale = Vector2(5, 5)
+RotationDeg = 90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_tjqln"]
+script = ExtResource("9_1e02f")
+Texture = ExtResource("10_88oef")
+Color = Color(0, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 30.0
+Direction = Vector2(-0.8, 0)
+Scale = Vector2(5, 5)
+RotationDeg = 90.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_bi1a5"]
+script = ExtResource("9_1e02f")
+Texture = ExtResource("10_88oef")
+Color = Color(0, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 30.0
+Direction = Vector2(0, 0.8)
+Scale = Vector2(5, 5)
+RotationDeg = 0.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_k2gsa"]
+script = ExtResource("9_1e02f")
+Texture = ExtResource("10_88oef")
+Color = Color(0, 1, 1, 1)
+ShowsSpread = true
+MinDistance = 30.0
+Direction = Vector2(0, -0.8)
+Scale = Vector2(5, 5)
+RotationDeg = 0.0
+metadata/_custom_type_script = "uid://b7ruqvv15s7rk"
+
+[sub_resource type="Resource" id="Resource_gean0"]
+script = ExtResource("10_mihgc")
+CenterScale = Vector2(5, 5)
+ShownSpreadDeg = 8.0
+Corners = Array[Object]([SubResource("Resource_gqbpv"), SubResource("Resource_r3gao"), SubResource("Resource_8jy7l"), SubResource("Resource_ua4em"), SubResource("Resource_sehmv"), SubResource("Resource_tjqln"), SubResource("Resource_bi1a5"), SubResource("Resource_k2gsa")])
+metadata/_custom_type_script = "uid://di45w16121rtc"
+
 [node name="Railgun" node_paths=PackedStringArray("_reloadTimer", "_shootingCooldownTimer", "_dropped", "_droppedNotPickuppable", "_shootingAudio", "_failingShotAudio", "_reloadingAudio") instance=ExtResource("1_a138t")]
 script = ExtResource("2_pbn1j")
 _projectileScene = ExtResource("3_pbn1j")
@@ -44,6 +143,7 @@ _failingShotAudio = NodePath("FailingShot")
 _reloadingAudio = NodePath("Reload")
 AmmoUIInfo = SubResource("Resource_bu6yk")
 AimLineInfo = SubResource("Resource_5xwwa")
+CrosshairInfo = SubResource("Resource_gean0")
 
 [node name="Dropped" parent="." index="0" node_paths=PackedStringArray("_weapon")]
 _weapon = NodePath("..")
