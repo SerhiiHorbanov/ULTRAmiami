@@ -312,6 +312,7 @@ text = "OTHER"
 layout_mode = 2
 _settingName = "MaxFPS"
 _data = SubResource("Resource_5ewu0")
+_textType = 1
 
 [node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Other/VBoxContainer/SettingSlider/ColorRect" index="0"]
 text = "FPS limit"
