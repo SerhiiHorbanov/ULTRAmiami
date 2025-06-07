@@ -5,5 +5,7 @@ namespace ULTRAmiami;
 
 public interface IAttackable
 {
+	public bool Bleeds { get; }
+	
 	public void Hit(Hit hit);
 }

@@ -10,6 +10,9 @@ public partial class BreakableTrigger : Node2D, IAttackable
 	[Export] private Node2D _notBrokenGraphics;
 	[Export] private Node2D _brokenGraphics;
 
+	public bool Bleeds
+		=> false;
+	
 	[Signal]
 	public delegate void OnBrokenEventHandler();
 

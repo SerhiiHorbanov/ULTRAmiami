@@ -47,6 +47,9 @@ public partial class Unit : CharacterBody2D, IAttackable
 	
 	public bool IsPlayer
 		=> IsInGroup(PlayerGroupName);
+
+	public bool Bleeds
+		=> true;
 	
 	private readonly static StringName PlayerGroupName = "Player";
 	private readonly static StringName OnFireGroupName = "OnFire";
