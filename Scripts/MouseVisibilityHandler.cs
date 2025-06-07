@@ -37,6 +37,7 @@ public partial class MouseVisibilityHandler : Node
 	public override void _Ready()
 	{
 		_instance ??= this;
+		UpdateVisibility();
 	}
 
 	public override void _ExitTree()

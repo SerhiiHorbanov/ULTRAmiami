@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://o86viig4gjbo" path="res://Scenes/GameplayRestarter.tscn" id="4_etd3f"]
 [ext_resource type="PackedScene" uid="uid://bjl70xv1gmndx" path="res://Scenes/MusicManager.tscn" id="5_d3u4r"]
 [ext_resource type="Script" uid="uid://ctvkp5fryx3o0" path="res://Scripts/LevelFeatures/LevelTarget.cs" id="6_d3u4r"]
-[ext_resource type="Script" uid="uid://cggn8jdjqiw2v" path="res://MouseVisibilityHandler.cs" id="10_y1810"]
+[ext_resource type="Script" uid="uid://bm665u5gx60eo" path="res://Scripts/MouseVisibilityHandler.cs" id="10_y1810"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("_completionMenu", "_nodesToFreeOnCompletion", "_player")]
 script = ExtResource("1_4nh8f")
