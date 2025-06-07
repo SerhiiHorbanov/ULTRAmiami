@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6u4rioaf4ul4"]
+[gd_scene load_steps=9 format=3 uid="uid://b6u4rioaf4ul4"]
 
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://ch33vi8cwppji" path="res://Scenes/GameplayCamera.tscn" id="2_b2bpf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bjl70xv1gmndx" path="res://Scenes/MusicManager.tscn" id="6_2irst"]
 [ext_resource type="PackedScene" uid="uid://bxb34giu5ayyx" path="res://Scenes/Map/Map.tscn" id="6_7lihs"]
 [ext_resource type="PackedScene" uid="uid://o86viig4gjbo" path="res://Scenes/GameplayRestarter.tscn" id="6_fgofq"]
+[ext_resource type="Script" uid="uid://cggn8jdjqiw2v" path="res://MouseVisibilityHandler.cs" id="8_31mq1"]
 
 [node name="Game" type="Node2D"]
 
@@ -31,6 +32,9 @@ _unit = NodePath("../Player")
 [node name="GameplayRestarter" parent="." instance=ExtResource("6_fgofq")]
 
 [node name="MusicManager" parent="." instance=ExtResource("6_2irst")]
+
+[node name="MouseVisibilityHandler" type="Node" parent="."]
+script = ExtResource("8_31mq1")
 
 [connection signal="OnRestartLevel" from="Canvas/PauseMenu" to="GameplayRestarter" method="RestartGameplay"]
 [connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
