@@ -68,10 +68,15 @@ public partial class MeleeAttacker : Node2D
 	private void Hit(IAttackable attackable, Vector2 position)
 	{
 		_attackAudio.Stop();
-		_hitAudio.Play();
+		
+		if (attackable.Bleeds)
+		{
+			_hitAudio.Play();
+			EmitSignalOnHitting(GlobalPosition);
+		}
+		
 		Hit hit = new(Vector2.FromAngle(Rotation), _damage);
 		attackable.Hit(hit);
-		EmitSignalOnHitting(GlobalPosition);
 	}
 
 	private void OnBodyEntered(Node2D body)

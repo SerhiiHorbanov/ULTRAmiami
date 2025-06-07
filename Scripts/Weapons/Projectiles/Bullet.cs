@@ -80,7 +80,7 @@ public partial class Bullet : Node2D, IFirearmProjectile
 	
 	private void Hit(IAttackable attackable)
 	{
-		if (attackable is Unit)
+		if (attackable.Bleeds)
 			CreateParticlesOnCollisionPoint(_bloodSplatterParticles);
 		
 		attackable.Hit(new(_velocity, _damage));
