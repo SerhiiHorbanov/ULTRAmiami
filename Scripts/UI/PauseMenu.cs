@@ -40,7 +40,7 @@ public partial class PauseMenu : Control
 
 	private void SetPaused(bool paused)
 	{
-		Input.MouseMode = paused ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Hidden;
+		MouseVisibilityHandler.ChangeVisibility(paused);
 		
 		Visible = paused;
 		_isPaused = paused;

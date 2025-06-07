@@ -50,6 +50,8 @@ public partial class Console : Control
 	{
 		_isOnScreen = !_isOnScreen;
 		Visible = _isOnScreen;
+		
+		MouseVisibilityHandler.ChangeVisibility(Visible);
 	}
 
 	public void Echo(string text = "")
