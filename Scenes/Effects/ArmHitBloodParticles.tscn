@@ -10,9 +10,9 @@ _particlesToWaitFor = [NodePath("CPUParticles2D")]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 32
+amount = 64
 texture = ExtResource("2_5ogji")
-lifetime = 0.2
+lifetime = 0.4
 one_shot = true
 explosiveness = 0.9
 randomness = 1.0

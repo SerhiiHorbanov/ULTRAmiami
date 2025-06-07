@@ -11,9 +11,9 @@ _particlesToWaitFor = [NodePath("BigBloodSplatterParticles"), NodePath("SmallBlo
 
 [node name="BigBloodSplatterParticles" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 5
+amount = 10
 texture = ExtResource("2_acusf")
-lifetime = 0.5
+lifetime = 0.7
 one_shot = true
 explosiveness = 1.0
 lifetime_randomness = 0.7
@@ -29,8 +29,9 @@ color = Color(1, 0, 0, 1)
 
 [node name="SmallBloodSplatter" type="CPUParticles2D" parent="."]
 emitting = false
+amount = 16
 texture = ExtResource("3_nji3k")
-lifetime = 0.4
+lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
 lifetime_randomness = 1.0
