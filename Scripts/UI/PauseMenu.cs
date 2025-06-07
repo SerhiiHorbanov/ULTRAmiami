@@ -44,7 +44,6 @@ public partial class PauseMenu : Control
 		
 		Visible = paused;
 		_isPaused = paused;
-		GetTree().Paused = paused;
 
 		if (!paused)
 			_settings.Close();
@@ -66,7 +65,7 @@ public partial class PauseMenu : Control
 	
 	private void Exit()
 	{
-		SetPaused(false);
+		GetTree().Paused = false;
 		GetTree().ChangeSceneToPacked(_sceneExitingTo);
 		EmitSignalOnExiting();
 	}
