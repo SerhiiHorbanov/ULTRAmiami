@@ -44,6 +44,7 @@ public partial class PauseMenu : Control
 		
 		Visible = paused;
 		_isPaused = paused;
+		GetTree().Paused = paused;
 
 		if (!paused)
 			_settings.Close();
