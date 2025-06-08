@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtt761r7j2lpr"]
+
+[ext_resource type="PackedScene" uid="uid://3fq4ba7esueu" path="res://Scenes/Effects/BloodSplatter/BloodSplatter.tscn" id="1_bt0q0"]
+[ext_resource type="Texture2D" uid="uid://dx1kduhnw76mg" path="res://Textures/Effects/BloodSplatter/BloodSplatter4.png" id="2_pu1ql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn23m"]
+atlas = ExtResource("2_pu1ql")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grg7e"]
+atlas = ExtResource("2_pu1ql")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xekix"]
+atlas = ExtResource("2_pu1ql")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbrg2"]
+atlas = ExtResource("2_pu1ql")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxbgi"]
+atlas = ExtResource("2_pu1ql")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yhtd"]
+atlas = ExtResource("2_pu1ql")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p1mwm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn23m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grg7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xekix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbrg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxbgi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yhtd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="BloodSplatter" instance=ExtResource("1_bt0q0")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(15, 1)
+rotation = 1.74533
+texture = ExtResource("2_pu1ql")
+hframes = 2
+vframes = 3
+frame = 5
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(15, 1)
+rotation = 1.74533
+sprite_frames = SubResource("SpriteFrames_p1mwm")
+autoplay = "default"

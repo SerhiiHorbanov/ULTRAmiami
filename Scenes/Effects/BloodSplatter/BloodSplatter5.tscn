@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdd2lii61s5la"]
+
+[ext_resource type="PackedScene" uid="uid://3fq4ba7esueu" path="res://Scenes/Effects/BloodSplatter/BloodSplatter.tscn" id="1_2qcsp"]
+[ext_resource type="Texture2D" uid="uid://q2lp405pd0y6" path="res://Textures/Effects/BloodSplatter/BloodSplatter5.png" id="2_00o80"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eonv"]
+atlas = ExtResource("2_00o80")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1eh5l"]
+atlas = ExtResource("2_00o80")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0sbx"]
+atlas = ExtResource("2_00o80")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy6jy"]
+atlas = ExtResource("2_00o80")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ota73"]
+atlas = ExtResource("2_00o80")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5grdw"]
+atlas = ExtResource("2_00o80")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l55i8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eonv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1eh5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0sbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy6jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ota73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5grdw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="BloodSplatter" instance=ExtResource("1_2qcsp")]
+_rotationRandomization = 30.0
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(20, -3)
+rotation = 0.523599
+texture = ExtResource("2_00o80")
+hframes = 2
+vframes = 3
+frame = 5
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(20, -3)
+rotation = 0.523599
+sprite_frames = SubResource("SpriteFrames_l55i8")
+autoplay = "default"
