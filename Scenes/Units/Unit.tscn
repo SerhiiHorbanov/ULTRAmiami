@@ -1,9 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0r1r1kfajsn1"]
+[gd_scene load_steps=13 format=3 uid="uid://d0r1r1kfajsn1"]
 
 [ext_resource type="Script" uid="uid://di12frf23lynh" path="res://Scripts/Units/Unit.cs" id="1_bxx5k"]
 [ext_resource type="Texture2D" uid="uid://ch4afs3bdhjvn" path="res://Textures/Units/PistolEnemyBody.png" id="2_f2dp4"]
 [ext_resource type="Script" uid="uid://bkmt5cmweocnk" path="res://Scripts/Units/UnitAnimator.cs" id="3_f2dp4"]
 [ext_resource type="SpriteFrames" uid="uid://csxvamimud3q5" path="res://Animations/Units/PistolEnemyLegsAnimation.tres" id="4_f2dp4"]
+[ext_resource type="Script" uid="uid://dg226st2ey75" path="res://Scripts/Effects/BloodSplatterSpawner.cs" id="5_aa1w8"]
+[ext_resource type="PackedScene" uid="uid://dd2jbrp65qump" path="res://Scenes/Effects/BloodSplatter/BloodSplatter1.tscn" id="6_a73ww"]
+[ext_resource type="PackedScene" uid="uid://do5qg3w65sui4" path="res://Scenes/Effects/BloodSplatter/BloodSplatter2.tscn" id="7_iv5qi"]
+[ext_resource type="PackedScene" uid="uid://doaqu5firiy61" path="res://Scenes/Effects/BloodSplatter/BloodSplatter3.tscn" id="8_oy5dr"]
+[ext_resource type="PackedScene" uid="uid://dtt761r7j2lpr" path="res://Scenes/Effects/BloodSplatter/BloodSplatter4.tscn" id="9_86o2m"]
+[ext_resource type="PackedScene" uid="uid://cdd2lii61s5la" path="res://Scenes/Effects/BloodSplatter/BloodSplatter5.tscn" id="10_rk8i6"]
+[ext_resource type="PackedScene" uid="uid://dpaf3swbhoev4" path="res://Scenes/Effects/BloodSplatter/BloodSplatter6.tscn" id="11_dwhpk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bxx5k"]
 radius = 24.0832
@@ -41,5 +48,11 @@ autoplay = "default"
 wait_time = 0.5
 one_shot = true
 
+[node name="BloodSplatterSpawner" type="Node" parent="." node_paths=PackedStringArray("_unit")]
+script = ExtResource("5_aa1w8")
+_unit = NodePath("..")
+_splatterScenes = Array[PackedScene]([ExtResource("6_a73ww"), ExtResource("7_iv5qi"), ExtResource("8_oy5dr"), ExtResource("9_86o2m"), ExtResource("10_rk8i6"), ExtResource("11_dwhpk")])
+
+[connection signal="OnHit" from="." to="BloodSplatterSpawner" method="SpawnSplatter"]
 [connection signal="OnLitUpOnFire" from="." to="DeathFromFireTimer" method="start"]
 [connection signal="timeout" from="DeathFromFireTimer" to="." method="DieFromFire"]

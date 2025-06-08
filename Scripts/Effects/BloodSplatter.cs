@@ -22,7 +22,7 @@ public partial class BloodSplatter : Node2D
 	{
 		this.MakeSiblingOf(bleeder);
 
-		float randomizedDistanceToBleeder = _distanceToBleeder + MyRandom.Range(_distanceToBleederRandomization)
+		float randomizedDistanceToBleeder = _distanceToBleeder + MyRandom.Range(_distanceToBleederRandomization);
 		Vector2 offsetFromBleeder = hit.Force.Normalized() * randomizedDistanceToBleeder;
 		GlobalPosition = bleeder.GlobalPosition + offsetFromBleeder;
 		
