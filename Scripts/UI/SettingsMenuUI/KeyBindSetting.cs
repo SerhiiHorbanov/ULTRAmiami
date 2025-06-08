@@ -70,6 +70,7 @@ public partial class KeyBindSetting : Control
 		InputEventKey key = await RebindKeyButCancelable();
 		_keyBind.Key = key;
 		Apply();
+		Save();
 		
 		UpdateRebindingKeyButtonText();
 	}
@@ -94,7 +95,8 @@ public partial class KeyBindSetting : Control
 		InputEventMouseButton button = await GetNextMouseButtonButCancelable();
 		_keyBind.MouseButton = button;
 		Apply();
-
+		Save();
+		
 		UpdateRebindingMouseButtonButtonText();
 	}
 	

@@ -78,7 +78,5 @@ autowrap_mode = 3
 [node name="NextInputActionGetter" type="Node" parent="."]
 script = ExtResource("3_h03l0")
 
-[connection signal="pressed" from="HSplitContainer/Control2/HBoxContainer/RebindKeyButton" to="." method="Save"]
 [connection signal="pressed" from="HSplitContainer/Control2/HBoxContainer/RebindKeyButton" to="." method="RebindKey"]
-[connection signal="pressed" from="HSplitContainer/Control2/HBoxContainer/RebindMouseButtonButton" to="." method="Save"]
 [connection signal="pressed" from="HSplitContainer/Control2/HBoxContainer/RebindMouseButtonButton" to="." method="RebindMouseButton"]
