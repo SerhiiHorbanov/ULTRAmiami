@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using ULTRAmiami.Data;
 using ULTRAmiami.Units;
 using ULTRAmiami.Utils;
 
@@ -16,6 +17,7 @@ public partial class MeleeAttacker : Node2D
 	
 	[Export] private Unit _ignoredUnit;
 	[Export] private float _damage;
+	[Export] private HitBleedingInfo _bleedingInfo;
 
 	[Export] private AudioStreamPlayer2D _attackAudio;
 	[Export] private AudioStreamPlayer2D _hitAudio;
@@ -75,7 +77,7 @@ public partial class MeleeAttacker : Node2D
 			EmitSignalOnHitting(GlobalPosition);
 		}
 		
-		Hit hit = new(Vector2.FromAngle(Rotation), _damage);
+		Hit hit = new(Vector2.FromAngle(Rotation), _damage, _bleedingInfo);
 		attackable.Hit(hit);
 	}
 

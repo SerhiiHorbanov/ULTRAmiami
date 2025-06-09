@@ -1,4 +1,5 @@
 using Godot;
+using ULTRAmiami.Data;
 using ULTRAmiami.Units;
 using ULTRAmiami.Utils;
 
@@ -6,27 +7,21 @@ namespace ULTRAmiami.Effects;
 
 public partial class BloodSplatter : Node2D
 {
-	[Export] private float _distanceToBleeder;
-	[Export] private float _distanceToBleederRandomization;
-	
-	[Export] private float _rotationRandomization;
 	[Export] private float _scaleRandomization;
 	[Export] private float _animationSpeedScaleRandomization;
 
 	[Export] private AnimatedSprite2D _animation;
 	
-	private float HalfRotationRandomizationRad
-		=> float.DegreesToRadians(_rotationRandomization * 0.5f);
-	
 	public void Initialize(Unit bleeder, Hit hit)
 	{
 		this.MakeSiblingOf(bleeder);
 
+		HitBleedingInfo bleedingInfo = hit.BleedingInfo;
 		
-		float randomRotationOffset = MyRandom.Range(HalfRotationRandomizationRad);
+		float randomRotationOffset = MyRandom.Range(bleedingInfo.HalfRotationRandomizationRad);
 		GlobalRotation = hit.Force.Angle() + randomRotationOffset;
 		
-		float randomizedDistanceToBleeder = _distanceToBleeder + MyRandom.Range(_distanceToBleederRandomization);
+		float randomizedDistanceToBleeder = bleedingInfo.DistanceToBleeder + MyRandom.Range(bleedingInfo.DistanceToBleederRandomization);
 		Vector2 offsetFromBleeder = Vector2.FromAngle(GlobalRotation) * randomizedDistanceToBleeder;
 		GlobalPosition = bleeder.GlobalPosition + offsetFromBleeder;
 		

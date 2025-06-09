@@ -1,6 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://csd02hl7qd1g4"]
+[gd_scene load_steps=8 format=3 uid="uid://csd02hl7qd1g4"]
 
 [ext_resource type="Script" uid="uid://de1ui3jpquxp" path="res://Scripts/Weapons/Projectiles/RailgunShot.cs" id="1_hxi76"]
+[ext_resource type="Script" uid="uid://blwiauuuf8t1g" path="res://Scripts/Data/HitBleedingInfo.cs" id="2_o238y"]
+
+[sub_resource type="Resource" id="Resource_vo5t5"]
+script = ExtResource("2_o238y")
+SplatterAmount = 10
+DistanceToBleeder = 100.0
+DistanceToBleederRandomization = 100.0
+_rotationRandomizationDeg = 0.0
+metadata/_custom_type_script = "uid://blwiauuuf8t1g"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hxi76"]
 radius = 60.0
@@ -86,6 +95,7 @@ _shapeCast = NodePath("ShapeCast2D")
 _line = NodePath("Line2D")
 _length = 10000.0
 _damage = 7.0
+_bleedingInfo = SubResource("Resource_vo5t5")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 50)

@@ -1,4 +1,5 @@
 using Godot;
+using ULTRAmiami.Data;
 using ULTRAmiami.Units;
 using ULTRAmiami.Utils;
 
@@ -10,6 +11,7 @@ public partial class RailgunShot : Node2D
 	[Export] private Line2D _line;
 	[Export] private float _length;
 	[Export] private float _damage;
+	[Export] private HitBleedingInfo _bleedingInfo;
 	
 	private Vector2 _direction;
 	
@@ -61,6 +63,6 @@ public partial class RailgunShot : Node2D
 		
 		IAttackable attackable = node2D.GetAncestor<IAttackable>();
 
-		attackable?.Hit(new(_direction, _damage));
+		attackable?.Hit(new(_direction, _damage, _bleedingInfo));
 	}
 }

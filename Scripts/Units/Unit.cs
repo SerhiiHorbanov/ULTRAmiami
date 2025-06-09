@@ -22,6 +22,7 @@ public partial class Unit : CharacterBody2D, IAttackable
 	[Export] public bool GodMode;
 	[Export] private PackedScene _deadVersion;
 	[Export] private bool _isImmuneToFire;
+	[Export] private HitBleedingInfo _deathFromFireBleedingInfo;
 
 	public readonly List<DroppedWeapon> EnteredDroppedWeapons = [];
 	
@@ -91,7 +92,7 @@ public partial class Unit : CharacterBody2D, IAttackable
 
 	private void DieFromFire()
 	{
-		Die(new(Vector2.Zero, 1));
+		Die(new(Vector2.Zero, 1, _deathFromFireBleedingInfo));
 	}
 	
 	public void TrySetOnFire()

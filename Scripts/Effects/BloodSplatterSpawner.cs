@@ -11,7 +11,7 @@ public partial class BloodSplatterSpawner : Node
 
 	private void SpawnSplatter(Hit hit)
 	{
-		for (int i = 0; i < hit.SplatterAmount; i++)
+		for (int i = 0; i < hit.BleedingInfo.SplatterAmount; i++)
 			SpawnSingleSplatter(hit);
 	}
 	private void SpawnSingleSplatter(Hit hit)

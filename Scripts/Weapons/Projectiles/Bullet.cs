@@ -1,4 +1,5 @@
 using Godot;
+using ULTRAmiami.Data;
 using ULTRAmiami.Effects;
 using ULTRAmiami.Units;
 using ULTRAmiami.Utils;
@@ -18,6 +19,7 @@ public partial class Bullet : Node2D, IFirearmProjectile
 	
 	private Vector2 _velocity;
 	[Export] private float _damage;
+	[Export] private HitBleedingInfo _bleedingInfo;
 
 	public override void _Ready()
 	{
@@ -83,7 +85,7 @@ public partial class Bullet : Node2D, IFirearmProjectile
 		if (attackable.Bleeds)
 			CreateParticlesOnCollisionPoint(_bloodSplatterParticles);
 		
-		attackable.Hit(new(_velocity, _damage));
+		attackable.Hit(new(_velocity, _damage, _bleedingInfo));
 	}
 
 	private void CreateParticlesOnCollisionPoint(PackedScene particlesScene)

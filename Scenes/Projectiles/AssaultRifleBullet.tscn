@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbs2toatsh08u"]
+[gd_scene load_steps=4 format=3 uid="uid://bbs2toatsh08u"]
 
 [ext_resource type="PackedScene" uid="uid://bh4ye65imk1e" path="res://Scenes/Projectiles/Bullet.tscn" id="1_eaf3u"]
+[ext_resource type="Script" uid="uid://blwiauuuf8t1g" path="res://Scripts/Data/HitBleedingInfo.cs" id="2_hcofh"]
+
+[sub_resource type="Resource" id="Resource_rkxu3"]
+script = ExtResource("2_hcofh")
+SplatterAmount = 4
+DistanceToBleeder = 40.0
+DistanceToBleederRandomization = 40.0
+_rotationRandomizationDeg = 35.0
+metadata/_custom_type_script = "uid://blwiauuuf8t1g"
 
 [node name="AssaultRifleBullet" instance=ExtResource("1_eaf3u")]
 _damage = 3.0
+_bleedingInfo = SubResource("Resource_rkxu3")

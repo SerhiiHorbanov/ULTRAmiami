@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://d0r1r1kfajsn1"]
+[gd_scene load_steps=20 format=3 uid="uid://d0r1r1kfajsn1"]
 
 [ext_resource type="Script" uid="uid://di12frf23lynh" path="res://Scripts/Units/Unit.cs" id="1_bxx5k"]
+[ext_resource type="Script" uid="uid://blwiauuuf8t1g" path="res://Scripts/Data/HitBleedingInfo.cs" id="2_baijc"]
 [ext_resource type="Texture2D" uid="uid://ch4afs3bdhjvn" path="res://Textures/Units/PistolEnemyBody.png" id="2_f2dp4"]
 [ext_resource type="Script" uid="uid://bkmt5cmweocnk" path="res://Scripts/Units/UnitAnimator.cs" id="3_f2dp4"]
 [ext_resource type="SpriteFrames" uid="uid://csxvamimud3q5" path="res://Animations/Units/PistolEnemyLegsAnimation.tres" id="4_f2dp4"]
@@ -17,6 +18,14 @@
 [ext_resource type="PackedScene" uid="uid://b5oklh1l68r57" path="res://Scenes/Effects/BloodSplatter/BloodSplatter10.tscn" id="15_c2nhe"]
 [ext_resource type="PackedScene" uid="uid://b53gwkkcqqhjk" path="res://Scenes/Effects/BloodSplatter/BloodSplatter11.tscn" id="16_jb8h3"]
 
+[sub_resource type="Resource" id="Resource_u301h"]
+script = ExtResource("2_baijc")
+SplatterAmount = 0
+DistanceToBleeder = 0.0
+DistanceToBleederRandomization = 0.0
+_rotationRandomizationDeg = 0.0
+metadata/_custom_type_script = "uid://blwiauuuf8t1g"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_bxx5k"]
 radius = 24.0832
 
@@ -28,6 +37,7 @@ floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_bxx5k")
 DropsPickUppableWeapon = true
+_deathFromFireBleedingInfo = SubResource("Resource_u301h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bxx5k")

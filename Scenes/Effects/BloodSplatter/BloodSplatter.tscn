@@ -5,8 +5,6 @@
 [node name="BloodSplatter" type="Node2D" node_paths=PackedStringArray("_animation")]
 scale = Vector2(3, 3)
 script = ExtResource("1_6s8ab")
-_distanceToBleeder = 20.0
-_rotationRandomization = 10.0
 _scaleRandomization = 0.2
 _animationSpeedScaleRandomization = 0.8
 _animation = NodePath("AnimatedSprite2D")

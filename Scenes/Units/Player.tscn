@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=30 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dp1p8usxdya6q" path="res://Textures/Effects/V0ArmSwoosh.png" id="15_xlna3"]
 [ext_resource type="PackedScene" uid="uid://c4cilfx80rxgt" path="res://Scenes/Effects/ArmHitBloodParticles.tscn" id="16_gkp25"]
 [ext_resource type="AnimationLibrary" uid="uid://bierrju431t8h" path="res://MiscResources/Animations/PlayerArm.tres" id="17_c6vqk"]
+[ext_resource type="Script" uid="uid://blwiauuuf8t1g" path="res://Scripts/Data/HitBleedingInfo.cs" id="18_rfdr6"]
 [ext_resource type="AudioStream" uid="uid://bul1g3ey30dhr" path="res://Audio/Sound Randomizers/ArmAttackSwooshRandomizer.tres" id="19_10dhr"]
 [ext_resource type="AudioStream" uid="uid://c2da3v5sudved" path="res://Audio/Sound Randomizers/MeleeHitSoundRandomizer.tres" id="20_hese3"]
 
@@ -33,6 +34,14 @@ CenterScale = Vector2(5, 5)
 ShownSpreadDeg = 0.0
 Corners = null
 metadata/_custom_type_script = "uid://di45w16121rtc"
+
+[sub_resource type="Resource" id="Resource_egyh6"]
+script = ExtResource("18_rfdr6")
+SplatterAmount = 30
+DistanceToBleeder = 100.0
+DistanceToBleederRandomization = 100.0
+_rotationRandomizationDeg = 90.0
+metadata/_custom_type_script = "uid://blwiauuuf8t1g"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2egk"]
 size = Vector2(70, 80)
@@ -108,6 +117,7 @@ _maxStamina = 1.0
 _attackStaminaCost = 0.6
 _ignoredUnit = NodePath("..")
 _damage = 4.0
+_bleedingInfo = SubResource("Resource_egyh6")
 _attackAudio = NodePath("ArmAttackSwooshRandomizer")
 _hitAudio = NodePath("HitRandomizer")
 

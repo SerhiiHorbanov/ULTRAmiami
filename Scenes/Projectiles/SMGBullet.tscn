@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckrt3udf0e7bu"]
+[gd_scene load_steps=4 format=3 uid="uid://ckrt3udf0e7bu"]
 
 [ext_resource type="PackedScene" uid="uid://bh4ye65imk1e" path="res://Scenes/Projectiles/Bullet.tscn" id="1_owbyn"]
+[ext_resource type="Script" uid="uid://blwiauuuf8t1g" path="res://Scripts/Data/HitBleedingInfo.cs" id="2_eyilf"]
+
+[sub_resource type="Resource" id="Resource_xv3mi"]
+script = ExtResource("2_eyilf")
+SplatterAmount = 6
+DistanceToBleeder = 40.0
+DistanceToBleederRandomization = 40.0
+_rotationRandomizationDeg = 20.0
+metadata/_custom_type_script = "uid://blwiauuuf8t1g"
 
 [node name="SMGBullet" instance=ExtResource("1_owbyn")]
 _speedRandomness = 0.3
 _damage = 1.0
+_bleedingInfo = SubResource("Resource_xv3mi")
