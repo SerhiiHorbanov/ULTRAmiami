@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjmxtn0xwbfp6"]
+[gd_scene load_steps=5 format=3 uid="uid://cjmxtn0xwbfp6"]
 
 [ext_resource type="PackedScene" uid="uid://bh4ye65imk1e" path="res://Scenes/Projectiles/Bullet.tscn" id="1_8twa6"]
 [ext_resource type="Script" uid="uid://blwiauuuf8t1g" path="res://Scripts/Data/HitBleedingInfo.cs" id="2_ebkul"]
@@ -8,7 +8,15 @@ script = ExtResource("2_ebkul")
 SplatterAmount = 2
 DistanceToBleeder = 200.0
 DistanceToBleederRandomization = 100.0
-_rotationRandomizationDeg = 50.0
+_rotationRandomizationDeg = 60.0
+metadata/_custom_type_script = "uid://blwiauuuf8t1g"
+
+[sub_resource type="Resource" id="Resource_ebkul"]
+script = ExtResource("2_ebkul")
+SplatterAmount = 4
+DistanceToBleeder = 60.0
+DistanceToBleederRandomization = 60.0
+_rotationRandomizationDeg = 20.0
 metadata/_custom_type_script = "uid://blwiauuuf8t1g"
 
 [node name="ShotgunBullet" instance=ExtResource("1_8twa6")]
@@ -16,3 +24,11 @@ _speed = 2000.0
 _speedRandomness = 0.2
 _damage = 0.3
 _bleedingInfo = SubResource("Resource_6ghgv")
+_bleedingInfoAfterTimer = SubResource("Resource_ebkul")
+
+[node name="Timer" type="Timer" parent="." index="2"]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="SetBleedingInfoToChanged"]

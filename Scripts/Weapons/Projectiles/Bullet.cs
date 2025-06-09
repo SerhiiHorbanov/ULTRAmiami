@@ -20,6 +20,7 @@ public partial class Bullet : Node2D, IFirearmProjectile
 	private Vector2 _velocity;
 	[Export] private float _damage;
 	[Export] private HitBleedingInfo _bleedingInfo;
+	[Export] private HitBleedingInfo _bleedingInfoAfterTimer;
 
 	public override void _Ready()
 	{
@@ -97,4 +98,7 @@ public partial class Bullet : Node2D, IFirearmProjectile
 		particles.GlobalPosition = _rayCast.GetCollisionPoint();
 		particles.Emit();
 	}
+
+	private void SetBleedingInfoToChanged()
+		=> _bleedingInfo = _bleedingInfoAfterTimer;
 }
