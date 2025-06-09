@@ -12,7 +12,7 @@ public abstract partial class UnitController : Node2D
 		=> _unit;
 
 	protected Weapon Weapon
-		=> Unit.Weapon;
+		=> Unit?.Weapon;
 	
 	public override void _Ready()
 	{
