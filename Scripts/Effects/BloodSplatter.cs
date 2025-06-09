@@ -22,12 +22,13 @@ public partial class BloodSplatter : Node2D
 	{
 		this.MakeSiblingOf(bleeder);
 
-		float randomizedDistanceToBleeder = _distanceToBleeder + MyRandom.Range(_distanceToBleederRandomization);
-		Vector2 offsetFromBleeder = hit.Force.Normalized() * randomizedDistanceToBleeder;
-		GlobalPosition = bleeder.GlobalPosition + offsetFromBleeder;
 		
 		float randomRotationOffset = MyRandom.Range(HalfRotationRandomizationRad);
 		GlobalRotation = hit.Force.Angle() + randomRotationOffset;
+		
+		float randomizedDistanceToBleeder = _distanceToBleeder + MyRandom.Range(_distanceToBleederRandomization);
+		Vector2 offsetFromBleeder = Vector2.FromAngle(GlobalRotation) * randomizedDistanceToBleeder;
+		GlobalPosition = bleeder.GlobalPosition + offsetFromBleeder;
 		
 		Scale *= 1 + MyRandom.Range(_scaleRandomization);
 		_animation.SpeedScale *= 1 + MyRandom.Range(_animationSpeedScaleRandomization);
