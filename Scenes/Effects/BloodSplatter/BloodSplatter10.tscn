@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5oklh1l68r57"]
+
+[ext_resource type="PackedScene" uid="uid://3fq4ba7esueu" path="res://Scenes/Effects/BloodSplatter/BloodSplatter.tscn" id="1_p16vq"]
+[ext_resource type="Texture2D" uid="uid://bklq2u46jah3e" path="res://Textures/Effects/BloodSplatter/BloodSplatter10.png" id="2_hegbs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpvmm"]
+atlas = ExtResource("2_hegbs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spxnh"]
+atlas = ExtResource("2_hegbs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvc0c"]
+atlas = ExtResource("2_hegbs")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4ddr"]
+atlas = ExtResource("2_hegbs")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6puml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpvmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spxnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvc0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4ddr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="BloodSplatter" instance=ExtResource("1_p16vq")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(4, 0)
+rotation = 0.785398
+texture = ExtResource("2_hegbs")
+hframes = 2
+vframes = 2
+frame = 3
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(4, 0)
+rotation = 0.785397
+sprite_frames = SubResource("SpriteFrames_6puml")
+autoplay = "default"

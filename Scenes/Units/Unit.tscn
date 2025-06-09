@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0r1r1kfajsn1"]
+[gd_scene load_steps=18 format=3 uid="uid://d0r1r1kfajsn1"]
 
 [ext_resource type="Script" uid="uid://di12frf23lynh" path="res://Scripts/Units/Unit.cs" id="1_bxx5k"]
 [ext_resource type="Texture2D" uid="uid://ch4afs3bdhjvn" path="res://Textures/Units/PistolEnemyBody.png" id="2_f2dp4"]
@@ -11,6 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://dtt761r7j2lpr" path="res://Scenes/Effects/BloodSplatter/BloodSplatter4.tscn" id="9_86o2m"]
 [ext_resource type="PackedScene" uid="uid://cdd2lii61s5la" path="res://Scenes/Effects/BloodSplatter/BloodSplatter5.tscn" id="10_rk8i6"]
 [ext_resource type="PackedScene" uid="uid://dpaf3swbhoev4" path="res://Scenes/Effects/BloodSplatter/BloodSplatter6.tscn" id="11_dwhpk"]
+[ext_resource type="PackedScene" uid="uid://wrjl3yx5dx32" path="res://Scenes/Effects/BloodSplatter/BloodSplatter7.tscn" id="12_emoxc"]
+[ext_resource type="PackedScene" uid="uid://ci3cfgxrhvfn" path="res://Scenes/Effects/BloodSplatter/BloodSplatter8.tscn" id="13_baijc"]
+[ext_resource type="PackedScene" uid="uid://c27kmi32m852l" path="res://Scenes/Effects/BloodSplatter/BloodSplatter9.tscn" id="14_u301h"]
+[ext_resource type="PackedScene" uid="uid://b5oklh1l68r57" path="res://Scenes/Effects/BloodSplatter/BloodSplatter10.tscn" id="15_c2nhe"]
+[ext_resource type="PackedScene" uid="uid://b53gwkkcqqhjk" path="res://Scenes/Effects/BloodSplatter/BloodSplatter11.tscn" id="16_jb8h3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bxx5k"]
 radius = 24.0832
@@ -51,7 +56,7 @@ one_shot = true
 [node name="BloodSplatterSpawner" type="Node" parent="." node_paths=PackedStringArray("_unit")]
 script = ExtResource("5_aa1w8")
 _unit = NodePath("..")
-_splatterScenes = Array[PackedScene]([ExtResource("6_a73ww"), ExtResource("7_iv5qi"), ExtResource("8_oy5dr"), ExtResource("9_86o2m"), ExtResource("10_rk8i6"), ExtResource("11_dwhpk")])
+_splatterScenes = Array[PackedScene]([ExtResource("6_a73ww"), ExtResource("7_iv5qi"), ExtResource("8_oy5dr"), ExtResource("9_86o2m"), ExtResource("10_rk8i6"), ExtResource("11_dwhpk"), ExtResource("12_emoxc"), ExtResource("13_baijc"), ExtResource("14_u301h"), ExtResource("15_c2nhe"), ExtResource("16_jb8h3")])
 
 [connection signal="OnHit" from="." to="BloodSplatterSpawner" method="SpawnSplatter"]
 [connection signal="OnLitUpOnFire" from="." to="DeathFromFireTimer" method="start"]
