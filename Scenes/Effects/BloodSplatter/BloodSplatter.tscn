@@ -2,12 +2,17 @@
 
 [ext_resource type="Script" uid="uid://byn3ejhsx2ubt" path="res://Scripts/Effects/BloodSplatter.cs" id="1_6s8ab"]
 
-[node name="BloodSplatter" type="Node2D" node_paths=PackedStringArray("_animation")]
+[node name="BloodSplatter" type="Node2D" node_paths=PackedStringArray("_animation", "_bloodDryingTimer", "_sprite")]
 scale = Vector2(3, 3)
 script = ExtResource("1_6s8ab")
-_scaleRandomization = 0.2
-_animationSpeedScaleRandomization = 0.8
+_scaleRandomization = 0.4
+_animationSpeedScaleRandomization = 0.4
 _animation = NodePath("AnimatedSprite2D")
+_bloodColorRandomization = 0.5
+_bloodDryingTimer = NodePath("DryingTimer")
+_initialBloodColor = Color(1, 0, 0, 1)
+_dryBloodColor = Color(0.501961, 0, 0, 1)
+_sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -16,6 +21,20 @@ z_index = -10
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -10
 
+[node name="TimerBeforeDrying" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="DryingTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerUntilSimplification" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
 [connection signal="ready" from="Sprite2D" to="Sprite2D" method="set_visible" binds= [false]]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="queue_free"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="Sprite2D" method="set_visible" binds= [true]]
+[connection signal="timeout" from="TimerBeforeDrying" to="DryingTimer" method="start"]
+[connection signal="timeout" from="TimerUntilSimplification" to="." method="Simplify"]
