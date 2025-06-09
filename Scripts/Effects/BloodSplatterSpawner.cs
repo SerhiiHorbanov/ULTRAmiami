@@ -11,6 +11,11 @@ public partial class BloodSplatterSpawner : Node
 
 	private void SpawnSplatter(Hit hit)
 	{
+		for (int i = 0; i < hit.SplatterAmount; i++)
+			SpawnSingleSplatter(hit);
+	}
+	private void SpawnSingleSplatter(Hit hit)
+	{
 		PackedScene scene = _splatterScenes.PickRandom();
 		BloodSplatter bloodSplatter = scene?.Instantiate<BloodSplatter>();
 
