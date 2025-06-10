@@ -16,7 +16,7 @@
 [node name="BloodSplatterSystem" type="Node2D" node_paths=PackedStringArray("_bloodDryingTimer", "_deletionTimer")]
 script = ExtResource("1_cp14f")
 _scaleRandomization = 0.4
-_bloodColorRandomization = 0.4
+_bloodColorRandomization = 0.7
 _initialBloodColor = Color(1, 0, 0, 1)
 _dryBloodColor = Color(0.501961, 0, 0, 1)
 _bloodDryingTimer = NodePath("DryingTimer")

@@ -23,6 +23,7 @@ public partial class Unit : CharacterBody2D, IAttackable
 	[Export] private PackedScene _deadVersion;
 	[Export] private bool _isImmuneToFire;
 	[Export] private HitBleedingInfo _deathFromFireBleedingInfo;
+	[Export] private AudioStreamPlayer2D _deathSound;
 
 	public readonly List<DroppedWeapon> EnteredDroppedWeapons = [];
 	
@@ -87,7 +88,18 @@ public partial class Unit : CharacterBody2D, IAttackable
 		EmitSignalOnDeath(hit);
 		DropWeapon(); 
 		MakeDeadVersion();
+		PlayDeathSound();
 		QueueFree();
+	}
+
+	private void PlayDeathSound()
+	{
+		if (_deathSound is null)
+			return;
+		
+		_deathSound.MakeSiblingOf(this);
+		_deathSound.Play();
+		_deathSound.GlobalPosition = GlobalPosition;
 	}
 
 	private void DieFromFire()

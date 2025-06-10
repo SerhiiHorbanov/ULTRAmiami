@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckld4b4xs2rjm"]
+[gd_scene load_steps=6 format=3 uid="uid://ckld4b4xs2rjm"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_tma0q"]
 [ext_resource type="Script" uid="uid://d3wci407jtlu8" path="res://Scripts/Controllers/EnemyUnitController.cs" id="2_4kc1i"]
 [ext_resource type="Script" uid="uid://5u38ma371am7" path="res://Scripts/Controllers/EnemyLineOfSightToTarget.cs" id="3_x27d5"]
+[ext_resource type="AudioStream" uid="uid://daex6bahpvbw6" path="res://Audio/Sound Randomizers/EnemyDeathSoundRandomizer.tres" id="4_g2rgt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f44r0"]
 radius = 700.0
 
-[node name="Unit" instance=ExtResource("1_tma0q")]
+[node name="Unit" node_paths=PackedStringArray("_deathSound") instance=ExtResource("1_tma0q")]
+_deathSound = NodePath("DeathSoundPlayer")
 
 [node name="EnemyController" type="Node2D" parent="." index="2" node_paths=PackedStringArray("_shootingTimer", "_lineOfSightToTarget", "_pathRebuildingSuppressionTimer", "_playerNoticingArea", "_unit")]
 script = ExtResource("2_4kc1i")
@@ -42,4 +44,11 @@ script = ExtResource("3_x27d5")
 wait_time = 0.5
 one_shot = true
 
+[node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="." index="3"]
+position = Vector2(0, 1)
+stream = ExtResource("4_g2rgt")
+volume_db = -12.0
+attenuation = 0.4
+
 [connection signal="OnHit" from="." to="." method="Die"]
+[connection signal="finished" from="DeathSoundPlayer" to="DeathSoundPlayer" method="queue_free"]
