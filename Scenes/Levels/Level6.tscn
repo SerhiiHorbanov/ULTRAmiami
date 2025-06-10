@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://d26urxkfx5c0p"]
+[gd_scene load_steps=12 format=3 uid="uid://d26urxkfx5c0p"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_8a64g"]
 [ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="2_bkrib"]
 [ext_resource type="Resource" uid="uid://bxdk7d00rp17w" path="res://LevelInfos/Level6Info.tres" id="2_dn4hu"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="3_dn4hu"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="4_vxd2s"]
-[ext_resource type="PackedScene" uid="uid://dv2prq8qs7toe" path="res://Scenes/LevelDetails/InvertedTriggerableDoor.tscn" id="5_x36ee"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="6_2xsjn"]
 [ext_resource type="PackedScene" uid="uid://dg4l4hpp7kyp3" path="res://Scenes/LevelDetails/AreaTrigger.tscn" id="7_ksrqp"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="8_c2vyk"]
@@ -15,9 +14,9 @@
 size = Vector2(402, 536)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bkrib"]
-vertices = PackedVector2Array(-1383, -807, -1383, -935, -921, -935, -921, -807, -231, -807, -231, -1383, 807, -1383, 231, -921, 807, -921, 231, 231, -231, -345, -231, 231, -921, -345, -1383, -345, -921, 807, -1959, 807, -1959, 231, -1497, 345, -2073, 231, -2073, 807, -2535, 807, -2535, -231, -1497, -231, -1383, 345, -1497, -807, -1959, -345, -1959, -1497, -1497, -1959, -2535, -1959, -2535, -1497, -2073, -345, -2535, -345, -2535, -807, -2073, -807, 217, -2247, 217, -3111, 1383, -3111, 807, -2649, 1497, -2535, 1497, -3111, 1959, -3111, 1959, -2535, 2535, -2535, 2535, -2073, 921, -2073, 1383, -2535, 921, -2649, -921, -2649, -921, -1241, -1383, -1241, -1383, -3111, 103, -3111, -807, -2649, 103, -2247, -807, -2073, 807, -2073)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(6, 8, 7), PackedInt32Array(4, 7, 9, 10), PackedInt32Array(9, 11, 10), PackedInt32Array(3, 4, 10, 12), PackedInt32Array(0, 3, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(18, 21, 22, 16), PackedInt32Array(16, 22, 17), PackedInt32Array(14, 17, 23), PackedInt32Array(12, 14, 23, 13), PackedInt32Array(24, 0, 13, 25), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(28, 27, 26, 29), PackedInt32Array(30, 31, 32, 33), PackedInt32Array(34, 35, 36, 37), PackedInt32Array(38, 39, 40, 41), PackedInt32Array(41, 42, 43, 44), PackedInt32Array(38, 41, 44), PackedInt32Array(45, 38, 44), PackedInt32Array(45, 44, 46, 36), PackedInt32Array(47, 48, 49, 50), PackedInt32Array(47, 50, 51, 52), PackedInt32Array(52, 51, 53, 54), PackedInt32Array(55, 54, 53, 34), PackedInt32Array(37, 55, 34), PackedInt32Array(37, 36, 46)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-256, 256, 256, 256, 256, -896, 832, -896, 832, -1408, -256, -1408, -256, -832, -896, -832, -896, -960, -1408, -960, -1408, -832, -1472, -832, -1472, -1984, -2560, -1984, -2560, -1472, -1984, -1472, -1984, -320, -1408, -320, -1408, 320, -1472, 320, -1472, -256, -2560, -256, -2560, 832, -2048, 832, -2048, 256, -1984, 256, -1984, 832, -896, 832, -896, -320, -256, -320), PackedVector2Array(-2560, -832, -2048, -832, -2048, -320, -2560, -320), PackedVector2Array(-1408, -1216, -896, -1216, -896, -2624, -832, -2624, -832, -2048, 832, -2048, 832, -2624, 896, -2624, 896, -2048, 2560, -2048, 2560, -2560, 1984, -2560, 1984, -3136, 1472, -3136, 1472, -2560, 1408, -2560, 1408, -3136, 192, -3136, 192, -2912, 192, -2272, 128, -2272, 128, -2912, 128, -3136, -1408, -3136)])
+vertices = PackedVector2Array(-231, -921, -807, -921, -807, -1383, 807, -1383, 807, -921, 231, -921, -231, -807, 231, 231, -231, -345, -231, 231, -1497, -807, -921, -345, -921, 807, -1959, 807, -1959, 231, -1497, 345, -2073, 231, -2073, 807, -2535, 807, -2535, -231, -1497, -231, -1383, 345, -1383, -345, -1959, -345, -1959, -1497, -1497, -1959, -2535, -1959, -2535, -1497, -2073, -345, -2535, -345, -2535, -807, -2073, -807, 217, -2247, 217, -3111, 1383, -3111, 807, -2649, 1497, -2535, 1497, -3111, 1959, -3111, 1959, -2535, 2535, -2535, 2535, -2073, 921, -2073, 1383, -2535, 921, -2649, -921, -2649, -921, -921, -1383, -921, -1383, -3111, 103, -3111, -807, -2649, 103, -2247, -807, -2073, 807, -2073)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5), PackedInt32Array(0, 3, 5, 6), PackedInt32Array(6, 5, 7, 8), PackedInt32Array(7, 9, 8), PackedInt32Array(10, 6, 8, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(16, 19, 20, 14), PackedInt32Array(14, 20, 15), PackedInt32Array(12, 15, 21), PackedInt32Array(11, 12, 21, 22), PackedInt32Array(10, 11, 22), PackedInt32Array(10, 22, 23, 24), PackedInt32Array(25, 10, 24), PackedInt32Array(26, 25, 24, 27), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(39, 40, 41, 42), PackedInt32Array(36, 39, 42), PackedInt32Array(43, 36, 42), PackedInt32Array(43, 42, 44, 34), PackedInt32Array(45, 46, 47, 48), PackedInt32Array(45, 48, 49, 50), PackedInt32Array(50, 49, 51, 52), PackedInt32Array(53, 52, 51, 32), PackedInt32Array(35, 53, 32), PackedInt32Array(35, 34, 44)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-256, 256, 256, 256, 256, -896, 832, -896, 832, -1408, -832, -1408, -832, -896, -256, -896, -256, -832, -1472, -832, -1472, -1984, -2560, -1984, -2560, -1472, -1984, -1472, -1984, -320, -1408, -320, -1408, 320, -1472, 320, -1472, -256, -2560, -256, -2560, 832, -2048, 832, -2048, 256, -1984, 256, -1984, 832, -896, 832, -896, -320, -256, -320), PackedVector2Array(-2560, -832, -2048, -832, -2048, -320, -2560, -320), PackedVector2Array(-1408, -896, -896, -896, -896, -2624, -832, -2624, -832, -2048, 832, -2048, 832, -2624, 896, -2624, 896, -2048, 2560, -2048, 2560, -2560, 1984, -2560, 1984, -3136, 1472, -3136, 1472, -2560, 1408, -2560, 1408, -3136, 192, -3136, 192, -2912, 192, -2272, 128, -2272, 128, -2912, 128, -3136, -1408, -3136)])
 agent_radius = 25.0
 
 [node name="Level" instance=ExtResource("1_8a64g")]
@@ -84,8 +83,8 @@ rotation = 3.14159
 scale = Vector2(10, 1)
 
 [node name="Wall9" parent="Walls" index="10" instance=ExtResource("3_dn4hu")]
-position = Vector2(-288, -1152)
-rotation = 4.71238
+position = Vector2(-576, -1440)
+rotation = 6.28318
 scale = Vector2(10, 1)
 
 [node name="Wall12" parent="Walls" index="11" instance=ExtResource("3_dn4hu")]
@@ -300,18 +299,17 @@ rotation = 3.14159
 scale = Vector2(10, 1)
 
 [node name="TriggerableDoor" parent="." index="7" instance=ExtResource("4_vxd2s")]
-position = Vector2(-1152, -1184)
+position = Vector2(-1152, -864)
 rotation = -1.57079
 scale = Vector2(2.135, 2.615)
 _triggersNeeded = 4
 
-[node name="TriggerableDoor2" parent="." index="8" instance=ExtResource("4_vxd2s")]
-position = Vector2(-2016, -576)
+[node name="TriggerableDoor3" parent="." index="8" instance=ExtResource("4_vxd2s")]
+position = Vector2(-288, -1151)
 scale = Vector2(2.135, 2.615)
 
-[node name="InvertedTriggerableDoor" parent="." index="9" instance=ExtResource("5_x36ee")]
-position = Vector2(-1152, -992)
-rotation = -1.57079
+[node name="TriggerableDoor2" parent="." index="9" instance=ExtResource("4_vxd2s")]
+position = Vector2(-2016, -576)
 scale = Vector2(2.135, 2.615)
 
 [node name="Triggers" type="Node2D" parent="." index="10"]
@@ -365,25 +363,34 @@ position = Vector2(-2256, 464)
 [node name="Unit5" parent="Enemies" index="8" instance=ExtResource("8_c2vyk")]
 position = Vector2(560, -1152)
 
-[node name="AssaultRifleEnemy3" parent="Enemies" index="9" instance=ExtResource("9_gxw42")]
+[node name="Unit8" parent="Enemies" index="9" instance=ExtResource("8_c2vyk")]
+position = Vector2(-584, -1152)
+
+[node name="AssaultRifleEnemy3" parent="Enemies" index="10" instance=ExtResource("9_gxw42")]
 position = Vector2(-688, -2320)
 
-[node name="AssaultRifleEnemy4" parent="Enemies" index="10" instance=ExtResource("9_gxw42")]
+[node name="AssaultRifleEnemy4" parent="Enemies" index="11" instance=ExtResource("9_gxw42")]
 position = Vector2(256, -2744)
 
-[node name="AssaultRifleEnemy5" parent="Enemies" index="11" instance=ExtResource("9_gxw42")]
+[node name="AssaultRifleEnemy5" parent="Enemies" index="12" instance=ExtResource("9_gxw42")]
 position = Vector2(432, -2544)
 
-[node name="Unit6" parent="Enemies" index="12" instance=ExtResource("8_c2vyk")]
+[node name="Unit6" parent="Enemies" index="13" instance=ExtResource("8_c2vyk")]
 position = Vector2(248, -2384)
 
-[node name="Unit7" parent="Enemies" index="13" instance=ExtResource("8_c2vyk")]
+[node name="Unit7" parent="Enemies" index="14" instance=ExtResource("8_c2vyk")]
 position = Vector2(360, -2848)
 
-[node name="AssaultRifleEnemy6" parent="Enemies" index="14" instance=ExtResource("9_gxw42")]
+[node name="AssaultRifleEnemy6" parent="Enemies" index="15" instance=ExtResource("9_gxw42")]
 position = Vector2(968, -2432)
 
-[node name="AssaultRifleEnemy7" parent="Enemies" index="15" instance=ExtResource("9_gxw42")]
+[node name="AssaultRifleEnemy10" parent="Enemies" index="16" instance=ExtResource("9_gxw42")]
+position = Vector2(-1152, -1176)
+
+[node name="AssaultRifleEnemy11" parent="Enemies" index="17" instance=ExtResource("9_gxw42")]
+position = Vector2(-712, -2920)
+
+[node name="AssaultRifleEnemy7" parent="Enemies" index="18" instance=ExtResource("9_gxw42")]
 position = Vector2(1536, -2736)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="12"]
@@ -394,7 +401,7 @@ navigation_polygon = SubResource("NavigationPolygon_bkrib")
 [connection signal="OnBroken" from="Triggers/BreakableTrigger3" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="Triggers/BreakableTrigger3" to="TriggerableDoor2" method="Trigger"]
 [connection signal="OnBroken" from="Triggers/BreakableTrigger4" to="TriggerableDoor" method="Trigger"]
-[connection signal="OnTriggering" from="Triggers/AreaTrigger" to="InvertedTriggerableDoor" method="Trigger"]
+[connection signal="OnTriggering" from="Triggers/AreaTrigger" to="TriggerableDoor3" method="Trigger"]
 
 [editable path="Canvas"]
 [editable path="Player"]
