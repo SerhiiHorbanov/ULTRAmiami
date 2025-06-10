@@ -23,6 +23,7 @@ _info = ExtResource("2_4m1v4")
 
 [node name="SpecificUnitKillRequirement" parent="LevelTarget" index="0" node_paths=PackedStringArray("_target") instance=ExtResource("3_4m1v4")]
 _target = NodePath("../../Enemies/Unit")
+_targetName = "Pistol enemy"
 
 [node name="Walls" type="Node2D" parent="." index="7"]
 

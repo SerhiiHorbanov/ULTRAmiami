@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmhqgucol0gny"]
+
+[ext_resource type="Script" uid="uid://cs4ps0qja1pp5" path="res://Scripts/UI/LevelRequirementsUI/SpecificUnitKillRequirementUI.cs" id="1_vtbdp"]
+
+[node name="SpecificUnitKillRequirementUi" type="MarginContainer" node_paths=PackedStringArray("_label")]
+custom_minimum_size = Vector2(200, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_vtbdp")
+_label = NodePath("RichTextLabel")
+_notCompletedPrefix = "[color=red]Kill: "
+_completedPrefix = "[color=green]"
+_completedSuffix = " is killed"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "Default text"
