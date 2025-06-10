@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=29 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://ch5wvmkytoo1o" path="res://Scenes/Units/AimLine.tscn" id="4_v5kf0"]
 [ext_resource type="Script" uid="uid://bf2ajtg11efkx" path="res://Scripts/PlayerAim.cs" id="6_5ssqx"]
 [ext_resource type="AudioStream" uid="uid://dr8j3gjenfena" path="res://Audio/SFX/V0DeathScream.wav" id="7_g6b54"]
-[ext_resource type="Script" uid="uid://dhi603ffh8sbh" path="res://Scripts/Units/PlayerDeathSound.cs" id="8_jokor"]
 [ext_resource type="Script" uid="uid://bygcsgekb4qug" path="res://Scripts/UI/Crosshair.cs" id="8_rfdr6"]
 [ext_resource type="Texture2D" uid="uid://bxsboa2urtbys" path="res://Textures/Crosshair/CrosshairCenter3.png" id="8_uklww"]
 [ext_resource type="Script" uid="uid://70y5w1gml3pe" path="res://Scripts/Units/BloodFuel.cs" id="9_jokor"]
@@ -46,11 +45,12 @@ metadata/_custom_type_script = "uid://blwiauuuf8t1g"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2egk"]
 size = Vector2(70, 80)
 
-[node name="Player" node_paths=PackedStringArray("_unitMovement", "_weapon") groups=["Player"] instance=ExtResource("1_33iby")]
+[node name="Player" node_paths=PackedStringArray("_unitMovement", "_weapon", "_deathSound") groups=["Player"] instance=ExtResource("1_33iby")]
 _unitMovement = NodePath("PlayerMovement")
 _weapon = NodePath("Pistol")
 DropsPickUppableWeapon = false
 _isImmuneToFire = true
+_deathSound = NodePath("V0DeathScream")
 
 [node name="Sprite2D" parent="Graphics" index="0"]
 texture = ExtResource("2_cj8nc")
@@ -87,10 +87,8 @@ _player = NodePath("../../..")
 [node name="AimLine" parent="." index="5" node_paths=PackedStringArray("_unit") instance=ExtResource("4_v5kf0")]
 _unit = NodePath("..")
 
-[node name="V0DeathScream" type="AudioStreamPlayer" parent="." index="6"]
+[node name="V0DeathScream" type="AudioStreamPlayer2D" parent="." index="6"]
 stream = ExtResource("7_g6b54")
-volume_db = -6.0
-script = ExtResource("8_jokor")
 
 [node name="BloodFuel" type="Node" parent="." index="7" node_paths=PackedStringArray("_movement")]
 script = ExtResource("9_jokor")
