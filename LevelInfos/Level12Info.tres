@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="LevelInfo" load_steps=2 format=3 uid="uid://qt3tsbwlgc1k"]
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://qt3tsbwlgc1k"]
 
+[ext_resource type="Resource" uid="uid://cefxl4yg23vvk" path="res://LevelInfos/Level13Info.tres" id="1_2ywte"]
 [ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_wjqmd"]
 
 [resource]
@@ -7,4 +8,5 @@ script = ExtResource("1_wjqmd")
 _saveName = "12th"
 _shownName = "Fire"
 _scenePath = "uid://cuj824h7iw8tp"
+_nextLevel = ExtResource("1_2ywte")
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"

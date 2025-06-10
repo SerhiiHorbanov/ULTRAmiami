@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://cefxl4yg23vvk"]
+
+[ext_resource type="Resource" uid="uid://bxtje1lix0guv" path="res://LevelInfos/Level14Info.tres" id="1_cjrko"]
+[ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_jf0hk"]
+
+[resource]
+script = ExtResource("1_jf0hk")
+_saveName = "13th"
+_shownName = "Railgun"
+_scenePath = "uid://pp4oq40dadu2"
+_nextLevel = ExtResource("1_cjrko")
+metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"

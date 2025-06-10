@@ -1,0 +1,256 @@
+[gd_scene load_steps=13 format=3 uid="uid://b3edugmyn8ln4"]
+
+[ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_rawpb"]
+[ext_resource type="Resource" uid="uid://bxtje1lix0guv" path="res://LevelInfos/Level14Info.tres" id="2_4m1v4"]
+[ext_resource type="PackedScene" uid="uid://86xpoiadpegm" path="res://Scenes/LevelDetails/Requirements/SpecificUnitKillRequirement.tscn" id="3_4m1v4"]
+[ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="3_bu3qt"]
+[ext_resource type="PackedScene" uid="uid://bg0s6f1srg0bq" path="res://Scenes/Weapons/Railgun.tscn" id="5_37t6w"]
+[ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="6_5dl6q"]
+[ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="7_3373x"]
+[ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="8_5dl6q"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="8_52mrl"]
+[ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="9_3373x"]
+[ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="9_loigx"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_52mrl"]
+vertices = PackedVector2Array(-345, -921, -1383, -921, -1383, -1383, -807, -1383, -345, -1959, -807, -1497, -1959, -1959, -1497, -1497, -1959, 231, -1497, -231, -1383, 231, -921, -231, -921, 807, -1383, 345, -1497, 807, -1959, 345, -1959, 1383, -1497, 921, -345, 1383, -807, 921, -345, 231, -807, -231, 231, -231, 231, 231, 231, -345, -1383, -345, -1383, -807, -231, -807, 231, -1959, -231, -1959)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(10, 8, 9, 11), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(13, 12, 14, 15), PackedInt32Array(16, 15, 14, 17), PackedInt32Array(18, 16, 17, 19), PackedInt32Array(20, 18, 19, 21), PackedInt32Array(20, 21, 22, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(28, 24, 27, 29)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(256, -256, 256, 256, -320, 256, -320, 1408, -1984, 1408, -1984, 320, -1408, 320, -1408, 256, -1984, 256, -1984, -1984, -320, -1984, -320, -896, -1408, -896, -1408, -1408, -832, -1408, -832, -1472, -1472, -1472, -1472, -256, -896, -256, -896, 832, -1472, 832, -1472, 896, -832, 896, -832, -256), PackedVector2Array(-256, -1984, 256, -1984, 256, -320, -1408, -320, -1408, -832, -256, -832)])
+agent_radius = 25.0
+
+[node name="Level" instance=ExtResource("1_rawpb")]
+_info = ExtResource("2_4m1v4")
+
+[node name="SpecificUnitKillRequirement" parent="LevelTarget" index="0" node_paths=PackedStringArray("_target") instance=ExtResource("3_4m1v4")]
+_target = NodePath("../../Enemies/Unit")
+
+[node name="Walls" type="Node2D" parent="." index="7"]
+
+[node name="Wall" parent="Walls" index="0" instance=ExtResource("3_bu3qt")]
+position = Vector2(0, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall7" parent="Walls" index="1" instance=ExtResource("3_bu3qt")]
+position = Vector2(-288, 576)
+rotation = -1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall10" parent="Walls" index="2" instance=ExtResource("3_bu3qt")]
+position = Vector2(-2016, 576)
+rotation = -1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall2" parent="Walls" index="3" instance=ExtResource("3_bu3qt")]
+position = Vector2(288, 0)
+rotation = -1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall8" parent="Walls" index="4" instance=ExtResource("3_bu3qt")]
+position = Vector2(-864, 576)
+rotation = -1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall9" parent="Walls" index="5" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1152, 864)
+scale = Vector2(10, 1)
+
+[node name="Wall11" parent="Walls" index="6" instance=ExtResource("3_bu3qt")]
+position = Vector2(-2016, 0)
+rotation = -1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall12" parent="Walls" index="7" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1728, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall6" parent="Walls" index="8" instance=ExtResource("3_bu3qt")]
+position = Vector2(-864, 1)
+rotation = -1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall4" parent="Walls" index="9" instance=ExtResource("3_bu3qt")]
+position = Vector2(-576, -288)
+scale = Vector2(10, 1)
+
+[node name="Wall5" parent="Walls" index="10" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1152, -288)
+scale = Vector2(10, 1)
+
+[node name="Wall13" parent="Walls" index="11" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1440, -576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall17" parent="Walls" index="12" instance=ExtResource("3_bu3qt")]
+position = Vector2(-2016, -1728)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall18" parent="Walls" index="13" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1728, -2016)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall19" parent="Walls" index="14" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1152, -2016)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall23" parent="Walls" index="15" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1152, -1440)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall24" parent="Walls" index="16" instance=ExtResource("3_bu3qt")]
+position = Vector2(-576, -2016)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall31" parent="Walls" index="17" instance=ExtResource("3_bu3qt")]
+position = Vector2(-6.10352e-05, -2016)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall25" parent="Walls" index="18" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1152, -864)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall26" parent="Walls" index="19" instance=ExtResource("3_bu3qt")]
+position = Vector2(-576, -864)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall27" parent="Walls" index="20" instance=ExtResource("3_bu3qt")]
+position = Vector2(-288, -1152)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall20" parent="Walls" index="21" instance=ExtResource("3_bu3qt")]
+position = Vector2(-288, -2304)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall21" parent="Walls" index="22" instance=ExtResource("3_bu3qt")]
+position = Vector2(-864, -2304)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall22" parent="Walls" index="23" instance=ExtResource("3_bu3qt")]
+position = Vector2(-576, -2592)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall14" parent="Walls" index="24" instance=ExtResource("3_bu3qt")]
+position = Vector2(-2016, -576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall15" parent="Walls" index="25" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1440, -1152)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall16" parent="Walls" index="26" instance=ExtResource("3_bu3qt")]
+position = Vector2(-2016, -1152)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall28" parent="Walls" index="27" instance=ExtResource("3_bu3qt")]
+position = Vector2(288, -1728)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall29" parent="Walls" index="28" instance=ExtResource("3_bu3qt")]
+position = Vector2(288, -576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall30" parent="Walls" index="29" instance=ExtResource("3_bu3qt")]
+position = Vector2(288, -1152)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall3" parent="Walls" index="30" instance=ExtResource("3_bu3qt")]
+position = Vector2(1.90735e-06, -288)
+scale = Vector2(10, 1)
+
+[node name="Wall32" parent="Walls" index="31" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1152, 1440)
+scale = Vector2(10, 1)
+
+[node name="Wall33" parent="Walls" index="32" instance=ExtResource("3_bu3qt")]
+position = Vector2(-1728, 1440)
+scale = Vector2(10, 1)
+
+[node name="Wall34" parent="Walls" index="33" instance=ExtResource("3_bu3qt")]
+position = Vector2(-288, 1152)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall36" parent="Walls" index="34" instance=ExtResource("3_bu3qt")]
+position = Vector2(-2016, 1152)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall35" parent="Walls" index="35" instance=ExtResource("3_bu3qt")]
+position = Vector2(-576, 1440)
+scale = Vector2(10, 1)
+
+[node name="BreakableTrigger" parent="." index="8" instance=ExtResource("7_3373x")]
+position = Vector2(-344, -2304)
+rotation = 1.57079
+
+[node name="TriggerableDoor" parent="." index="9" instance=ExtResource("6_5dl6q")]
+position = Vector2(-287.999, -1728)
+rotation = 3.14159
+scale = Vector2(2.135, 2.615)
+
+[node name="Railgun" parent="." index="10" instance=ExtResource("5_37t6w")]
+position = Vector2(-1136, -1144)
+
+[node name="Railgun2" parent="." index="11" instance=ExtResource("5_37t6w")]
+position = Vector2(-1304, 1056)
+
+[node name="Enemies" type="Node2D" parent="." index="12"]
+
+[node name="AssaultRifleEnemy" parent="Enemies" index="0" instance=ExtResource("8_5dl6q")]
+position = Vector2(-1472, 696)
+
+[node name="ShotgunEnemy" parent="Enemies" index="1" instance=ExtResource("9_3373x")]
+position = Vector2(-1544, 496)
+
+[node name="SMGEnemy" parent="Enemies" index="2" instance=ExtResource("9_loigx")]
+position = Vector2(-1648, 192)
+
+[node name="SMGEnemy2" parent="Enemies" index="3" instance=ExtResource("9_loigx")]
+position = Vector2(-1024, -120)
+
+[node name="ShotgunEnemy2" parent="Enemies" index="4" instance=ExtResource("9_3373x")]
+position = Vector2(-1552, -416)
+
+[node name="AssaultRifleEnemy2" parent="Enemies" index="5" instance=ExtResource("8_5dl6q")]
+position = Vector2(-1048, -1696)
+
+[node name="AssaultRifleEnemy3" parent="Enemies" index="6" instance=ExtResource("8_5dl6q")]
+position = Vector2(-904, -1160)
+
+[node name="SMGEnemy3" parent="Enemies" index="7" instance=ExtResource("9_loigx")]
+position = Vector2(-120, -1336)
+
+[node name="Unit" parent="Enemies" index="8" instance=ExtResource("8_52mrl")]
+position = Vector2(-1160, -576)
+
+[node name="AssaultRifleEnemy4" parent="Enemies" index="9" instance=ExtResource("8_5dl6q")]
+position = Vector2(-440, 536)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="13"]
+navigation_polygon = SubResource("NavigationPolygon_52mrl")
+
+[connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
+[connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
+[connection signal="OnCompleted" from="LevelTarget" to="." method="OnCompleted"]
+[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
+
+[editable path="Canvas"]
+[editable path="Player"]
