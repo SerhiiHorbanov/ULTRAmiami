@@ -1,0 +1,44 @@
+[gd_scene load_steps=13 format=3 uid="uid://7tcuwtjlod2m"]
+
+[ext_resource type="Script" uid="uid://bopdiehwknb4l" path="res://Scripts/Effects/BloodSplatterSystem.cs" id="1_cp14f"]
+[ext_resource type="PackedScene" uid="uid://dd2jbrp65qump" path="res://Scenes/Effects/BloodSplatter/BloodSplatter1.tscn" id="2_ito0t"]
+[ext_resource type="PackedScene" uid="uid://do5qg3w65sui4" path="res://Scenes/Effects/BloodSplatter/BloodSplatter2.tscn" id="3_8n4gj"]
+[ext_resource type="PackedScene" uid="uid://doaqu5firiy61" path="res://Scenes/Effects/BloodSplatter/BloodSplatter3.tscn" id="4_a4qgt"]
+[ext_resource type="PackedScene" uid="uid://dtt761r7j2lpr" path="res://Scenes/Effects/BloodSplatter/BloodSplatter4.tscn" id="5_7h7gj"]
+[ext_resource type="PackedScene" uid="uid://cdd2lii61s5la" path="res://Scenes/Effects/BloodSplatter/BloodSplatter5.tscn" id="6_ha0y3"]
+[ext_resource type="PackedScene" uid="uid://dpaf3swbhoev4" path="res://Scenes/Effects/BloodSplatter/BloodSplatter6.tscn" id="7_u2ajr"]
+[ext_resource type="PackedScene" uid="uid://wrjl3yx5dx32" path="res://Scenes/Effects/BloodSplatter/BloodSplatter7.tscn" id="8_td60n"]
+[ext_resource type="PackedScene" uid="uid://ci3cfgxrhvfn" path="res://Scenes/Effects/BloodSplatter/BloodSplatter8.tscn" id="9_e2kd5"]
+[ext_resource type="PackedScene" uid="uid://c27kmi32m852l" path="res://Scenes/Effects/BloodSplatter/BloodSplatter9.tscn" id="10_4dxy1"]
+[ext_resource type="PackedScene" uid="uid://b5oklh1l68r57" path="res://Scenes/Effects/BloodSplatter/BloodSplatter10.tscn" id="11_28kbs"]
+[ext_resource type="PackedScene" uid="uid://b53gwkkcqqhjk" path="res://Scenes/Effects/BloodSplatter/BloodSplatter11.tscn" id="12_o28lg"]
+
+[node name="BloodSplatterSystem" type="Node2D" node_paths=PackedStringArray("_bloodDryingTimer", "_deletionTimer")]
+script = ExtResource("1_cp14f")
+_scaleRandomization = 0.4
+_bloodColorRandomization = 0.4
+_initialBloodColor = Color(1, 0, 0, 1)
+_dryBloodColor = Color(0.501961, 0, 0, 1)
+_bloodDryingTimer = NodePath("DryingTimer")
+_deletionTimer = NodePath("DeletionTimer")
+_splatterScenes = Array[PackedScene]([ExtResource("2_ito0t"), ExtResource("3_8n4gj"), ExtResource("4_a4qgt"), ExtResource("5_7h7gj"), ExtResource("6_ha0y3"), ExtResource("7_u2ajr"), ExtResource("8_td60n"), ExtResource("9_e2kd5"), ExtResource("10_4dxy1"), ExtResource("11_28kbs"), ExtResource("12_o28lg")])
+
+[node name="TimerBeforeDrying" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="DryingTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerUntilSimplification" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="DeletionTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[connection signal="timeout" from="TimerBeforeDrying" to="DryingTimer" method="start"]
+[connection signal="timeout" from="TimerUntilSimplification" to="." method="Simplify"]
+[connection signal="timeout" from="DeletionTimer" to="DeletionTimer" method="queue_free"]

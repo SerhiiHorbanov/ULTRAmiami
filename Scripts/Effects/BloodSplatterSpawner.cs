@@ -7,24 +7,29 @@ namespace ULTRAmiami.Effects;
 public partial class BloodSplatterSpawner : Node
 {
 	[Export] private Unit _unit;
-	[Export] private Array<PackedScene> _splatterScenes = [];
-
+	[Export] private PackedScene _splatterSystemScene;
+	[Export] private BloodSplatterSystem _splatterSystem;
+	[Export] private bool _alwaysSpawnNewSplatterSystem;
+	
 	private void SpawnSplatter(Hit hit)
 	{
-		for (int i = 0; i < hit.BleedingInfo.SplatterAmount; i++)
-			SpawnSingleSplatter(hit);
-	}
-	private void SpawnSingleSplatter(Hit hit)
-	{
-		PackedScene scene = _splatterScenes.PickRandom();
-		BloodSplatter bloodSplatter = scene?.Instantiate<BloodSplatter>();
+		if (_splatterSystem is null || _alwaysSpawnNewSplatterSystem)
+			SpawnSplatterSystem(hit);
+		else
+			_splatterSystem.AddSplattersFromHit(_unit, hit);
 
-		if (bloodSplatter is null)
+	}
+	private void SpawnSplatterSystem(Hit hit)
+	{
+		BloodSplatterSystem splatter = _splatterSystemScene.Instantiate<BloodSplatterSystem>();
+		
+		if (splatter is null)
 		{
 			GD.PrintErr("BloodSplatter is null");
 			return;
 		}
 		
-		bloodSplatter.Initialize(_unit, hit);
+		_splatterSystem = splatter;
+		splatter.Initialize(_unit, hit);
 	}
 }

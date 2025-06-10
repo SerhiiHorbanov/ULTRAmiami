@@ -171,6 +171,9 @@ stream = ExtResource("20_hese3")
 volume_db = -5.0
 bus = &"SFX"
 
+[node name="BloodSplatterSpawner" parent="." index="12"]
+_alwaysSpawnNewSplatterSystem = true
+
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
 [connection signal="OnWeaponChanged" from="." to="PlayerUnitController/PlayerAim/Crosshair" method="UpdateCrosshair"]

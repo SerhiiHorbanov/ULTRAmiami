@@ -51,14 +51,14 @@ public partial class BloodSplatter : Node2D
 		Modulate = _initialBloodColor;
 	}
 
-	public override void _Process(double delta)
-	{
-		if (_bloodDryingTimer.IsStopped())
-			return;
-	
-		float t = 1 - (float)(_bloodDryingTimer.TimeLeft / _bloodDryingTimer.WaitTime);
-		Modulate = _initialBloodColor.Lerp(_dryBloodColor, t);
-	}
+	//public override void _Process(double delta)
+	//{
+	//	if (_bloodDryingTimer.IsStopped())
+	//		return;
+	//
+	//	float t = 1 - (float)(_bloodDryingTimer.TimeLeft / _bloodDryingTimer.WaitTime);
+	//	Modulate = _initialBloodColor.Lerp(_dryBloodColor, t);
+	//}
 
 	private void Simplify()
 	{

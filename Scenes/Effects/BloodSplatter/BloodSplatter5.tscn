@@ -54,7 +54,6 @@ animations = [{
 }]
 
 [node name="BloodSplatter" instance=ExtResource("1_2qcsp")]
-_rotationRandomization = 30.0
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(20, -3)
