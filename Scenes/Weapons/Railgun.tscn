@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://dtppgcjudqoi1" path="res://Scripts/Weapons/Railgun.cs" id="2_pbn1j"]
 [ext_resource type="Texture2D" uid="uid://cl6vcuf8m4asq" path="res://Textures/Weapons/Railgun.png" id="3_8c8qw"]
 [ext_resource type="PackedScene" uid="uid://csd02hl7qd1g4" path="res://Scenes/Projectiles/RailgunShot.tscn" id="3_pbn1j"]
-[ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="4_7t7ca"]
 [ext_resource type="Texture2D" uid="uid://b37w5avb74v16" path="res://Textures/Weapons/RailgunNotPickuppable.png" id="4_k2u73"]
+[ext_resource type="Texture2D" uid="uid://brwpk52jfkjxr" path="res://Textures/UI/Ammo/AmmoUIRailgunCharge.png" id="4_rci8c"]
 [ext_resource type="Script" uid="uid://d0rajgo22sr22" path="res://Scripts/Data/AmmoUIInfo.cs" id="5_5xwwa"]
 [ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="6_7t7ca"]
 [ext_resource type="Texture2D" uid="uid://dy88cefq20f3e" path="res://Textures/Crosshair/CrosshairCorner2.png" id="8_88oef"]
@@ -18,7 +18,7 @@
 
 [sub_resource type="Resource" id="Resource_bu6yk"]
 script = ExtResource("5_5xwwa")
-Texture = ExtResource("4_7t7ca")
+Texture = ExtResource("4_rci8c")
 StartingPosition = Vector2(50, 0)
 StartingRotation = 0.0
 DeltaPosition = Vector2(0, 0)
