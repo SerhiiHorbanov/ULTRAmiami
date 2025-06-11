@@ -12,7 +12,6 @@ _weapon = NodePath("AssaultRifle")
 _deadVersion = ExtResource("2_rtdfd")
 
 [node name="Sprite2D" parent="Graphics" index="0"]
-scale = Vector2(0.65, 0.65)
 texture = ExtResource("3_x408u")
 
 [node name="Timer" parent="EnemyController" index="0"]
