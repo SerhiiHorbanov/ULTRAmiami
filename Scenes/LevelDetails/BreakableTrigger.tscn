@@ -1,15 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxr18lqfraf18"]
+[gd_scene load_steps=5 format=3 uid="uid://cxr18lqfraf18"]
 
 [ext_resource type="Script" uid="uid://cws6q74l24gyn" path="res://Scripts/LevelFeatures/BreakableTrigger.cs" id="1_fntpr"]
-[ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="2_1r4gn"]
+[ext_resource type="Texture2D" uid="uid://ddp3bqo54qh7o" path="res://Textures/Level/ElectricPanels/ElectricPanelHorizontal.png" id="2_43oqm"]
+[ext_resource type="Texture2D" uid="uid://dva2j2vojeu82" path="res://Textures/Level/ElectricPanels/BrokenElectricPanelHorizontal.png" id="3_jx7p2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r4gn"]
-size = Vector2(200, 50)
+size = Vector2(165, 75)
 
-[node name="BreakableTrigger" type="Node2D" node_paths=PackedStringArray("_notBrokenGraphics", "_brokenGraphics")]
+[node name="BreakableTrigger" type="Node2D"]
 script = ExtResource("1_fntpr")
-_notBrokenGraphics = NodePath("NotBrokenVersion")
-_brokenGraphics = NodePath("BrokenVersion")
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -19,11 +18,15 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_1r4gn")
 
 [node name="NotBrokenVersion" type="Sprite2D" parent="."]
-scale = Vector2(1.5625, 0.390625)
-texture = ExtResource("2_1r4gn")
+scale = Vector2(3, 3)
+texture = ExtResource("2_43oqm")
 
 [node name="BrokenVersion" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.325441, 0.325441, 0.325441, 1)
-position = Vector2(0, -2.38419e-06)
-scale = Vector2(1.5625, 0.390625)
-texture = ExtResource("2_1r4gn")
+position = Vector2(-1.43051e-06, 9.53674e-07)
+scale = Vector2(3, 3)
+texture = ExtResource("3_jx7p2")
+
+[connection signal="OnBroken" from="." to="NotBrokenVersion" method="set_visible" binds= [false]]
+[connection signal="OnBroken" from="." to="BrokenVersion" method="set_visible" binds= [true]]
