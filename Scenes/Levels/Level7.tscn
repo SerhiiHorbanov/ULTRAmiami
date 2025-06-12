@@ -169,7 +169,7 @@ position = Vector2(2016, 576)
 scale = Vector2(2.135, 2.615)
 
 [node name="BreakableTrigger" parent="." index="12" instance=ExtResource("9_6lk1x")]
-position = Vector2(1152, -1384)
+position = Vector2(1152, -1370)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="13"]
 navigation_polygon = SubResource("NavigationPolygon_6lk1x")

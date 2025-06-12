@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcausnb173iio"]
+[gd_scene load_steps=13 format=3 uid="uid://bcausnb173iio"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_j5dxk"]
 [ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="2_akiyp"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="4_akiyp"]
 [ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="5_lsfsd"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="9_alt4i"]
+[ext_resource type="PackedScene" uid="uid://dffcbxd5mkoem" path="res://Scenes/LevelDetails/BreakableTriggerVertical.tscn" id="10_e4bfq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lsfsd"]
 size = Vector2(336, 568)
@@ -242,43 +243,38 @@ _triggersNeeded = 3
 position = Vector2(2016, 2880)
 scale = Vector2(2.135, 2.615)
 
-[node name="BreakableTrigger" parent="." index="12" instance=ExtResource("9_alt4i")]
-position = Vector2(1960, 573)
-rotation = -1.57079
+[node name="BreakableTrigger2" parent="." index="12" instance=ExtResource("9_alt4i")]
+position = Vector2(920, 1369)
 
-[node name="BreakableTrigger2" parent="." index="13" instance=ExtResource("9_alt4i")]
-position = Vector2(920, 1384)
+[node name="BreakableTrigger3" parent="." index="13" instance=ExtResource("9_alt4i")]
+position = Vector2(920, 934)
 
-[node name="BreakableTrigger3" parent="." index="14" instance=ExtResource("9_alt4i")]
-position = Vector2(920, 920)
-rotation = 3.14159
+[node name="BreakableTrigger5" parent="." index="14" instance=ExtResource("9_alt4i")]
+position = Vector2(576, 1509)
 
-[node name="BreakableTrigger4" parent="." index="15" instance=ExtResource("9_alt4i")]
-position = Vector2(1960, 1152)
-rotation = 4.71238
-
-[node name="BreakableTrigger5" parent="." index="16" instance=ExtResource("9_alt4i")]
-position = Vector2(576, 1496)
-rotation = 3.14159
-
-[node name="BreakableTrigger6" parent="." index="17" instance=ExtResource("9_alt4i")]
-position = Vector2(1728, 1960)
+[node name="BreakableTrigger6" parent="." index="15" instance=ExtResource("9_alt4i")]
+position = Vector2(1728, 1946)
 rotation = 6.28318
 
-[node name="BreakableTrigger7" parent="." index="18" instance=ExtResource("9_alt4i")]
-position = Vector2(232, 2592)
-rotation = 10.9956
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="19"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="16"]
 navigation_polygon = SubResource("NavigationPolygon_alt4i")
 
-[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor4" method="Trigger"]
+[node name="BreakableTrigger8" parent="." index="18" instance=ExtResource("10_e4bfq")]
+position = Vector2(1946, 576)
+
+[node name="BreakableTrigger" parent="." index="19" instance=ExtResource("10_e4bfq")]
+position = Vector2(1946, 1152)
+
+[node name="BreakableTrigger4" parent="." index="20" instance=ExtResource("10_e4bfq")]
+position = Vector2(219, 2592)
+
 [connection signal="OnBroken" from="BreakableTrigger2" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger3" to="TriggerableDoor" method="Trigger"]
-[connection signal="OnBroken" from="BreakableTrigger4" to="TriggerableDoor2" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger5" to="TriggerableDoor2" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger6" to="TriggerableDoor2" method="Trigger"]
-[connection signal="OnBroken" from="BreakableTrigger7" to="TriggerableDoor3" method="Trigger"]
+[connection signal="OnBroken" from="BreakableTrigger8" to="TriggerableDoor4" method="Trigger"]
+[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor2" method="Trigger"]
+[connection signal="OnBroken" from="BreakableTrigger4" to="TriggerableDoor3" method="Trigger"]
 
 [editable path="Canvas"]
 [editable path="Player"]

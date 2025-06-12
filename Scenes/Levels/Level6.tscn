@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d26urxkfx5c0p"]
+[gd_scene load_steps=13 format=3 uid="uid://d26urxkfx5c0p"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_8a64g"]
 [ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="2_bkrib"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="4_vxd2s"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="6_2xsjn"]
 [ext_resource type="PackedScene" uid="uid://dg4l4hpp7kyp3" path="res://Scenes/LevelDetails/AreaTrigger.tscn" id="7_ksrqp"]
+[ext_resource type="PackedScene" uid="uid://dffcbxd5mkoem" path="res://Scenes/LevelDetails/BreakableTriggerVertical.tscn" id="8_bkrib"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="8_c2vyk"]
 [ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="9_gxw42"]
 
@@ -314,25 +315,22 @@ scale = Vector2(2.135, 2.615)
 
 [node name="Triggers" type="Node2D" parent="." index="10"]
 
-[node name="BreakableTrigger" parent="Triggers" index="0" instance=ExtResource("6_2xsjn")]
-position = Vector2(808, -1152)
-rotation = -1.57079
+[node name="BreakableTrigger2" parent="Triggers" index="0" instance=ExtResource("6_2xsjn")]
+position = Vector2(-2304, 794)
 
-[node name="BreakableTrigger2" parent="Triggers" index="1" instance=ExtResource("6_2xsjn")]
-position = Vector2(-2304, 808)
+[node name="BreakableTrigger4" parent="Triggers" index="1" instance=ExtResource("6_2xsjn")]
+position = Vector2(-576, -794.5)
 
-[node name="BreakableTrigger3" parent="Triggers" index="2" instance=ExtResource("6_2xsjn")]
-position = Vector2(-2536, -1728)
-rotation = 1.57079
-
-[node name="BreakableTrigger4" parent="Triggers" index="3" instance=ExtResource("6_2xsjn")]
-position = Vector2(-576, -808)
-rotation = 3.14159
-
-[node name="AreaTrigger" parent="Triggers" index="4" instance=ExtResource("7_ksrqp")]
+[node name="AreaTrigger" parent="Triggers" index="2" instance=ExtResource("7_ksrqp")]
 position = Vector2(304, -1152)
 rotation = 1.57079
 scale = Vector2(5.60625, 1)
+
+[node name="BreakableTrigger5" parent="Triggers" index="3" instance=ExtResource("8_bkrib")]
+position = Vector2(-2522.5, -1728)
+
+[node name="BreakableTrigger3" parent="Triggers" index="4" instance=ExtResource("8_bkrib")]
+position = Vector2(794.5, -1152)
 
 [node name="Enemies" type="Node2D" parent="." index="11"]
 
@@ -396,12 +394,12 @@ position = Vector2(1536, -2736)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="12"]
 navigation_polygon = SubResource("NavigationPolygon_bkrib")
 
-[connection signal="OnBroken" from="Triggers/BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="Triggers/BreakableTrigger2" to="TriggerableDoor" method="Trigger"]
-[connection signal="OnBroken" from="Triggers/BreakableTrigger3" to="TriggerableDoor" method="Trigger"]
-[connection signal="OnBroken" from="Triggers/BreakableTrigger3" to="TriggerableDoor2" method="Trigger"]
 [connection signal="OnBroken" from="Triggers/BreakableTrigger4" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnTriggering" from="Triggers/AreaTrigger" to="TriggerableDoor3" method="Trigger"]
+[connection signal="OnBroken" from="Triggers/BreakableTrigger5" to="TriggerableDoor" method="Trigger"]
+[connection signal="OnBroken" from="Triggers/BreakableTrigger5" to="TriggerableDoor2" method="Trigger"]
+[connection signal="OnBroken" from="Triggers/BreakableTrigger3" to="TriggerableDoor" method="Trigger"]
 
 [editable path="Canvas"]
 [editable path="Player"]

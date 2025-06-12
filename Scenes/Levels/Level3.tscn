@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://caf7v5q6mfl3t"]
+[gd_scene load_steps=15 format=3 uid="uid://caf7v5q6mfl3t"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_y77v7"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_6rkx2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="4_c01y6"]
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="5_0kf4d"]
 [ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="6_ve7n4"]
+[ext_resource type="PackedScene" uid="uid://dffcbxd5mkoem" path="res://Scenes/LevelDetails/BreakableTriggerVertical.tscn" id="9_q5el5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5el5"]
 size = Vector2(562, 402)
@@ -214,59 +215,57 @@ scale = Vector2(2.135, 2.615)
 position = Vector2(864, -1152)
 scale = Vector2(2.135, 2.615)
 
-[node name="BreakableTrigger" parent="." index="10" instance=ExtResource("4_c01y6")]
-position = Vector2(808, 576)
-rotation = -1.57079
+[node name="BreakableTrigger2" parent="." index="10" instance=ExtResource("4_c01y6")]
+position = Vector2(1720, 794)
 
-[node name="BreakableTrigger3" parent="." index="11" instance=ExtResource("4_c01y6")]
-position = Vector2(-232, -8)
-rotation = -1.57079
-
-[node name="BreakableTrigger2" parent="." index="12" instance=ExtResource("4_c01y6")]
-position = Vector2(1720, 808)
-
-[node name="Unit" parent="." index="13" instance=ExtResource("5_0kf4d")]
+[node name="Unit" parent="." index="11" instance=ExtResource("5_0kf4d")]
 position = Vector2(0, -576)
 
-[node name="Unit2" parent="." index="14" instance=ExtResource("5_0kf4d")]
+[node name="Unit2" parent="." index="12" instance=ExtResource("5_0kf4d")]
 position = Vector2(480, 704)
 
-[node name="AssaultRifleEnemy" parent="." index="15" instance=ExtResource("6_ve7n4")]
+[node name="AssaultRifleEnemy" parent="." index="13" instance=ExtResource("6_ve7n4")]
 position = Vector2(480, 408)
 
-[node name="AssaultRifleEnemy2" parent="." index="16" instance=ExtResource("6_ve7n4")]
+[node name="AssaultRifleEnemy2" parent="." index="14" instance=ExtResource("6_ve7n4")]
 position = Vector2(1664, -120)
 
-[node name="AssaultRifleEnemy3" parent="." index="17" instance=ExtResource("6_ve7n4")]
+[node name="AssaultRifleEnemy3" parent="." index="15" instance=ExtResource("6_ve7n4")]
 position = Vector2(-152, -968)
 
-[node name="Unit3" parent="." index="18" instance=ExtResource("5_0kf4d")]
+[node name="Unit3" parent="." index="16" instance=ExtResource("5_0kf4d")]
 position = Vector2(1728, -576)
 
-[node name="Unit4" parent="." index="19" instance=ExtResource("5_0kf4d")]
+[node name="Unit4" parent="." index="17" instance=ExtResource("5_0kf4d")]
 position = Vector2(1672, 272)
 
-[node name="Unit6" parent="." index="20" instance=ExtResource("5_0kf4d")]
+[node name="Unit6" parent="." index="18" instance=ExtResource("5_0kf4d")]
 position = Vector2(2096, -168)
 
-[node name="Unit7" parent="." index="21" instance=ExtResource("5_0kf4d")]
+[node name="Unit7" parent="." index="19" instance=ExtResource("5_0kf4d")]
 position = Vector2(2472, 8)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="22"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="20"]
 navigation_polygon = SubResource("NavigationPolygon_d4xud")
 
-[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="23"]
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="21"]
 navigation_polygon = SubResource("NavigationPolygon_q5el5")
 
-[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="." index="24"]
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="." index="22"]
 navigation_polygon = SubResource("NavigationPolygon_t0ble")
 
-[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="." index="25"]
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="." index="23"]
 navigation_polygon = SubResource("NavigationPolygon_nvbyj")
 
-[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor3" method="Trigger"]
-[connection signal="OnBroken" from="BreakableTrigger3" to="TriggerableDoor" method="Trigger"]
+[node name="BreakableTrigger4" parent="." index="25" instance=ExtResource("9_q5el5")]
+position = Vector2(794.5, 576)
+
+[node name="BreakableTrigger" parent="." index="26" instance=ExtResource("9_q5el5")]
+position = Vector2(-218.5, 0)
+
 [connection signal="OnBroken" from="BreakableTrigger2" to="TriggerableDoor2" method="Trigger"]
+[connection signal="OnBroken" from="BreakableTrigger4" to="TriggerableDoor3" method="Trigger"]
+[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 
 [editable path="Canvas"]
 [editable path="Player"]

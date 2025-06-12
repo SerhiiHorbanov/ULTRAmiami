@@ -180,11 +180,10 @@ rotation = 21.9911
 scale = Vector2(10, 1)
 
 [node name="BreakableTrigger" parent="." index="7" instance=ExtResource("3_bfawm")]
-position = Vector2(1152, 232)
+position = Vector2(1152, 218.5)
 
 [node name="BreakableTrigger4" parent="." index="8" instance=ExtResource("3_bfawm")]
-position = Vector2(-576, -1384)
-rotation = -3.14159
+position = Vector2(-576, -1370.5)
 
 [node name="TriggerableDoor" parent="." index="9" instance=ExtResource("4_ca5bt")]
 position = Vector2(-864, 1)

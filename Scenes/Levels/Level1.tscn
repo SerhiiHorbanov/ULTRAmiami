@@ -61,7 +61,7 @@ rotation = 1.5708
 scale = Vector2(2, 2.7)
 
 [node name="BreakableTrigger" parent="." index="7" instance=ExtResource("6_4d3fe")]
-position = Vector2(-576, 424)
+position = Vector2(-576, 410)
 
 [node name="Walls" type="Node2D" parent="." index="8"]
 
@@ -227,6 +227,7 @@ position = Vector2(1768, 240)
 navigation_polygon = SubResource("NavigationPolygon_f3nwb")
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="14"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_57lp3")
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]

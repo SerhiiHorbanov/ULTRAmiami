@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://pp4oq40dadu2"]
+[gd_scene load_steps=15 format=3 uid="uid://pp4oq40dadu2"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_eqo3r"]
 [ext_resource type="Resource" uid="uid://cefxl4yg23vvk" path="res://LevelInfos/Level13Info.tres" id="2_0tbq4"]
@@ -20,6 +20,13 @@ script = ExtResource("11_7al5c")
 Text = "[color=cyan]Railgun[color=white] can shoot through everything"
 Time = 4.0
 OverrideCurrentHint = false
+metadata/_custom_type_script = "uid://bsnay7tcwvpmp"
+
+[sub_resource type="Resource" id="Resource_0tbq4"]
+script = ExtResource("11_7al5c")
+Text = "But it only shoots once. Use it carefully. Some missions require precise shots"
+Time = 8.0
+OverrideCurrentHint = true
 metadata/_custom_type_script = "uid://bsnay7tcwvpmp"
 
 [node name="Level" instance=ExtResource("1_eqo3r")]
@@ -103,7 +110,7 @@ position = Vector2(864, 1)
 scale = Vector2(2.135, 2.615)
 
 [node name="BreakableTrigger" parent="." index="10" instance=ExtResource("7_tdku2")]
-position = Vector2(576, -808)
+position = Vector2(576, -792)
 
 [node name="Unit" parent="." index="11" instance=ExtResource("8_q251i")]
 position = Vector2(576, -456)
@@ -116,6 +123,13 @@ position = Vector2(597, 5)
 scale = Vector2(6.11018, 5.59338)
 _hint = SubResource("Resource_66tb3")
 
+[node name="HintTrigger2" parent="." index="14" instance=ExtResource("10_0tbq4")]
+position = Vector2(584, 0)
+scale = Vector2(21.6426, 19.3709)
+monitoring = false
+_hint = SubResource("Resource_0tbq4")
+
+[connection signal="OnShooting" from="Railgun" to="HintTrigger2" method="set_monitoring" binds= [true]]
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 
 [editable path="Canvas"]
