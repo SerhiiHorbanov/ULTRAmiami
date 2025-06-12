@@ -116,9 +116,6 @@ position = Vector2(597, 5)
 scale = Vector2(6.11018, 5.59338)
 _hint = SubResource("Resource_66tb3")
 
-[connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
-[connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
-[connection signal="OnCompleted" from="LevelTarget" to="." method="OnCompleted"]
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 
 [editable path="Canvas"]

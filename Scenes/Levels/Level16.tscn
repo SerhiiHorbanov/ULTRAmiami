@@ -1,0 +1,309 @@
+[gd_scene load_steps=17 format=3 uid="uid://deye1svlmckfb"]
+
+[ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_a57kv"]
+[ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="2_0xqck"]
+[ext_resource type="Resource" uid="uid://bikgwf3ynpecn" path="res://LevelInfos/Level16Info.tres" id="2_66lsc"]
+[ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_uo2df"]
+[ext_resource type="PackedScene" uid="uid://dffcbxd5mkoem" path="res://Scenes/LevelDetails/BreakableTriggerVertical.tscn" id="3_0yara"]
+[ext_resource type="PackedScene" uid="uid://m8wuhl3sh26g" path="res://Scenes/Weapons/Firearms/Flamethrower.tscn" id="5_yyawk"]
+[ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="6_wvbab"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="7_66lsc"]
+[ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="8_2dlwo"]
+[ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="9_0718j"]
+[ext_resource type="PackedScene" uid="uid://c7lxg1prscm7m" path="res://Scenes/LevelDetails/HintTrigger.tscn" id="10_wvbab"]
+[ext_resource type="Script" uid="uid://bsnay7tcwvpmp" path="res://Scripts/Data/GameplayHint.cs" id="11_66lsc"]
+[ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="13_2dlwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0718j"]
+size = Vector2(576, 288)
+
+[sub_resource type="Resource" id="Resource_2dlwo"]
+script = ExtResource("11_66lsc")
+Text = "[color=red][b]F L E S H  B U R N S[/b][color=white] slowly"
+Time = 2.0
+OverrideCurrentHint = false
+metadata/_custom_type_script = "uid://bsnay7tcwvpmp"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2dlwo"]
+vertices = PackedVector2Array(3687, -1959, 3687, -921, 3225, -921, 3225, -1497, 1497, -1959, 3111, -1497, 1497, 345, 2535, 345, 2535, 807, 1959, 807, 1497, 1383, 1959, 921, 3111, 1383, 2649, 921, 2649, 231, 2073, 231, 2073, -231, 2649, -231, 2649, -345, 2073, -345, 2073, -807, 2649, -807, 2649, -921, 2073, -921, 2073, -1383, 2649, -1383, 2649, -1497, 1959, -1497, 1497, -1383, 1959, 231, 1383, 231, 1383, 807, 921, 807, 921, 231, -231, 231, -231, -231, 921, -231, 1383, -231, 921, -807, 1383, -807, 1497, -231, 1497, -921, 921, -921, 921, -1383)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 6, 9, 11), PackedInt32Array(12, 10, 11, 13), PackedInt32Array(5, 12, 13, 14), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(5, 14, 17), PackedInt32Array(5, 17, 18), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(5, 18, 21), PackedInt32Array(5, 21, 22), PackedInt32Array(22, 23, 24, 25), PackedInt32Array(5, 22, 25), PackedInt32Array(5, 25, 26), PackedInt32Array(4, 5, 26), PackedInt32Array(4, 26, 27), PackedInt32Array(28, 4, 27, 29), PackedInt32Array(30, 31, 32, 33), PackedInt32Array(33, 34, 35, 36), PackedInt32Array(30, 33, 36, 37), PackedInt32Array(36, 38, 39, 37), PackedInt32Array(29, 30, 37, 40), PackedInt32Array(41, 42, 43, 28), PackedInt32Array(41, 28, 29), PackedInt32Array(41, 29, 40)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-256, -256, 896, -256, 896, -832, 1408, -832, 1408, -256, 1472, -256, 1472, -896, 896, -896, 896, -1408, 1472, -1408, 1472, -1984, 3712, -1984, 3712, -896, 3200, -896, 3200, -1472, 3136, -1472, 3136, 1408, 1472, 1408, 1472, 320, 2560, 320, 2560, 832, 1984, 832, 1984, 896, 2624, 896, 2624, 256, 2048, 256, 2048, -256, 2624, -256, 2624, -320, 2048, -320, 2048, -832, 2624, -832, 2624, -896, 2048, -896, 2048, -1408, 2624, -1408, 2624, -1472, 1984, -1472, 1984, 256, 1408, 256, 1408, 832, 896, 832, 896, 256, -256, 256)])
+agent_radius = 25.0
+
+[node name="Level" instance=ExtResource("1_a57kv")]
+_info = ExtResource("2_66lsc")
+
+[node name="ReachAreaRequirement" parent="LevelTarget" index="0" node_paths=PackedStringArray("_areas") instance=ExtResource("13_2dlwo")]
+position = Vector2(0, -1)
+_areas = [NodePath("Area2D")]
+
+[node name="Area2D" type="Area2D" parent="LevelTarget/ReachAreaRequirement" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTarget/ReachAreaRequirement/Area2D" index="0"]
+position = Vector2(1728, 1872)
+shape = SubResource("RectangleShape2D_0718j")
+
+[node name="TriggerableDoor" parent="." index="7" instance=ExtResource("2_0xqck")]
+position = Vector2(1728, 1440)
+rotation = 4.71238
+scale = Vector2(2, 2.7)
+
+[node name="BreakableTrigger" parent="." index="8" instance=ExtResource("3_0yara")]
+position = Vector2(2522.5, 576)
+
+[node name="Walls" type="Node2D" parent="." index="9"]
+
+[node name="Wall" parent="Walls" index="0" instance=ExtResource("2_uo2df")]
+position = Vector2(0, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall2" parent="Walls" index="1" instance=ExtResource("2_uo2df")]
+position = Vector2(-288, 0)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall3" parent="Walls" index="2" instance=ExtResource("2_uo2df")]
+position = Vector2(1, -288)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall4" parent="Walls" index="3" instance=ExtResource("2_uo2df")]
+position = Vector2(576, -288)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall5" parent="Walls" index="4" instance=ExtResource("2_uo2df")]
+position = Vector2(864, -576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall6" parent="Walls" index="5" instance=ExtResource("2_uo2df")]
+position = Vector2(576, 288)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall7" parent="Walls" index="6" instance=ExtResource("2_uo2df")]
+position = Vector2(864, 576)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall29" parent="Walls" index="7" instance=ExtResource("2_uo2df")]
+position = Vector2(2880, -2016)
+scale = Vector2(10, 1)
+
+[node name="Wall30" parent="Walls" index="8" instance=ExtResource("2_uo2df")]
+position = Vector2(3456, -2016)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall31" parent="Walls" index="9" instance=ExtResource("2_uo2df")]
+position = Vector2(3744, -1728)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall42" parent="Walls" index="10" instance=ExtResource("2_uo2df")]
+position = Vector2(3744, -1152)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall8" parent="Walls" index="11" instance=ExtResource("2_uo2df")]
+position = Vector2(1152, 864)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall9" parent="Walls" index="12" instance=ExtResource("2_uo2df")]
+position = Vector2(1440, 576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall38" parent="Walls" index="13" instance=ExtResource("2_uo2df")]
+position = Vector2(1440, 1152)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall39" parent="Walls" index="14" instance=ExtResource("2_uo2df")]
+position = Vector2(1440, 1728)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall40" parent="Walls" index="15" instance=ExtResource("2_uo2df")]
+position = Vector2(2016, 1728)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall41" parent="Walls" index="16" instance=ExtResource("2_uo2df")]
+position = Vector2(1728, 2016)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall10" parent="Walls" index="17" instance=ExtResource("2_uo2df")]
+position = Vector2(1728, 288)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall12" parent="Walls" index="18" instance=ExtResource("2_uo2df")]
+position = Vector2(1440, -576)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall13" parent="Walls" index="19" instance=ExtResource("2_uo2df")]
+position = Vector2(2016, -1.52588e-05)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall14" parent="Walls" index="20" instance=ExtResource("2_uo2df")]
+position = Vector2(2016, -576)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall34" parent="Walls" index="21" instance=ExtResource("2_uo2df")]
+position = Vector2(2880, 1440)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall35" parent="Walls" index="22" instance=ExtResource("2_uo2df")]
+position = Vector2(3168, 1152)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall36" parent="Walls" index="23" instance=ExtResource("2_uo2df")]
+position = Vector2(3168, 576)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall15" parent="Walls" index="24" instance=ExtResource("2_uo2df")]
+position = Vector2(2016, -1152)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall26" parent="Walls" index="25" instance=ExtResource("2_uo2df")]
+position = Vector2(3168, -1.52588e-05)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall27" parent="Walls" index="26" instance=ExtResource("2_uo2df")]
+position = Vector2(3168, -576)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall28" parent="Walls" index="27" instance=ExtResource("2_uo2df")]
+position = Vector2(3168, -1152)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall32" parent="Walls" index="28" instance=ExtResource("2_uo2df")]
+position = Vector2(3456, -864)
+scale = Vector2(10, 1)
+
+[node name="Wall16" parent="Walls" index="29" instance=ExtResource("2_uo2df")]
+position = Vector2(864, -1152)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall17" parent="Walls" index="30" instance=ExtResource("2_uo2df")]
+position = Vector2(1152, -1440)
+scale = Vector2(10, 1)
+
+[node name="Wall18" parent="Walls" index="31" instance=ExtResource("2_uo2df")]
+position = Vector2(1440, -1728)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall19" parent="Walls" index="32" instance=ExtResource("2_uo2df")]
+position = Vector2(1728, -2016)
+scale = Vector2(10, 1)
+
+[node name="Wall20" parent="Walls" index="33" instance=ExtResource("2_uo2df")]
+position = Vector2(2304, -2016)
+scale = Vector2(10, 1)
+
+[node name="Wall21" parent="Walls" index="34" instance=ExtResource("2_uo2df")]
+position = Vector2(2304, -1440)
+scale = Vector2(10, 1)
+
+[node name="Wall22" parent="Walls" index="35" instance=ExtResource("2_uo2df")]
+position = Vector2(2304, -864)
+scale = Vector2(10, 1)
+
+[node name="Wall23" parent="Walls" index="36" instance=ExtResource("2_uo2df")]
+position = Vector2(2304, -288)
+scale = Vector2(10, 1)
+
+[node name="Wall24" parent="Walls" index="37" instance=ExtResource("2_uo2df")]
+position = Vector2(2304, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall25" parent="Walls" index="38" instance=ExtResource("2_uo2df")]
+position = Vector2(2304, 864)
+scale = Vector2(10, 1)
+
+[node name="Wall37" parent="Walls" index="39" instance=ExtResource("2_uo2df")]
+position = Vector2(2304, 1440)
+scale = Vector2(10, 1)
+
+[node name="Wall33" parent="Walls" index="40" instance=ExtResource("2_uo2df")]
+position = Vector2(2592, 576)
+rotation = -1.5708
+scale = Vector2(10, 1)
+
+[node name="Wall11" parent="Walls" index="41" instance=ExtResource("2_uo2df")]
+position = Vector2(1152, -864)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Flamethrower" parent="." index="10" instance=ExtResource("5_yyawk")]
+position = Vector2(416, 0)
+
+[node name="Flamethrower2" parent="." index="11" instance=ExtResource("5_yyawk")]
+position = Vector2(3456, -1320)
+
+[node name="Enemies" type="Node2D" parent="." index="12"]
+
+[node name="SMGEnemy" parent="Enemies" index="0" instance=ExtResource("6_wvbab")]
+position = Vector2(968, -408)
+
+[node name="SMGEnemy3" parent="Enemies" index="1" instance=ExtResource("6_wvbab")]
+position = Vector2(2304, -1152)
+
+[node name="SMGEnemy2" parent="Enemies" index="2" instance=ExtResource("6_wvbab")]
+position = Vector2(968, 401)
+
+[node name="Unit" parent="Enemies" index="3" instance=ExtResource("7_66lsc")]
+position = Vector2(1560, -504)
+
+[node name="Unit2" parent="Enemies" index="4" instance=ExtResource("7_66lsc")]
+position = Vector2(1880, -504)
+
+[node name="Unit3" parent="Enemies" index="5" instance=ExtResource("7_66lsc")]
+position = Vector2(2256, 431)
+
+[node name="ShotgunEnemy" parent="Enemies" index="6" instance=ExtResource("8_2dlwo")]
+position = Vector2(1280, -976)
+
+[node name="AssaultRifleEnemy" parent="Enemies" index="7" instance=ExtResource("9_0718j")]
+position = Vector2(2296, -1624)
+
+[node name="AssaultRifleEnemy3" parent="Enemies" index="8" instance=ExtResource("9_0718j")]
+position = Vector2(2304, -576)
+
+[node name="AssaultRifleEnemy4" parent="Enemies" index="9" instance=ExtResource("9_0718j")]
+position = Vector2(2304, 1)
+
+[node name="AssaultRifleEnemy2" parent="Enemies" index="10" instance=ExtResource("9_0718j")]
+position = Vector2(3456, -1640)
+
+[node name="SMGEnemy4" parent="Enemies" index="11" instance=ExtResource("6_wvbab")]
+position = Vector2(2305, 752)
+
+[node name="HintTrigger" parent="." index="13" instance=ExtResource("10_wvbab")]
+position = Vector2(576, 2)
+scale = Vector2(3.15931, 6.13269)
+_hint = SubResource("Resource_2dlwo")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="14"]
+navigation_polygon = SubResource("NavigationPolygon_2dlwo")
+
+[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
+
+[editable path="Canvas"]
+[editable path="Player"]

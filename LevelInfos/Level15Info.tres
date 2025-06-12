@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://dk3m6yx48hwcl"]
+
+[ext_resource type="Resource" uid="uid://bikgwf3ynpecn" path="res://LevelInfos/Level16Info.tres" id="1_af2fg"]
+[ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_plr0v"]
+
+[resource]
+script = ExtResource("1_plr0v")
+_saveName = "15th"
+_shownName = "Skip"
+_scenePath = "uid://dj8l6nwi0u2xk"
+_nextLevel = ExtResource("1_af2fg")
+metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"
