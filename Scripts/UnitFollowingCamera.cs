@@ -9,6 +9,8 @@ public partial class UnitFollowingCamera : Camera2D
 {
     [Export] private Unit _unit;
 
+    [Export] private PackedScene _deathCamera;
+    
     [Export] private float _maxDistanceFromPlayer;
     [Export] private float _maxInputDistanceFromUnit;
     [Export] private float _linearMovementSpeed;
@@ -67,16 +69,20 @@ public partial class UnitFollowingCamera : Camera2D
     private void AttachToUnit(Unit unit)
     {
         if (_unit is not null)
-            _unit.OnDeath -= DetachUnit;
+            _unit.OnDeath -= DetachUnitFromDeath;
             
         if (unit is not null)
-            unit.OnDeath += DetachUnit;
+            unit.OnDeath += DetachUnitFromDeath;
             
         _unit = unit;
     }
     
-    private void DetachUnit(Hit _)
-        => DetachUnit();
+    private void DetachUnitFromDeath(Hit hit)
+    {
+        DetachUnit();
+        OnUnitDied(hit);
+    }
+
     private void DetachUnit()
         => AttachToUnit(null);
     
@@ -119,5 +125,15 @@ public partial class UnitFollowingCamera : Camera2D
     private void UpdatePosition()
     {
         Position = _positionRelativeToUnit + _unit.Position;
+    }
+
+    private void OnUnitDied(Hit hit)
+    {
+        DeathCamera newCamera = _deathCamera.Instantiate<DeathCamera>();
+        
+        newCamera.MakeSiblingOf(this);
+        QueueFree();
+        
+        newCamera.Initialize(GlobalPosition, hit);
     }
 }

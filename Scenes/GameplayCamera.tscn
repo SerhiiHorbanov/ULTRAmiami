@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ch33vi8cwppji"]
+[gd_scene load_steps=3 format=3 uid="uid://ch33vi8cwppji"]
 
 [ext_resource type="Script" uid="uid://blvt4pfp5d4ka" path="res://Scripts/UnitFollowingCamera.cs" id="1_gbblf"]
+[ext_resource type="PackedScene" uid="uid://sejgr3ctgw4w" path="res://Scenes/DeathCamera.tscn" id="2_w64vi"]
 
 [node name="Camera2D" type="Camera2D"]
 script = ExtResource("1_gbblf")
+_deathCamera = ExtResource("2_w64vi")
 _maxDistanceFromPlayer = 100.0
 _maxInputDistanceFromUnit = 400.0
 _linearMovementSpeed = 300.0

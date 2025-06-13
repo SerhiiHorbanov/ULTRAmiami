@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://sejgr3ctgw4w"]
+
+[ext_resource type="Script" uid="uid://ckxotlqws0r6a" path="res://Scripts/DeathCamera.cs" id="1_xvoeq"]
+
+[node name="DeathCamera" type="Camera2D"]
+ignore_rotation = false
+script = ExtResource("1_xvoeq")
+_rotationSpeedDeg = 60.0
+_speed = 600.0
+_zoomSpeed = 0.6
