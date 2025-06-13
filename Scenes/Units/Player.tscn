@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=30 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
+[ext_resource type="Script" uid="uid://dpf2hgcc2mcwj" path="res://Scripts/Units/PlayerAnimator.cs" id="2_rfdr6"]
 [ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
 [ext_resource type="SpriteFrames" uid="uid://b4qb8g6j2lptg" path="res://Animations/Units/V0LegsAnimation.tres" id="3_cj8nc"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Firearms/Pistol.tscn" id="3_giihn"]
@@ -51,6 +52,9 @@ _weapon = NodePath("Pistol")
 DropsPickUppableWeapon = false
 _isImmuneToFire = true
 _deathSound = NodePath("V0DeathScream")
+
+[node name="Graphics" parent="." index="1"]
+script = ExtResource("2_rfdr6")
 
 [node name="Sprite2D" parent="Graphics" index="0"]
 texture = ExtResource("2_cj8nc")
@@ -175,6 +179,7 @@ _alwaysSpawnNewSplatterSystem = true
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
 [connection signal="OnWeaponChanged" from="." to="PlayerUnitController/PlayerAim/Crosshair" method="UpdateCrosshair"]
+[connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="Graphics" method="UpdateBodyRotation"]
 [connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="PlayerUnitController" method="SetAimingPositionToRelative"]
 [connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="PlayerUnitController/PlayerAim/Crosshair" method="set_position"]
 [connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="AimLine" method="Update"]

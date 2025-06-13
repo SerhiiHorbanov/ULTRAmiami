@@ -31,14 +31,16 @@ public partial class UnitAnimator : Node2D
 
 	private void UpdateRotation()
 	{
-		if (Weapon is null)
-			_bodySprite.Rotation = _legs.Rotation;
-		else
-			_bodySprite.Rotation = Weapon.RelativePointingAt.Angle();
+		_bodySprite.Rotation = CalculateBodyRotation();
 		
 		if (IsWalking)
 			_legs.Rotation = _unit.TargetDirection.Angle();
 		else
 			_legs.Rotation = _bodySprite.Rotation;
+	}
+
+	protected virtual float CalculateBodyRotation()
+	{
+		return Weapon is null ? _legs.Rotation : Weapon.RelativePointingAt.Angle();
 	}
 }
