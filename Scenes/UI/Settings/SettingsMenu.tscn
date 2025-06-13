@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://vjj53cmmoiac"]
+[gd_scene load_steps=24 format=3 uid="uid://vjj53cmmoiac"]
 
 [ext_resource type="Script" uid="uid://b17r4oleouw0r" path="res://Scripts/UI/SettingsMenuUI/SettingsMenu.cs" id="1_jn4g8"]
 [ext_resource type="PackedScene" uid="uid://c35bw7v6qdbnt" path="res://Scenes/UI/Settings/SettingsTab.tscn" id="2_1r8m7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bpjv7jcsr6w8e" path="res://Scripts/UI/SettingsMenuUI/GraphicsSettings.cs" id="3_hq2us"]
 [ext_resource type="Script" uid="uid://dhmm8kbt2gn2k" path="res://Scripts/Data/SettingSliderData.cs" id="4_hq2us"]
 [ext_resource type="PackedScene" uid="uid://dng3xp3tqxkq0" path="res://Scenes/UI/Settings/SettingSlider.tscn" id="5_wywac"]
+[ext_resource type="Script" uid="uid://syxqo20gqjrk" path="res://Scripts/UI/SettingsMenuUI/BloodSplatterSlider.cs" id="6_w6ika"]
 [ext_resource type="PackedScene" uid="uid://d32k5wo1ctqsq" path="res://Scenes/UI/Settings/KeybindSetting.tscn" id="7_ftgty"]
 [ext_resource type="Script" uid="uid://c8msar3hrixk3" path="res://Scripts/UI/SettingsMenuUI/OtherSettings.cs" id="8_5ewu0"]
 [ext_resource type="PackedScene" uid="uid://b7dd5e3dpow3y" path="res://Scenes/UI/Settings/SettingToggle.tscn" id="9_xqoo2"]
@@ -28,6 +29,12 @@ _defaultValue = 1.0
 metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
 
 [sub_resource type="Resource" id="Resource_ftgty"]
+script = ExtResource("4_hq2us")
+Value = 0.0
+_defaultValue = 1.0
+metadata/_custom_type_script = "uid://dhmm8kbt2gn2k"
+
+[sub_resource type="Resource" id="Resource_2x8kr"]
 script = ExtResource("4_hq2us")
 Value = 0.0
 _defaultValue = 1.0
@@ -180,7 +187,6 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="Graphics" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" node_paths=PackedStringArray("_worldEnvironment") instance=ExtResource("2_1r8m7")]
-visible = false
 layout_mode = 2
 script = ExtResource("3_hq2us")
 _worldEnvironment = NodePath("WorldEnvironment")
@@ -226,6 +232,19 @@ text = "Saturation"
 min_value = 0.1
 max_value = 2.0
 value = 0.1
+
+[node name="SettingSlider4" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer" index="4" instance=ExtResource("5_wywac")]
+layout_mode = 2
+script = ExtResource("6_w6ika")
+_settingName = "BloodSplatter"
+_data = SubResource("Resource_2x8kr")
+
+[node name="Label" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider4/ColorRect" index="0"]
+text = "Blood splatter"
+
+[node name="HSlider" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider4/ColorRect/Label" index="0"]
+max_value = 2.0
+step = 0.05
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics"]
 environment = SubResource("Environment_5ewu0")
@@ -302,6 +321,7 @@ layout_mode = 2
 _name = "drop weapon"
 
 [node name="Other" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
+visible = false
 layout_mode = 2
 script = ExtResource("8_5ewu0")
 
@@ -341,6 +361,7 @@ text = "Dynamic camera"
 [connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics" method="SetBrightness"]
 [connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider2" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics" method="SetContrast"]
 [connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider3" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics" method="SetSaturation"]
+[connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider4" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider4" method="SetBlodSplatterMultiplier"]
 [connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="ApplyVolume" binds= [0]]
 [connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider2" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="ApplyVolume" binds= [1]]
 [connection signal="OnValueChanged" from="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider3" to="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio" method="ApplyVolume" binds= [2]]
@@ -350,6 +371,7 @@ text = "Dynamic camera"
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider2"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider3"]
+[editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Graphics/VBoxContainer/SettingSlider4"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider"]
 [editable path="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Audio/VBoxContainer/VolumeSlider2"]

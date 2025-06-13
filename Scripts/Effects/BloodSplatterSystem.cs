@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using ULTRAmiami.Data;
+using ULTRAmiami.UI.SettingsMenuUI;
 using ULTRAmiami.Units;
 using ULTRAmiami.Utils;
 
@@ -27,9 +28,10 @@ public partial class BloodSplatterSystem : Node2D
 	
 	public void AddSplattersFromHit(Unit bleeder, Hit hit)
 	{
-		_splatterList.Capacity = _splatterList.Count + hit.BleedingInfo.SplatterAmount;
+		int newSplatterAmount = (int)((hit.BleedingInfo.SplatterAmount * BloodSplatterSlider.BloodSplatterMultiplier) + 0.99f);
+		_splatterList.Capacity = _splatterList.Count + newSplatterAmount;
 		
-		for (int i = 0; i < hit.BleedingInfo.SplatterAmount; i++)
+		for (int i = 0; i < newSplatterAmount; i++)
 		{
 			SplatterInfo splatter = SpawnAndInitializeSingleSplatter(bleeder, hit);
 			_splatterList.Add(splatter);
