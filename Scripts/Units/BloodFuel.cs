@@ -28,6 +28,9 @@ public partial class BloodFuel : Node
 	[Signal]
 	public delegate void OnBloodChangedEventHandler(float newBlood);
 
+	[Signal]
+	public delegate void OnBloodGainedEventHandler(float gained);
+	
 	public bool BloodDrains = true;
 
 	public override void _Ready()
@@ -53,6 +56,8 @@ public partial class BloodFuel : Node
 		PlayerScore.Current.AddBloodConsumed(blood);
 		_blood += blood;
 		_blood = float.Clamp(_blood, 0, _max);
+		
+		EmitSignalOnBloodGained(blood);
 	}
 
 	public void Hit(Hit hit)

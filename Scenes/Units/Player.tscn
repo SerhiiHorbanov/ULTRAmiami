@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=32 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Firearms/Pistol.tscn" id="3_giihn"]
 [ext_resource type="Script" uid="uid://diyjjhrtrk6qf" path="res://Scripts/Units/Movement/PlayerMovement.cs" id="4_u2egk"]
 [ext_resource type="PackedScene" uid="uid://ch5wvmkytoo1o" path="res://Scenes/Units/AimLine.tscn" id="4_v5kf0"]
+[ext_resource type="Script" uid="uid://crhk4rp0hd5lv" path="res://Scripts/Units/BloodynessStagesTexturesApplier.cs" id="5_tcx7m"]
 [ext_resource type="Script" uid="uid://bf2ajtg11efkx" path="res://Scripts/PlayerAim.cs" id="6_5ssqx"]
 [ext_resource type="AudioStream" uid="uid://dr8j3gjenfena" path="res://Audio/SFX/V0DeathScream.wav" id="7_g6b54"]
 [ext_resource type="Script" uid="uid://bygcsgekb4qug" path="res://Scripts/UI/Crosshair.cs" id="8_rfdr6"]
@@ -26,6 +27,7 @@
 [ext_resource type="Script" uid="uid://blwiauuuf8t1g" path="res://Scripts/Data/HitBleedingInfo.cs" id="18_rfdr6"]
 [ext_resource type="AudioStream" uid="uid://bul1g3ey30dhr" path="res://Audio/Sound Randomizers/ArmAttackSwooshRandomizer.tres" id="19_10dhr"]
 [ext_resource type="AudioStream" uid="uid://c2da3v5sudved" path="res://Audio/Sound Randomizers/MeleeHitSoundRandomizer.tres" id="20_hese3"]
+[ext_resource type="Script" uid="uid://dgrs7poguc7m1" path="res://Scripts/Units/PlayerBloodyness.cs" id="28_cijlh"]
 
 [sub_resource type="Resource" id="Resource_rfdr6"]
 script = ExtResource("10_egyh6")
@@ -58,10 +60,18 @@ script = ExtResource("2_rfdr6")
 
 [node name="Sprite2D" parent="Graphics" index="0"]
 texture = ExtResource("2_cj8nc")
+hframes = 4
+vframes = 5
 
 [node name="AnimatedSprite2D" parent="Graphics" index="1"]
 sprite_frames = ExtResource("3_cj8nc")
 frame_progress = 0.0916329
+
+[node name="BodyBloodynessApplier" type="Node" parent="Graphics" index="2" node_paths=PackedStringArray("_bloodyness", "_sprite")]
+script = ExtResource("5_tcx7m")
+_bloodyness = NodePath("../../Bloodyness")
+_bloodynessStagesThresholds = Array[float]([0.0, 3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0, 27.0, 30.0, 33.0, 36.0, 39.0, 42.0, 45.0, 48.0, 51.0])
+_sprite = NodePath("../Sprite2D")
 
 [node name="PlayerMovement" type="Node" parent="." index="2" node_paths=PackedStringArray("_unit")]
 script = ExtResource("4_u2egk")
@@ -137,7 +147,9 @@ position = Vector2(0, -20)
 rotation = 1.5708
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("13_0bpcd")
-offset = Vector2(-0.5, -4)
+offset = Vector2(0.39, -14)
+hframes = 3
+vframes = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="MeleeAttacker/Arm" index="0"]
 self_modulate = Color(1, 1, 1, 0)
@@ -173,8 +185,19 @@ stream = ExtResource("20_hese3")
 volume_db = -5.0
 bus = &"SFX"
 
+[node name="ArmBloodynessApplier" type="Node" parent="MeleeAttacker" index="7" node_paths=PackedStringArray("_bloodyness", "_sprite")]
+script = ExtResource("5_tcx7m")
+_bloodyness = NodePath("../../Bloodyness")
+_bloodynessStagesThresholds = Array[float]([0.0, 5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0])
+_sprite = NodePath("../Arm")
+
 [node name="BloodSplatterSpawner" parent="." index="12"]
 _alwaysSpawnNewSplatterSystem = true
+
+[node name="Bloodyness" type="Node" parent="." index="13"]
+script = ExtResource("28_cijlh")
+_lossPerSecond = 4.0
+_maxBloodyness = 70.0
 
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
@@ -183,6 +206,7 @@ _alwaysSpawnNewSplatterSystem = true
 [connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="PlayerUnitController" method="SetAimingPositionToRelative"]
 [connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="PlayerUnitController/PlayerAim/Crosshair" method="set_position"]
 [connection signal="OnPositionUpdated" from="PlayerUnitController/PlayerAim" to="AimLine" method="Update"]
+[connection signal="OnBloodGained" from="BloodFuel" to="Bloodyness" method="OnBloodGained"]
 [connection signal="RunOutOfBlood" from="BloodFuel" to="." method="Die"]
 [connection signal="OnAttacking" from="MeleeAttacker" to="MeleeAttacker/AnimationPlayer" method="StartAnimation"]
 [connection signal="OnHitting" from="MeleeAttacker" to="MeleeAttacker/ParticleSpawner" method="SpawnParticles"]

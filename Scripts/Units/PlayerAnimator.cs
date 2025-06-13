@@ -4,17 +4,15 @@ namespace ULTRAmiami.Units;
 
 public partial class PlayerAnimator : UnitAnimator
 {
-	private PlayerAim _aim;
-
-	private float BodyRotation; 
+	private float _bodyRotation;
 	
 	protected override float CalculateBodyRotation()
 	{
-		return BodyRotation;
+		return _bodyRotation;
 	}
 
 	private void UpdateBodyRotation(Vector2 relativeAimPos)
 	{
-		BodyRotation = relativeAimPos.Angle();
+		_bodyRotation = relativeAimPos.Angle();
 	}
 }
