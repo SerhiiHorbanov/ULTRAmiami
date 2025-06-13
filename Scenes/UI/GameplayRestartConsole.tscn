@@ -1,11 +1,115 @@
-[gd_scene load_steps=5 format=3 uid="uid://borpe0wg55dui"]
+[gd_scene load_steps=6 format=3 uid="uid://borpe0wg55dui"]
 
 [ext_resource type="Script" uid="uid://deogjc2fdpnuf" path="res://Scripts/UI/GameplayRestartConsole.cs" id="1_r11l3"]
 [ext_resource type="Script" uid="uid://u8sqt54h7k04" path="res://Scripts/UI/TextOverTimePrinter.cs" id="2_osdqr"]
-[ext_resource type="Script" uid="uid://2fxu76gt0wgr" path="res://Scripts/UI/GradientOverTimeApplier.cs" id="2_p72cr"]
 
-[sub_resource type="Gradient" id="Gradient_osdqr"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_osdqr"]
+resource_name = "TopAndBottomClosing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1920, 0), Vector2(1920, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1920, 0), Vector2(1920, 540)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bottom:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1080), Vector2(0, 540)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6eoah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1920, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottom:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1920, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bottom:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1080)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6eoah"]
+_data = {
+&"ConsoleOpening": SubResource("Animation_osdqr"),
+&"RESET": SubResource("Animation_6eoah")
+}
 
 [node name="GameplayRestartConsole" type="ColorRect" node_paths=PackedStringArray("_consoleText")]
 process_mode = 3
@@ -18,6 +122,23 @@ color = Color(0, 0, 0, 0)
 script = ExtResource("1_r11l3")
 _consoleText = NodePath("ConsoleText")
 _playerDeathRestartTextPath = &"res://RestartTexts/PlayerDeathText.txt"
+
+[node name="Top" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bottom" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
 
 [node name="ConsoleText" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -35,13 +156,9 @@ shortcut_keys_enabled = false
 script = ExtResource("2_osdqr")
 _charactersPerSecond = 1000.0
 
-[node name="GradientOverTimeApplier" type="Node" parent="." node_paths=PackedStringArray("_colorRect", "_time")]
-script = ExtResource("2_p72cr")
-_colorRect = NodePath("..")
-_gradient = SubResource("Gradient_osdqr")
-_time = NodePath("Timer")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6eoah")
+}
 
-[node name="Timer" type="Timer" parent="GradientOverTimeApplier"]
-one_shot = true
-
-[connection signal="OnAnimationStarted" from="." to="GradientOverTimeApplier" method="Start"]
+[connection signal="OnAnimationStarted" from="." to="AnimationPlayer" method="play" binds= ["ConsoleOpening"]]
