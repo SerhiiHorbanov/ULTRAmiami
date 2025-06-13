@@ -1,10 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://sejgr3ctgw4w"]
+[gd_scene load_steps=5 format=3 uid="uid://sejgr3ctgw4w"]
 
 [ext_resource type="Script" uid="uid://ckxotlqws0r6a" path="res://Scripts/DeathCamera.cs" id="1_xvoeq"]
 
-[node name="DeathCamera" type="Camera2D"]
+[sub_resource type="Curve" id="Curve_xvoeq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.197059), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_n7034"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_8d3a3"]
+_data = [Vector2(0, 1), 0.0, -2.37656, 0, 0, Vector2(1, 0.197059), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="DeathCamera" type="Camera2D" node_paths=PackedStringArray("_curveTimer")]
 ignore_rotation = false
 script = ExtResource("1_xvoeq")
-_rotationSpeedDeg = 60.0
-_speed = 600.0
-_zoomSpeed = 0.6
+_rotationSpeedDeg = 90.0
+_speed = 900.0
+_zoomSpeed = 2.0
+_curveTimer = NodePath("Timer")
+_speedCurve = SubResource("Curve_xvoeq")
+_rotationCurve = SubResource("Curve_n7034")
+_zoomCurve = SubResource("Curve_8d3a3")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
