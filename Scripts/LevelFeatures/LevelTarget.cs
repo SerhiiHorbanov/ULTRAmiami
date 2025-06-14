@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 using ULTRAmiami.Requirements;
+using ULTRAmiami.UI.LevelRequirementsUI;
 using ULTRAmiami.Units;
 
 namespace ULTRAmiami;
@@ -10,6 +11,8 @@ public partial class LevelTarget : Node2D
 	[Export] private Unit _player;
 	private readonly List<CompletionRequirement> _requirements = [];
 	private bool _isCompleted;
+
+	public int TargetsCompleted {get; private set;}
 	
 	[Signal]
 	public delegate void OnCompletedEventHandler();
@@ -28,6 +31,7 @@ public partial class LevelTarget : Node2D
 	public override void _Process(double delta)
 	{
 		ResolveCompletionAndFailure();
+		LevelTargetsUI.SetTargetsCompleted(TargetsCompleted, _requirements.Count);
 	}
 	
 	private void ResolveCompletionAndFailure()
@@ -36,19 +40,26 @@ public partial class LevelTarget : Node2D
 			return;
 		
 		bool everythingIsCompleted = true;
-
+		CompletionRequirement failedRequirement = null;
+		
+		TargetsCompleted = 0;
+		
 		foreach (CompletionRequirement requirement in _requirements)
 		{
-			if (requirement.IsFailed())
-			{
-				Fail(requirement);
-				return;
-			}
-			
-			everythingIsCompleted &= requirement.IsCompleted();
+			if (failedRequirement is null && requirement.IsFailed())
+				failedRequirement = requirement;
+
+			bool isCompleted = requirement.IsCompleted();
+			everythingIsCompleted &= isCompleted;
+			if (isCompleted)
+				TargetsCompleted++;
 		}
 
-		if (everythingIsCompleted)
+		if (failedRequirement is not null)
+		{
+			Fail(failedRequirement);
+		}
+		else if (everythingIsCompleted)
 		{
 			_isCompleted = true;
 			EmitSignalOnCompleted();

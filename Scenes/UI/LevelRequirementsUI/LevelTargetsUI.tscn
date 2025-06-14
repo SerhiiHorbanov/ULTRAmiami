@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blj1bxpb1b5gi" path="res://Scripts/UI/LevelRequirementsUI/LevelTargetsUI.cs" id="1_t132w"]
 
-[node name="LevelTargetsUI" type="HBoxContainer"]
+[node name="LevelTargetsUI" type="HBoxContainer" node_paths=PackedStringArray("_targetsCounterLabel")]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -14,3 +14,24 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_t132w")
+_targetsCounterLabel = NodePath("MarginContainer/RichTextLabel")
+_targetsCounterPrefix = "[font_size=34]TARGETS "
+_targetsCounterSuffix = "[color=white]:"
+_targetsCounterCompletedPrefix = "[color=green]"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "default text"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1

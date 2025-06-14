@@ -11,6 +11,7 @@ _bullet = ExtResource("3_dlim3")
 _reloadTimer = NodePath("ReloadTimer")
 _dropped = NodePath("Dropped")
 _droppedNotPickuppable = NodePath("DroppedNotPickuppable")
+_droppedRotationRandomness = 45.0
 _shootingAudio = NodePath("Shot")
 _failingShotAudio = NodePath("FailingShot")
 _reloadingAudio = NodePath("Reload")
@@ -18,5 +19,5 @@ _reloadingAudio = NodePath("Reload")
 [node name="Dropped" parent="." index="0" node_paths=PackedStringArray("_weapon")]
 _weapon = NodePath("..")
 
-[node name="FailingShot" parent="." index="4"]
+[node name="FailingShot" parent="." index="5"]
 stream = ExtResource("4_fmjnk")
