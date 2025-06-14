@@ -16,6 +16,9 @@ _unit = NodePath("../Player")
 
 [node name="Canvas" parent="." instance=ExtResource("2_gl6un")]
 
+[node name="LevelTargetsUI" parent="Canvas" index="0"]
+visible = false
+
 [node name="AmmoDisplay" parent="Canvas" index="1" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player")
 
