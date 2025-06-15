@@ -106,7 +106,7 @@ modulate = Color(0.501961, 0.501961, 0.501961, 1)
 texture = ExtResource("3_wngdm")
 
 [node name="ReloadTimer" parent="." index="2"]
-wait_time = 4.0
+wait_time = 2.4
 
 [node name="Shot" parent="." index="4"]
 stream = ExtResource("2_4xjk2")
