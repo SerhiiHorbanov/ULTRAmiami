@@ -160,10 +160,10 @@ position = Vector2(0, -544)
 position = Vector2(-8, 568)
 
 [node name="SMGEnemy" parent="Enemies" index="2" instance=ExtResource("5_bq3cp")]
-position = Vector2(-384, -240)
+position = Vector2(-384, -288)
 
 [node name="SMGEnemy2" parent="Enemies" index="3" instance=ExtResource("5_bq3cp")]
-position = Vector2(-384, 224)
+position = Vector2(-384, 288)
 
 [node name="Unit2" parent="Enemies" index="4" instance=ExtResource("4_kaxuq")]
 position = Vector2(472, -1152)
@@ -210,6 +210,7 @@ position = Vector2(218, 576)
 [node name="BreakableTrigger10" parent="." index="19" instance=ExtResource("12_el1rd")]
 position = Vector2(794, 1152)
 
+[connection signal="OnBloodGained" from="Player/BloodFuel" to="Player/Bloodyness" method="OnBloodGained"]
 [connection signal="OnBroken" from="BreakableTrigger5" to="TriggerableDoor4" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger6" to="TriggerableDoor4" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger7" to="TriggerableDoor3" method="Trigger"]
