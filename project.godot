@@ -14,7 +14,8 @@ config/name="ULTRAmiami"
 run/main_scene="uid://b3prpseiwpoym"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 run/max_fps=140
-config/icon="res://icon.svg"
+config/icon="uid://40xlpllv4e2d"
+config/windows_native_icon="res://Textures/KIL.ico"
 <<<<<<<Updatedupstreamrun/main_scene="uid://b6u4rioaf4ul4"
 
 [audio]
