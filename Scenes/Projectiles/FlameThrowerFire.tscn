@@ -94,6 +94,7 @@ _maxShootingDistance = 500.0
 _randomizationMaxLength = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(-4.76837e-07, 2.86102e-06)
 scale = Vector2(0.78125, 0.78125)
 texture = ExtResource("1_if6ui")
