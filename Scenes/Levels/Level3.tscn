@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://caf7v5q6mfl3t"]
+[gd_scene load_steps=17 format=3 uid="uid://caf7v5q6mfl3t"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_y77v7"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_6rkx2"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="5_0kf4d"]
 [ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="6_ve7n4"]
 [ext_resource type="PackedScene" uid="uid://dffcbxd5mkoem" path="res://Scenes/LevelDetails/BreakableTriggerVertical.tscn" id="9_q5el5"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="10_nvbyj"]
+[ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="11_3i7ro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5el5"]
 size = Vector2(562, 402)
@@ -262,6 +264,12 @@ position = Vector2(794.5, 576)
 
 [node name="BreakableTrigger" parent="." index="26" instance=ExtResource("9_q5el5")]
 position = Vector2(-218.5, 0)
+
+[node name="ConcreteFloor" parent="." index="27" instance=ExtResource("10_nvbyj")]
+polygon = PackedVector2Array(-832, 832, 832, 832, 832, -896, 2048, -896, 2048, 832, 2560, 832, 2560, -1408, -832, -1408)
+
+[node name="MetalFloor" parent="." index="28" instance=ExtResource("11_3i7ro")]
+polygon = PackedVector2Array(896, -896, 1984, -896, 1984, 832, 896, 832)
 
 [connection signal="OnBroken" from="BreakableTrigger2" to="TriggerableDoor2" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger4" to="TriggerableDoor3" method="Trigger"]

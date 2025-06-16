@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbhga1tb2gsgj"]
+[gd_scene load_steps=16 format=3 uid="uid://bbhga1tb2gsgj"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_0ryud"]
 [ext_resource type="Resource" uid="uid://tf5nmk2kvxbb" path="res://LevelInfos/Level2Info.tres" id="2_m40gi"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dg4l4hpp7kyp3" path="res://Scenes/LevelDetails/AreaTrigger.tscn" id="6_4rk67"]
 [ext_resource type="PackedScene" uid="uid://c7lxg1prscm7m" path="res://Scenes/LevelDetails/HintTrigger.tscn" id="9_ipaot"]
 [ext_resource type="Script" uid="uid://bsnay7tcwvpmp" path="res://Scripts/Data/GameplayHint.cs" id="10_ao4h1"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="11_ngp1c"]
+[ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="12_u5eb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1swa"]
 size = Vector2(712, 418)
@@ -223,6 +225,15 @@ navigation_polygon = SubResource("NavigationPolygon_lmdar")
 position = Vector2(1728, 5)
 scale = Vector2(2.50908, 5.84361)
 _hint = SubResource("Resource_ngp1c")
+
+[node name="ConcreteFloor" parent="." index="15" instance=ExtResource("11_ngp1c")]
+polygon = PackedVector2Array(-256, -256, 256, -256, 256, 328, 896, 328, 896, -256, 2560, -256, 2560, 320, 3712, 320, 3712, 1408, 3200, 1408, 3200, 832, 2048, 832, 2048, 256, 1408, 256, 1408, 832, -256, 832)
+
+[node name="MetalFloor" parent="." index="16" instance=ExtResource("12_u5eb6")]
+polygon = PackedVector2Array(896, -256, 1408, -256, 1408, -896, 2048, -896, 2048, -256, 2560, -256, 2560, -1408, 896, -1408)
+
+[node name="MetalFloor2" parent="." index="17" instance=ExtResource("12_u5eb6")]
+polygon = PackedVector2Array(3200, -256, 3712, -256, 3712, 320, 3200, 320)
 
 [connection signal="OnTriggering" from="AreaTrigger" to="TriggerableDoor" method="Trigger"]
 
