@@ -7,6 +7,10 @@ namespace ULTRAmiami.Weapons.Projectiles;
 
 public partial class FlamethrowerFire : RigidBody2D, IFirearmProjectile
 {
+	[Export] private int _framesCount;
+	[Export] private AnimatedSprite2D _sprite;
+	[Export] private AnimatedSprite2D _outlineSprite;
+	
 	[Export] private float _rotationRandomizationDeg;
 	[Export] private float _velocityForRotationSettling;
 	
@@ -36,6 +40,14 @@ public partial class FlamethrowerFire : RigidBody2D, IFirearmProjectile
 		
 		Velocity = CalculateInitialVelocity(shootingAt - globalPosition);
 		InitializeRotation();
+		InitializeAnimationOffset();
+	}
+
+	private void InitializeAnimationOffset()
+	{
+		int frame = Random.Shared.Next(_framesCount);
+		_sprite.Frame = frame;
+		_outlineSprite.Frame = frame;
 	}
 
 	private void InitializeRotation()
