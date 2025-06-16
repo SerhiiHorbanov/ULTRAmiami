@@ -7,24 +7,45 @@ namespace ULTRAmiami.Weapons.Projectiles;
 
 public partial class FlamethrowerFire : RigidBody2D, IFirearmProjectile
 {
+	[Export] private float _rotationRandomizationDeg;
+	[Export] private float _velocityForRotationSettling;
+	
 	[Export] private float _friction;
 	[Export] private float _maxShootingDistance;
 
 	[Export] private float _randomizationMaxLength;
+
+	private float _randomizedRotation;
+	private float _rotationByVelocity;
+	
+	private float HalfRotationRandomizationRad
+		=> float.DegreesToRadians(_rotationRandomizationDeg) * 0.5f;
 	
 	private Vector2 Velocity
 	{
 		get => GetLinearVelocity();
 		set => SetLinearVelocity(value);
 	}
+	
+	private float VelocityForRotationSettlingSquared
+		=> _velocityForRotationSettling * _velocityForRotationSettling;
 
 	public void Initialize(Vector2 globalPosition, Vector2 shootingAt)
 	{
 		GlobalPosition = globalPosition;
 		
 		Velocity = CalculateInitialVelocity(shootingAt - globalPosition);
+		InitializeRotation();
 	}
-	
+
+	private void InitializeRotation()
+	{
+		_randomizedRotation = MyRandom.Range(HalfRotationRandomizationRad);
+		_rotationByVelocity = float.Pi * -0.5f + Velocity.Angle();
+		
+		Rotation = _rotationByVelocity;
+	}
+
 	private Vector2 RandomizeShootingAt(Vector2 shootingAt)
 	{
 		float randomizationLength = MyRandom.Range(0, _randomizationMaxLength);
@@ -54,6 +75,20 @@ public partial class FlamethrowerFire : RigidBody2D, IFirearmProjectile
 	public override void _PhysicsProcess(double delta)
 	{
 		ApplyFriction(delta);
+		UpdateRotation();
+	}
+
+	private void UpdateRotation()
+	{
+		float vLenSq = Velocity.LengthSquared();
+		
+		if (vLenSq > VelocityForRotationSettlingSquared)
+			return;
+		
+		float vl = float.Sqrt(vLenSq);
+
+		float t = vl / _velocityForRotationSettling;
+		Rotation = float.Lerp(_rotationByVelocity, _randomizedRotation, 1 - t);
 	}
 
 	private void ResolveCollision(KinematicCollision2D collision)

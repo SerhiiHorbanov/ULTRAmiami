@@ -81,6 +81,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(2, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_f3ipf"]
 length = 0.001
@@ -96,6 +108,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f3ipf"]
 _data = {
@@ -108,6 +132,8 @@ collision_layer = 0
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("2_j81m3")
+_rotationRandomizationDeg = 25.0
+_velocityForRotationSettling = 500.0
 _friction = 3000.0
 _maxShootingDistance = 500.0
 _randomizationMaxLength = 100.0
