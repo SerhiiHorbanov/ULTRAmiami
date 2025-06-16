@@ -31,6 +31,3 @@ _maxBrakeAcceleration = 10000.0
 _maxWalkSpeed = 200.0
 
 [node name="Shotgun" parent="." index="4" instance=ExtResource("4_a4bow")]
-
-[node name="DeathFromFireTimer" parent="." index="6"]
-wait_time = 2.0
