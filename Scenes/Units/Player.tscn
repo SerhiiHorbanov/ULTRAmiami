@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://d1ne5p0x03afh" path="res://Textures/Units/V0Arm.png" id="13_0bpcd"]
 [ext_resource type="Script" uid="uid://p0bxinvlt1sm" path="res://Scripts/Weapons/Visuals/PlayerArmAnimator.cs" id="14_udi2h"]
 [ext_resource type="Script" uid="uid://bfttqc36e8iud" path="res://Scripts/Effects/PlayerArmHitParticlesSpawner.cs" id="15_ideyk"]
-[ext_resource type="Texture2D" uid="uid://dp1p8usxdya6q" path="res://Textures/Effects/V0ArmSwoosh.png" id="15_xlna3"]
+[ext_resource type="Texture2D" uid="uid://db1oxvehso34x" path="res://Textures/Effects/V0ArmSwoosh.png" id="15_xlna3"]
 [ext_resource type="PackedScene" uid="uid://c4cilfx80rxgt" path="res://Scenes/Effects/ArmHitBloodParticles.tscn" id="16_gkp25"]
 [ext_resource type="AnimationLibrary" uid="uid://bierrju431t8h" path="res://MiscResources/Animations/PlayerArm.tres" id="17_c6vqk"]
 [ext_resource type="Script" uid="uid://blwiauuuf8t1g" path="res://Scripts/Data/HitBleedingInfo.cs" id="18_rfdr6"]
@@ -153,9 +153,9 @@ vframes = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="MeleeAttacker/Arm" index="0"]
 self_modulate = Color(1, 1, 1, 0)
-position = Vector2(-6, -30)
+position = Vector2(-9, -27)
 rotation = -0.523599
-scale = Vector2(0.8, 0.8)
+scale = Vector2(-1.3, 1.3)
 texture = ExtResource("15_xlna3")
 
 [node name="ParticleSpawner" type="Node2D" parent="MeleeAttacker" index="2" node_paths=PackedStringArray("_treeSiblingOfParticles")]
