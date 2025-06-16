@@ -33,4 +33,7 @@ position = Vector2(-232, 255)
 [node name="ShotgunEnemy" parent="." index="7" instance=ExtResource("4_aifej")]
 position = Vector2(-221, -256)
 
+[node name="Polygon2D" parent="." index="8"]
+polygon = PackedVector2Array(80, -80, 432, -80, 432, 80, 80, 80, 80, 432, -400, 432, -400, -400, 80, -400)
+
 [editable path="RoomWalls"]
