@@ -100,7 +100,6 @@ AimLineInfo = SubResource("Resource_n8ysm")
 CrosshairInfo = SubResource("Resource_m8qxu")
 
 [node name="Sprite2D" parent="Dropped" index="0"]
-z_index = 0
 texture = ExtResource("3_wd4x3")
 
 [node name="DroppedNotPickuppable" parent="." index="1"]
