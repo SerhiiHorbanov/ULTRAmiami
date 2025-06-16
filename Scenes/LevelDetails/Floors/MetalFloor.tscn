@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddcxjvnaei01t"]
+
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="1_tkhm6"]
+[ext_resource type="Texture2D" uid="uid://cc640ckashx6g" path="res://Textures/Level/MetalFloor.png" id="2_0qg0y"]
+
+[node name="MetalFloor" instance=ExtResource("1_tkhm6")]
+color = Color(1, 1, 1, 1)
+texture = ExtResource("2_0qg0y")
+texture_scale = Vector2(0.3, 0.3)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfm64ajvud4yn"]
+
+[ext_resource type="Texture2D" uid="uid://dx80a5g40uhe6" path="res://Textures/Level/ConcreteFloor.png" id="1_7apu8"]
+
+[node name="ConcreteFloor" type="Polygon2D"]
+z_index = -200
+texture_repeat = 2
+color = Color(0.717647, 0.717647, 0.717647, 1)
+texture = ExtResource("1_7apu8")
+texture_scale = Vector2(0.2, 0.2)
