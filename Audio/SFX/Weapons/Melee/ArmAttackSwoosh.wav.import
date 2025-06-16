@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b5vrg682jyc6u"
-path="res://.godot/imported/ArmAttackSwoosh.wav-57ac2a6bd28ab5c1a6136cfb542bf01f.sample"
+path="res://.godot/imported/ArmAttackSwoosh.wav-cc06fdd40590ec1d1eb6926ae55d98f4.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/ArmAttackSwoosh.wav"
-dest_files=["res://.godot/imported/ArmAttackSwoosh.wav-57ac2a6bd28ab5c1a6136cfb542bf01f.sample"]
+source_file="res://Audio/SFX/Weapons/Melee/ArmAttackSwoosh.wav"
+dest_files=["res://.godot/imported/ArmAttackSwoosh.wav-cc06fdd40590ec1d1eb6926ae55d98f4.sample"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c11r7g3ydgoba"
-path="res://.godot/imported/ShotgunReload.wav-0bad95fa4bfbc448c7836a312a71d903.sample"
+path="res://.godot/imported/ShotgunReload.wav-da5e396644f8c32638e4766cbcc4deac.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/ShotgunReload.wav"
-dest_files=["res://.godot/imported/ShotgunReload.wav-0bad95fa4bfbc448c7836a312a71d903.sample"]
+source_file="res://Audio/SFX/Weapons/Shotgun/ShotgunReload.wav"
+dest_files=["res://.godot/imported/ShotgunReload.wav-da5e396644f8c32638e4766cbcc4deac.sample"]
 
 [params]
 

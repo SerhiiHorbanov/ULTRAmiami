@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dr8j3gjenfena"
-path="res://.godot/imported/V0DeathScream.wav-ad9c43f046cf6785a31ddd744855502c.sample"
+path="res://.godot/imported/V0DeathScream.wav-530471de856c111409a4d52711a42ddd.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/V0DeathScream.wav"
-dest_files=["res://.godot/imported/V0DeathScream.wav-ad9c43f046cf6785a31ddd744855502c.sample"]
+source_file="res://Audio/SFX/DeathSounds/V0DeathScream.wav"
+dest_files=["res://.godot/imported/V0DeathScream.wav-530471de856c111409a4d52711a42ddd.sample"]
 
 [params]
 

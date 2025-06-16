@@ -1,6 +1,6 @@
 [gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://bul1g3ey30dhr"]
 
-[ext_resource type="AudioStream" uid="uid://b5vrg682jyc6u" path="res://Audio/SFX/ArmAttackSwoosh.wav" id="1_r8n7c"]
+[ext_resource type="AudioStream" uid="uid://b5vrg682jyc6u" path="res://Audio/SFX/Weapons/Melee/ArmAttackSwoosh.wav" id="1_r8n7c"]
 
 [resource]
 random_pitch = 1.1

@@ -1,8 +1,8 @@
 [gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://daex6bahpvbw6"]
 
-[ext_resource type="AudioStream" uid="uid://bye3d882jplu0" path="res://Audio/SFX/EnemyDeath1.wav" id="1_y8kmm"]
-[ext_resource type="AudioStream" uid="uid://dv8dasfvvy621" path="res://Audio/SFX/EnemyDeath2.wav" id="2_kau2a"]
-[ext_resource type="AudioStream" uid="uid://darkd4na3w7sq" path="res://Audio/SFX/EnemyDeath3.wav" id="3_pe53a"]
+[ext_resource type="AudioStream" uid="uid://bye3d882jplu0" path="res://Audio/SFX/DeathSounds/EnemyDeath1.wav" id="1_y8kmm"]
+[ext_resource type="AudioStream" uid="uid://dv8dasfvvy621" path="res://Audio/SFX/DeathSounds/EnemyDeath2.wav" id="2_kau2a"]
+[ext_resource type="AudioStream" uid="uid://darkd4na3w7sq" path="res://Audio/SFX/DeathSounds/EnemyDeath3.wav" id="3_pe53a"]
 
 [resource]
 playback_mode = 1

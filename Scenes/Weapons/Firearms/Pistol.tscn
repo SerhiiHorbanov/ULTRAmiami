@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://m5bovy7g7w18" path="res://Textures/Crosshair/CrosshairCenter1.png" id="5_evhld"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_jic2m"]
 [ext_resource type="Texture2D" uid="uid://2yaurwhqx2ue" path="res://Textures/Crosshair/CrosshairCorner1.png" id="6_ssdph"]
-[ext_resource type="AudioStream" uid="uid://c0tqt8n52rbip" path="res://Audio/SFX/Pistol Reload.wav" id="7_jtjwi"]
+[ext_resource type="AudioStream" uid="uid://c0tqt8n52rbip" path="res://Audio/SFX/Weapons/Pistol/Pistol Reload.wav" id="7_jtjwi"]
 [ext_resource type="Script" uid="uid://b7ruqvv15s7rk" path="res://Scripts/Data/CrosshairCornerInfo.cs" id="7_l33vp"]
 [ext_resource type="Script" uid="uid://di45w16121rtc" path="res://Scripts/Data/CrosshairInfo.cs" id="8_36wp3"]
 [ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="9_c84om"]

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b10uxcb5rwiea"
-path="res://.godot/imported/AssaultRifleReload.wav-35ad14f17acdfcfaa6ae2e3343df5142.sample"
+path="res://.godot/imported/AssaultRifleReload.wav-1106931a5d5402fb7fd5d92b357097ea.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/AssaultRifleReload.wav"
-dest_files=["res://.godot/imported/AssaultRifleReload.wav-35ad14f17acdfcfaa6ae2e3343df5142.sample"]
+source_file="res://Audio/SFX/Weapons/AssaultRifle/AssaultRifleReload.wav"
+dest_files=["res://.godot/imported/AssaultRifleReload.wav-1106931a5d5402fb7fd5d92b357097ea.sample"]
 
 [params]
 

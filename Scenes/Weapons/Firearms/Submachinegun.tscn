@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://fbtjd4ropgt2" path="res://Scripts/Data/WeaponAimLineInfo.cs" id="5_psmf8"]
 [ext_resource type="AudioStream" uid="uid://dq125qehxc1mj" path="res://Audio/Sound Randomizers/Shot Sound Randomizer.tres" id="5_xjwgq"]
 [ext_resource type="Texture2D" uid="uid://bxsboa2urtbys" path="res://Textures/Crosshair/CrosshairCenter3.png" id="6_lnvbv"]
-[ext_resource type="AudioStream" uid="uid://cq2kl2pdko5yi" path="res://Audio/SFX/SMGReload.wav" id="6_txk56"]
+[ext_resource type="AudioStream" uid="uid://cq2kl2pdko5yi" path="res://Audio/SFX/Weapons/SMG/SMGReload.wav" id="6_txk56"]
 [ext_resource type="Texture2D" uid="uid://2yaurwhqx2ue" path="res://Textures/Crosshair/CrosshairCorner1.png" id="7_3icas"]
 [ext_resource type="Script" uid="uid://b7ruqvv15s7rk" path="res://Scripts/Data/CrosshairCornerInfo.cs" id="8_50q50"]
 [ext_resource type="Script" uid="uid://di45w16121rtc" path="res://Scripts/Data/CrosshairInfo.cs" id="9_uth5n"]

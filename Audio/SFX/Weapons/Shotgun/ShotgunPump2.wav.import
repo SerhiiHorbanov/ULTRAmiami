@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cwtgpsqx8swnd"
-path="res://.godot/imported/ShotgunPump2.wav-b5bb7d88e3a081433d75cbf0d47447fb.sample"
+path="res://.godot/imported/ShotgunPump2.wav-af28b3d701d6e7a45b4b193df6bacae5.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/ShotgunPump2.wav"
-dest_files=["res://.godot/imported/ShotgunPump2.wav-b5bb7d88e3a081433d75cbf0d47447fb.sample"]
+source_file="res://Audio/SFX/Weapons/Shotgun/ShotgunPump2.wav"
+dest_files=["res://.godot/imported/ShotgunPump2.wav-af28b3d701d6e7a45b4b193df6bacae5.sample"]
 
 [params]
 

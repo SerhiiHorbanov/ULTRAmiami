@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://l5ueype6un4p"
-path="res://.godot/imported/Failing Shot.wav-78332ff1d411e80d1c4e28e0110b18f2.sample"
+path="res://.godot/imported/Failing Shot.wav-4791f540a1fc909ba74c980b93e6934d.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/Failing Shot.wav"
-dest_files=["res://.godot/imported/Failing Shot.wav-78332ff1d411e80d1c4e28e0110b18f2.sample"]
+source_file="res://Audio/SFX/Weapons/Failing Shot.wav"
+dest_files=["res://.godot/imported/Failing Shot.wav-4791f540a1fc909ba74c980b93e6934d.sample"]
 
 [params]
 

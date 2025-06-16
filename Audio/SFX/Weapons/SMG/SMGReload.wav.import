@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cq2kl2pdko5yi"
-path="res://.godot/imported/SMGReload.wav-36ed6acac2adcc4064b275319846e858.sample"
+path="res://.godot/imported/SMGReload.wav-d269d574f8715ff21947fae92a463bf7.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/SMGReload.wav"
-dest_files=["res://.godot/imported/SMGReload.wav-36ed6acac2adcc4064b275319846e858.sample"]
+source_file="res://Audio/SFX/Weapons/SMG/SMGReload.wav"
+dest_files=["res://.godot/imported/SMGReload.wav-d269d574f8715ff21947fae92a463bf7.sample"]
 
 [params]
 

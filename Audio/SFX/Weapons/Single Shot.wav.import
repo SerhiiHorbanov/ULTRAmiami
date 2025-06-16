@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://7px3xpvld50q"
-path="res://.godot/imported/Single Shot.wav-ed5382ed5c5fc013bd1e37e474ed2e7c.sample"
+path="res://.godot/imported/Single Shot.wav-590b72d7ef460d7c0a1a91065a27bf2a.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/Single Shot.wav"
-dest_files=["res://.godot/imported/Single Shot.wav-ed5382ed5c5fc013bd1e37e474ed2e7c.sample"]
+source_file="res://Audio/SFX/Weapons/Single Shot.wav"
+dest_files=["res://.godot/imported/Single Shot.wav-590b72d7ef460d7c0a1a91065a27bf2a.sample"]
 
 [params]
 

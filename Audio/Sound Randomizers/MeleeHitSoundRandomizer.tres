@@ -1,7 +1,7 @@
 [gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://c2da3v5sudved"]
 
-[ext_resource type="AudioStream" uid="uid://co7sxuj2llin8" path="res://Audio/SFX/MeleeHit.mp3" id="1_w12ci"]
-[ext_resource type="AudioStream" uid="uid://cmkjhjq87m01h" path="res://Audio/SFX/MeleeHit2.mp3" id="2_xy1rk"]
+[ext_resource type="AudioStream" uid="uid://co7sxuj2llin8" path="res://Audio/SFX/Weapons/Melee/MeleeHit.mp3" id="1_w12ci"]
+[ext_resource type="AudioStream" uid="uid://cmkjhjq87m01h" path="res://Audio/SFX/Weapons/Melee/MeleeHit2.mp3" id="2_xy1rk"]
 
 [resource]
 streams_count = 2

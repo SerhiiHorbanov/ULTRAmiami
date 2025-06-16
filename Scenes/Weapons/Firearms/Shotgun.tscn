@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://di45w16121rtc" path="res://Scripts/Data/CrosshairInfo.cs" id="9_ih7vx"]
 [ext_resource type="Script" uid="uid://b3lsewkw2o8yy" path="res://Scripts/Weapons/Visuals/WeaponPhysicalParticleSpawner.cs" id="11_n8ysm"]
 [ext_resource type="PackedScene" uid="uid://ukvmrb52owl1" path="res://Scenes/Effects/PhysicalParticles/CartridgeCases/ShotgunShell.tscn" id="12_qpube"]
-[ext_resource type="AudioStream" uid="uid://c11r7g3ydgoba" path="res://Audio/SFX/ShotgunReload.wav" id="17_adxcm"]
+[ext_resource type="AudioStream" uid="uid://c11r7g3ydgoba" path="res://Audio/SFX/Weapons/Shotgun/ShotgunReload.wav" id="17_adxcm"]
 
 [sub_resource type="Resource" id="Resource_gvd2d"]
 script = ExtResource("4_k5p5k")

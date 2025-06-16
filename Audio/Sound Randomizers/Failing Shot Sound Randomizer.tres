@@ -1,6 +1,6 @@
 [gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://gd5kll0qtrur"]
 
-[ext_resource type="AudioStream" uid="uid://l5ueype6un4p" path="res://Audio/SFX/Failing Shot.wav" id="1_51uog"]
+[ext_resource type="AudioStream" uid="uid://l5ueype6un4p" path="res://Audio/SFX/Weapons/Failing Shot.wav" id="1_51uog"]
 
 [resource]
 random_pitch = 1.2
