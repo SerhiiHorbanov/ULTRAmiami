@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://deye1svlmckfb"]
+[gd_scene load_steps=18 format=3 uid="uid://deye1svlmckfb"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_a57kv"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="2_0xqck"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c7lxg1prscm7m" path="res://Scenes/LevelDetails/HintTrigger.tscn" id="10_wvbab"]
 [ext_resource type="Script" uid="uid://bsnay7tcwvpmp" path="res://Scripts/Data/GameplayHint.cs" id="11_66lsc"]
 [ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="13_2dlwo"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="14_0718j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0718j"]
 size = Vector2(576, 288)
@@ -302,6 +303,9 @@ _hint = SubResource("Resource_2dlwo")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="14"]
 navigation_polygon = SubResource("NavigationPolygon_2dlwo")
+
+[node name="ConcreteFloor" parent="." index="15" instance=ExtResource("14_0718j")]
+polygon = PackedVector2Array(-256, -256, 896, -256, 896, -1408, 1472, -1408, 1472, -1984, 3712, -1984, 3712, -896, 3136, -896, 3136, 1408, 1984, 1408, 1984, 1984, 1472, 1984, 1472, 832, 896, 832, 896, 256, -256, 256)
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 

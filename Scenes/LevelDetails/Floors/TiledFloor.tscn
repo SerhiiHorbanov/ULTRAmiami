@@ -4,4 +4,5 @@
 [ext_resource type="Texture2D" uid="uid://deo1qjwi1i4cn" path="res://Textures/Level/TiledFloor.png" id="2_rdmp7"]
 
 [node name="TiledFloor" instance=ExtResource("1_2t74r")]
+color = Color(0.501961, 0.501961, 0.501961, 1)
 texture = ExtResource("2_rdmp7")

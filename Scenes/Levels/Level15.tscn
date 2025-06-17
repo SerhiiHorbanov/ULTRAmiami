@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dj8l6nwi0u2xk"]
+[gd_scene load_steps=16 format=3 uid="uid://dj8l6nwi0u2xk"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_4ugfp"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="2_iqmtc"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="6_jypyp"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="7_uui2j"]
 [ext_resource type="PackedScene" uid="uid://bg0s6f1srg0bq" path="res://Scenes/Weapons/Railgun.tscn" id="8_ebkeh"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="13_ebkeh"]
+[ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="14_15av0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jypyp"]
 vertices = PackedVector2Array(-1497, 2535, -1959, 2535, -1959, 2073, -1497, 2073, -921, 2535, -1383, 2535, -1383, 2073, -921, 2073, -345, 2535, -807, 2535, -807, 2073, -345, 2073, 807, 345, 807, 1959, 231, 1959, 345, 1497, 231, 2535, -231, 2535, -231, 1959, -1959, 1959, -1959, 1497, 345, 1383, -231, 1383, -231, 921, 345, 921, 345, 345, -1497, 1383, -1959, 1383, -1959, 921, -1497, 921, -921, 1383, -1383, 1383, -1383, 921, -921, 921, -345, 1383, -807, 1383, -807, 921, -345, 921, 231, -807, 231, 231, -231, 231, -231, -345, -807, -807, -345, -345, -807, 807, -345, 345, 231, 807, 231, 345)
@@ -287,6 +289,26 @@ position = Vector2(-1727, 934)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="12"]
 navigation_polygon = SubResource("NavigationPolygon_jypyp")
+
+[node name="ConcreteFloor" parent="." index="13" instance=ExtResource("13_ebkeh")]
+polygon = PackedVector2Array(-832, -832, 256, -832, 256, 320, 832, 320, 832, 1984, 256, 1984, 256, 2560, -1984, 2560, -1984, 896, -832, 896)
+
+[node name="MetalFloor" parent="." index="14" instance=ExtResource("14_15av0")]
+polygon = PackedVector2Array(-128, 896, 192, 2560, 320, 2560, 8, 896)
+
+[node name="MetalFloor2" parent="." index="15" instance=ExtResource("14_15av0")]
+polygon = PackedVector2Array(-640, 2176, -576, 2240, -512, 2176, -512, 896, -640, 896)
+
+[node name="MetalFloor3" parent="." index="16" instance=ExtResource("14_15av0")]
+position = Vector2(-576, 0)
+polygon = PackedVector2Array(-640, 2176, -576, 2240, -512, 2176, -512, 896, -640, 896)
+
+[node name="MetalFloor4" parent="." index="17" instance=ExtResource("14_15av0")]
+position = Vector2(-1151, 0)
+polygon = PackedVector2Array(-640, 2176, -576, 2240, -512, 2176, -512, 896, -640, 896)
+
+[node name="MetalFloor5" parent="." index="18" instance=ExtResource("14_15av0")]
+polygon = PackedVector2Array(-64, -256, 0, -320, 64, -256, 64, 448, 0, 512, -64, 448)
 
 [connection signal="OnBroken" from="Triggers/BreakableTrigger" to="Doors/TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="Triggers/BreakableTrigger2" to="Doors/TriggerableDoor7" method="Trigger"]
