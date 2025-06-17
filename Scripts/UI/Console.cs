@@ -51,6 +51,14 @@ public partial class Console : Control
 		_isOnScreen = !_isOnScreen;
 		Visible = _isOnScreen;
 		
+		if (Visible)
+		{
+			_lineEdit.GrabFocus();
+			_lineEdit.Text = _lineEdit.Text.TrimEnd('`');
+			_lineEdit.Deselect();
+			_lineEdit.CaretColumn = _lineEdit.Text.Length;
+		}
+		
 		MouseVisibilityHandler.ChangeVisibility(Visible);
 	}
 
