@@ -4,6 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cc640ckashx6g" path="res://Textures/Level/MetalFloor.png" id="2_0qg0y"]
 
 [node name="MetalFloor" instance=ExtResource("1_tkhm6")]
-color = Color(1, 1, 1, 1)
+color = Color(0.627451, 0.627451, 0.627451, 1)
 texture = ExtResource("2_0qg0y")
 texture_scale = Vector2(0.3, 0.3)
