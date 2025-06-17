@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpi8uwrjq8vwi"]
+[gd_scene load_steps=11 format=3 uid="uid://cpi8uwrjq8vwi"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_r8q88"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_irt0h"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="3_irt0h"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="6_cbrqw"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="7_qggba"]
+[ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="8_a3hxy"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="9_6ti5a"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_qggba"]
 vertices = PackedVector2Array(231, 345, 807, 345, 807, 1497, 345, 807, 1383, 1497, 1383, 1959, 807, 1959, 807, 3111, 345, 3111, 345, 2535, -231, 2535, -231, 1497, 231, 2073, 231, 1497, 345, 2073, 345, 1383, -231, 1383, -231, 921, 345, 921, -231, 807, -231, -231, 231, -231, 1383, 3111, 921, 3111, 921, 2649, 1383, 2649)
@@ -157,6 +159,15 @@ position = Vector2(0, 1510)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="14"]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_qggba")
+
+[node name="MetalFloor" parent="." index="16" instance=ExtResource("8_a3hxy")]
+polygon = PackedVector2Array(-256, -256, 256, -256, 256, 320, 832, 320, 832, 2624, 1408, 2624, 1408, 3136, 320, 3136, 320, 832, -256, 832)
+
+[node name="ConcreteFloor" parent="." index="17" instance=ExtResource("9_6ti5a")]
+polygon = PackedVector2Array(-256, 896, 320, 896, 320, 2560, -256, 2560)
+
+[node name="ConcreteFloor2" parent="." index="18" instance=ExtResource("9_6ti5a")]
+polygon = PackedVector2Array(832, 1472, 1408, 1472, 1408, 1984, 832, 1984)
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 

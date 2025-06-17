@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dty7po8iykk71"]
+[gd_scene load_steps=18 format=3 uid="uid://dty7po8iykk71"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_qo2ue"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_dukwi"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="10_s7g4t"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="11_5yvxo"]
 [ext_resource type="PackedScene" uid="uid://dffcbxd5mkoem" path="res://Scenes/LevelDetails/BreakableTriggerVertical.tscn" id="12_el1rd"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="13_71jdt"]
+[ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="14_7qilm"]
+[ext_resource type="PackedScene" uid="uid://1hmeb6wg88wg" path="res://Scenes/LevelDetails/Floors/TiledFloor.tscn" id="15_83nd1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7g4t"]
 size = Vector2(336, 600)
@@ -210,7 +213,15 @@ position = Vector2(218, 576)
 [node name="BreakableTrigger10" parent="." index="19" instance=ExtResource("12_el1rd")]
 position = Vector2(794, 1152)
 
-[connection signal="OnBloodGained" from="Player/BloodFuel" to="Player/Bloodyness" method="OnBloodGained"]
+[node name="ConcreteFloor" parent="." index="20" instance=ExtResource("13_71jdt")]
+polygon = PackedVector2Array(832, -256, 832, 256, -320, 256, -320, 1408, -832, 1408, -832, -1408, -320, -1408, -320, -256)
+
+[node name="MetalFloor" parent="." index="21" instance=ExtResource("14_7qilm")]
+polygon = PackedVector2Array(-320, 320, 256, 320, 256, 896, 832, 896, 832, 1408, -320, 1408)
+
+[node name="TiledFloor" parent="." index="22" instance=ExtResource("15_83nd1")]
+polygon = PackedVector2Array(832, -896, 256, -896, 256, -320, -320, -320, -320, -1408, 832, -1408)
+
 [connection signal="OnBroken" from="BreakableTrigger5" to="TriggerableDoor4" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger6" to="TriggerableDoor4" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger7" to="TriggerableDoor3" method="Trigger"]

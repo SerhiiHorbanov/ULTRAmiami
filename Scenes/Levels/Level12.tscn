@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cuj824h7iw8tp"]
+[gd_scene load_steps=18 format=3 uid="uid://cuj824h7iw8tp"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_ue8b6"]
 [ext_resource type="PackedScene" uid="uid://cchkdwswpp6r6" path="res://Scenes/LevelDetails/Requirements/KillCountRequirement.tscn" id="2_2n0ss"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dg4l4hpp7kyp3" path="res://Scenes/LevelDetails/AreaTrigger.tscn" id="11_ebwqq"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="12_n1ahd"]
 [ext_resource type="PackedScene" uid="uid://dffcbxd5mkoem" path="res://Scenes/LevelDetails/BreakableTriggerVertical.tscn" id="13_n1ahd"]
+[ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="14_g0doq"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="15_kr7by"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n0ss"]
 size = Vector2(344, 536)
@@ -365,6 +367,32 @@ position = Vector2(-794, 2880)
 
 [node name="BreakableTrigger3" parent="." index="21" instance=ExtResource("13_n1ahd")]
 position = Vector2(358, 2880)
+
+[node name="Floors" type="Node2D" parent="." index="22"]
+
+[node name="MetalFloor" parent="Floors" index="0" instance=ExtResource("14_g0doq")]
+polygon = PackedVector2Array(-256, -256, 256, -256, 256, 832, -896, 832, -896, 1472, 832, 1472, 832, 2560, -320, 2560, -320, 3200, 320, 3200, 320, 2624, 1984, 2624, 1984, 3136, 832, 3136, 832, 3712, -832, 3712, -832, 2048, 320, 2048, 320, 1984, -1408, 1984, -1408, 320, -256, 320)
+
+[node name="ConcreteFloor" parent="Floors" index="1" instance=ExtResource("15_kr7by")]
+polygon = PackedVector2Array(-896, -256, -896, 320, -1408, 320, -1408, -256)
+
+[node name="ConcreteFloor2" parent="Floors" index="2" instance=ExtResource("15_kr7by")]
+polygon = PackedVector2Array(1408, 2624, 1408, 1408, 832, 1408, 832, 896, -896, 896, -896, 1472, 832, 1472, 832, 2624)
+
+[node name="ConcreteFloor3" parent="Floors" index="3" instance=ExtResource("15_kr7by")]
+polygon = PackedVector2Array(-832, 2048, -832, 2560, -1408, 2560, -1408, 2048)
+
+[node name="ConcreteFloor4" parent="Floors" index="4" instance=ExtResource("15_kr7by")]
+polygon = PackedVector2Array(256, 2560, 256, 3136, -256, 3136, -256, 2560)
+
+[node name="ConcreteFloor5" parent="Floors" index="5" instance=ExtResource("15_kr7by")]
+polygon = PackedVector2Array(-1408, 3200, -832, 3200, -832, 3712, -1408, 3712)
+
+[node name="ConcreteFloor6" parent="Floors" index="6" instance=ExtResource("15_kr7by")]
+polygon = PackedVector2Array(-832, 3712, -320, 3712, -320, 4288, -832, 4288)
+
+[node name="ConcreteFloor7" parent="Floors" index="7" instance=ExtResource("15_kr7by")]
+polygon = PackedVector2Array(320, 3712, 832, 3712, 832, 4288, 320, 4288)
 
 [connection signal="OnTriggering" from="AreaTrigger" to="TriggerableDoor7" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger2" to="TriggerableDoor2" method="Trigger"]

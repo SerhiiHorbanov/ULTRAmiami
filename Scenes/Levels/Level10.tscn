@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://o66rvggetiw4"]
+[gd_scene load_steps=11 format=3 uid="uid://o66rvggetiw4"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_7spsn"]
 [ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="2_5mxy5"]
@@ -7,14 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="3_tlk70"]
 [ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="4_5mxy5"]
 [ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="5_ywunv"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="8_uclgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywunv"]
 size = Vector2(308, 568)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ywunv"]
-vertices = PackedVector2Array(4263, 4831.18, 3225, 4838.81, 3225, 4263, 3687, 4376.66, 231, 345, 807, 345, 807, 921, 345, 807, 1383, 921, 1383, 1497, 920.648, 1383, 1959, 1497, 1959, 3111, 1497, 1959.35, 1383, 3111, 1383, 3687, 807, 3687, 921, 3225, 807, 4263, 231, 4263, 345, 3801, 921, 4377, 921, 3801, 1497, 3801, 1383, 4263, 1497, 3225, 3111, 3225, 1959, 3687, 3111, 3801, 3687, 3801, 2649, 4263, 2649, 3687, 1959, 4263, 1383, 4839, -231, 4839, -231, 3801, 345, 3225, 921, 2649, 1497, 2649, 345, 1383, -231, 807, -231, -231, 231, -231, 928.648, 1951.34, 231, 4377, 4263, 4384.65)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(6, 8, 9, 10), PackedInt32Array(9, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(16, 18, 19, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(23, 25, 26, 27), PackedInt32Array(28, 29, 3, 2), PackedInt32Array(2, 30, 31, 28), PackedInt32Array(27, 32, 24, 23), PackedInt32Array(24, 33, 34, 21), PackedInt32Array(34, 35, 20, 19), PackedInt32Array(20, 36, 17, 16), PackedInt32Array(17, 37, 38, 14), PackedInt32Array(10, 39, 7, 6), PackedInt32Array(7, 40, 41, 4), PackedInt32Array(41, 42, 4), PackedInt32Array(43, 10, 9, 13), PackedInt32Array(38, 13, 12), PackedInt32Array(38, 12, 14), PackedInt32Array(34, 19, 44), PackedInt32Array(3, 45, 0), PackedInt32Array(26, 28, 31), PackedInt32Array(34, 44, 21), PackedInt32Array(27, 26, 31)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(320, 3776, 320, 3200, 896, 3200, 896, 2624, 1472, 2624, 1472, 1984, 904, 1976, 896, 1408, 320, 1408, 320, 832, -256, 832, -256, -256, 256, -256, 256, 320, 832, 320, 832, 896, 1408, 896, 1408, 1472, 1984, 1472, 1984, 3136, 1408, 3136, 1408, 3712, 832, 3712, 832, 4288, 256, 4288, 256, 4352, 896, 4352, 896, 3776, 1472, 3776, 1472, 3200, 3136, 3200, 3136, 3776, 3712, 3776, 3712, 4352, 4288, 4360, 4288, 4856, 3200, 4864, 3200, 4288, 2624, 4288, 2624, 3712, 1984, 3712, 1984, 4288, 1408, 4288, 1408, 4864, -256, 4864, -256, 3776)])
+vertices = PackedVector2Array(4263, 4831.18, 3225, 4838.81, 3225, 4263, 3687, 4377, 231, 345, 807, 345, 807, 921, 345, 807, 1383, 921, 1383, 1497, 920.648, 1383, 1959, 1497, 1959, 3111, 1497, 1959.35, 1383, 3111, 1383, 3687, 807, 3687, 921, 3225, 807, 4263, 231, 4263, 345, 3801, 921, 4377, 921, 3801, 1497, 3801, 1383, 4263, 1497, 3225, 3111, 3225, 1959, 3687, 3111, 3801, 3687, 3801, 4263, 4377, 2649, 4263, 2649, 3687, 1959, 4263, 1383, 4839, -231, 4839, -231, 3801, 345, 3225, 921, 2649, 1497, 2649, 345, 1383, -231, 807, -231, -231, 231, -231, 928.648, 1951.34, 231, 4377)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(6, 8, 9, 10), PackedInt32Array(9, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(16, 18, 19, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(23, 25, 26, 27), PackedInt32Array(28, 29, 3, 2), PackedInt32Array(3, 30, 0), PackedInt32Array(28, 2, 31, 32), PackedInt32Array(26, 28, 32), PackedInt32Array(27, 33, 24, 23), PackedInt32Array(24, 34, 35, 21), PackedInt32Array(35, 36, 20, 19), PackedInt32Array(20, 37, 17, 16), PackedInt32Array(17, 38, 39, 14), PackedInt32Array(10, 40, 7, 6), PackedInt32Array(7, 41, 42, 4), PackedInt32Array(42, 43, 4), PackedInt32Array(44, 10, 9, 13), PackedInt32Array(39, 13, 12), PackedInt32Array(39, 12, 14), PackedInt32Array(35, 19, 45), PackedInt32Array(35, 45, 21), PackedInt32Array(27, 26, 32)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(320, 3776, 320, 3200, 896, 3200, 896, 2624, 1472, 2624, 1472, 1984, 904, 1976, 896, 1408, 320, 1408, 320, 832, -256, 832, -256, -256, 256, -256, 256, 320, 832, 320, 832, 896, 1408, 896, 1408, 1472, 1984, 1472, 1984, 3136, 1408, 3136, 1408, 3712, 832, 3712, 832, 4288, 256, 4288, 256, 4352, 896, 4352, 896, 3776, 1472, 3776, 1472, 3200, 3136, 3200, 3136, 3776, 3712, 3776, 3712, 4352, 4288, 4352, 4288, 4856, 3200, 4864, 3200, 4288, 2624, 4288, 2624, 3712, 1984, 3712, 1984, 4288, 1408, 4288, 1408, 4864, -256, 4864, -256, 3776)])
 agent_radius = 25.0
 
 [node name="Level" instance=ExtResource("1_7spsn")]
@@ -313,6 +314,9 @@ position = Vector2(3504, 4592)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="8"]
 navigation_polygon = SubResource("NavigationPolygon_ywunv")
+
+[node name="ConcreteFloor" parent="." index="10" instance=ExtResource("8_uclgm")]
+polygon = PackedVector2Array(-256, -256, 256, -256, 256, 320, 832, 320, 832, 896, 1408, 896, 1408, 1472, 1984, 1472, 1984, 3136, 1408, 3136, 1408, 3712, 832, 3712, 832, 4288, 256, 4288, 256, 4352, 896, 4352, 896, 3776, 1472, 3776, 1472, 3200, 3136, 3200, 3136, 3776, 3712, 3776, 3712, 4352, 4288, 4352, 4288, 4864, 3200, 4864, 3200, 4288, 2624, 4288, 2624, 3712, 1984, 3712, 1984, 4288, 1408, 4288, 1408, 4864, -256, 4864, -256, 3776, 320, 3776, 320, 3200, 896, 3200, 896, 2624, 1472, 2624, 1472, 1984, 896, 1984, 896, 1408, 320, 1408, 320, 832, -256, 832)
 
 [editable path="Canvas"]
 [editable path="Player"]

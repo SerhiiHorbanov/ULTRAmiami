@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://doen703uf20tb"]
+[gd_scene load_steps=14 format=3 uid="uid://doen703uf20tb"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_dep18"]
 [ext_resource type="Resource" uid="uid://busuvqpawi621" path="res://LevelInfos/Level7Info.tres" id="2_3be8h"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="5_3be8h"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="8_stxpj"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="9_6lk1x"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="10_rxtma"]
+[ext_resource type="PackedScene" uid="uid://1hmeb6wg88wg" path="res://Scenes/LevelDetails/Floors/TiledFloor.tscn" id="11_bgnfb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3be8h"]
 size = Vector2(288, 528)
@@ -173,6 +175,12 @@ position = Vector2(1152, -1370)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="13"]
 navigation_polygon = SubResource("NavigationPolygon_6lk1x")
+
+[node name="ConcreteFloor" parent="." index="15" instance=ExtResource("10_rxtma")]
+polygon = PackedVector2Array(-256, -320, 2048, -320, 2048, -832, 3136, -832, 3136, -328, 2560, -328, 2560, 832, 320, 832, 320, 256, -256, 256)
+
+[node name="TiledFloor" parent="." index="16" instance=ExtResource("11_bgnfb")]
+polygon = PackedVector2Array(1984, -1408, 1984, -320, 896, -320, 896, -1408)
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 
