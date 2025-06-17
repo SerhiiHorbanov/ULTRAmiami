@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://o66rvggetiw4"]
+[gd_scene load_steps=12 format=3 uid="uid://o66rvggetiw4"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_7spsn"]
 [ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="2_5mxy5"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="4_5mxy5"]
 [ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="5_ywunv"]
 [ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="8_uclgm"]
+[ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="9_2vii5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywunv"]
 size = Vector2(308, 568)
@@ -317,6 +318,9 @@ navigation_polygon = SubResource("NavigationPolygon_ywunv")
 
 [node name="ConcreteFloor" parent="." index="10" instance=ExtResource("8_uclgm")]
 polygon = PackedVector2Array(-256, -256, 256, -256, 256, 320, 832, 320, 832, 896, 1408, 896, 1408, 1472, 1984, 1472, 1984, 3136, 1408, 3136, 1408, 3712, 832, 3712, 832, 4288, 256, 4288, 256, 4352, 896, 4352, 896, 3776, 1472, 3776, 1472, 3200, 3136, 3200, 3136, 3776, 3712, 3776, 3712, 4352, 4288, 4352, 4288, 4864, 3200, 4864, 3200, 4288, 2624, 4288, 2624, 3712, 1984, 3712, 1984, 4288, 1408, 4288, 1408, 4864, -256, 4864, -256, 3776, 320, 3776, 320, 3200, 896, 3200, 896, 2624, 1472, 2624, 1472, 1984, 896, 1984, 896, 1408, 320, 1408, 320, 832, -256, 832)
+
+[node name="ExitArrow" parent="." index="11" instance=ExtResource("9_2vii5")]
+position = Vector2(3704, 4616)
 
 [editable path="Canvas"]
 [editable path="Player"]

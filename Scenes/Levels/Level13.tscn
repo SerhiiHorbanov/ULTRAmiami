@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://pp4oq40dadu2"]
+[gd_scene load_steps=18 format=3 uid="uid://pp4oq40dadu2"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_eqo3r"]
 [ext_resource type="Resource" uid="uid://cefxl4yg23vvk" path="res://LevelInfos/Level13Info.tres" id="2_0tbq4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bsnay7tcwvpmp" path="res://Scripts/Data/GameplayHint.cs" id="11_7al5c"]
 [ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="12_66tb3"]
 [ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="13_1aop2"]
+[ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="14_1aop2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi7k5"]
 size = Vector2(288, 576)
@@ -136,6 +137,9 @@ polygon = PackedVector2Array(-256, -256, -256, 256, 320, 256, 320, 832, 832, 832
 
 [node name="MetalFloor" parent="." index="16" instance=ExtResource("13_1aop2")]
 polygon = PackedVector2Array(320, -832, 832, -832, 832, -320, 640, -320, 640, 576, 576, 640, 512, 576, 512, -320, 320, -320)
+
+[node name="ExitArrow" parent="." index="17" instance=ExtResource("14_1aop2")]
+position = Vector2(1016, 1)
 
 [connection signal="OnShooting" from="Railgun" to="HintTrigger2" method="set_monitoring" binds= [true]]
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]

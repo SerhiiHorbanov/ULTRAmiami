@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cei2onxx6reim"]
+[gd_scene load_steps=20 format=3 uid="uid://cei2onxx6reim"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_5jgm0"]
 [ext_resource type="Resource" uid="uid://c7udd1xxwfk3g" path="res://LevelInfos/Level1Info.tres" id="3_4d3fe"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="11_77iba"]
 [ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="12_67y36"]
 [ext_resource type="PackedScene" uid="uid://1hmeb6wg88wg" path="res://Scenes/LevelDetails/Floors/TiledFloor.tscn" id="13_hk4vc"]
+[ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="14_67y36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcebb"]
 size = Vector2(1741, 312)
@@ -241,6 +242,10 @@ position = Vector2(1, 8)
 polygon = PackedVector2Array(1408, -1216, 1984, -1216, 1984, -640, 2560, -640, 2560, 1024, 1472, 1024, 1472, -704, -256, -704, -256, -1216, 320, -1216, 320, -1800, 1407, -1800)
 
 [node name="TiledFloor" parent="." index="18" instance=ExtResource("13_hk4vc")]
+
+[node name="ExitArrow" parent="." index="19" instance=ExtResource("14_67y36")]
+position = Vector2(2040, 576)
+rotation = 1.57079
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dty7po8iykk71"]
+[gd_scene load_steps=19 format=3 uid="uid://dty7po8iykk71"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_qo2ue"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_dukwi"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="13_71jdt"]
 [ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="14_7qilm"]
 [ext_resource type="PackedScene" uid="uid://1hmeb6wg88wg" path="res://Scenes/LevelDetails/Floors/TiledFloor.tscn" id="15_83nd1"]
+[ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="16_7qilm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7g4t"]
 size = Vector2(336, 600)
@@ -221,6 +222,9 @@ polygon = PackedVector2Array(-320, 320, 256, 320, 256, 896, 832, 896, 832, 1408,
 
 [node name="TiledFloor" parent="." index="22" instance=ExtResource("15_83nd1")]
 polygon = PackedVector2Array(832, -896, 256, -896, 256, -320, -320, -320, -320, -1408, 832, -1408)
+
+[node name="ExitArrow" parent="." index="23" instance=ExtResource("16_7qilm")]
+position = Vector2(448, 4)
 
 [connection signal="OnBroken" from="BreakableTrigger5" to="TriggerableDoor4" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger6" to="TriggerableDoor4" method="Trigger"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bosapuiklpsrh"]
+[gd_scene load_steps=13 format=3 uid="uid://bosapuiklpsrh"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_5eltn"]
 [ext_resource type="Resource" uid="uid://d2evw05h38bkh" path="res://LevelInfos/Level5Info.tres" id="2_pu4ra"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="6_hy6wf"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="7_bvsh1"]
 [ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="9_1us0t"]
+[ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="10_hy6wf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bvsh1"]
 size = Vector2(600, 313)
@@ -219,6 +220,10 @@ navigation_polygon = SubResource("NavigationPolygon_hy6wf")
 
 [node name="ConcreteFloor" parent="." index="16" instance=ExtResource("9_1us0t")]
 polygon = PackedVector2Array(-256, 256, 1408, 256, 1408, -1408, 832, -1408, 832, -1984, -832, -1984, -832, -1408, -1472, -1408, -1472, -1984, -1984, -1984, -1984, -896, -1408, -896, -1408, -320, -256, -320)
+
+[node name="ExitArrow" parent="." index="17" instance=ExtResource("10_hy6wf")]
+position = Vector2(-1728, -1448)
+rotation = -1.57079
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 [connection signal="OnBroken" from="BreakableTrigger2" to="TriggerableDoor" method="Trigger"]
