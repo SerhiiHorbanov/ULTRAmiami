@@ -12,6 +12,9 @@ public partial class DroppedWeapon : Node2D
     [Export] private Area2D _droppedArea;
     private readonly Dictionary<Node2D, Unit> _unitsEnteredPickUpArea = new();
 
+    [Export] private ShaderMaterial _pickuppableWeaponMaterial;
+    [Export] private Node2D _nodeApplyingMaterialTo;
+    
     public Weapon Weapon
         => _weapon;
 
@@ -38,6 +41,8 @@ public partial class DroppedWeapon : Node2D
 		
         _unitsEnteredPickUpArea.Add(body, enteredUnit);
         enteredUnit.EnteredDroppedWeapons.Add(this);
+        if (enteredUnit.IsPlayer)
+            _nodeApplyingMaterialTo.Material = _pickuppableWeaponMaterial;
     }
 
     private void OnBodyExited(Node2D body)
@@ -47,5 +52,8 @@ public partial class DroppedWeapon : Node2D
 		
         value.EnteredDroppedWeapons.Remove(this);
         _unitsEnteredPickUpArea.Remove(body);
+        
+        if (value.IsPlayer)
+            _nodeApplyingMaterialTo.Material = null;
     }
 }

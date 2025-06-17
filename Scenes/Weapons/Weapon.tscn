@@ -1,16 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctepmc8qidog4"]
+[gd_scene load_steps=6 format=3 uid="uid://ctepmc8qidog4"]
 
 [ext_resource type="Script" uid="uid://i4ggfumiqh6a" path="res://Scripts/Weapons/DroppedWeapon.cs" id="1_27vj6"]
 [ext_resource type="Texture2D" uid="uid://bc0tsbjwct7ft" path="res://icon.svg" id="2_8gj08"]
+[ext_resource type="Shader" uid="uid://ckjb7hl4oq2mv" path="res://Scripts/Shaders/ReplaceColor.gdshader" id="2_hj41p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku3nf"]
+shader = ExtResource("2_hj41p")
+shader_parameter/apply = true
+shader_parameter/invert_replacement_logic = false
+shader_parameter/keep_alpha = true
+shader_parameter/replaced_color = Vector4(1, 1, 1, 1)
+shader_parameter/new_color = Vector4(1, 1, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t511x"]
 radius = 80.0
 
 [node name="Weapon" type="Node2D"]
 
-[node name="Dropped" type="Node2D" parent="." node_paths=PackedStringArray("_droppedArea")]
+[node name="Dropped" type="Node2D" parent="." node_paths=PackedStringArray("_droppedArea", "_nodeApplyingMaterialTo")]
 script = ExtResource("1_27vj6")
 _droppedArea = NodePath("Area2D")
+_pickuppableWeaponMaterial = SubResource("ShaderMaterial_ku3nf")
+_nodeApplyingMaterialTo = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Dropped"]
 z_index = 10
