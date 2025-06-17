@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3prpseiwpoym"]
+[gd_scene load_steps=7 format=3 uid="uid://b3prpseiwpoym"]
 
 [ext_resource type="Script" uid="uid://jf3kyyan3kwh" path="res://Scripts/UI/MainMenu/MainMenuButtons.cs" id="1_853f1"]
 [ext_resource type="PackedScene" uid="uid://cgepdgkwb5xoc" path="res://Scenes/UI/LevelSelectionMenu/LevelSelectionMenu.tscn" id="3_8saeu"]
 [ext_resource type="PackedScene" uid="uid://5iv5ppa52n8j" path="res://Scenes/UI/RealConsole.tscn" id="3_ghw46"]
 [ext_resource type="PackedScene" uid="uid://vjj53cmmoiac" path="res://Scenes/UI/Settings/SettingsMenu.tscn" id="4_ghw46"]
+[ext_resource type="Texture2D" uid="uid://40xlpllv4e2d" path="res://Textures/KIL.png" id="5_df05h"]
 
 [sub_resource type="Theme" id="Theme_853f1"]
 default_font_size = 48
@@ -19,6 +20,14 @@ theme = SubResource("Theme_853f1")
 script = ExtResource("1_853f1")
 _levelSelectionMenu = NodePath("LevelSelectionMenu")
 _infiniteModeScenePath = "uid://b6u4rioaf4ul4"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 30.0
+offset_right = 486.0
+offset_bottom = 430.0
+texture = ExtResource("5_df05h")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
