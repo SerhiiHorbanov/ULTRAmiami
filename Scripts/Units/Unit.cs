@@ -17,6 +17,8 @@ public partial class Unit : CharacterBody2D, IAttackable
 	[Export] private Weapon _weapon;
 	[Export] public bool DropsPickUppableWeapon;
 	[Export] public bool IgnoresAmmo;
+
+	[Export] private AnimationPlayer _attackedAnimationPlayer;
 	
 	[ExportGroup("Death")]
 	[Export] public bool GodMode;
@@ -74,8 +76,12 @@ public partial class Unit : CharacterBody2D, IAttackable
 	}
 
 	public void Hit(Hit hit)
-		=> EmitSignalOnHit(hit);
-	
+	{
+		_attackedAnimationPlayer?.Stop();
+		_attackedAnimationPlayer?.Play("Attacked");
+		EmitSignalOnHit(hit);
+	}
+
 	public void Die(Hit hit)
 	{
 		if (GodMode || _isDead)

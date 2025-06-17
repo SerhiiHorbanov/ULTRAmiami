@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://d35osyuqqd0is"]
+[gd_scene load_steps=36 format=3 uid="uid://d35osyuqqd0is"]
 
 [ext_resource type="PackedScene" uid="uid://d0r1r1kfajsn1" path="res://Scenes/Units/Unit.tscn" id="1_33iby"]
 [ext_resource type="Texture2D" uid="uid://jnfhbxljdxh0" path="res://Textures/Units/V0Body.png" id="2_cj8nc"]
 [ext_resource type="Script" uid="uid://dpf2hgcc2mcwj" path="res://Scripts/Units/PlayerAnimator.cs" id="2_rfdr6"]
 [ext_resource type="Script" uid="uid://cc24kkx26qgs4" path="res://Scripts/Controllers/PlayerUnitController.cs" id="2_xf41u"]
+[ext_resource type="Material" uid="uid://1la633yxtlgd" path="res://Materials/WhiteFlash.tres" id="3_cijlh"]
 [ext_resource type="SpriteFrames" uid="uid://b4qb8g6j2lptg" path="res://Animations/Units/V0LegsAnimation.tres" id="3_cj8nc"]
 [ext_resource type="PackedScene" uid="uid://2frk84kfwokl" path="res://Scenes/Weapons/Firearms/Pistol.tscn" id="3_giihn"]
 [ext_resource type="Script" uid="uid://diyjjhrtrk6qf" path="res://Scripts/Units/Movement/PlayerMovement.cs" id="4_u2egk"]
@@ -48,10 +49,72 @@ metadata/_custom_type_script = "uid://blwiauuuf8t1g"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2egk"]
 size = Vector2(70, 80)
 
-[node name="Player" node_paths=PackedStringArray("_unitMovement", "_weapon", "_deathSound") groups=["Player"] instance=ExtResource("1_33iby")]
+[sub_resource type="Animation" id="Animation_tcx7m"]
+resource_name = "OnAttacked"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_cijlh"), null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeleeAttacker/Arm:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_cijlh"), null]
+}
+
+[sub_resource type="Animation" id="Animation_cijlh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeleeAttacker/Arm:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4ehp"]
+_data = {
+&"Attacked": SubResource("Animation_tcx7m"),
+&"RESET": SubResource("Animation_cijlh")
+}
+
+[node name="Player" node_paths=PackedStringArray("_unitMovement", "_weapon", "_attackedAnimationPlayer", "_deathSound") groups=["Player"] instance=ExtResource("1_33iby")]
 _unitMovement = NodePath("PlayerMovement")
 _weapon = NodePath("Pistol")
 DropsPickUppableWeapon = false
+_attackedAnimationPlayer = NodePath("AttackedAnimationPlayer")
 _isImmuneToFire = true
 _deathSound = NodePath("V0DeathScream")
 
@@ -59,11 +122,13 @@ _deathSound = NodePath("V0DeathScream")
 script = ExtResource("2_rfdr6")
 
 [node name="Sprite2D" parent="Graphics" index="0"]
+use_parent_material = true
 texture = ExtResource("2_cj8nc")
 hframes = 4
 vframes = 5
 
 [node name="AnimatedSprite2D" parent="Graphics" index="1"]
+use_parent_material = true
 sprite_frames = ExtResource("3_cj8nc")
 frame_progress = 0.0916329
 
@@ -198,6 +263,11 @@ _alwaysSpawnNewSplatterSystem = true
 script = ExtResource("28_cijlh")
 _lossPerSecond = 5.0
 _maxBloodyness = 25.0
+
+[node name="AttackedAnimationPlayer" type="AnimationPlayer" parent="." index="14"]
+libraries = {
+&"": SubResource("AnimationLibrary_q4ehp")
+}
 
 [connection signal="OnDeath" from="." to="V0DeathScream" method="Start"]
 [connection signal="OnHit" from="." to="BloodFuel" method="Hit"]
