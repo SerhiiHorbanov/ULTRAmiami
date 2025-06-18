@@ -46,7 +46,6 @@ script = ExtResource("8_31mq1")
 [connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
 [connection signal="OnDeath" from="Player" to="MusicManager" method="OnPlayerDeath"]
 [connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
-[connection signal="OnBloodGained" from="Player/BloodFuel" to="Player/Bloodyness" method="OnBloodGained"]
 
 [editable path="Canvas"]
 [editable path="Player"]
