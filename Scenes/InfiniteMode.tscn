@@ -22,6 +22,9 @@ visible = false
 [node name="AmmoDisplay" parent="Canvas" index="1" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player")
 
+[node name="GameplayRestartConsole" parent="Canvas" index="4"]
+material = null
+
 [node name="RealConsole" parent="Canvas" index="6" node_paths=PackedStringArray("_player")]
 _player = NodePath("../../Player")
 
@@ -43,6 +46,7 @@ script = ExtResource("8_31mq1")
 [connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
 [connection signal="OnDeath" from="Player" to="MusicManager" method="OnPlayerDeath"]
 [connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
+[connection signal="OnBloodGained" from="Player/BloodFuel" to="Player/Bloodyness" method="OnBloodGained"]
 
 [editable path="Canvas"]
 [editable path="Player"]

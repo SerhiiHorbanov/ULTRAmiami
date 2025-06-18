@@ -12,7 +12,7 @@ public enum RestartReason
 
 public partial class GameplayRestartConsole : ColorRect
 {
-	[Export] private TextOverTimePrinter _consoleText;
+	[Export] private RichTextLabel _consoleText;
 
 	[Export(PropertyHint.File, "*.txt,")] private StringName _playerDeathRestartTextPath;
 	private static string _playerDeathRestartText;
@@ -31,19 +31,17 @@ public partial class GameplayRestartConsole : ColorRect
 	public void BeginDeathAnimation()
 	{
 		EmitSignalOnAnimationStarted();
-		_consoleText.ClearAndPrint(_playerDeathRestartText);
-		_consoleText.OnFinished += PrintScore;
+		_consoleText.Text = _playerDeathRestartText;
 	}
 
 	private void PrintScore()
 	{
-		_consoleText.OnFinished -= PrintScore;
-		_consoleText.ClearText();
-		_consoleText.Print($"[font_size=36][color=red][b]Blood[/b][color=white] lost: {PlayerScore.Current.BloodLost}\n");
-		_consoleText.Print($"[color=red][b]Blood[/b][color=white] consumed: {PlayerScore.Current.BloodConsumed}\n");
-		_consoleText.Print($"Enemies killed: {PlayerScore.Current.Kills}\n");
-		_consoleText.Print($"Time survived: {PlayerScore.Current.TimeAlive}\n");
-		_consoleText.Print($"Press [R] to [color=red]E N T E R T A I N  M E  A G A I N\n   ");
+		_consoleText.Text = "";
+		_consoleText.Text += $"[font_size=36][color=red][b]Blood[/b][color=white] lost: {PlayerScore.Current.BloodLost}\n";
+		_consoleText.Text += $"[color=red][b]Blood[/b][color=white] consumed: {PlayerScore.Current.BloodConsumed}\n";
+		_consoleText.Text += $"Enemies killed: {PlayerScore.Current.Kills}\n";
+		_consoleText.Text += $"Time survived: {PlayerScore.Current.TimeAlive}\n";
+		_consoleText.Text += $"Press [R] to [color=red]E N T E R T A I N  M E  A G A I N\n   ";
 	}
 
 	private void ReadRestartTexts()

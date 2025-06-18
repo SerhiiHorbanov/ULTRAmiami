@@ -11,7 +11,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_8d3a3"]
-_data = [Vector2(0, 1), 0.0, -2.37656, 0, 0, Vector2(1, 0.197059), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, -1.21158, 0, 0, Vector2(1, 0.197059), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="DeathCamera" type="Camera2D" node_paths=PackedStringArray("_curveTimer")]
@@ -19,7 +19,7 @@ ignore_rotation = false
 script = ExtResource("1_xvoeq")
 _rotationSpeedDeg = 90.0
 _speed = 900.0
-_zoomSpeed = 2.0
+_zoomSpeed = 6.0
 _curveTimer = NodePath("Timer")
 _speedCurve = SubResource("Curve_xvoeq")
 _rotationCurve = SubResource("Curve_n7034")
