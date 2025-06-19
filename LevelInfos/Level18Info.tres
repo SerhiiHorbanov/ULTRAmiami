@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="LevelInfo" load_steps=2 format=3 uid="uid://c7yk6h1u6e202"]
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://c7yk6h1u6e202"]
 
+[ext_resource type="Resource" uid="uid://cl2y2m1u3pprd" path="res://LevelInfos/Level19Info.tres" id="1_k6nmm"]
 [ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_tiunf"]
 
 [resource]
 script = ExtResource("1_tiunf")
 _saveName = "18th"
-_shownName = ""
+_shownName = "Switch"
 _scenePath = "uid://dwb7wmmd8qfle"
+_nextLevel = ExtResource("1_k6nmm")
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"
