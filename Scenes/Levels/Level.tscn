@@ -14,7 +14,7 @@
 [node name="Level" type="Node2D" node_paths=PackedStringArray("_completionMenu", "_nodesToFreeOnCompletion", "_player")]
 script = ExtResource("1_4nh8f")
 _completionMenu = NodePath("Canvas/LevelCompletionMenu")
-_nodesToFreeOnCompletion = [NodePath("Player/PlayerUnitController"), NodePath("Player/BloodFuel")]
+_nodesToFreeOnCompletion = [NodePath("Player/PlayerUnitController"), NodePath("Player/BloodFuel"), NodePath("Player/PlayerTimeAliveScoreUpdater")]
 _player = NodePath("Player")
 
 [node name="GameplayCamera" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("2_l0mwj")]
