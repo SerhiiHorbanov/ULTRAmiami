@@ -1,0 +1,161 @@
+[gd_scene load_steps=19 format=3 uid="uid://f8l80bmwgtkv"]
+
+[ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_eowd8"]
+[ext_resource type="Resource" uid="uid://b8sgww1wpm8dp" path="res://LevelInfos/Level17Info.tres" id="2_5ruue"]
+[ext_resource type="PackedScene" uid="uid://cchkdwswpp6r6" path="res://Scenes/LevelDetails/Requirements/KillCountRequirement.tscn" id="3_xu2hy"]
+[ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="4_0f4px"]
+[ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="5_d0cfc"]
+[ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="6_qa0u6"]
+[ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="7_eqpk6"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="8_d7cs8"]
+[ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="9_4hrni"]
+[ext_resource type="PackedScene" uid="uid://c7lxg1prscm7m" path="res://Scenes/LevelDetails/HintTrigger.tscn" id="10_ahf0x"]
+[ext_resource type="Script" uid="uid://bsnay7tcwvpmp" path="res://Scripts/Data/GameplayHint.cs" id="11_ne85u"]
+[ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="12_ge85u"]
+[ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="13_xu2hy"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="14_0f4px"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35fed"]
+size = Vector2(237, 544)
+
+[sub_resource type="Resource" id="Resource_gg8uv"]
+script = ExtResource("11_ne85u")
+Text = "Sometimes you have to avoid casualties."
+Time = 4.0
+OverrideCurrentHint = false
+metadata/_custom_type_script = "uid://bsnay7tcwvpmp"
+
+[sub_resource type="Resource" id="Resource_0wij5"]
+script = ExtResource("11_ne85u")
+Text = "[color=red]H O W  B O R I N G."
+Time = 0.0
+OverrideCurrentHint = false
+metadata/_custom_type_script = "uid://bsnay7tcwvpmp"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_d0cfc"]
+vertices = PackedVector2Array(1383, -807, 1383, -345, 807, -345, 345, -807, 345, -231, 807, -231, 1383, -231, 1383, 231, -231, 231, -231, -231)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(4, 5, 8), PackedInt32Array(4, 8, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-256, -256, 320, -256, 320, -832, 1408, -832, 1408, -320, 832, -320, 832, -256, 1408, -256, 1408, 256, -256, 256)])
+agent_radius = 25.0
+
+[node name="Level" instance=ExtResource("1_eowd8")]
+_info = ExtResource("2_5ruue")
+
+[node name="KillCountRequirement" parent="LevelTarget" index="0" instance=ExtResource("3_xu2hy")]
+position = Vector2(368, 439)
+_minKills = 0
+_maxKills = 0
+
+[node name="ReachAreaRequirement" parent="LevelTarget" index="1" node_paths=PackedStringArray("_areas") instance=ExtResource("4_0f4px")]
+_areas = [NodePath("Area2D")]
+
+[node name="Area2D" type="Area2D" parent="LevelTarget/ReachAreaRequirement" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTarget/ReachAreaRequirement/Area2D" index="0"]
+position = Vector2(1289.5, -577)
+shape = SubResource("RectangleShape2D_35fed")
+
+[node name="TriggerableDoor" parent="." index="7" instance=ExtResource("5_d0cfc")]
+position = Vector2(864, 5)
+rotation = 3.14159
+scale = Vector2(2, 2.7)
+
+[node name="Walls" type="Node2D" parent="." index="8"]
+
+[node name="Wall" parent="Walls" index="0" instance=ExtResource("6_qa0u6")]
+position = Vector2(0, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall2" parent="Walls" index="1" instance=ExtResource("6_qa0u6")]
+position = Vector2(-288, 1)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall3" parent="Walls" index="2" instance=ExtResource("6_qa0u6")]
+position = Vector2(0, -288)
+scale = Vector2(10, 1)
+
+[node name="Wall4" parent="Walls" index="3" instance=ExtResource("6_qa0u6")]
+position = Vector2(576, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall5" parent="Walls" index="4" instance=ExtResource("6_qa0u6")]
+position = Vector2(1152, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall6" parent="Walls" index="5" instance=ExtResource("6_qa0u6")]
+position = Vector2(1440, -7.62939e-06)
+rotation = -1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall7" parent="Walls" index="6" instance=ExtResource("6_qa0u6")]
+position = Vector2(1152, -288)
+scale = Vector2(10, 1)
+
+[node name="Wall8" parent="Walls" index="7" instance=ExtResource("6_qa0u6")]
+position = Vector2(288, -576)
+rotation = -1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall9" parent="Walls" index="8" instance=ExtResource("6_qa0u6")]
+position = Vector2(576, -864)
+scale = Vector2(10, 1)
+
+[node name="Wall10" parent="Walls" index="9" instance=ExtResource("6_qa0u6")]
+position = Vector2(1152, -864)
+scale = Vector2(10, 1)
+
+[node name="Wall11" parent="Walls" index="10" instance=ExtResource("6_qa0u6")]
+position = Vector2(1440, -576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Enemies" type="Node2D" parent="." index="9"]
+
+[node name="ShotgunEnemy" parent="Enemies" index="0" instance=ExtResource("7_eqpk6")]
+position = Vector2(1200, -152)
+
+[node name="ShotgunEnemy2" parent="Enemies" index="1" instance=ExtResource("7_eqpk6")]
+position = Vector2(1200, 154)
+
+[node name="Unit" parent="Enemies" index="2" instance=ExtResource("8_d7cs8")]
+position = Vector2(1104, -128)
+
+[node name="Unit2" parent="Enemies" index="3" instance=ExtResource("8_d7cs8")]
+position = Vector2(1104, 1)
+
+[node name="Unit3" parent="Enemies" index="4" instance=ExtResource("8_d7cs8")]
+position = Vector2(1104, 130)
+
+[node name="ShotgunEnemy3" parent="Enemies" index="5" instance=ExtResource("7_eqpk6")]
+position = Vector2(1200, 0)
+
+[node name="BreakableTrigger" parent="." index="10" instance=ExtResource("9_4hrni")]
+position = Vector2(576, 219)
+
+[node name="HintTrigger" parent="." index="11" instance=ExtResource("10_ahf0x")]
+position = Vector2(216, -24)
+scale = Vector2(3.25168, 6.76)
+_hint = SubResource("Resource_gg8uv")
+
+[node name="HintTrigger2" parent="." index="12" instance=ExtResource("10_ahf0x")]
+position = Vector2(920, -576)
+scale = Vector2(1.60053, 5.21944)
+_hint = SubResource("Resource_0wij5")
+
+[node name="ExitArrow" parent="." index="13" instance=ExtResource("12_ge85u")]
+position = Vector2(792, -576)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="14"]
+navigation_polygon = SubResource("NavigationPolygon_d0cfc")
+
+[node name="MetalFloor" parent="." index="15" instance=ExtResource("13_xu2hy")]
+polygon = PackedVector2Array(-256, -256, 320, -256, 320, -832, 1408, -832, 1408, -320, 832, -320, 832, 256, -256, 256)
+
+[node name="ConcreteFloor" parent="." index="16" instance=ExtResource("14_0f4px")]
+polygon = PackedVector2Array(1408, -256, 1408, 256, 832, 256, 832, -256)
+
+[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
+
+[editable path="Canvas"]
+[editable path="Player"]
