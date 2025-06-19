@@ -24,7 +24,7 @@ public partial class KillCountRequirementDisplay : Control
 		if (IsUnlimitedMaxKills(_max))
 			secondNumberColor = $"[color=green]{_min}";
 		else
-			secondNumberColor = KillsReachedMin(killsAmount) ? $"[color=red]{_max + 1}" : $"[color=green]{_min}";
+			secondNumberColor = KillsReachedMin(killsAmount) ? $"[color=red]{_max + 1}" : $"[color=green]{_min}[color=white]/[color=red]{_max + 1}";
 
 		string firstNumber = killsAmount.ToString();
 		
