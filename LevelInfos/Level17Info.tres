@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="LevelInfo" load_steps=2 format=3 uid="uid://b8sgww1wpm8dp"]
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://b8sgww1wpm8dp"]
 
 [ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_o7wgs"]
+[ext_resource type="Resource" uid="uid://c7yk6h1u6e202" path="res://LevelInfos/Level18Info.tres" id="1_q4f78"]
 
 [resource]
 script = ExtResource("1_o7wgs")
 _saveName = "17th"
 _shownName = "Casualties"
 _scenePath = "uid://f8l80bmwgtkv"
+_nextLevel = ExtResource("1_q4f78")
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"
