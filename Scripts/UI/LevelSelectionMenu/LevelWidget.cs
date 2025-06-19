@@ -7,6 +7,9 @@ public partial class LevelWidget : Node
 {
 	[Export] private Label _nameLabel;
 	[Export] private Control _levelLockedOverlay;
+
+	[Export] private Control _visibleIfCompleted;
+	[Export] private Control _invisibleIfCompleted;
 	
 	[Export] private Label _killsLabel;
 	[Export] private Label _bloodConsumedLabel;
@@ -29,6 +32,10 @@ public partial class LevelWidget : Node
 		
 		_nameLabel.Text = levelInfo.LevelName;
 		_levelLockedOverlay.Visible = isLocked;
+
+		bool isCompleted = levelInfo.IsCompleted();
+		_visibleIfCompleted.Visible = isCompleted;
+		_invisibleIfCompleted.Visible = !isCompleted;
 		
 		SetBestTimeScore();
 	}

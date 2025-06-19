@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ngac5yehct3f" path="res://Textures/UI/BloodDropIcon.png" id="3_0muf2"]
 [ext_resource type="Texture2D" uid="uid://dinv4jeygw28h" path="res://Textures/UI/ClockIcon.png" id="4_0muf2"]
 
-[node name="LevelWidget" type="ColorRect" node_paths=PackedStringArray("_nameLabel", "_levelLockedOverlay", "_killsLabel", "_bloodConsumedLabel", "_timeLabel", "_maxKillsScoreButton", "_maxBloodScoreButton", "_bestTimeScoreButton")]
+[node name="LevelWidget" type="ColorRect" node_paths=PackedStringArray("_nameLabel", "_levelLockedOverlay", "_visibleIfCompleted", "_invisibleIfCompleted", "_killsLabel", "_bloodConsumedLabel", "_timeLabel", "_maxKillsScoreButton", "_maxBloodScoreButton", "_bestTimeScoreButton")]
 custom_minimum_size = Vector2(400, 700)
 offset_right = 400.0
 offset_bottom = 600.0
@@ -15,26 +15,16 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("1_sun6l")
 _nameLabel = NodePath("NameLabel")
 _levelLockedOverlay = NodePath("ColorRect")
-_killsLabel = NodePath("Button/MarginContainer/Control/CompletionStat/ValueLabel")
-_bloodConsumedLabel = NodePath("Button/MarginContainer/Control/CompletionStat2/ValueLabel")
-_timeLabel = NodePath("Button/MarginContainer/Control/CompletionStat3/ValueLabel")
-_maxKillsScoreButton = NodePath("Button/MarginContainer/Control/Control2/HBoxContainer/Button")
-_maxBloodScoreButton = NodePath("Button/MarginContainer/Control/Control2/HBoxContainer/Button2")
-_bestTimeScoreButton = NodePath("Button/MarginContainer/Control/Control2/HBoxContainer/Button3")
+_visibleIfCompleted = NodePath("Button/CompletedText")
+_invisibleIfCompleted = NodePath("NotCompletedText")
+_killsLabel = NodePath("Button/CompletedText/MarginContainer/Control/CompletionStat/ValueLabel")
+_bloodConsumedLabel = NodePath("Button/CompletedText/MarginContainer/Control/CompletionStat2/ValueLabel")
+_timeLabel = NodePath("Button/CompletedText/MarginContainer/Control/CompletionStat3/ValueLabel")
+_maxKillsScoreButton = NodePath("Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer/Button")
+_maxBloodScoreButton = NodePath("Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer/Button2")
+_bestTimeScoreButton = NodePath("Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer/Button3")
 _selectedStatColor = Color(0.501961, 0.501961, 0.501961, 1)
 _unselectedStatColor = Color(1, 1, 1, 1)
-
-[node name="NameLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 192.0
-grow_horizontal = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 64
-text = "Default level name"
-horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -45,7 +35,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Button"]
+[node name="CompletedText" type="RichTextLabel" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[b][font_size=23][color=#222222]==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED==COMPLETED"
+scroll_active = false
+autowrap_mode = 1
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Button/CompletedText"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,11 +64,11 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Control" type="Control" parent="Button/MarginContainer"]
+[node name="Control" type="Control" parent="Button/CompletedText/MarginContainer"]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="CompletionStat" type="Control" parent="Button/MarginContainer/Control"]
+[node name="CompletionStat" type="Control" parent="Button/CompletedText/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -70,7 +77,7 @@ offset_bottom = 300.0
 grow_horizontal = 2
 mouse_filter = 1
 
-[node name="NameLabel" type="RichTextLabel" parent="Button/MarginContainer/Control/CompletionStat"]
+[node name="NameLabel" type="RichTextLabel" parent="Button/CompletedText/MarginContainer/Control/CompletionStat"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,7 +94,7 @@ bbcode_enabled = true
 text = "Kills:"
 vertical_alignment = 1
 
-[node name="ValueLabel" type="Label" parent="Button/MarginContainer/Control/CompletionStat"]
+[node name="ValueLabel" type="Label" parent="Button/CompletedText/MarginContainer/Control/CompletionStat"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,7 +106,7 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="CompletionStat2" type="Control" parent="Button/MarginContainer/Control"]
+[node name="CompletionStat2" type="Control" parent="Button/CompletedText/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -108,7 +115,7 @@ offset_bottom = 400.0
 grow_horizontal = 2
 mouse_filter = 1
 
-[node name="NameLabel" type="RichTextLabel" parent="Button/MarginContainer/Control/CompletionStat2"]
+[node name="NameLabel" type="RichTextLabel" parent="Button/CompletedText/MarginContainer/Control/CompletionStat2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,7 +132,7 @@ bbcode_enabled = true
 text = "[color=red][b]Blood[/b][color=white]:"
 vertical_alignment = 1
 
-[node name="ValueLabel" type="Label" parent="Button/MarginContainer/Control/CompletionStat2"]
+[node name="ValueLabel" type="Label" parent="Button/CompletedText/MarginContainer/Control/CompletionStat2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,7 +144,7 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="CompletionStat3" type="Control" parent="Button/MarginContainer/Control"]
+[node name="CompletionStat3" type="Control" parent="Button/CompletedText/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -146,7 +153,7 @@ offset_bottom = 500.0
 grow_horizontal = 2
 mouse_filter = 1
 
-[node name="NameLabel" type="RichTextLabel" parent="Button/MarginContainer/Control/CompletionStat3"]
+[node name="NameLabel" type="RichTextLabel" parent="Button/CompletedText/MarginContainer/Control/CompletionStat3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -163,7 +170,7 @@ bbcode_enabled = true
 text = "Time:"
 vertical_alignment = 1
 
-[node name="ValueLabel" type="Label" parent="Button/MarginContainer/Control/CompletionStat3"]
+[node name="ValueLabel" type="Label" parent="Button/CompletedText/MarginContainer/Control/CompletionStat3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,7 +182,7 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Control2" type="Control" parent="Button/MarginContainer/Control"]
+[node name="Control2" type="Control" parent="Button/CompletedText/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -185,7 +192,7 @@ offset_top = -100.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Button/MarginContainer/Control/Control2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Button/CompletedText/MarginContainer/Control/Control2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -195,11 +202,11 @@ grow_vertical = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Button" type="Button" parent="Button/MarginContainer/Control/Control2/HBoxContainer"]
+[node name="Button" type="Button" parent="Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Control/Control2/HBoxContainer/Button"]
+[node name="TextureRect" type="TextureRect" parent="Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -212,11 +219,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_45apl")
 
-[node name="Button2" type="Button" parent="Button/MarginContainer/Control/Control2/HBoxContainer"]
+[node name="Button2" type="Button" parent="Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Control/Control2/HBoxContainer/Button2"]
+[node name="TextureRect2" type="TextureRect" parent="Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer/Button2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -229,11 +236,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_0muf2")
 
-[node name="Button3" type="Button" parent="Button/MarginContainer/Control/Control2/HBoxContainer"]
+[node name="Button3" type="Button" parent="Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Control/Control2/HBoxContainer/Button3"]
+[node name="TextureRect2" type="TextureRect" parent="Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer/Button3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -246,6 +253,36 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_0muf2")
 
+[node name="NotCompletedText" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[b][font_size=23][color=#222222]--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED--NOT COMPLETED"
+scroll_active = false
+autowrap_mode = 1
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 192.0
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 64
+text = "Default level name"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 layout_mode = 1
@@ -255,7 +292,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0, 0, 0, 0.752941)
+color = Color(0, 0, 0, 0.25098)
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
 layout_mode = 1
@@ -273,6 +310,6 @@ grow_vertical = 2
 texture = ExtResource("2_jeb2o")
 
 [connection signal="pressed" from="Button" to="." method="OnPressed"]
-[connection signal="pressed" from="Button/MarginContainer/Control/Control2/HBoxContainer/Button" to="." method="SetMaxKillsScore"]
-[connection signal="pressed" from="Button/MarginContainer/Control/Control2/HBoxContainer/Button2" to="." method="SetMaxBloodScore"]
-[connection signal="pressed" from="Button/MarginContainer/Control/Control2/HBoxContainer/Button3" to="." method="SetBestTimeScore"]
+[connection signal="pressed" from="Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer/Button" to="." method="SetMaxKillsScore"]
+[connection signal="pressed" from="Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer/Button2" to="." method="SetMaxBloodScore"]
+[connection signal="pressed" from="Button/CompletedText/MarginContainer/Control/Control2/HBoxContainer/Button3" to="." method="SetBestTimeScore"]
