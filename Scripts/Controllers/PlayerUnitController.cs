@@ -106,6 +106,11 @@ public partial class PlayerUnitController : UnitController
 	{
 		if (@event.IsActionPressed(_shoot))
 		{
+			if (Weapon is null)
+			{
+				_meleeAttacker.TryAttack();
+				return;
+			}
 			_isHoldingShoot = true;
 			_isJustPressingShoot = true;
 		}
