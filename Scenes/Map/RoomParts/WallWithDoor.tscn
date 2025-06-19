@@ -1,26 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b70hbks7qgp1s"]
+[gd_scene load_steps=2 format=3 uid="uid://b70hbks7qgp1s"]
 
-[ext_resource type="Texture2D" uid="uid://q0uqo8lewaxe" path="res://Textures/Level/Wall.png" id="2_j3gto"]
+[ext_resource type="PackedScene" uid="uid://5v3xt1h6hghb" path="res://Scenes/Map/RoomParts/HalfWall.tscn" id="1_jkrva"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e1li"]
-size = Vector2(350, 30)
+[node name="WallWithDoor" type="Node2D"]
 
-[node name="WallWithDoor" type="StaticBody2D"]
-collision_layer = 3
-collision_mask = 0
+[node name="StaticBody2D" parent="." instance=ExtResource("1_jkrva")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-255, 0)
-shape = SubResource("RectangleShape2D_2e1li")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-scale = Vector2(5.45, 0.46)
-texture = ExtResource("2_j3gto")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(255, 0)
-shape = SubResource("RectangleShape2D_2e1li")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D2"]
-scale = Vector2(5.45, 0.46)
-texture = ExtResource("2_j3gto")
+[node name="StaticBody2D2" parent="." instance=ExtResource("1_jkrva")]
+rotation = 3.14159

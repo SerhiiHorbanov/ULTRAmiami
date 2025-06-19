@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://nlttrdum1dqi"]
+
+[ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_x6uqq"]
+[ext_resource type="PackedScene" uid="uid://b70hbks7qgp1s" path="res://Scenes/Map/RoomParts/WallWithDoor.tscn" id="2_7b3gk"]
+[ext_resource type="PackedScene" uid="uid://5v3xt1h6hghb" path="res://Scenes/Map/RoomParts/HalfWall.tscn" id="3_b5yxj"]
+[ext_resource type="PackedScene" uid="uid://rhvw6pqq6roa" path="res://Scenes/Units/ShotgunEnemy.tscn" id="4_eobjo"]
+[ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="5_o181h"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x6uqq"]
+vertices = PackedVector2Array(-55, -375, 375, -375, 375, 55, 55, 55, -55, -55, 55, 375, -375, 375, -375, -55)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(3, 5, 6, 7, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(400, -400, 400, 80, 80, 80, 80, 400, -400, 400, -400, -80, -80, -80, -80, -400)])
+agent_radius = 25.0
+
+[node name="EmptyRoom" instance=ExtResource("1_x6uqq")]
+
+[node name="TopWall2" parent="." index="0" instance=ExtResource("2_7b3gk")]
+position = Vector2(0, -413)
+
+[node name="LeftWall2" parent="." index="1" instance=ExtResource("2_7b3gk")]
+position = Vector2(-415, 0)
+rotation = -1.5708
+
+[node name="NavigationRegion2D" parent="." index="4"]
+navigation_polygon = SubResource("NavigationPolygon_x6uqq")
+
+[node name="Polygon2D" parent="." index="5"]
+polygon = PackedVector2Array(-88, -88, -88, -408, 432, -408, 432, 80, 80, 80, 80, 432, -400, 432, -400, -88)
+
+[node name="StaticBody2D" parent="." index="6" instance=ExtResource("3_b5yxj")]
+position = Vector2(0, -96)
+
+[node name="StaticBody2D2" parent="." index="7" instance=ExtResource("3_b5yxj")]
+position = Vector2(-96, 0)
+rotation = 1.57079
+
+[node name="StaticBody2D3" parent="." index="8" instance=ExtResource("3_b5yxj")]
+position = Vector2(0, 96)
+rotation = 3.14159
+
+[node name="StaticBody2D4" parent="." index="9" instance=ExtResource("3_b5yxj")]
+position = Vector2(96, 0)
+rotation = 4.71238
+
+[node name="ShotgunEnemy" parent="." index="10" instance=ExtResource("4_eobjo")]
+position = Vector2(-192, 344)
+
+[node name="SMGEnemy" parent="." index="11" instance=ExtResource("5_o181h")]
+position = Vector2(136, -328)
+
+[editable path="RoomWalls"]

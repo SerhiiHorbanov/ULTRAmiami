@@ -36,6 +36,6 @@ navigation_polygon = SubResource("NavigationPolygon_okti7")
 [node name="SMGEnemy" parent="." index="7" instance=ExtResource("4_ti6qv")]
 
 [node name="Polygon2D" parent="." index="8"]
-polygon = PackedVector2Array(80, -400, 80, -80, 432, -80, 432, 80, 80, 80, 80, 432, -80, 432, -80, 80, -400, 80, -400, -80, -80, -80, -80, -400)
+polygon = PackedVector2Array(80, -408, 80, -80, 432, -80, 432, 80, 80, 80, 80, 432, -80, 432, -80, 80, -400, 80, -400, -80, -80, -80, -80, -408)
 
 [editable path="RoomWalls"]

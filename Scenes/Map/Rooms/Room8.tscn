@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://j8exo8unxhe4"]
+
+[ext_resource type="PackedScene" uid="uid://bua7isnxgtjr0" path="res://Scenes/Map/Rooms/EmptyRoom.tscn" id="1_askc7"]
+[ext_resource type="PackedScene" uid="uid://5v3xt1h6hghb" path="res://Scenes/Map/RoomParts/HalfWall.tscn" id="2_x2ybi"]
+[ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="3_1ctee"]
+[ext_resource type="PackedScene" uid="uid://cx57b7r2bv2lv" path="res://Scenes/Units/AssaultRifleEnemy.tscn" id="4_jmkun"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_82sd8"]
+vertices = PackedVector2Array(375, -375, 375, 375, 137, 375, 137, -289, -375, -375, 55, -289, -375, -137, -55, -137, 55, 375, -55, 265, -375, 375, -137, 265, -375, -55, -137, -55)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(7, 5, 8, 9), PackedInt32Array(9, 8, 10, 11), PackedInt32Array(11, 10, 12, 13)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-400, -400, 400, -400, 400, 400, 112, 400, 112, -264, 80, -264, 80, 400, -400, 400, -400, -80, -112, -80, -112, 240, -80, 240, -80, -112, -400, -112)])
+agent_radius = 25.0
+
+[node name="EmptyRoom" instance=ExtResource("1_askc7")]
+
+[node name="NavigationRegion2D" parent="." index="2"]
+navigation_polygon = SubResource("NavigationPolygon_82sd8")
+
+[node name="StaticBody2D" parent="." index="4" instance=ExtResource("2_x2ybi")]
+position = Vector2(96, 0)
+rotation = -1.57079
+
+[node name="StaticBody2D2" parent="." index="5" instance=ExtResource("2_x2ybi")]
+position = Vector2(96, -344)
+rotation = -1.57079
+
+[node name="StaticBody2D3" parent="." index="6" instance=ExtResource("2_x2ybi")]
+position = Vector2(0, -96)
+
+[node name="StaticBody2D4" parent="." index="7" instance=ExtResource("2_x2ybi")]
+position = Vector2(-96, 320)
+rotation = 1.57079
+
+[node name="Unit" parent="." index="8" instance=ExtResource("3_1ctee")]
+position = Vector2(336, -336)
+
+[node name="Unit2" parent="." index="9" instance=ExtResource("3_1ctee")]
+position = Vector2(-208, -256)
+
+[node name="AssaultRifleEnemy" parent="." index="10" instance=ExtResource("4_jmkun")]
+position = Vector2(-312, 304)
+
+[node name="AssaultRifleEnemy2" parent="." index="11" instance=ExtResource("4_jmkun")]
+position = Vector2(208, 305)
