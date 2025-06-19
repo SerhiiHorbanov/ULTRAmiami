@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_m120p")
 _saveName = "5th"
-_shownName = "Specification"
+_shownName = "5ix"
 _scenePath = "uid://bosapuiklpsrh"
 _nextLevel = ExtResource("1_yl5tj")
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"
