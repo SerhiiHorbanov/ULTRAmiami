@@ -16,7 +16,7 @@ public partial class Console : Control
 	private readonly static List<string> History = [];
 	private int _currentCommandInHistoryIndex;
 
-	private readonly static StringName ConsoleOpenClose = new("console open close");
+	private readonly static StringName ToggleConsoleAction = new("toggle console");
 	private readonly static StringName UITextCaretUp = new("ui_text_caret_up");
 	private readonly static StringName UITextCaretDown = new("ui_text_caret_down");
 
@@ -34,7 +34,7 @@ public partial class Console : Control
 
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed(ConsoleOpenClose))
+		if (Input.IsActionJustPressed(ToggleConsoleAction))
 			SwitchIsOnScreen();
 		
 		if (!_isOnScreen)
