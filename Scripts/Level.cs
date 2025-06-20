@@ -16,6 +16,21 @@ public partial class Level : Node
 	[Export] private Unit _player;
 	
 	private readonly static StringName PlayNextLevel = "play next level";
+
+	[Signal]
+	public delegate void OnCompletionEventHandler();
+	
+	public string LevelName 
+		=> _info.LevelName;
+	
+	public float GetBestTime()
+		=> _info.GetBestTimeScore().TimeAlive;
+
+	public int GetBestKills()
+		=> (int)_info.GetMaxKillsScore().Kills;
+	
+	public float GetBestBlood()
+		=> _info.GetMaxBloodScore().BloodConsumed;
 	
 	public override void _Ready()
 	{
@@ -35,6 +50,7 @@ public partial class Level : Node
 		
 		_info.AddCompletion(PlayerScore.Current);
 		_completionMenu.Display(_info, PlayerScore.Current);
+		EmitSignalOnCompletion();
 	}
 
 	private void LoadNextLevel()
