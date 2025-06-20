@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dinv4jeygw28h" path="res://Textures/UI/ClockIcon.png" id="4_0muf2"]
 
 [node name="LevelWidget" type="ColorRect" node_paths=PackedStringArray("_nameLabel", "_levelLockedOverlay", "_visibleIfCompleted", "_invisibleIfCompleted", "_killsLabel", "_bloodConsumedLabel", "_timeLabel", "_maxKillsScoreButton", "_maxBloodScoreButton", "_bestTimeScoreButton")]
-custom_minimum_size = Vector2(400, 700)
-offset_right = 400.0
-offset_bottom = 600.0
+custom_minimum_size = Vector2(390, 700)
+offset_right = 390.0
+offset_bottom = 700.0
 size_flags_horizontal = 4
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_sun6l")
