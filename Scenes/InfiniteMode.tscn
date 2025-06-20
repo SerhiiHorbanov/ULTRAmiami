@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6u4rioaf4ul4"]
+[gd_scene load_steps=10 format=3 uid="uid://b6u4rioaf4ul4"]
 
 [ext_resource type="PackedScene" uid="uid://d35osyuqqd0is" path="res://Scenes/Units/Player.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://ch33vi8cwppji" path="res://Scenes/GameplayCamera.tscn" id="2_b2bpf"]
@@ -8,24 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://bxb34giu5ayyx" path="res://Scenes/Map/Map.tscn" id="6_7lihs"]
 [ext_resource type="PackedScene" uid="uid://o86viig4gjbo" path="res://Scenes/GameplayRestarter.tscn" id="6_fgofq"]
 [ext_resource type="Script" uid="uid://bm665u5gx60eo" path="res://Scripts/MouseVisibilityHandler.cs" id="8_31mq1"]
+[ext_resource type="Script" uid="uid://f4r8uag2jns5" path="res://Scripts/InfiniteMode/InfiniteModeSavesManager.cs" id="9_8a7bh"]
 
-[node name="Game" type="Node2D"]
+[node name="InfiniteMode" type="Node2D"]
 
 [node name="GameplayCamera" parent="." node_paths=PackedStringArray("_unit") instance=ExtResource("2_b2bpf")]
 _unit = NodePath("../Player")
 
 [node name="Canvas" parent="." instance=ExtResource("2_gl6un")]
 
-[node name="LevelTargetsUI" parent="Canvas" index="0"]
+[node name="LevelTargetsUI" parent="Canvas" index="1"]
 visible = false
 
-[node name="AmmoDisplay" parent="Canvas" index="1" node_paths=PackedStringArray("_unit")]
+[node name="AmmoDisplay" parent="Canvas" index="2" node_paths=PackedStringArray("_unit")]
 _unit = NodePath("../../Player")
 
-[node name="GameplayRestartConsole" parent="Canvas" index="4"]
-material = null
-
-[node name="RealConsole" parent="Canvas" index="6" node_paths=PackedStringArray("_player")]
+[node name="RealConsole" parent="Canvas" index="7" node_paths=PackedStringArray("_player")]
 _player = NodePath("../../Player")
 
 [node name="PauseMenu" parent="Canvas" instance=ExtResource("2_d35lu")]
@@ -42,9 +40,13 @@ _unit = NodePath("../Player")
 [node name="MouseVisibilityHandler" type="Node" parent="."]
 script = ExtResource("8_31mq1")
 
+[node name="SavesManager" type="Node" parent="."]
+script = ExtResource("9_8a7bh")
+
 [connection signal="OnRestartLevel" from="Canvas/PauseMenu" to="GameplayRestarter" method="RestartGameplay"]
 [connection signal="OnDeath" from="Player" to="Canvas/GameplayRestartConsole" method="BeginDeathAnimation"]
 [connection signal="OnDeath" from="Player" to="MusicManager" method="OnPlayerDeath"]
+[connection signal="OnDeath" from="Player" to="SavesManager" method="SaveCurrentScore"]
 [connection signal="OnBloodChanged" from="Player/BloodFuel" to="Canvas/BloodBar" method="SetBlood"]
 
 [editable path="Canvas"]
