@@ -320,6 +320,14 @@ _name = "pick up weapon"
 layout_mode = 2
 _name = "drop weapon"
 
+[node name="ToggleStatsDisplay" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="9" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "toggle stats display"
+
+[node name="ToggleConsole" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer/Controls/VBoxContainer" index="10" instance=ExtResource("7_ftgty")]
+layout_mode = 2
+_name = "toggle console"
+
 [node name="Other" parent="MarginContainer/ColorRect/HSplitContainer/Control/MarginContainer" instance=ExtResource("2_1r8m7")]
 visible = false
 layout_mode = 2
