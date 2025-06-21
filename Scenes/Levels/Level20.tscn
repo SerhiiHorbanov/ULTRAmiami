@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dj6jq6cndrvde"]
+[gd_scene load_steps=17 format=3 uid="uid://dj6jq6cndrvde"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_ipmu8"]
 [ext_resource type="Resource" uid="uid://cx1h3vjvdklxi" path="res://LevelInfos/Level20Info.tres" id="2_74rx6"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="10_2t8lx"]
 [ext_resource type="PackedScene" uid="uid://c7lxg1prscm7m" path="res://Scenes/LevelDetails/HintTrigger.tscn" id="11_5ifsr"]
 [ext_resource type="Script" uid="uid://bsnay7tcwvpmp" path="res://Scripts/Data/GameplayHint.cs" id="12_lh55i"]
+[ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="13_lh55i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqlcn"]
 size = Vector2(288, 576)
@@ -195,6 +196,9 @@ navigation_polygon = SubResource("NavigationPolygon_7opwo")
 position = Vector2(192, 0)
 scale = Vector2(1, 6)
 _hint = SubResource("Resource_g4s0j")
+
+[node name="ExitArrow" parent="." index="17" instance=ExtResource("13_lh55i")]
+position = Vector2(2120, -576)
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 
