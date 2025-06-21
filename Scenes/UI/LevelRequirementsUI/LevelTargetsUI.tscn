@@ -18,6 +18,7 @@ _targetsCounterLabel = NodePath("MarginContainer/RichTextLabel")
 _targetsCounterPrefix = "[font_size=34]TARGETS "
 _targetsCounterSuffix = "[color=white]:"
 _targetsCounterCompletedPrefix = "[color=green]"
+_failedText = "[color=red][font_size=48]TARGET FAILED"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)

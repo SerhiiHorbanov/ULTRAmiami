@@ -9,6 +9,8 @@ public partial class LevelTargetsUI : Control
 	[Export] private string _targetsCounterPrefix;
 	[Export] private string _targetsCounterSuffix;
 	[Export] private string _targetsCounterCompletedPrefix;
+
+	[Export] private string _failedText;
 	
 	private static LevelTargetsUI _instance;
 
@@ -61,4 +63,9 @@ public partial class LevelTargetsUI : Control
 		
 		AddChild(ui);
 	}
+	
+	public static void SetFailedText()
+		=> _instance?.SetFailedTextInternal();
+	private void SetFailedTextInternal()
+		=> _targetsCounterLabel.Text = _failedText;
 }

@@ -69,5 +69,6 @@ public partial class LevelTarget : Node2D
 	private void Fail(CompletionRequirement requirement)
 	{
 		_player.Die(new(Vector2.Zero, 0, new()));
+		LevelTargetsUI.SetFailedText();
 	}
 }
