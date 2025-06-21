@@ -1,0 +1,189 @@
+[gd_scene load_steps=13 format=3 uid="uid://dj6jq6cndrvde"]
+
+[ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_ipmu8"]
+[ext_resource type="Resource" uid="uid://cx1h3vjvdklxi" path="res://LevelInfos/Level20Info.tres" id="2_74rx6"]
+[ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="3_74rx6"]
+[ext_resource type="PackedScene" uid="uid://dqof712s4pssr" path="res://Scenes/LevelDetails/Requirements/TimeLimitationRequirement.tscn" id="3_qimv8"]
+[ext_resource type="PackedScene" uid="uid://cnqi8a1n3yf1x" path="res://Scenes/LevelDetails/Requirements/ReachAreaRequirement.tscn" id="4_43lmt"]
+[ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="6_5ifsr"]
+[ext_resource type="PackedScene" uid="uid://dffcbxd5mkoem" path="res://Scenes/LevelDetails/BreakableTriggerVertical.tscn" id="7_lh55i"]
+[ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="8_g4s0j"]
+[ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="9_nc45w"]
+[ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="10_2t8lx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqlcn"]
+size = Vector2(288, 576)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7opwo"]
+vertices = PackedVector2Array(1383, 345, 1959, 345, 1959, 807, 921, 807, 921, -921, 1383, -1959, 807, 231, -231, 231, -231, -231, 345, -231, 807, -921, 345, -1383, 921, -1383, 921, -1959, 2535, -807, 2535, -345, 1959, -345, 1497, -807, 1497, 231, 1959, 231)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 6, 9, 11), PackedInt32Array(10, 11, 12, 4), PackedInt32Array(5, 4, 12), PackedInt32Array(5, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 17, 16, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-256, -256, 320, -256, 320, -1408, 896, -1408, 896, -1984, 1408, -1984, 1408, 320, 1984, 320, 1984, 832, 896, 832, 896, -896, 832, -896, 832, 256, -256, 256), PackedVector2Array(1472, -832, 2560, -832, 2560, -320, 1984, -320, 1984, 256, 1472, 256)])
+agent_radius = 25.0
+
+[node name="Level" instance=ExtResource("1_ipmu8")]
+_info = ExtResource("2_74rx6")
+
+[node name="TimeLimitationRequirement" parent="LevelTarget" index="0" instance=ExtResource("3_qimv8")]
+position = Vector2(-251.242, -253.005)
+
+[node name="Timer" parent="LevelTarget/TimeLimitationRequirement" index="0"]
+wait_time = 20.0
+
+[node name="ReachAreaRequirement" parent="LevelTarget" index="1" node_paths=PackedStringArray("_areas") instance=ExtResource("4_43lmt")]
+_areas = [NodePath("Area2D")]
+
+[node name="Area2D" type="Area2D" parent="LevelTarget/ReachAreaRequirement" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTarget/ReachAreaRequirement/Area2D" index="0"]
+position = Vector2(2448, -577)
+shape = SubResource("RectangleShape2D_oqlcn")
+
+[node name="Walls" type="Node2D" parent="." index="7"]
+
+[node name="Wall" parent="Walls" index="0" instance=ExtResource("3_74rx6")]
+position = Vector2(5, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall2" parent="Walls" index="1" instance=ExtResource("3_74rx6")]
+position = Vector2(-288, 4.76837e-07)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall3" parent="Walls" index="2" instance=ExtResource("3_74rx6")]
+position = Vector2(0, -288)
+scale = Vector2(10, 1)
+
+[node name="Wall4" parent="Walls" index="3" instance=ExtResource("3_74rx6")]
+position = Vector2(576, 288)
+scale = Vector2(10, 1)
+
+[node name="Wall5" parent="Walls" index="4" instance=ExtResource("3_74rx6")]
+position = Vector2(864, -1.90735e-06)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall6" parent="Walls" index="5" instance=ExtResource("3_74rx6")]
+position = Vector2(288, -576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall7" parent="Walls" index="6" instance=ExtResource("3_74rx6")]
+position = Vector2(864, -576)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall8" parent="Walls" index="7" instance=ExtResource("3_74rx6")]
+position = Vector2(288, -1152)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall9" parent="Walls" index="8" instance=ExtResource("3_74rx6")]
+position = Vector2(576, -1440)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall10" parent="Walls" index="9" instance=ExtResource("3_74rx6")]
+position = Vector2(864, -1728)
+rotation = 1.57079
+scale = Vector2(10, 1)
+
+[node name="Wall11" parent="Walls" index="10" instance=ExtResource("3_74rx6")]
+position = Vector2(1152, -2016)
+rotation = 3.14159
+scale = Vector2(10, 1)
+
+[node name="Wall12" parent="Walls" index="11" instance=ExtResource("3_74rx6")]
+position = Vector2(1440, -1728)
+rotation = 4.71238
+scale = Vector2(10, 1)
+
+[node name="Wall13" parent="Walls" index="12" instance=ExtResource("3_74rx6")]
+position = Vector2(1440, -1152)
+rotation = 4.71238
+scale = Vector2(10, 1)
+
+[node name="Wall14" parent="Walls" index="13" instance=ExtResource("3_74rx6")]
+position = Vector2(1440, -576)
+rotation = 4.71238
+scale = Vector2(10, 1)
+
+[node name="Wall15" parent="Walls" index="14" instance=ExtResource("3_74rx6")]
+position = Vector2(1728, -864)
+rotation = 6.28318
+scale = Vector2(10, 1)
+
+[node name="Wall16" parent="Walls" index="15" instance=ExtResource("3_74rx6")]
+position = Vector2(864, 576)
+rotation = 7.85397
+scale = Vector2(10, 1)
+
+[node name="Wall17" parent="Walls" index="16" instance=ExtResource("3_74rx6")]
+position = Vector2(1152, 864)
+rotation = 9.42476
+scale = Vector2(10, 1)
+
+[node name="Wall18" parent="Walls" index="17" instance=ExtResource("3_74rx6")]
+position = Vector2(1728, 864)
+rotation = 9.42476
+scale = Vector2(10, 1)
+
+[node name="Wall19" parent="Walls" index="18" instance=ExtResource("3_74rx6")]
+position = Vector2(2016, 576)
+rotation = 10.9956
+scale = Vector2(10, 1)
+
+[node name="Wall20" parent="Walls" index="19" instance=ExtResource("3_74rx6")]
+position = Vector2(1728, 288)
+rotation = 12.5664
+scale = Vector2(10, 1)
+
+[node name="Wall21" parent="Walls" index="20" instance=ExtResource("3_74rx6")]
+position = Vector2(2016, 1)
+rotation = 14.1371
+scale = Vector2(10, 1)
+
+[node name="Wall22" parent="Walls" index="21" instance=ExtResource("3_74rx6")]
+position = Vector2(2304, -864)
+rotation = 15.7079
+scale = Vector2(10, 1)
+
+[node name="Wall23" parent="Walls" index="22" instance=ExtResource("3_74rx6")]
+position = Vector2(2592, -576)
+rotation = 17.2787
+scale = Vector2(10, 1)
+
+[node name="Wall24" parent="Walls" index="23" instance=ExtResource("3_74rx6")]
+position = Vector2(2304, -288)
+rotation = 18.8495
+scale = Vector2(10, 1)
+
+[node name="TriggerableDoor" parent="." index="8" instance=ExtResource("6_5ifsr")]
+position = Vector2(1440, 4.99997)
+scale = Vector2(2, 2.7)
+
+[node name="BreakableTrigger" parent="." index="9" instance=ExtResource("7_lh55i")]
+position = Vector2(1946, 576)
+
+[node name="SMGEnemy" parent="." index="10" instance=ExtResource("8_g4s0j")]
+position = Vector2(1760, 432)
+
+[node name="SMGEnemy2" parent="." index="11" instance=ExtResource("8_g4s0j")]
+position = Vector2(1056, -1624)
+
+[node name="ConcreteFloor" parent="." index="12" instance=ExtResource("9_nc45w")]
+polygon = PackedVector2Array(-256, -256, 320, -256, 320, -1408, 1408, -1408, 1408, -832, 2560, -832, 2560, -320, 1984, -320, 1992, 256, -256, 256)
+
+[node name="MetalFloor" parent="." index="13" instance=ExtResource("10_2t8lx")]
+polygon = PackedVector2Array(1408, -1984, 896, -1984, 896, -1408, 1408, -1408)
+
+[node name="MetalFloor2" parent="." index="14" instance=ExtResource("10_2t8lx")]
+polygon = PackedVector2Array(896, 256, 1984, 256, 1984, 832, 896, 832)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="15"]
+navigation_polygon = SubResource("NavigationPolygon_7opwo")
+
+[connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
+
+[editable path="Canvas"]
+[editable path="Player"]
+[editable path="LevelTarget/TimeLimitationRequirement"]
