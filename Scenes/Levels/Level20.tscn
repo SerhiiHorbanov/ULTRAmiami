@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dj6jq6cndrvde"]
+[gd_scene load_steps=16 format=3 uid="uid://dj6jq6cndrvde"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_ipmu8"]
 [ext_resource type="Resource" uid="uid://cx1h3vjvdklxi" path="res://LevelInfos/Level20Info.tres" id="2_74rx6"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://co630wh4d6ynq" path="res://Scenes/Units/SMGEnemy.tscn" id="8_g4s0j"]
 [ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="9_nc45w"]
 [ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="10_2t8lx"]
+[ext_resource type="PackedScene" uid="uid://c7lxg1prscm7m" path="res://Scenes/LevelDetails/HintTrigger.tscn" id="11_5ifsr"]
+[ext_resource type="Script" uid="uid://bsnay7tcwvpmp" path="res://Scripts/Data/GameplayHint.cs" id="12_lh55i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqlcn"]
 size = Vector2(288, 576)
@@ -19,6 +21,13 @@ vertices = PackedVector2Array(1383, 345, 1959, 345, 1959, 807, 921, 807, 921, -9
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 6, 9, 11), PackedInt32Array(10, 11, 12, 4), PackedInt32Array(5, 4, 12), PackedInt32Array(5, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 17, 16, 19)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-256, -256, 320, -256, 320, -1408, 896, -1408, 896, -1984, 1408, -1984, 1408, 320, 1984, 320, 1984, 832, 896, 832, 896, -896, 832, -896, 832, 256, -256, 256), PackedVector2Array(1472, -832, 2560, -832, 2560, -320, 1984, -320, 1984, 256, 1472, 256)])
 agent_radius = 25.0
+
+[sub_resource type="Resource" id="Resource_g4s0j"]
+script = ExtResource("12_lh55i")
+Text = "Time is limited."
+Time = 3.0
+OverrideCurrentHint = false
+metadata/_custom_type_script = "uid://bsnay7tcwvpmp"
 
 [node name="Level" instance=ExtResource("1_ipmu8")]
 _info = ExtResource("2_74rx6")
@@ -181,6 +190,11 @@ polygon = PackedVector2Array(896, 256, 1984, 256, 1984, 832, 896, 832)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="15"]
 navigation_polygon = SubResource("NavigationPolygon_7opwo")
+
+[node name="HintTrigger" parent="." index="16" instance=ExtResource("11_5ifsr")]
+position = Vector2(192, 0)
+scale = Vector2(1, 6)
+_hint = SubResource("Resource_g4s0j")
 
 [connection signal="OnBroken" from="BreakableTrigger" to="TriggerableDoor" method="Trigger"]
 

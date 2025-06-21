@@ -24,9 +24,6 @@ agent_radius = 25.0
 [node name="Level" instance=ExtResource("1_s4jev")]
 _info = ExtResource("2_fjs1q")
 
-[node name="Canvas" parent="." index="1"]
-visible = false
-
 [node name="TimeLimitationRequirement" parent="LevelTarget" index="0" instance=ExtResource("2_t86km")]
 
 [node name="Timer" parent="LevelTarget/TimeLimitationRequirement" index="0"]
