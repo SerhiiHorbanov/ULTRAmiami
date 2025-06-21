@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=2 format=3 uid="uid://boyyb3x2q8uaw"]
+
+[ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_sc8qi"]
+
+[resource]
+script = ExtResource("1_sc8qi")
+_saveName = "21st"
+_shownName = "Skip 2"
+_scenePath = "uid://bdr40ui5dkmba"
+metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"

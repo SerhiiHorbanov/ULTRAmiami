@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="LevelInfo" load_steps=2 format=3 uid="uid://cx1h3vjvdklxi"]
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://cx1h3vjvdklxi"]
 
 [ext_resource type="Script" uid="uid://bf5dfhd4v3g0k" path="res://Scripts/Data/LevelInfo.cs" id="1_4ehfs"]
+[ext_resource type="Resource" uid="uid://boyyb3x2q8uaw" path="res://LevelInfos/Level21Info.tres" id="1_mx8lb"]
 
 [resource]
 script = ExtResource("1_4ehfs")
 _saveName = "20th"
 _shownName = "Time"
 _scenePath = "uid://dj6jq6cndrvde"
+_nextLevel = ExtResource("1_mx8lb")
 metadata/_custom_type_script = "uid://bf5dfhd4v3g0k"
