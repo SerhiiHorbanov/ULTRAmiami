@@ -15,5 +15,7 @@ public partial class Railgun : Weapon
 		shot.MakeSiblingOf(GetParent());
 		shot.Initialize(GlobalPosition, shootingAt, Unit);
 		Unit.CallDeferred(Units.Unit.MethodName.DropWeapon);
+		RemoveChild(ShootingAudio);
+		Unit.AddChild(ShootingAudio);
 	}
 }

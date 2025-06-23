@@ -81,6 +81,8 @@ public abstract partial class Weapon : Node2D
 	private float HalfDroppedRotationRandomness 
 		=> float.DegreesToRadians(_droppedRotationRandomness * 0.5f);
 
+	protected Node ShootingAudio
+		=> _shootingAudio;
 
 	public override void _Ready()
 	{
