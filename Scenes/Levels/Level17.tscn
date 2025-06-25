@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://f8l80bmwgtkv"]
+[gd_scene load_steps=21 format=3 uid="uid://f8l80bmwgtkv"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_eowd8"]
 [ext_resource type="Resource" uid="uid://b8sgww1wpm8dp" path="res://LevelInfos/Level17Info.tres" id="2_5ruue"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://b5js1ka2nalod" path="res://Scenes/Units/PistolEnemy.tscn" id="8_d7cs8"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="9_4hrni"]
 [ext_resource type="PackedScene" uid="uid://c7lxg1prscm7m" path="res://Scenes/LevelDetails/HintTrigger.tscn" id="10_ahf0x"]
+[ext_resource type="Texture2D" uid="uid://07rpewwex2fq" path="res://Textures/Level/ElectricPanels/BadElectricPanelHorizontal.png" id="10_d0cfc"]
 [ext_resource type="Script" uid="uid://bsnay7tcwvpmp" path="res://Scripts/Data/GameplayHint.cs" id="11_ne85u"]
+[ext_resource type="Texture2D" uid="uid://b3e413amdfjnn" path="res://Textures/Level/ElectricPanels/BadBrokenElectricPanelHorizontal.png" id="11_qa0u6"]
 [ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="12_ge85u"]
 [ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="13_xu2hy"]
 [ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="14_0f4px"]
@@ -133,6 +135,12 @@ position = Vector2(1200, 0)
 [node name="BreakableTrigger" parent="." index="10" instance=ExtResource("9_4hrni")]
 position = Vector2(576, 219)
 
+[node name="NotBrokenVersion" parent="BreakableTrigger" index="1"]
+texture = ExtResource("10_d0cfc")
+
+[node name="BrokenVersion" parent="BreakableTrigger" index="2"]
+texture = ExtResource("11_qa0u6")
+
 [node name="HintTrigger" parent="." index="11" instance=ExtResource("10_ahf0x")]
 position = Vector2(216, -24)
 scale = Vector2(3.25168, 6.76)
@@ -159,3 +167,4 @@ polygon = PackedVector2Array(1408, -256, 1408, 256, 832, 256, 832, -256)
 
 [editable path="Canvas"]
 [editable path="Player"]
+[editable path="BreakableTrigger"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://daelq3l7oa7xl"]
+[gd_scene load_steps=17 format=3 uid="uid://daelq3l7oa7xl"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_ci13v"]
 [ext_resource type="PackedScene" uid="uid://bjm8t8tevkpyt" path="res://Scenes/LevelDetails/Walls/Wall.tscn" id="2_b6n1p"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="5_5vk15"]
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="5_h8af7"]
 [ext_resource type="PackedScene" uid="uid://cxr18lqfraf18" path="res://Scenes/LevelDetails/BreakableTrigger.tscn" id="6_8r7p3"]
+[ext_resource type="Texture2D" uid="uid://07rpewwex2fq" path="res://Textures/Level/ElectricPanels/BadElectricPanelHorizontal.png" id="11_1foyb"]
 [ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="11_5vk15"]
+[ext_resource type="Texture2D" uid="uid://b3e413amdfjnn" path="res://Textures/Level/ElectricPanels/BadBrokenElectricPanelHorizontal.png" id="12_iaqev"]
 [ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="12_rls8l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rls8l"]
@@ -356,14 +358,38 @@ scale = Vector2(2, 2.7)
 [node name="BreakableTrigger4" parent="." index="15" instance=ExtResource("6_8r7p3")]
 position = Vector2(577, -219)
 
+[node name="NotBrokenVersion" parent="BreakableTrigger4" index="1"]
+texture = ExtResource("11_1foyb")
+
+[node name="BrokenVersion" parent="BreakableTrigger4" index="2"]
+texture = ExtResource("12_iaqev")
+
 [node name="BreakableTrigger5" parent="." index="16" instance=ExtResource("6_8r7p3")]
 position = Vector2(1728, -219)
+
+[node name="NotBrokenVersion" parent="BreakableTrigger5" index="1"]
+texture = ExtResource("11_1foyb")
+
+[node name="BrokenVersion" parent="BreakableTrigger5" index="2"]
+texture = ExtResource("12_iaqev")
 
 [node name="BreakableTrigger6" parent="." index="17" instance=ExtResource("6_8r7p3")]
 position = Vector2(1152, 219)
 
+[node name="NotBrokenVersion" parent="BreakableTrigger6" index="1"]
+texture = ExtResource("11_1foyb")
+
+[node name="BrokenVersion" parent="BreakableTrigger6" index="2"]
+texture = ExtResource("12_iaqev")
+
 [node name="BreakableTrigger7" parent="." index="18" instance=ExtResource("6_8r7p3")]
 position = Vector2(2304, 219)
+
+[node name="NotBrokenVersion" parent="BreakableTrigger7" index="1"]
+texture = ExtResource("11_1foyb")
+
+[node name="BrokenVersion" parent="BreakableTrigger7" index="2"]
+texture = ExtResource("12_iaqev")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="19"]
 navigation_polygon = SubResource("NavigationPolygon_1foyb")
@@ -407,3 +433,7 @@ polygon = PackedVector2Array(896, -832, 1408, -832, 1408, -320, 2048, -320, 2048
 
 [editable path="Canvas"]
 [editable path="Player"]
+[editable path="BreakableTrigger4"]
+[editable path="BreakableTrigger5"]
+[editable path="BreakableTrigger6"]
+[editable path="BreakableTrigger7"]

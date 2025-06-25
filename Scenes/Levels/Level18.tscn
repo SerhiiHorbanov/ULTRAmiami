@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwb7wmmd8qfle"]
+[gd_scene load_steps=17 format=3 uid="uid://dwb7wmmd8qfle"]
 
 [ext_resource type="PackedScene" uid="uid://33fahnyv1k8v" path="res://Scenes/Levels/Level.tscn" id="1_qda6e"]
 [ext_resource type="PackedScene" uid="uid://cchkdwswpp6r6" path="res://Scenes/LevelDetails/Requirements/KillCountRequirement.tscn" id="2_u4lgp"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bklnfqgrgmf8u" path="res://Scenes/LevelDetails/TriggerableDoor.tscn" id="7_aibtj"]
 [ext_resource type="PackedScene" uid="uid://dffcbxd5mkoem" path="res://Scenes/LevelDetails/BreakableTriggerVertical.tscn" id="8_lbk1i"]
 [ext_resource type="PackedScene" uid="uid://kl1tn3d2jwne" path="res://Scenes/LevelDetails/ExitArrow.tscn" id="9_x1o6s"]
+[ext_resource type="Texture2D" uid="uid://bygdgbmbrgsj6" path="res://Textures/Level/ElectricPanels/BadElectricPanelVertical.png" id="10_cyd1v"]
+[ext_resource type="Texture2D" uid="uid://bfvbu8pggkl0s" path="res://Textures/Level/ElectricPanels/BadBrokenElectricPanelVertical.png" id="11_aibtj"]
 [ext_resource type="PackedScene" uid="uid://ddcxjvnaei01t" path="res://Scenes/LevelDetails/Floors/MetalFloor.tscn" id="11_bwo3a"]
 [ext_resource type="PackedScene" uid="uid://cfm64ajvud4yn" path="res://Scenes/LevelDetails/Floors/Floor.tscn" id="12_cyd1v"]
 
@@ -138,6 +140,12 @@ scale = Vector2(2, 2.7)
 [node name="BreakableTrigger" parent="." index="10" instance=ExtResource("8_lbk1i")]
 position = Vector2(795, 576)
 
+[node name="NotBrokenVersion" parent="BreakableTrigger" index="1"]
+texture = ExtResource("10_cyd1v")
+
+[node name="BrokenVersion" parent="BreakableTrigger" index="2"]
+texture = ExtResource("11_aibtj")
+
 [node name="ExitArrow" parent="." index="11" instance=ExtResource("9_x1o6s")]
 position = Vector2(832, 1728)
 
@@ -154,3 +162,4 @@ polygon = PackedVector2Array(-256, 896, 320, 896, 320, 1408, -256, 1408)
 
 [editable path="Canvas"]
 [editable path="Player"]
+[editable path="BreakableTrigger"]
